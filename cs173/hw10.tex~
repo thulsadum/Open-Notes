@@ -1,0 +1,102 @@
+\documentclass[12pt]{article}
+\textwidth = 6.7 in
+\textheight = 9.2 in
+\oddsidemargin = 0.0 in
+\evensidemargin = 0.0 in
+\topmargin = 0.2 in
+\headheight = 0.0 in
+\headsep = 0.0 in
+\parskip = 0.2in
+\parindent = 0.0in
+
+\usepackage{amsmath,amssymb,enumerate,enumerate,gastex}
+%\def\rmdefault{bch} % Use Charter for main text font.
+
+% =========================================================
+\begin{document}
+
+\begin{center}
+{\LARGE
+\textbf{Marcell Vazquez-Chanlatte}
+\\
+\textbf{F2}
+\\[1ex]}
+\end{center}
+
+\begin{center}
+  Eric Mills, Anthony Louie
+\end{center}
+
+\begin{enumerate}
+
+%------------------------------------------------------------
+\item
+\textbf{Set-valued functions}
+
+ $f:\mathbb{N} \rightarrow \mathbb{P}(\mathbb{N})$, $f(n) = \{p \in \mathbb{N} : n | p\}$.
+
+\begin{enumerate}
+\item $f(m)= f(p) \cap f(q)$\\
+  Notice that $q$ can be thought of as a multiple of $p$. Therefore only
+  the elements of $f(p)$ that have a multiple of a $q$ as the multiple
+  of $p$ are selected. This happens to be defined as an intersection.
+
+\item Observe that this is merely an extension of part $a$ with
+  multiple sets. Thus the same logic applys recursively.\\
+\\
+Lets define  $T:\mathbb{N} \rightarrow \mathbb{P}(\mathbb{N})$ to be\\
+$T(1) = f(p_1)$\\
+$T(n) = f(p_n) \cap T(n-1)$\\
+
+Therefore $f(m) = T(m)$
+\item Notice that if $f(p)$ is a subset of $f(q)$ then all the
+  multiples of $p$ are in $f(q)$.\\
+  Consider $p=q*k$ for some $p,q,k\in \mathbb{N}$\\
+  $f(q)$ would then contain multiples of $p$.\\
+  Therefore $f(p)$ is a subset of $f(q)$ for $p = q*k$
+\item $m=p*q$ see part a for reasoning.
+\end{enumerate}
+
+
+\newpage
+%------------------------------------------------------------
+\item
+\textbf{Set-valued functions and partitions}
+
+\begin{enumerate}
+\item  $M:V\times\mathbb{N} \rightarrow \mathbb{P}(V)$ by $M(x,n) =\{y \in V \mid \text{ there is a path of length } n\text{ from }x\text{ to }y \}$
+\begin{tabular}{| 1 || r | }
+ $M(c,0)$ & $\{c\}$         \\
+ $M(c,1)$ & $\{a,d,f,k\}$   \\
+ $M(c,2)$ & $\{e,b,f,h,k\}$ \\
+ $M(c,3)$ & $\{e,b,g,h\}$   \\
+ $M(c,4)$ & $\{a,b,d,g,h\}$ \\ 
+ $M(c,5)$ & $\{b,d,e,f,h\}$ \\
+\end{tabular}
+\item No, because if a node is reachable using to diferent path
+  lengths, to instances of that node will show up in the
+  set....violating the def of a Partition.
+\item 
+
+   \begin{itemize}
+   \item[] $Q(x,0) = \{x\}$
+   \item[] For any $n \ge 1$, $Q(x,n) = \{y \in V \mid y \text{ is a neighbor of } p 
+\text{ for some } p \in Q(x,n-1)\}$
+   \end{itemize}
+
+They are not equal because $Q(x,n)$ generates a walk instead of a
+path (Due to not blocking previously visited nodes). Therefore it may
+revisit a node which $P(x,n)$ clearly cannot.
+
+\end{enumerate}
+
+
+
+
+
+
+
+%================================================================
+
+\end{enumerate}
+\end{document}

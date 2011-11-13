@@ -1,0 +1,239 @@
+\documentclass[12pt]{article}
+\textwidth = 6.5 in
+\textheight = 9 in
+\oddsidemargin = 0.0 in
+\evensidemargin = 0.0 in
+\topmargin = 0.2 in
+\headheight = 0.0 in
+\headsep = 0.0 in
+\parskip = 0.2in
+\parindent = 0.0in
+
+\usepackage{amsmath,amssymb,enumerate,gastex}
+
+% =========================================================
+\begin{document}
+
+\begin{center}
+{\LARGE
+\textbf{Marcell Vazquez-Chanlatte}
+\\
+\textbf{3/9/11}
+\\
+\textbf{Eric Mills, Anthony Louie, Nathan}
+\\[1ex]}
+
+\end{center}
+
+\bigskip\hrule
+
+\begin{enumerate}
+
+
+%----------------------------------------------------------------------
+\item \textbf{One-to-one}
+
+\begin{quote}
+ \item a. $f: \mathbb{R} \times \mathbb{R} \rightarrow \mathbb{R}$ such that $f(x,y) = x^5-y^2+8$
+\end{quote}
+
+ Not $1-1$ because $y^2$ is an even function thus $y$ and $-y$ produce the same result.\\
+ For example $f(x,y) = x^2 - y^2 + 8 = x^2 - (-y)^2 + 8 = f(x,-y)$
+
+\begin{quote}
+ \item b. $f: \mathbb{R}^+ \rightarrow \mathbb{R}$ such that $f(x) = 2e^{-2x}$
+  where $e$ is the base of the natural logarithm.   (Hint:  if I substituted
+  another positive number for $e$, would anything important change?)
+\end{quote}
+
+ $1-1$\\
+ Let $f(x) = f(y)$
+ Thus $2e^{-2x} = 2e^{-2y}$
+ Therefore $-2x = -2y$, $x=y$....
+ Also the function is continuously decaying....
+\begin{quote}
+ \item c. $f: \mathbb{N} \times \mathbb{N} \rightarrow \mathbb{Z}$ such that $f(x,y) = \left|x+1\right|-\left|y^3\right|$
+\end{quote}
+
+ Not $1-1$\\
+ Counter-example: $(8,2)$ and $(0,0)$ produce the same result. $|8+1| - |2^3| = 1 = |1| -|0^3|$
+\newpage
+%----------------------------------------------------------------------
+\item \textbf{Function proofs}
+
+
+\begin{quote}
+\item Let's define a function $f$ as follows:
+\item $f: [1/4,3] \rightarrow [0,1] $ such that $f(x) = \frac{4x-1}{2x+5}$
+\item Using the definitions of one-to-one and onto, prove that $f$ is a
+bijection. 
+\end{quote}
+
+\begin{enumerate}
+\item Let $f: [\frac{1}{4},3] \rightarrow [0,1]$ s.t $f(x) = \frac{4x-1}{2x+5}$
+\item Note that bijective means onto and $1-1$
+\item Claim 1: $f$ is onto:
+\item Note the $f$ is only undefined at $x= -2.5$ $,x\in \mathbb{R}$
+\item Also note that $-2.5$ isn't in the interval $[\frac{1}{4}, 3]$
+\item Consider $x= \frac{5y+1}{2*(2-y)}$ where $y$ is an arbitrary element  $\in [0,1]$ $,x,y\in \mathbb{R}$
+\item Let $a = 4x-1$ and $b = 2x+5$
+\item $f(x) = \frac{a}{b}$
+\item Subsituting $x$ in $a$ and $b$
+\item $a = \frac{11y}{2-y}$ and $b = \frac{11}{2-y}$
+\item Thus $f(x) = \frac{a}{b}  = \frac{11y}{11} = y$ 
+\item Thus $\forall y \in [0,1], \exists x \in[\frac{1}{4}, 3]$
+\item Thus $f$ is onto
+\item Claim 2: $f$ is $1-1$
+\item Let $f(x) = f(y) x,y \in \mathbb{R}$
+\item Notice that then $\frac{4y-1}{2y+4} = \frac{4x-1}{2x+4}$
+\item Simplifying $(2x+4)(4y-1) = (4x-1)(2y+4), 8xy-2x+16y-4=8xy-2y+16x-4$
+\item $-2x+16y = -2y+16x, 18y=18x, x=y$
+\item Thus is $1-1$
+\item Therefore, because $f$ is onto and $1-1$ it is bijective
+\item $\square$
+\end{enumerate}
+\newpage
+%----------------------------------------------------------------------
+\item \textbf{Pigeonhole principle}
+
+\begin{quote}
+\item Consider an equilateral triangle with side equal 1 in. What is the
+maximum number of points you can place in that triangle such that no
+two points are $\le 0.5$ in apart?   (Hint:  try dividing the triangle
+into smaller regions and use the pigeonhole principle.)
+\end{quote}
+
+\begin{enumerate}
+\item Note that the length of each side is $1$ therefore base, $b =1$ $b \in \mathbb{R}$
+\item Also note that the height, $h = .5*\sqrt{3}$ $h \in \mathbb{R}$
+\item Therefore the Area of the triangle, $A = .5*b*h = .25*\sqrt{3}$
+\item The minimum Area of the Circle/triangle intersection created by a point P is at the vertices
+\item Thus because the angle is $\frac{\pi}{3}$ which is $\frac{1}{6}$ of the Circle's Area
+\item $P_{Area} = \frac{\pi}{24}$
+\item Note that $3*P_{Area} = \frac{\pi}{8}$ and $A-3*P = \frac{2*\sqrt{3}-\pi}{8} < \frac{pi}{24}$
+\item Therefore only one more region can be created.
+\item Let $R$ be the set of regions and $C$ be the set of Points then s.t $|R|=4$
+\item Thus by P.P if $|C| > 4$ two point will occupy the same region thus violating the terms
+\item Therfore max = $4$
+\end{enumerate}
+\newpage
+%----------------------------------------------------------------------
+\item \textbf{Counting and graphs}
+
+\begin{quote}
+Suppose that $V$ is a set with $n$ elements.   How
+many different possible (simple, undirected) 
+graphs are there with vertex set $V$?  Briefly justify your answer.
+\end{quote}
+
+\begin{enumerate}
+\item Observe that a complete graph a $n$ Vertices, $n =|V|$ has $k$ edges where $k = \frac{n*(n-1)}{2}$
+\item Each edge has two states enabled or disabled.
+\item Thus a binary tree of $k$ levels is produced modeled by $2^k$
+\end{enumerate}
+
+%----------------------------------------------------------------------
+\item \textbf{Cycles and isomorphism}
+
+For the two graphs below, answer the following questions.
+Justify your answers.
+
+\begin{quote}
+\item A. How many isomorphisms are there from G1 to itself?
+\end{quote}
+
+
+There are a few ways two derive this...Looking at G1 as a perfectly symetrical shape, there are $4$ axies of symmetry, and looking counting rotations there are $6$. Thus $10$ isomorphisms//
+Instead focusing on individual nodes... we come up with the following possibilites:
+\begin{enumerate}
+\item $= 2$ choices
+\item $= 1$ choices
+\item $= 2$ choice
+\item $= 1$ choice
+\item $= 2$ choice
+\item $= 1$ choice
+\item $= 1$ choice
+\end{enumerate}
+
+Therefore there are $10$ isomorphisms...which matches our previous conclusion
+
+\begin{quote}
+\item B. Are G1 and G2 isomorphic?
+\end{quote}
+
+Not Isomorphic because the subgraph in $G2$ where a 2 degree is connected to a 3 degree which is connected to another 2 degree is missing in $G1$
+
+\newpage
+\begin{quote}
+\item C. For which values of $n$ does $G1$ contain a cycle
+of length $n$?
+\end{quote}
+
+$n = 3$ $bc,cg,gb$\\
+$n = 4$ $ab,bg,ge,ea$\\
+$n = 5$ $ab,bc,cg,ge,ea$\\
+$n = 6$ $ab,bc,cd,df,fe,ea$\\
+$n = 7$ $ab,bg,gc,cd,df,fe,ea$\\
+
+
+    \begin{picture}(120,50)(0,0)
+        \gasset{Nframe=n}  %no border around nodes
+        \gasset{AHnb=0} % no arrowheads
+%        \gasset{Nadjust=w} %match width to label
+
+        \node(xxx)(10.0,45.0){G1:}
+
+        \node(xb)(40.0,5.0){b}
+        \node(xc)(60.0,5.0){c}
+        \node(xa)(20.0,25.0){a}
+        \node(xd)(80.0,25.0){d}
+        \node(xe)(40.0,45.0){e}
+        \node(xf)(60.0,45.0){f}
+        \node(xhub)(60.0,25.0){g}
+
+    \drawedge(xc,xb){}
+    \drawedge(xa,xb){}
+    \drawedge(xa,xe){}
+    \drawedge(xc,xd){}
+    \drawedge(xf,xd){}
+    \drawedge(xf,xe){}
+
+    \drawedge(xb,xhub){}
+v    \drawedge(xc,xhub){}
+    \drawedge(xe,xhub){}
+    \drawedge(xf,xhub){}
+
+    %======================
+
+        \node(yyy)(90.0,45.0){G2:}
+
+        \node(yb)(130.0,15.0){1}
+        \node(yc)(120.0,5.0){2}
+        \node(ya)(140.0,25.0){3}
+        \node(yd)(160.0,25.0){4}
+        \node(ye)(130.0,35.0){5}
+        \node(yf)(120.0,45.0){7}
+        \node(yhub)(100.0,25.0){6}
+
+    \drawedge(yc,yb){}
+    \drawedge(ya,yb){}
+    \drawedge(ya,ye){}
+    \drawedge(yc,yd){}
+    \drawedge(yf,yd){}
+    \drawedge(yf,ye){}
+
+    \drawedge(ya,yhub){}
+    \drawedge(yc,yhub){}
+    \drawedge(ye,yhub){}
+    \drawedge(yf,yhub){}
+
+
+    \end{picture}
+
+
+
+
+
+\end{enumerate}
+
+\end{document}

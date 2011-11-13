@@ -1,0 +1,169 @@
+\documentclass[12pt]{article}
+\textwidth = 6.7 in
+\textheight = 9.2 in
+\oddsidemargin = 0.0 in
+\evensidemargin = 0.0 in
+\topmargin = 0.2 in
+\headheight = 0.0 in
+\headsep = 0.0 in
+\parskip = 0.2in
+\parindent = 0.0in
+
+\usepackage{amsmath,amssymb,enumerate,enumerate,gastex}
+% \def\rmdefault{bch} % Use Charter for main text font.
+
+% =========================================================
+\begin{document}
+
+\begin{center}
+  {\LARGE
+    \textbf{Marcell Vazquez-Chanlatte}
+    \\
+    \textbf{HW0}
+    \\[1ex]}
+\end{center}
+
+\begin{enumerate}
+
+  % ------------------------------------------------------------
+\item
+  \textbf{Piazza Setup}\\
+  Done
+  % ------------------------------------------------------------
+\item
+
+  \begin{enumerate}
+  \item $\Pi^{n}_{k=2}(1-\frac{1}{k^2})$
+    \begin{enumerate}
+    \item $\Pi^{n}_{k=2}(1-\frac{1}{k^2}) = \Pi^{n}_{k=2}(\frac{k^2-1}{k^2})$
+    \item $\frac{3}{4},\frac{2}{3},\frac{5}{8},\frac{3}{5}$
+    \item $\frac{3}{4},\frac{4}{6},\frac{5}{8},\frac{6}{10}$
+    \item $\Pi^{n}_{k=b2}(1-\frac{1}{k^2})=\frac{n+1}{2n}$
+    \end{enumerate}
+  \item $3^{1000} \mod{7}$
+    \begin{enumerate}
+    \item $3^1,3^2,3^3,3^4,3^5,3^6,3^7$
+    \item $3,2,6,4,5,1,3$
+    \item $3^{1000 }\mod{7} = 1000 \mod{6} = 4$
+    \end{enumerate}  
+  \item $\sum\limits_{r=1}^\infty\frac{1}{2}^r = \lim_{n -> \infty}
+    \frac{n^2-1}{n^2} = 1$
+  \item $\frac{\log_7{81}}{\log_7{9}} = \frac{4\log_7{3}}{2\log_7{3}} =
+    2$
+  \item $\log_2{4^{2n}}=2n\log_2{2^2}=4n$
+  \item $\log_{17}221-\log_{17}13=\log_{17}\frac{221}{13}=1$
+  \end{enumerate}
+  % ---------------------------------------------------------
+\item Claim: $1+\sum_{j=1}^n{j!j}= (n+1)!$
+  \begin{enumerate}
+  \item Let $n>0$, $n\in\mathbb{N}$
+  \item Base: Suppose $n = 1$, $1+\sum_{j=1}^1j!j=1+1=2=(1+1)!$
+  \item I.H : Suppose for some $n>0$ that $1+\sum_{j=1}^nj!j=(n+1)!$
+  \item Observe that, $1+\sum_{j=1}^{n+1}j!j=1+(n+1)!(n+1)+\sum_{j=1}^nj!j$
+  \item Applying the I.H,
+    $1+(n+1)!(n+1)+\sum_{j=1}^nj!j=1+(n+1)!(n+1)+(n+1)!$
+  \item Simplifying, $1+\sum_{j=1}^{n+1}j!j = 1+(n+1)!(n+1+1)$\\ $\square$
+  \end{enumerate}
+  \newpage
+  %----------------------------------------------------------
+\item
+  \begin{enumerate}
+  \item $4^{\log_4{n}}$ and $2n+1$
+    \begin{enumerate}
+    \item Claim: $4^{log_4n}\Theta{(2n+1)}$
+    \item Observe that $4^{log_4 n}=n$ due to properties of logs $n
+      \in \mathbb{N}$
+    \item Sub Claim: $n O{(2n+1)}$
+      \begin{enumerate}
+      \item Notice that $2n = n+n > n-1$ for $n>1$
+      \item Therefore, $2n+1 > n$
+      \item Suppose that $C > 1$, $C\in\mathbb{N}$
+      \item Notice that $C(2n+1)> n$ for $n > 1$
+      \item Thus $n O{(2n+1)}$
+      \end{enumerate}
+    \item Sub Claim: $(2n+1)O{(n)}$
+      \begin{enumerate}
+      \item Observe that $2n < 10^{100}n-1$ for $n>1$
+      \item Let $C$ be $10^{100}$, $C \in \mathbb{N}$
+      \item Substituting $2n +1< Cn$
+      \item Applying Def of Big $O$, $(2n+1)O{(n)}$
+      \end{enumerate}
+    \item Therefore, Applying the Def of Big Theta,\\ $\square$ $4^{log_{4}n} = n \Theta{(2n+1)}$
+    \end{enumerate}
+  \item Claim: $n^2$ is $\Omega(\sqrt{2}^{\log{n}})$
+    \begin{enumerate}
+    \item Let $n$ be an integer such that $n>1$
+    \item Observe that $\log_2n^2=2\log_2n > \log_2\sqrt{n} =
+      \log_2{n^{\frac{1}{2}}} = \frac{\log_2{n}}{2}$
+    \item Thus, $2^{\log_2{n^2}} = n^2 > \sqrt{2}^{\log_2n}=
+      2^{log_2{\sqrt{n}}} $
+    \item Let $C=1$, $C \in \mathbb{Z}$
+    \item Notice that $n^2 > C\sqrt{2}^{\log_2n}$
+    \item Applying the Def of Big $\Omega$, $n^2$ is $\Omega{(\sqrt{2}^{\log_2{n}})}$
+    \end{enumerate}
+  \item $\log n!$ is $O{(n\log{n})}$
+  \item $n^k$ is $O{(c^n)}$
+  \end{enumerate}
+  % -------------------------------------------------
+\item
+  \begin{enumerate}
+  \item $T(n)=5\log_2{n}+1$
+  \item $T(n) = (n-1)\sum_{x=1}^{n-1}\frac{1}{x}$
+  \item $T(n)=n(\log_2n)^2$
+  \item Claim: $T(n)=T(\frac{n}{2})+5=5\log_2{n}+1$, $T(1)=1$
+    \begin{enumerate}
+    \item Base: $T(1)=1=5\cdot 0 + 1=5\log_2{0} +1$
+    \item I.H : Suppose the for some $n\in\mathbb{Z}^+$, $T(n)=5\log_2n+1$
+    \item Observe that $T(n)$ will only result integer results if
+      given power's of $2$ because $\frac{n}{2}$ will only
+      recursively be divisible by to if all its factors are $2$,
+      i.e. $n=2^x$
+    \item Therefore the next integer input after $n$ is $2n$ with all
+      inbetween results having an imply floor to make them
+      equal to the $n$ input.
+    \item Note that $T(2n)=T(\frac{2n}{2})+5=T(n)+5$
+    \item Applying the I.H, $T(2n) = 5\log_2n+1+5= 5(\log_2{(n)}+1)+1
+      = 5\log_2{n}\log_2(2)+1 = 5\log{2n}+1$\\$\square$
+    \end{enumerate}
+    
+  \end{enumerate}
+  \newpage
+% -------------------------------------------------------------------
+\item
+  \begin{enumerate}
+  \item Assuming $n$ is even:
+    \begin{enumerate}
+    \item $T(n)= T(\frac{n}{2})+C$,$T(1)=D$
+    \item $T(n) = C\log_2n+D$
+    \end{enumerate}
+  \item Assuming $n$ is even
+    \begin{enumerate}
+    \item Assuming lines compute in $C$ time...$T(n)=2T(\frac{n}{2})+C(n+1)$, $T(1)=1$
+    \item $T(n)=C(2n-1)+n\log_2n$
+    \end{enumerate}
+  \end{enumerate}
+  % ---------------------------------------------------------------
+\item
+  \begin{enumerate}
+  \item
+    \begin{align*}
+    &x,    n  :&return\\    
+    &2,    12 :&2^{12}\\
+    &2^2,  6  :&2^{12}\\
+    &2^4,  3  :&2^4\cdot 2^6\\
+    &2^8,  1  :&2^8\cdot 1 \\
+    &2^16, 0  :&1
+  \end{align*}
+\item it thats $x^n$
+\item The algorithm takes essientally the same time for an even integer $n$ and
+  $n-1$ (odd) because $\frac{n-1}{2}$ is essientally flooring the result if
+  $n$ is odd and because its pretty hard to predict primes. Therefore\\
+  $T(0)=D$, $T(1)=C+D$\\
+  $T(n)=T(\frac{n}{2})+C$
+\item $T(n)=C\log_2(n) + D + C) = C(\log_2(n)+1)+ D$, $n>1$
+
+\end{enumerate}
+% ================================================================
+
+\end{enumerate}
+\end{document}

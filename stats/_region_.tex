@@ -1,0 +1,106 @@
+\message{ !name(review.tex)}\documentclass[12pt]{article}
+\textwidth = 6.7 in
+\textheight = 9.2 in
+\oddsidemargin = 0.0 in
+\evensidemargin = 0.0 in
+\topmargin = 0.2 in
+\headheight = 0.0 in
+\headsep = 0.0 in
+\parskip = 0.2in
+\parindent = 0.0in
+
+% ***********************************************************
+% *********************** HEADER  ***************************
+% ***********************************************************
+
+\usepackage{amsmath} % AMS Math Package
+\usepackage{amsthm} % Theorem Formatting
+\usepackage{amssymb}	% Math symbols such as \mathbb
+\usepackage{graphicx} % Allows for eps images
+\usepackage{multicol} % Allows for multiple columns
+\usepackage[dvips,letterpaper,margin=0.75in,bottom=0.5in]{geometry}
+ % Sets margins and page size
+\pagestyle{empty} % Removes page numbers
+\makeatletter % Need for anything that contains an @ command 
+\renewcommand{\maketitle} % Redefine maketitle to conserve space
+{ \begingroup \vskip 10pt \begin{center} \large {\bf \@title}
+	\vskip 10pt \large \@author \hskip 20pt \@date \end{center}
+  \vskip 10pt \endgroup \setcounter{footnote}{0} }
+\makeatother % End of region containing @ commands
+\renewcommand{\labelenumi}{(\alph{enumi})} % Use letters for enumerate
+% \DeclareMathOperator{\Sample}{Sample}
+\let\vaccent=\v % rename builtin command \v{} to \vaccent{}
+\renewcommand{\v}[1]{\ensuremath{\mathbf{#1}}} % for vectors
+\newcommand{\gv}[1]{\ensuremath{\mbox{\boldmath$ #1 $}}} 
+% for vectors of Greek letters
+\newcommand{\uv}[1]{\ensuremath{\mathbf{\hat{#1}}}} % for unit vector
+\newcommand{\abs}[1]{\left| #1 \right|} % for absolute value
+\newcommand{\avg}[1]{\left< #1 \right>} % for average
+\let\underdot=\d % rename builtin command \d{} to \underdot{}
+\renewcommand{\d}[2]{\frac{d #1}{d #2}} % for derivatives
+\newcommand{\dd}[2]{\frac{d^2 #1}{d #2^2}} % for double derivatives
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}} 
+% for partial derivatives
+\newcommand{\pdd}[2]{\frac{\partial^2 #1}{\partial #2^2}} 
+% for double partial derivatives
+\newcommand{\pdc}[3]{\left( \frac{\partial #1}{\partial #2}
+ \right)_{#3}} % for thermodynamic partial derivatives
+\newcommand{\ket}[1]{\left| #1 \right>} % for Dirac bras
+\newcommand{\bra}[1]{\left< #1 \right|} % for Dirac kets
+\newcommand{\braket}[2]{\left< #1 \vphantom{#2} \right|
+ \left. #2 \vphantom{#1} \right>} % for Dirac brackets
+\newcommand{\matrixel}[3]{\left< #1 \vphantom{#2#3} \right|
+ #2 \left| #3 \vphantom{#1#2} \right>} % for Dirac matrix elements
+\newcommand{\grad}[1]{\gv{\nabla} #1} % for gradient
+\let\divsymb=\div % rename builtin command \div to \divsymb
+\renewcommand{\div}[1]{\gv{\nabla} \cdot #1} % for divergence
+\newcommand{\curl}[1]{\gv{\nabla} \times #1} % for curl
+\let\baraccent=\= % rename builtin command \= to \baraccent
+\renewcommand{\=}[1]{\stackrel{#1}{=}} % for putting numbers above =
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\theoremstyle{definition}
+\newtheorem{dfn}{Definition}
+\theoremstyle{remark}
+\newtheorem*{rmk}{Remark}
+% \def\rmdefault{bch} % Use Charter for main text font.
+
+% ***********************************************************
+% ********************** END HEADER *************************
+% ***********************************************************
+% =========================================================
+\begin{document}
+
+\message{ !name(review.tex) !offset(75) }
+\begin{enumerate}
+  \item $S = $ number of successes, $S: \mathbb{N} \rightarrow \mathbb{N}$
+  \item $W=$ waiting time, $W:\mathbb{N} \rightarrow \mathbb{N}$
+  \item $\mathbb{L}=$ life time, $\mathbb{L}: \mathbb{R} \rightarrow \mathbb{R}$
+  \item Binomial Dist. (countable)
+    \begin{align*}
+      &\abs{\Omega} = 2^n \\
+      &\mathbb{P}(S = k) = \binomial{n}{k} p^k(1-p)^{m-k} \\
+      &\mathbb{P}(S \leq k) = \sum_{i=0}^k
+      \binomial{n}{i}p^i(1-p)^{n-i} \\
+      &\mu = np \\
+      &\sigma^2 = mp(1-p)
+    \end{align*}
+  \item K-nomial(multinomial) Dist. (countable)
+    \begin{align*}
+      &\abs{\Omega} = K^n \\
+      &\mathbb{P}(S = k) = \prod_{i=0}^k \binom{n-m_i}{m_i} p_i^{m_i} \\
+    \end{align*}
+  \item Geometric Dist. (countable)
+    \begin{align*}
+      & \mathbb{P}(W=k)=p(1-p)^{(k-1)} \\
+      & \mathbb{P}(W\leq K) = 1-(1-p)^k \\
+      & \mu = 
+    \end{align*}
+  \item Poisson Dist. (countable)
+  \item Exponetial Dist. (continuous)
+  \item Normal Dist. (continuous)
+  \end{enumerate}
+\message{ !name(review.tex) !offset(73) }
+
+\end{document}

@@ -1,0 +1,149 @@
+\documentclass[12pt]{article}
+\textwidth = 6.7 in
+\textheight = 9.2 in
+\oddsidemargin = 0.0 in
+\evensidemargin = 0.0 in
+\topmargin = 0.2 in
+\headheight = 0.0 in
+\headsep = 0.0 in
+\parskip = 0.2in
+\parindent = 0.0in
+
+\usepackage{amsmath,amssymb,enumerate,enumerate}
+%\def\rmdefault{bch} % Use Charter for main text font.
+
+% =========================================================
+\begin{document}
+
+\begin{center}
+{\LARGE
+\textbf{CS 173: Discrete Structures, Spring 2011}
+\\
+\textbf{Homework 9}
+\\[1ex]}
+\end{center}
+
+This homework contains 2 problems worth a total of 42 points.
+It is due on Wednesday, April 20th at 5pm.   Put your homework in
+the appropriate dropbox in the Siebel basement.
+
+
+\begin{enumerate}
+
+%------------------------------------------------------------
+\item
+\textbf{Recurrences [21 points]}
+
+For each of the following recurrences, 
+show a recursion tree with at least two levels
+(beyond the root). Give a big-O closed form for each
+recurrence, with a brief explanation as to why your answer is correct.
+For all three recurrences, 
+the base case returns 1 for any
+input value $\le 1$.
+
+\begin{enumerate}
+\item $A(n)=2A(n/4) + \sqrt{n}$
+\item $J(n)=J(n/2) + J(n/6) + J(n/3) + n$
+\item $T(n)=4T(n-1)+2^n$
+\end{enumerate}
+
+General hint:  we're only asking for an upper bound (big-O) on the closed
+form.   So you only need to explicitly justify why the recurrence values
+can't be any bigger than your bound.   However, you're expected to give
+a reasonably ``tight'' bound, i.e. as close as possible to the actual
+closed form.
+
+Hint for (a):  You may assume that $n$ is a power of 4.
+
+Hints for (b):  Some of the inputs to $J$ won't be integers.   Don't
+worry too much:  the formula still seems to work ok, doesn't it?
+Your recursion tree will be uneven towards the bottom.  Remember that
+you only need an upper bound, not an exact formula, for
+the work at each level.
+
+%---------------------------------------------
+\item
+\textbf{Algorithm Analysis [21 points]}
+
+For the following algorithms, give the tightest big-O running time of
+each algorithm, with a brief explanation as to why your answer is
+correct.   For recursive algorithms, your explanation should include
+both a recurrence (with base case) for the running time and its
+(big-O) closed form.
+
+
+\begin{enumerate}
+\item The algorithm below calculates $n!=n*(n-1)*(n-2)*\ldots*1$ \\
+
+Factorial ($n$: non negative integer) 
+%\vspace{-0.1in}
+\begin{quote}
+1.	\hspace{0.1in}	if ($n = 0$ or $n = 1$) \\
+2.	\hspace{0.3in}		return 1 \\
+3.	\hspace{0.1in}	return $n \times $Factorial($n-1$)
+\end{quote}
+
+%-------------
+\newpage
+%-------------
+
+\item
+The algorithm below approximates the square root of a positive integer \\
+
+SquareRoot($n$: positive integer)
+%\vspace{-0.1in}
+\begin{quote}
+$L,H,M$ : reals \\
+1.	\hspace{0.1in}	$L = 0$ \\
+2.	\hspace{0.1in}	$H = n$ \\
+3.	\hspace{0.1in}	while ($H - L > 1/10^9$) \\
+4.	\hspace{0.3in}		$M = (L+H)/2$ \\
+5.	\hspace{0.3in}		if ($M^2 > n$) \\
+6.	\hspace{0.5in}			$H = M$ \\
+7.	\hspace{0.3in}		else if ($M^2 < n$) \\
+8.	\hspace{0.5in}			$L = M$ \\
+9.	\hspace{0.3in}		else return $M$ \\
+10.	\hspace{0.02in}	return $M$
+\end{quote}
+
+\vspace*{0.2in}
+\item
+The algorithm below sorts an array of integers which is almost
+sorted, in the sense that every integer
+starts off at a distance at most $k$ from its position in the
+sorted array(ascending).  More precisely,
+let the position of an integer in the
+current unsorted array be $i$ and let the position of the integer in
+the array after sorting be $j$.   Then if
+$|i-j| \leq k$ for all the values in the input array, the
+output array will be sorted.
+
+The function $minimum$ returns the smaller of its two inputs.
+You may assume that the evaluation of $minimum(a,b)$ takes place in
+$O(1)$ time.   The function $swap$ replaces the value of
+$a_i$ in the array of integers with the value of $a_j$ and vice
+versa. You may assume that the evaluation of $swap(a_i,a_j)$ also
+requires $O(1)$ time.
+
+AlmostSorted($a_1,a_2, \ldots , a_n$: array of $n$ integers)
+%\vspace{-0.1in}
+\begin{quote}
+$i$ : integer \\
+1.	\hspace{0.1in}	for $i=1$ to $n$ \\
+2.	\hspace{0.3in}		min=$a_i$; \\
+3.	\hspace{0.3in}		minpos=i; \\
+4.	\hspace{0.3in}		for $j=i+1$ to $minimum(i+k,n)$ \\
+5.	\hspace{0.5in}			if ($a_j < min$) \\
+6.	\hspace{0.7in}				min=$a_j$ \\
+7.	\hspace{0.7in}				minpos=j \\
+8.	\hspace{0.3in}		$swap(a_i,a_{minpos})$ \\
+9.	\hspace{0.1in}	return $a_1,a_2, \ldots , a_n$
+\end{quote}
+
+\end{enumerate}
+
+%================================================================
+
+\end{enumerate}
+\end{document}

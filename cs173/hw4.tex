@@ -1,0 +1,237 @@
+\documentclass[12pt]{article}
+\textwidth = 6.5 in
+\textheight = 9 in
+\oddsidemargin = 0.0 in
+\evensidemargin = 0.0 in
+\topmargin = 0.2 in
+\headheight = 0.0 in
+\headsep = 0.0 in
+\parskip = 0.2in
+\parindent = 0.0in
+
+\usepackage{amsmath,amssymb,enumerate}
+
+% =========================================================
+\begin{document}
+
+\begin{center}
+  {\LARGE
+    \textbf{Marcell Vazquez-Chanlatte}
+    \\
+    \textbf{F2}
+    \\
+    \textbf{Group: Anthony Louie, Eric Mills}
+    \\[1ex]}
+
+\end{center}
+
+\bigskip\hrule
+
+\begin{enumerate}
+
+
+  % ----------------------------------------------------------------------
+\item \textbf{Set Inclusion Proofs}
+
+  \begin{quote}
+  \item Def of Union : 0: $A \cup B$ iff  $x:x\in A$ or $x \in B$
+  \item Def of Intersection 1: $A \cap B$ iff $x \in A$ and $x \in B$
+  \item Def of Contains: 2: $A \subseteq B$ iff all elements of $A$ are also in $B$
+  \item Def of Set Difference: 3: $A-B$ contains all the objects that are in $A$ but not in $B$.
+  \end{quote}
+
+  \begin{quote}
+  \item A. Claim: $(A-B) \cup (B-A) \subseteq (A \cup B) - (A \cap B)$
+  \end{quote}
+
+  \begin{enumerate}
+  \item Let $x \in (A-B) \cup (B-A)$
+  \item Let $ C \equiv (A-B) \cup (B-A)$
+  \item Notice that set $(A-B)$ includes all the elements of $A$ that
+    are not also $B$ Def 3
+  \item Similarly $(B-A)$ includes all elements inside $B$ that are
+    not in $A$
+  \item Observe that then $C$ has all elements of $A$ or $B$ except
+    the common elements
+  \item Thus $x\in(A-B)$ or $(B-A)$ can be rewritten as $x\in A$ or
+    $B$ excluding $A$ and $B$ 
+  \item Using the Def 0 and Def 1 $x \in (A \cup B) -
+    (A \cap B)$
+  \item Therefore $(A-B) \cup (B-A) \subseteq (A \cup B) - (A \cap B)$
+    By the Def of 2
+  \item $\square$
+  \end{enumerate}
+
+
+  \begin{quote}
+  \item Def of Cartesian Product : 4: If $A$ and $B$ are sets, their Cartesian Product contains all ordered pairs $(x,y)$ where $x\in A$ and $y \in B$
+  \item B. Claim: $A \times (B \cup C ) \subseteq (A \times B) \cup (A
+    \times C) $
+  \end{quote}
+
+  \begin{enumerate}
+  \item Let $y \in (A \times (B \cup C))$
+  \item Notice that $B \cup C$ implies $B$ or $C$ Def 0
+  \item Thus $y\in A \times(B$ or $C)$
+  \item Logcially then $y \in A \times B$ or $y \in A \times C$ because by Def 4 i.e if all ordered pairs are represented then the two are equivelent
+  \item Rewritten using the Def 0 $y \in (A \times B) \cup (A
+    \times C)$
+  \item Applying the Def 2 $A \times (B \cup C ) \subseteq
+    (A \times B) \cup (A \times C) $
+  \item $\square$
+
+  \end{enumerate}
+
+  \newpage
+  % ----------------------------------------------------------------------
+\item \textbf{Nested Quantifiers}
+
+  Prove or disprove the following.
+  \begin{quote}
+  \item A. Claim: $\exists x \in \mathbb{Z}, \ \forall y \in
+    \mathbb{Z},\ x+y=4 \wedge x-y=1$
+  \end{quote}
+
+  \begin{enumerate}
+  \item Let $x,y \in \mathbb{Z}$ s.t. $(x+y=4) \wedge (x-y=1)$
+  \item Note that $(y=4-x) \wedge (y=x-1)$
+  \item Observe then that $4-x=x-1$
+  \item Thus $x=5/2$
+  \item However $5/2$ is not an integer
+  \item Thus the claim is false
+  \item $\square$
+  \end{enumerate}
+
+  \begin{quote}
+  \item B. Claim: $\forall x,y \in \mathbb{Z},\ \exists w\in
+    \mathbb{Z},\ w = \frac{x+y}{2}$
+  \end{quote}
+
+  \begin{enumerate}
+  \item Let $x,y,w \in \mathbb{Z}$ s.t $ w = \frac{x+y}{2}$
+  \item Consider $x=0,y=1$
+  \item Note that $w = \frac{0+1}{2} = \frac{1}{2}$
+  \item However $ = \frac{1}{2}$ is not an integer
+  \item Thus $w$ is not an integer
+  \item Therefore the claim is false
+  \end{enumerate}
+
+  \begin{quote}
+  \item C. Claim: $\exists x \in \mathbb{N}, \ \forall y \in
+    \mathbb{N},\ \gcd(x,y)=1$
+  \end{quote}
+
+  \begin{enumerate}
+  \item Consider $x = 1$ $x\in\mathbb{N}$
+  \item Notice that positive factors are greater than negative factors and thus are not considered for the $\gcd$
+  \item Note Also that the only positive factor set of $1$ is $(1,1)$
+  \item Let $y$ be any arbitrary Natural number
+  \item Notice that $y$ can be factored as $(1,y)$
+  \item Observe then that $1$ must be the only common positive prime factor (limited by $1$'s factors)
+  \item Thus we pick $1$ to be the $\gcd$
+  \item Therefore $\gcd(1,y) = 1$
+  \item $\square$
+  \end{enumerate}
+  \newpage
+  % ----------------------------------------------------------------------
+\item \textbf{Proofs on Relations}
+
+
+  \begin{quote}
+  \item Def of Antisymmetric: 5: $\forall x,y \in A,$ if $xRy \wedge yRx$ then $x=y$
+  \item Let $S$ be the relation defined on set of pairs $(x,y) \in
+    \mathbb{R}$. According to this relation $(x,y) \sim (p,q)$ if and
+    only if $x^2+y^2 \leq p^2+q^2$.
+  \item A. Claim: $S$ is antisymmetric
+  \end{quote}
+
+  \begin{enumerate}
+  \item Let $(x,y),(p,q) \in \mathbb{R}$ s.t. $(x,y)~(p,q) \wedge
+    (p,q) ~ (x,y)$
+  \item Note that $(x,y)S(p,q)$ implies $x^2+y^2 \leq p^2+q^2$
+  \item Similarly $(p,q)S(x,y)$ implies $p^2 + q^2 \leq x^2+y^2$
+  \item Let $a = x^2+y^2$ $a\in\mathbb{R}$
+  \item Let $b = p^2+q^2$ $b\in\mathbb{R}$
+  \item Substituting $(b \leq c) \wedge (c \leq b)$
+  \item Because of the antisymmetric nature of '$\leq$' $b=c$
+  \item Thus by the Def 5 $S$ is antisymmetric
+  \item $\square$
+  \end{enumerate}
+
+  \begin{quote}
+  \item Let $T$ be the relation on pairs of positive integers defined
+    by $(x,y)T(a,b)$ if and only if $xb = ay$ and $x \le a$.
+  \item B. Claim $T$ is antisymmetric.
+  \end{quote}
+
+  \begin{enumerate}
+  \item Let $(x,y),(a,b)\in\mathbb{R}$ s.t $(x,y)T(a,b) \wedge
+    (a,b)T(x,y)$
+  \item Note that $(x,y)T(a,b)$ implies $(xb=ay) \wedge (x \leq a)$
+  \item Similarly $(a,b)T(x,y)$ implies $(ay=bx) \wedge (a \leq x)$
+  \item Observe that $*$ and $=$ are symmetric thus that component is
+    equivalent
+  \item Focusing on the latter expression $(x \leq a) \wedge (a \leq
+    x)$
+  \item Because '$\leq$' is antisymmetric, $a=x$
+  \item Therefore by the Def of 5, $T$ is antisymmetric
+  \item $\square$
+  \end{enumerate}
+
+  \newpage
+
+  \begin{quote}
+  \item Def of Transitive: 6: $\forall x,y,z \in A,$ if $xRy$ and $yRz$ then $xRz$ 
+  \item Def of Divisible: 7: $\forall x,y \in \mathbb{Z}$ if $x|y$ then $y=x*n,$ $n\in\mathbb{Z}$ 
+  \item Let $R$ be the relation on set of all integers such that $x$
+    is related to $y$ if $5 |(x^2-y^2)$.
+  \item C. Claim : $R$ is transitive
+  \end{quote}
+
+  \begin{enumerate}
+  \item Let $x,y,z\in\mathbb{Z}$ s.t. $xRy \wedge yRz$
+  \item Note that then $5|(x^2-y^2) \wedge 5|(y^2-z^2)$
+  \item By the Def 7: $(x^2-y^2)=5n$
+  \item Similarly $(y^2-z^2)=5m$, $y^2=5m+z^2$ $m\in\mathbb{Z}$
+  \item Note that then $x^2-5m-z^2=5n$, 
+  \item Thus $x^2-z^2=5(n+m)$
+  \item Let $k=5(m+n)$ $k\in\mathbb{Z}$
+  \item Subsituting $x^2-z^2=5k$
+  \item Applying the Def 7 $5|x^2-z^2$
+  \item Thus $xRz$ by Def 6
+  \item $\square$
+  \end{enumerate}
+
+  % ----------------------------------------------------------------------
+\item \textbf{Functions}
+
+  \begin{quote}
+  \item A. $f: \mathbb{Z} \times \mathbb{N} \rightarrow \mathbb{Q}$
+    such that $f(n,m) = \frac{n}{m+1}$
+  \end{quote}
+
+  Onto\\
+  All negative values are expressed because $m$ is always positive with $n$ going from positive to negative infinity.\\
+  The fucntion is never undefined because again $m \geq 0$ thus the
+  smallest value of the demominator is $1$ and $\frac{n}{1} \in \mathbb{Q}$
+
+  \begin{quote}
+  \item B. $f: \mathbb{N} \times \mathbb{N} \rightarrow \mathbb{N}$
+    such that $f(n,m)=2^{n} \cdot 3^{m}$
+  \end{quote}
+
+  Not onto because $0$ is not mapped...multiplication requires $1$
+  number to be $0$ to produce $0$ however exponents with non $0$ bases
+  cannot produce $0$.
+
+  \begin{quote}
+  \item C. $f: \mathbb{R} \times \mathbb{R} \times \mathbb{R}
+    \rightarrow \mathbb{R}$ such that $f(x,y,z) =
+    \sqrt{(x^2+y^2+z^2)}$
+  \end{quote}
+
+  Not onto because negative numbers are not mapped i.e $n^2 \in \mathbb{R}$ always produces a positive number, and that positive + positve = positive.\\
+  Also note that then square root of a positive number is also positive therefore the negative side of the codomain is excluded.
+
+\end{enumerate}
+\end{document}

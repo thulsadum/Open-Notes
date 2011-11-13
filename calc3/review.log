@@ -1,0 +1,299 @@
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2012/dev/Arch Linux) (format=prv_review 2011.11.10)  10 NOV 2011 18:21
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**&prv_review review.tex
+(./review.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, dumylang, nohyphenation, ge
+rman-x-2009-06-19, ngerman-x-2009-06-19, afrikaans, ancientgreek, ibycus, arabi
+c, armenian, basque, bulgarian, catalan, pinyin, coptic, croatian, czech, danis
+h, dutch, ukenglish, usenglishmax, esperanto, estonian, ethiopic, farsi, finnis
+h, french, galician, german, ngerman, swissgerman, monogreek, greek, hungarian,
+ icelandic, assamese, bengali, gujarati, hindi, kannada, malayalam, marathi, or
+iya, panjabi, tamil, telugu, indonesian, interlingua, irish, italian, kurmanji,
+ lao, latin, latvian, lithuanian, mongolian, mongolianlmc, bokmal, nynorsk, pol
+ish, portuguese, romanian, russian, sanskrit, serbian, serbianc, slovak, sloven
+ian, spanish, swedish, turkish, turkmen, ukrainian, uppersorbian, welsh, loaded
+.
+CUSTOMISED FORMAT. Preloaded files:
+        .
+ article.cls    2007/10/19 v1.4h Standard LaTeX document class
+  size12.clo    2007/10/19 v1.4h Standard LaTeX file (size option)
+ amsmath.sty    2000/07/18 v2.13 AMS math features
+ amstext.sty    2000/06/29 v2.01
+  amsgen.sty    1999/11/30 v2.0
+  amsbsy.sty    1999/11/29 v1.2d
+  amsopn.sty    1999/12/14 v2.01 operator names
+  amsthm.sty    2009/07/02 v2.20.1
+ amssymb.sty    2009/06/22 v3.00
+amsfonts.sty    2009/06/22 v3.00 Basic AMSFonts support
+graphicx.sty    1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+  keyval.sty    1999/03/16 v1.13 key=value parser (DPC)
+graphics.sty    2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+    trig.sty    1999/03/16 v1.09 sin cos tan (DPC)
+graphics.cfg    2010/04/23 v1.9 graphics configuration of TeX Live
+   dvips.def    1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+multicol.sty    2008/12/05 v1.6h multicolumn formatting (FMi)
+geometry.sty    2010/09/12 v5.6 Page Geometry
+   ifpdf.sty    2011/01/30 v2.3 Provides the ifpdf switch (HO)
+  ifvtex.sty    2010/03/01 v1.5 Switches for detecting VTeX and its modes (HO)
+ ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
+    umsa.fd    2009/06/22 v3.00 AMS symbols A
+    umsb.fd    2009/06/22 v3.00 AMS symbols B
+        .
+(./review.aux)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+ (/usr/share/texmf/tex/latex/preview/preview.sty
+Package: preview 2010/02/14 11.86 (AUCTeX/preview-latex)
+
+(/usr/share/texmf/tex/latex/preview/prtightpage.def
+\PreviewBorder=\dimen130
+)
+(/usr/share/texmf/tex/latex/preview/prauctex.def
+No auxiliary output files.
+
+
+\hbadness=\count113
+\hfuzz=\dimen131
+(/usr/share/texmf/tex/latex/preview/prauctex.cfg))
+(/usr/share/texmf/tex/latex/preview/prfootnotes.def)
+\pr@snippet=\count114
+\pr@box=\box54
+\pr@output=\toks27
+
+Preview: Fontsize 12pt
+)
+*geometry* detected driver: dvips
+*geometry* verbose mode - [ preamble ] result:
+* driver: dvips
+* paper: letterpaper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(54.2025pt, 505.89pt, 54.2025pt)
+* v-part:(T,H,B)=(54.2025pt, 704.63249pt, 36.135pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=505.89pt
+* \textheight=704.63249pt
+* \oddsidemargin=-18.06749pt
+* \evensidemargin=-18.06749pt
+* \topmargin=-18.06749pt
+* \headheight=0.0pt
+* \headsep=0.0pt
+* \topskip=12.0pt
+* \footskip=30.0pt
+* \marginparwidth=44.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+! Preview: Snippet 1 started.
+<-><->
+      
+l.79     \textnormal {$\tau = 2\pi$}
+                                    
+Not a real error.
+
+Preview: Tightpage -32891 -32891 32891 32891
+! Preview: Snippet 1 ended.(506811+0x2308118).
+<-><->
+      
+l.79     \textnormal {$\tau = 2\pi$}
+                                    
+Not a real error.
+
+[1]
+! Preview: Snippet 2 started.
+<-><->
+      
+l.89 \begin{align*}
+                   
+Not a real error.
+
+! Preview: Snippet 2 ended.(17276374+0x28663409).
+<-><->
+      
+l.101 \end{align*}
+                  
+Not a real error.
+
+[2]
+! Preview: Snippet 3 started.
+<-><->
+      
+l.104 \begin{align*}
+                    
+Not a real error.
+
+! Preview: Snippet 3 ended.(15357207+0x25739307).
+<-><->
+      
+l.119 \end{align*}
+                  
+Not a real error.
+
+[3]
+! Preview: Snippet 4 started.
+<-><->
+      
+l.122 \begin{align*}
+                    
+Not a real error.
+
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no ˆ in font cmr12!
+Missing character: There is no ’ in font cmr12!
+Missing character: There is no Â in font cmr12!
+Missing character: There is no · in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no ˆ in font cmr12!
+Missing character: There is no ’ in font cmr12!
+Missing character: There is no Â in font cmr12!
+Missing character: There is no · in font cmr12!
+! Preview: Snippet 4 ended.(16362037+0x24090458).
+<-><->
+      
+l.135 \end{align*}
+                  
+Not a real error.
+
+[4]
+! Preview: Snippet 5 started.
+<-><->
+      
+l.140 \begin{align*}
+                    
+Not a real error.
+
+! Preview: Snippet 5 ended.(21716660+0x29279473).
+<-><->
+      
+l.168 \end{align*}
+                  
+Not a real error.
+
+[5]
+! Preview: Snippet 6 started.
+<-><->
+      
+l.172 \begin{align*}
+                    
+Not a real error.
+
+! Preview: Snippet 6 ended.(19129374+0x35830090).
+<-><->
+      
+l.184 \end{align*}
+                  
+Not a real error.
+
+[6]
+! Preview: Snippet 7 started.
+<-><->
+      
+l.186 \begin{align*}
+                    
+Not a real error.
+
+! Preview: Snippet 7 ended.(17694714+0x25816043).
+<-><->
+      
+l.211 \end{align*}
+                  
+Not a real error.
+
+[7]
+! Preview: Snippet 8 started.
+<-><->
+      
+l.214 \begin{align*}
+                    
+Not a real error.
+
+! Preview: Snippet 8 ended.(8053285+0x24807640).
+<-><->
+      
+l.219 \end{align*}
+                  
+Not a real error.
+
+[8]
+! Preview: Snippet 9 started.
+<-><->
+      
+l.222 \begin{align*}
+                    
+Not a real error.
+
+! Preview: Snippet 9 ended.(37234176+0x29624970).
+<-><->
+      
+l.250 \end{align*}
+                  
+Not a real error.
+
+[9]
+! Preview: Snippet 10 started.
+<-><->
+      
+l.252 \begin{align*}
+                    
+Not a real error.
+
+! Preview: Snippet 10 ended.(20987204+0x28370193).
+<-><->
+      
+l.269 \end{align*}
+                  
+Not a real error.
+
+[10] ) 
+Here is how much of TeX's memory you used:
+ 189 strings out of 491506
+ 2513 string characters out of 3122945
+ 97761 words of memory out of 3000000
+ 5577 multiletter control sequences out of 15000+200000
+ 13140 words of font info for 48 fonts, out of 3000000 for 9000
+ 831 hyphenation exceptions out of 8191
+ 25i,19n,22p,161b,237s stack positions out of 5000i,500n,10000p,200000b,50000s
+
+Output written on review.dvi (10 pages, 18140 bytes).
