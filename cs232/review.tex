@@ -135,19 +135,34 @@ p	\vskip 10pt \large \@author \hskip 20pt \@date \end{center}
     \end{enumerate}
   \item Virtual Memory (VM):
     \begin{enumerate}
-    \item Indirection:
-    \item Use of indirection in VM.
+    \item Indirection: Adding an intermediate interface that controls endpoints
+    \item Use of indirection in VM: Virtual Memory $\rightarrow$ OS $\rightarrow$ physical memory
     \item Advantages of VM.
       \begin{enumerate}
-      \item Larger than memory processes: 
-      \item Identical/Conflicting address mapping:
-      \item Sand-boxing processes:
-      \item Controlled sharing between processes:
+      \item Larger than memory processes: We can store ``memory'' on
+        disk via paging. Also because its virtual we can say we have
+        ``n'' bits of mem but only have to allocate as much as needed.
+      \item Identical/Conflicting address mapping: 2 programs can both
+        map to the same address because the OS/PageTable deals with
+        actual mapping. i.e. sure you can have $0x4004$ (hands you $0xff0f00$)
+      \item Sand-boxing processes: The page table has permission bits
+        that tells the OS who can touch the cookie jar.
+      \item Controlled sharing between processes: If two addresses
+        need to share, it can be done under adult(OS) super vision
+        because of the page table's permission bits.
       \end{enumerate}
-    \item Page table:
-    \item Translation look-aside buffer (TLB):
-    \item Hierarchical page table:
-    \item Page faults(and its affect on virtual memory design):
+    \item Page table: Look up table that maps virtual to physical memory
+    \item Translation look-aside buffer (TLB): Looking up the page
+      table translations sucks....so we cache it...aka TLB 
+    \item Hierarchical page table: Page Directories $\rightarrow$ Page
+      Entry $\rightarrow$ Page Table $\rightarrow$ Address . (note
+      saves memory because not all Entries and Directories are
+      filled.\\
+      P.S. page tables should be page sizes so they themselves can be
+      looked up easily....
+    \item Page faults(and its affect on virtual memory design): Miss
+      in the TLB, (resulting in memory seak for page). Miss in the
+      cache to get page/addresses. ew....  
     \end{enumerate}
   \item Hard Disks
     \begin{enumerate}
