@@ -1,0 +1,161 @@
+\documentclass[12pt]{article}
+\textwidth = 6.7 in
+\textheight = 9.2 in
+\oddsidemargin = 0.0 in
+\evensidemargin = 0.0 in
+\topmargin = 0.2 in
+\headheight = 0.0 in
+\headsep = 0.0 in
+\parskip = 0.2in
+\parindent = 0.0in
+
+% ***********************************************************
+% *********************** HEADER  ***************************
+% ***********************************************************
+
+\usepackage{amsmath} % AMS Math Package
+\usepackage{amsthm} % Theorem Formatting
+\usepackage{amssymb}	% Math symbols such as \mathbb
+\usepackage{graphicx} % Allows for eps images
+\usepackage{multicol} % Allows for multiple columns
+\usepackage[dvips,letterpaper,margin=0.75in,bottom=0.5in]{geometry}
+ % Sets margins and page size
+\pagestyle{empty} % Removes page numbers
+\makeatletter % Need for anything that contains an @ command 
+\renewcommand{\maketitle} % Redefine maketitle to conserve space
+{ \begingroup \vskip 10pt \begin{center} \large {\bf \@title}
+p	\vskip 10pt \large \@author \hskip 20pt \@date \end{center}
+  \vskip 10pt \endgroup \setcounter{footnote}{0} }
+\makeatother % End of region containing @ commands
+\renewcommand{\labelenumi}{(\alph{enumi})} % Use letters for enumerate
+% \DeclareMathOperator{\Sample}{Sample}
+\let\vaccent=\v % rename builtin command \v{} to \vaccent{}
+\renewcommand{\v}[1]{\ensuremath{\mathbf{#1}}} % for vectors
+\newcommand{\gv}[1]{\ensuremath{\mbox{\boldmath$ #1 $}}} 
+% for vectors of Greek letters
+\newcommand{\uv}[1]{\ensuremath{\mathbf{\hat{#1}}}} % for unit vector
+\newcommand{\abs}[1]{\left| #1 \right|} % for absolute value
+\newcommand{\avg}[1]{\left< #1 \right>} % for average
+\let\underdot=\d % rename builtin command \d{} to \underdot{}
+\renewcommand{\d}[2]{\frac{d #1}{d #2}} % for derivatives
+\newcommand{\dd}[2]{\frac{d^2 #1}{d #2^2}} % for double derivatives
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}} 
+% for partial derivatives
+\newcommand{\pdd}[2]{\frac{\partial^2 #1}{\partial #2^2}} 
+% for double partial derivatives
+\newcommand{\pdc}[3]{\left( \frac{\partial #1}{\partial #2}
+ \right)_{#3}} % for thermodynamic partial derivatives
+\newcommand{\ket}[1]{\left| #1 \right>} % for Dirac bras
+\newcommand{\bra}[1]{\left< #1 \right|} % for Dirac kets
+\newcommand{\braket}[2]{\left< #1 \vphantom{#2} \right|
+ \left. #2 \vphantom{#1} \right>} % for Dirac brackets
+\newcommand{\matrixel}[3]{\left< #1 \vphantom{#2#3} \right|
+ #2 \left| #3 \vphantom{#1#2} \right>} % for Dirac matrix elements
+\newcommand{\grad}[1]{\gv{\nabla} #1} % for gradient
+\let\divsymb=\div % rename builtin command \div to \divsymb
+\renewcommand{\div}[1]{\gv{\nabla} \cdot #1} % for divergence
+\newcommand{\curl}[1]{\gv{\nabla} \times #1} % for curl
+\let\baraccent=\= % rename builtin command \= to \baraccent
+\renewcommand{\=}[1]{\stackrel{#1}{=}} % for putting numbers above =
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\theoremstyle{definition}
+\newtheorem{dfn}{Definition}
+\theoremstyle{remark}
+\newtheorem*{rmk}{Remark}
+% \def\rmdefault{bch} % Use Charter for main text font.
+
+% ***********************************************************
+% ********************** END HEADER *************************
+% ***********************************************************
+% =========================================================
+\begin{document}
+
+\begin{center}
+  {\LARGE
+    \textbf{CS232 Review}\\
+  }
+  \begin{enumerate}
+  \item Caches
+    \begin{enumerate}
+    \item LRU: least recently used data, often used or approximated to
+      decide what to kick out of the cache
+    \item
+      Spacial Locality: Things near what was just used tend to get used
+      again.\\
+      Temporal Locality: Things that were just used, tend to get reused.
+    \item Associatity: Relates how addresses get mapped inside of
+      the cache to the number of sets n. (Direct Map equal n sets for
+      n addresses, Fully associative 1 set for n addresses)
+    \item Write-back: Writing is done only to the cache. A modified
+      cache block is ``written'' back into higher memory just before
+      it is stored. (requires a dirty bit to denote that it has been
+      written to)
+    \item Multilevel caches: A cache that utilized 2 or more separate
+      caches to store information. Typically the lower caches are
+      small/fast/expensive where as the higher caches are
+      large/fast/cheap.\\
+      Note: If one can ensure almost certain hits in the higher caches
+      and relatively good rates in the lower caches this greatly
+      increases speed.
+    \item Computing cache size, bits, block offset, index, tag, and associatity
+      \begin{enumerate}
+      \item TODO: 
+      \end{enumerate}
+    \item Calculating cache performance and AMAT calculations.
+      \begin{enumerate}
+      \item TODO:
+      \end{enumerate}
+    \item Memory access pattern and linearizing array access: TODO
+    \item Memory access pattern analysis.
+    \end{enumerate}
+  \item Cache-Aware programming
+    \begin{enumerate}
+    \item Hardware stream/stride pre-fetching
+    \item When to software pre-fetch
+    \item Blocking/ Tiling
+    \end{enumerate}
+  \item Virtual Memory (VM):
+    \begin{enumerate}
+    \item Indirection:
+    \item Use of indirection in VM.
+    \item Advantages of VM.
+      \begin{enumerate}
+      \item Larger than memory processes: 
+      \item Identical/Conflicting address mapping:
+      \item Sand-boxing processes:
+      \item Controlled sharing between processes:
+      \end{enumerate}
+    \item Page table:
+    \item Translation look-aside buffer (TLB):
+    \item Hierarchical page table:
+    \item Page faults(and its affect on virtual memory design):
+    \end{enumerate}
+  \item Hard Disks
+    \begin{enumerate}
+    \item Platter:
+    \item Head:
+    \item Track:
+    \item Sector:
+    \item Calculating Read/Write time
+    \item Random vs Sequential read/write performance
+    \item Solid state disks (SSD): Flash memory based, everything but
+      random writes it very fast. (writes are slow due to having to
+      clear the whole block before to write)
+    \end{enumerate}
+    \begin{enumerate}
+    \item Error Correcting Codes
+      \begin{enumerate}
+      \item Error detection vs. Error correction
+      \item Parity:
+      \item Hamming distance:
+      \item SECDED: 
+      \end{enumerate}
+    \item Writing code to analyze cache with a hardware pre-fetcher
+    \end{enumerate}
+  \end{enumerate}
+    
+\end{center}
+\end{document}
+% LocalWords:  LRU Associatity associatity
