@@ -136,7 +136,9 @@ p	\vskip 10pt \large \@author \hskip 20pt \@date \end{center}
   \item Virtual Memory (VM):
     \begin{enumerate}
     \item Indirection: Adding an intermediate interface that controls endpoints
-    \item Use of indirection in VM: Virtual Memory $\rightarrow$ OS $\rightarrow$ physical memory
+    \item Use of indirection in VM: Virtual Memory $\rightarrow$ OS
+      $\rightarrow$ physical memory.This eliminates the need for
+      explicit overlaying in programs.
     \item Advantages of VM.
       \begin{enumerate}
       \item Larger than memory processes: We can store ``memory'' on
@@ -205,6 +207,10 @@ p	\vskip 10pt \large \@author \hskip 20pt \@date \end{center}
         Detection. Standard in ECC protect SDRAM.
       \end{enumerate}
     \item Writing code to analyze cache with a hardware pre-fetcher
+      \begin{enumerate}
+      \item Needs to loop such that the stride can't be predicted by
+        prefecter (link list is a good canidate)
+      \end{enumerate}
     \end{enumerate}
   \end{enumerate}
     
