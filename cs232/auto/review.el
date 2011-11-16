@@ -5,6 +5,8 @@
      "thm"
      "lem"
      "dfn")
+    (LaTeX-add-labels
+     "eq: AMAT")
     (TeX-add-symbols
      '("curl" 1)
      '("grad" 1)

@@ -115,7 +115,7 @@ Counting:
   \item $\mathbb{P}(A^c) = 1-\mathbb{P}(A)$, Reason: $A\cap A^c =
     \emptyset \wedge \mathbb{P}(A\cup A^c) = \mathbb{P}(\Omega)
     \Rightarrow \mathbb{P}(A)+\mathbb{P}(A^c) = 1$
-  \item Given: $A$ has mutally disjoint, $\mathbb{P}(\cup_{i=0}^n
+  \item Given: $A$ has mutually disjoint, $\mathbb{P}(\cup_{i=0}^n
     A_i) = \sum_{i=0}^n\mathbb{P}(A_i) $
   \item $\mathbb{P}(A)=\sum_{i=0}^n\mathbb{P}({t_i})$, assuming ${t_i}\cap {t_j} = \emptyset$
   \item $A\subseteq B \rightarrow \mathbb{P}(A)\leq \mathbb{P}(B)$
@@ -214,7 +214,54 @@ Distributions:
       \end{array}
     \right.\\
   \end{displaymath}\\
-\item Exponetial Dist. (continuous)
-\item Normal Dist. (continuous)
+\item Exponential Dist. (continuous)
+  \begin{align*}
+    &\mathbb{P}(\mathbb{L} > t) = \mathbb{P}(\mathbb{S} = 0) = \frac{\Lambda^0}{0!}e^{-\Lambda}, t>0\\
+    &F(t) = \mathbb{P}(\mathbb{L} \leq t) = 1 -\mathbb{P}(\mathbb{L} > t) = 1-e^{-\Lambda}\\ \\
+    &f(t) = \frac{d}{dt}F(t) = 
+    f(x) = \left\{
+      \begin{array}{lr}
+        \Lambda e^{-\Lambda} & : x \geq 0\\
+        0 & : x < 0
+      \end{array}
+    \right.\\
+    &\mu = \int_{-\infty}^{\infty}f(x)dx = \int_{0}^{\infty}t\lambda
+    e^{-\lambda x}dx = \frac{1}{\lambda}\\
+    &\sigma^2 = \frac{1}{\lambda^2}\\
+    &\textrm{Non-Poisson trials (aging): } \mathbb{P}(\mathbb{L}>t^* |
+    \mathbb{L} >t_0) = e^{-\int_{t_0}^{t^*} \lambda(x)dx}
+  \end{align*}
+\item Standard Normal Dist. (continuous)
+  \begin{align*}
+    &\phi = \frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}} \\
+    &\Phi(\mathbb{Z}) = \mathbb{P}(\mathbb{Z} \leq z) = \int_{-\infty}^z\phi(x)dx = \int_{-\infty}^z\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}} dx\\
+    &\mu = 0, \sigma^2 = 0\\
+    & X = \sigma\mathbb{Z} + \mu \Leftrightarrow \mathbb{Z} = \frac{X-\mu}{\sigma}
+  \end{align*}
+\end{enumerate}
+Limit Theorems
+\begin{enumerate}
+\item Central Limit Theorem
+  \begin{enumerate}
+  \item Assumptions
+    \begin{enumerate}
+    \item All $x \in X$ are independent for a random sample
+    \item All $X$ have the same distribution, $\mu$ and $\sigma$
+    \end{enumerate}
+    \begin{enumerate}
+    \item Sum of Averages = $\mu$
+    \item Sum of Variances = $n\sigma^2$
+    \item Variance of Avg = $\frac{\sigma^2}{n}$
+    \end{enumerate}
+  \item Normal Approximation to binomial
+        \begin{align*}
+      \mathbb{P}(a \leq \mathbb{S} \leq b) \approx
+      \mathbb{P}(A-\frac{1}{2} \leq X \leq b + \frac{1}{2}),\textrm{ } mp > s, m(1-p)>s
+    \end{align*}
+  \item Worst Case Approximation:
+    \begin{enumerate}
+    \item 
+    \end{enumerate}
+  \end{enumerate}
 \end{enumerate}
 \end{document}
