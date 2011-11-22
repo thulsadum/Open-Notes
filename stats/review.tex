@@ -259,9 +259,24 @@ Limit Theorems
       \mathbb{P}(A-\frac{1}{2} \leq X \leq b + \frac{1}{2}),\textrm{ } mp > s, m(1-p)>s
     \end{align*}
   \item Worst Case Approximation:
-    \begin{enumerate}
-    \item 
-    \end{enumerate}
+    \begin{align*}
+      \mathbb{P}(\abs{\bar{x}-p} \leq \epsilon) \equiv =
+      \mathbb{P}(\abs{\mathbb{Z}} \leq 2\epsilon\sqrt{n}
+    \end{align*}
   \end{enumerate}
+\item Markov's inequality: applies to any non-negative random variable
+  \begin{equation}
+    \mathbb{P}(X \geq a) \leq \frac{\mu}{a} , a >0
+  \end{equation}
+  \begin{equation}
+    \mathbb{P}(X \geq k\mu) \leq \frac{1}{k}
+  \end{equation}
+\item Chebyshev's inequality: upper bound on dist
+  \begin{equation}
+    \mathbb{P}(\abs{X-\mu} \geq c) \leq \frac{\sigma^2}{c^2}, c>0
+  \end{equation}
+  \begin{equation}
+    \mathbb{P}(\abs{X-\mu} \geq k\sigma) \leq \frac{1}{k^2}
+  \end{equation}
 \end{enumerate}
 \end{document}
