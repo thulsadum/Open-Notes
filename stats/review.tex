@@ -101,6 +101,14 @@ Counting:
     $A$, with size $n$}
 \end{align*}
 
+Cumdist Properties (continuous):
+\begin{enumerate}
+\item $0 \leq F(x) \leq 1$
+\item $ \lim_{x\rightarrow -\infty}F(x) = 0 = \mathbb{P}(\emptyset) \wedge
+  \lim_{x\rightarrow \infty}F(x) = 1 = \mathbb{P}(\Omega)$
+\item $\forall (x,y) x<y \rightarrow F(x) \leq F(y)$
+\end{enumerate}
+
 \begin{description}
 \item Probability Function:
 \item Properties
@@ -127,33 +135,56 @@ Counting:
 
 Random Variables:
 \begin{align*}
-  &\textrm{Random Variable($f$): } f:\Omega\rightarrow \mathbb{R} \\
+  &\textrm{Random Variable($X$): } X:\Omega\rightarrow \mathbb{R} \\
   &\textrm{Prob mass function: } \mathbb{P}(X=a):X\rightarrow
   [0,1]\\
   &\textrm{Prob density function (1): $f(x)$ s.t. } \mathbb{P}(a \leq X
   \leq b) = \int_a^bf(x)dx, \\
   &\textrm{Prob density function (2): } int_{-\infty}^{\infty}f(x)dx = 1 =
   \mathbb{P}(\Omega)\\ 
-  &\textrm{Cumdist function(Countable): } F(x) = \mathbb{P}(X\leq a) =
+  &\textrm{Cumdist function(Countable): } F(x) \equiv \mathbb{P}(X\leq a) =
   \sum_{i=0}^a\mathbb{P}(X_i), a\in\Omega \\
-  &\textrm{Cumdist func(Continuous): } F(x) = \mathbb{P}(X\leq a) =
+  &\textrm{Cumdist func(Continuous): } F(x) \equiv \mathbb{P}(X\leq a) =
   \int_{-\infty}^a\mathbb{P}(X_i)dx \\
-  &\textrm{Cumdist/Prob density: } F(x) = \int_{-\infty}^{\infty} f(x)dx \\
-  &\textrm{Prob density/Cumdist: } f(x) = \frac{d}{dx}F(x) \\
-  &\textrm{Mean($\mu$) or Expected($\mathbb{E}$) (Countable): }
-  \sum_{i=0}^nX_i\mathbb{P}(X_i) \\
-  &\textrm{Mean($\mu$) or Expected($\mathbb{E}$) (Continuous): } \int_{-\infty}^{\infty}X_i\mathbb{P}(X_i)dx \\
-  &\textrm{Variance($\sigma^2$): } \mathbb{E}([X-\mu]^2) = \mathbb{E}(X^2)-\mu^2 \\
-  &\textrm{Standard Deviation($\sigma$): } \sqrt{\sigma^2} = \sqrt(Var[X]) 
+  &\textrm{Cumdist/Prob density: } F(x) \equiv \int_{-\infty}^{\infty} f(x)dx \\
+  &\textrm{Prob density/Cumdist: } f(x) \equiv \frac{d}{dx}F(x) \\
+  &\textrm{Expected($\mu$) (Countable): }
+  \mathbb{E}(X) \equiv \sum_{i=0}^nX_i\mathbb{P}(X_i) \\
+  &\textrm{Expected($\mu$) (Continuous): } \mathbb{E}(X) \equiv \int_{-\infty}^{\infty}X_i\mathbb{P}(X_i)dx \\
 \end{align*}
 
-Cumdist Properties (continuous):
+Moments:
 \begin{enumerate}
-\item $0 \leq F(x) \leq 1$
-\item $ \lim_{x\rightarrow -\infty}F(x) = 0 = \mathbb{P}(\emptyset) \wedge
-  \lim_{x\rightarrow \infty}F(x) = 1 = \mathbb{P}(\Omega)$
-\item $\forall (x,y) x<y \rightarrow F(x) \leq F(y)$
+\item Definition 
+  \begin{equation}
+  nth\textrm{ Moment: }\mu_n \equiv \mathbb{E}[(X-b)^n]
+\end{equation}
+\begin{align*}
+  n = 0& & \textrm{Constant}\\
+  n = 1& & \textrm{Expected Value (center)}\\
+  n = 2& & \textrm{Measure of Dispersion}\\
+  n = 3& & \textrm{Measure of asymmetry}\\
+  n = 4& & \textrm{Measure of peakedness}
+\end{align*}
+\item Types of Moments
+  \begin{equation}
+    \textrm{Raw Moments: } \mu_n' \equiv \mathbb{E}[(x-0)^n]
+  \end{equation}
+  \begin{equation}
+    \textrm{Central Moments: } \mu_n \equiv \mathbb{E}[(x-\mu)^n]
+  \end{equation}
+\item Getting Moments
+  \begin{enumerate}
+  \item Use def of moment (i.e.) $mu_n \equiv \mathbb{E}[(X-b)^n$
+  \item $[PGF]$ Probability Generating Function (Descrete only)
+  \item $[MGF]$ Moment Generating Function (May not exist)
+    
+  \item Characteristic equation
+  \end{enumerate}
 \end{enumerate}
+
+
+
 
 
 Bernoulli trials: TODO
@@ -249,9 +280,10 @@ Limit Theorems
     \item All $X$ have the same distribution, $\mu$ and $\sigma$
     \end{enumerate}
     \begin{enumerate}
-    \item Sum of Averages = $\mu$
+    \item Sum of Averages = $n\mu$
     \item Sum of Variances = $n\sigma^2$
-    \item Variance of Avg = $\frac{\sigma^2}{n}$
+    \item $Var(X) = \frac{\sigma^2}{n}$
+    \item $\mathbb{E}(X) = \mu$
     \end{enumerate}
   \item Normal Approximation to binomial
         \begin{align*}
@@ -260,7 +292,7 @@ Limit Theorems
     \end{align*}
   \item Worst Case Approximation:
     \begin{align*}
-      \mathbb{P}(\abs{\bar{x}-p} \leq \epsilon) \equiv =
+      \mathbb{P}(\abs{\bar{x}-p} \leq \epsilon) \equiv
       \mathbb{P}(\abs{\mathbb{Z}} \leq 2\epsilon\sqrt{n}
     \end{align*}
   \end{enumerate}
@@ -278,5 +310,13 @@ Limit Theorems
   \begin{equation}
     \mathbb{P}(\abs{X-\mu} \geq k\sigma) \leq \frac{1}{k^2}
   \end{equation}
+\end{enumerate}
+Joint Probability
+\begin{enumerate}
+\item $f(x,y)$ is the joint probability density function of the sets
+  $X$ and $Y$
+\item $F(x,y) = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}f(x,y)dxdy$
+\item $F(x)=  \int_{-\infty}^{\infty}f(x,y)dy$
+\item Correlation
 \end{enumerate}
 \end{document}
