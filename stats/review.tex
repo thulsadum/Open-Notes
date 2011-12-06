@@ -83,245 +83,297 @@
 \end{center}
 
 % ------------------------------------------------------------
-Counting:
-\begin{align*}
-  & \textrm{Mult Principle:  } \abs{A}= \displaystyle\prod_{i = 0}^{n}
-  m_i & \textrm{Counting $n$ tasks($m_i$) todo in some
-    order}\\
-  & \textrm{Add Principle: } \abs{A} = \sum_{i=0}^n m_i & \textrm{The number of ways to do $n$
-    non-overlapping tasks}\\
-  & \textrm{Permutations: } P(n,k) = \frac{n!}{(n-k)!} & \textrm{Choose $k$ ordered elements of $A, \abs{A}=
-    n$} \\
-  & \textrm{Combinations: }
-  C(n,k) = \binom{n}{k} = \frac{P(n,k)}{P(k,k)} =
-  \frac{n!}{(n-k)!k!} & \textrm{The number of unique non-ordered
-    lists}\\
-  & \textrm{Counting events: } \abs{X} =
-  2^n & \textrm{Size of the set($X$) of all possible events in set
-    $A$, with size $n$}
-\end{align*}
-
-Cumdist Properties (continuous):
+\textbf{Counting:}
 \begin{enumerate}
-\item $0 \leq F(x) \leq 1$
-\item $ \lim_{x\rightarrow -\infty}F(x) = 0 = \mathbb{P}(\emptyset) \wedge
-  \lim_{x\rightarrow \infty}F(x) = 1 = \mathbb{P}(\Omega)$
-\item $\forall (x,y) x<y \rightarrow F(x) \leq F(y)$
+\item Counting $n$ tasks($m_i$) in order:
+  \begin{equation}
+    \textrm{Mult Principle:  } \abs{A}= \displaystyle\prod_{i = 0}^{n}m_i
+  \end{equation}
+\item The number of ways to do $n$ non-overlapping tasks:
+  \begin{equation}
+    \textrm{Add Principle: } \abs{A} = \sum_{i=0}^n m_i
+  \end{equation}
+\item Choose $k$ ordered elements of $A, \abs{A}=
+  n$:
+  \begin{equation}
+    \textrm{Permutations: } P(n,k) = \frac{n!}{(n-k)!} 
+  \end{equation}
+\item The number of unique non-ordered lists:
+  \begin{equation}
+    \textrm{Combinations: } C(n,k) = \binom{n}{k} = \frac{P(n,k)}{P(k,k)} =
+    \frac{n!}{(n-k)!k!}
+  \end{equation}
+\item Size of the set($X$) of all possible events in set
+  $A$, with size $n$:
+  \begin{equation}
+    \textrm{Counting events: } \abs{X} = 2^n
+  \end{equation}
 \end{enumerate}
 
-\begin{description}
-\item Probability Function:
-\item Properties
-  \begin{enumerate}
-  \item $0 \leq \mathbb{P}(X) \leq 1$
-  \item $\mathbb{P}(\emptyset) = 0, \mathbb{P}(\Omega)=1$, where
-    $\emptyset$ is the empty set, and $\Omega$ is the problem space
-  \item $\mathbb{P}(A\cap B) = \mathbb{P}(B)\mathbb{P}(A | B)$,
-    Condition probability
-  \item $\mathbb{P}(A\cup B) = \mathbb{P}(A) + \mathbb{P}(B) -
-    \mathbb{P}(A\cap B)$
-  \item $\mathbb{P}(A^c) = 1-\mathbb{P}(A)$, Reason: $A\cap A^c =
-    \emptyset \wedge \mathbb{P}(A\cup A^c) = \mathbb{P}(\Omega)
-    \Rightarrow \mathbb{P}(A)+\mathbb{P}(A^c) = 1$
-  \item Given: $A$ has mutually disjoint, $\mathbb{P}(\cup_{i=0}^n
-    A_i) = \sum_{i=0}^n\mathbb{P}(A_i) $
-  \item $\mathbb{P}(A)=\sum_{i=0}^n\mathbb{P}({t_i})$, assuming ${t_i}\cap {t_j} = \emptyset$
-  \item $A\subseteq B \rightarrow \mathbb{P}(A)\leq \mathbb{P}(B)$
-  \item Independent iff: $\mathbb{P}(A\cap B) =
-    \mathbb{P}(B)\mathbb{P}(B)$, alternatively written
-    $\mathbb{P}(A|B) = \mathbb{P}(A)$ for $\mathbb{P}(B) \neq 0$ 
-  \end{enumerate}
-\end{description}
-
-Random Variables:
-\begin{align*}
-  &\textrm{Random Variable($X$): } X:\Omega\rightarrow \mathbb{R} \\
-  &\textrm{Prob mass function: } \mathbb{P}(X=a):X\rightarrow
-  [0,1]\\
-  &\textrm{Prob density function (1): $f(x)$ s.t. } \mathbb{P}(a \leq X
-  \leq b) = \int_a^bf(x)dx, \\
-  &\textrm{Prob density function (2): } int_{-\infty}^{\infty}f(x)dx = 1 =
-  \mathbb{P}(\Omega)\\ 
-  &\textrm{Cumdist function(Countable): } F(x) \equiv \mathbb{P}(X\leq a) =
-  \sum_{i=0}^a\mathbb{P}(X_i), a\in\Omega \\
-  &\textrm{Cumdist func(Continuous): } F(x) \equiv \mathbb{P}(X\leq a) =
-  \int_{-\infty}^a\mathbb{P}(X_i)dx \\
-  &\textrm{Cumdist/Prob density: } F(x) \equiv \int_{-\infty}^{\infty} f(x)dx \\
-  &\textrm{Prob density/Cumdist: } f(x) \equiv \frac{d}{dx}F(x) \\
-  &\textrm{Expected($\mu$) (Countable): }
-  \mathbb{E}(X) \equiv \sum_{i=0}^nX_i\mathbb{P}(X_i) \\
-  &\textrm{Expected($\mu$) (Continuous): } \mathbb{E}(X) \equiv \int_{-\infty}^{\infty}X_i\mathbb{P}(X_i)dx \\
-\end{align*}
-
-Moments:
+\textbf{Probability Function:}
 \begin{enumerate}
-\item Definition 
-  \begin{equation}
-  nth\textrm{ Moment: }\mu_n \equiv \mathbb{E}[(X-b)^n]
-\end{equation}
-\begin{align*}
-  n = 0& & \textrm{Constant}\\
-  n = 1& & \textrm{Expected Value (center)}\\
-  n = 2& & \textrm{Measure of Dispersion}\\
-  n = 3& & \textrm{Measure of asymmetry}\\
-  n = 4& & \textrm{Measure of peakedness}
-\end{align*}
-\item Types of Moments
-  \begin{equation}
-    \textrm{Raw Moments: } \mu_n' \equiv \mathbb{E}[(x-0)^n]
-  \end{equation}
-  \begin{equation}
-    \textrm{Central Moments: } \mu_n \equiv \mathbb{E}[(x-\mu)^n]
-  \end{equation}
-\item Getting Moments
-  \begin{enumerate}
-  \item Use def of moment (i.e.) $mu_n \equiv \mathbb{E}[(X-b)^n$
-  \item $[PGF]$ Probability Generating Function (Descrete only)
-  \item $[MGF]$ Moment Generating Function (May not exist)
-    
-  \item Characteristic equation
-  \end{enumerate}
-\item Central from Raw Moments
-\item Important Moments
-  \begin{enumerate}
-  \item Mean$(\mu) \equiv \mu_1' = \mathbb{E}(X)$
-  \item Variance$(\sigma^2) \equiv \mu_2 = \mathbb{E}((X-\mu)^2)$
-  \item Skew$(\gamma_2) \equiv \frac{\mu_3}{\sigma^3} = \frac{\mathbb{E}((X-\mu)^3)}{\sigma^3}$
-  \item Kurtosis$(\gamma_3) \equiv \frac{\mu_4}{\sigma^4} -3$
-  \end{enumerate}
+\item $\mathbb{P}(A):Event\rightarrow [0,1]$
+\item $\mathbb{P}(\emptyset) = 0, \mathbb{P}(\Omega)=1$, where
+  $\emptyset$ is the empty set, and $\Omega$ is the problem space
+\item $\mathbb{P}(A\cap B) = \mathbb{P}(B)\mathbb{P}(A | B)$,
+  Condition probability
+\item $\mathbb{P}(A\cup B) = \mathbb{P}(A) + \mathbb{P}(B) -
+  \mathbb{P}(A\cap B)$
+\item $\mathbb{P}(A^c) = 1-\mathbb{P}(A)$, Reason: $A\cap A^c =
+  \emptyset \wedge \mathbb{P}(A\cup A^c) = \mathbb{P}(\Omega)
+  \Rightarrow \mathbb{P}(A)+\mathbb{P}(A^c) = 1$
+\item Given: $A$ has mutually disjoint, $\mathbb{P}(\cup_{i=0}^n
+  A_i) = \sum_{i=0}^n\mathbb{P}(A_i) $
+\item $\mathbb{P}(A)=\sum_{i=0}^n\mathbb{P}({t_i})$, assuming ${t_i}\cap {t_j} = \emptyset$
+\item $A\subseteq B \rightarrow \mathbb{P}(A)\leq \mathbb{P}(B)$
+\item Independent iff: $\mathbb{P}(A\cap B) =
+  \mathbb{P}(B)\mathbb{P}(B)$, alternatively written
+  $\mathbb{P}(A|B) = \mathbb{P}(A)$ for $\mathbb{P}(B) \neq 0$ 
 \end{enumerate}
 
-
-Bernoulli trials: TODO
-Poisson Process/Continuous Trials: TODO
-
-Distributions:
-\begin{enumerate}
-\item $S = $ number of successes, $S: \mathbb{N} \rightarrow \mathbb{N}$
-\item $W=$ waiting time, $W:\mathbb{N} \rightarrow \mathbb{N}$
-\item $\mathbb{L}=$ life time, $\mathbb{L}: \mathbb{R} \rightarrow \mathbb{R}$
-\item Binomial Dist. (countable)
-  \begin{align*}
-    &\abs{\Omega} = 2^n \\
-    &\mathbb{P}(S = k) = \binom{n}{k} p^k(1-p)^{m-k} \\
-    &\mu = np \\
-    &\sigma^2 = mp(1-p)
-  \end{align*}
-\item K-nomial(multinomial) Dist. (countable)
-  \begin{align*}
-    &\abs{\Omega} = K^n \\
-    &\mathbb{P}(S = k) = \prod_{i=0}^k \binom{n-m_i}{m_i} p_i^{m_i} \\
-  \end{align*}
-\item Geometric Dist. (countable)
-  \begin{align*}
-    &\mathbb{P}(W=k)=p(1-p)^{(k-1)} \\
-    &\mathbb{P}(W\leq K) = 1-(1-p)^k \\
-    &\mu = \frac{1}{p} \\
-    &\sigma^2= \frac{1-p}{p^2}
-  \end{align*}
-\item Poisson Dist. (countable)
-  \begin{align*}
-    &\Lambda = t\lambda, \lambda = \textrm{ Longterm average rate} \\
-    &\mathbb{P}(S=k) = e^{-\Lambda}\frac{\Lambda^k}{k!} \\
-    &\mu = \Lambda \\
-    &\sigma^2 = \Lambda
-  \end{align*}
-\item Uniform Dist (continuous):\\
-  \begin{equation}
-    p = \frac{1}{b-a}
-  \end{equation}
-  \begin{displaymath}
-    f(x) = \left\{
-      \begin{array}{lr}
-        p & : x \in [a,b]\\
-        0 & : x \notin [a,b]
-      \end{array}
-    \right.\\
-  \end{displaymath}\\
-\item Linear Dist (continuous):
-  \begin{equation}
-    C(b-a)+D(b-a)^2=1
-  \end{equation}
-  \begin{displaymath}
-    f(x) = \left\{
-      \begin{array}{lr}
-        C+Dx & : x \in [a,b]\\
-        0 & : x \notin [a,b]
-      \end{array}
-    \right.\\
-  \end{displaymath}\\
-\item Exponential Dist. (continuous)
-  \begin{align*}
-    &\mathbb{P}(\mathbb{L} > t) = \mathbb{P}(\mathbb{S} = 0) = \frac{\Lambda^0}{0!}e^{-\Lambda}, t>0\\
-    &F(t) = \mathbb{P}(\mathbb{L} \leq t) = 1 -\mathbb{P}(\mathbb{L} > t) = 1-e^{-\Lambda}\\ \\
-    &f(t) = \frac{d}{dt}F(t) = 
-    f(x) = \left\{
-      \begin{array}{lr}
-        \Lambda e^{-\Lambda} & : x \geq 0\\
-        0 & : x < 0
-      \end{array}
-    \right.\\
-    &\mu = \int_{-\infty}^{\infty}f(x)dx = \int_{0}^{\infty}t\lambda
-    e^{-\lambda x}dx = \frac{1}{\lambda}\\
-    &\sigma^2 = \frac{1}{\lambda^2}\\
-    &\textrm{Non-Poisson trials (aging): } \mathbb{P}(\mathbb{L}>t^* |
-    \mathbb{L} >t_0) = e^{-\int_{t_0}^{t^*} \lambda(x)dx}
-  \end{align*}
-\item Standard Normal Dist. (continuous)
-  \begin{align*}
-    &\phi = \frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}} \\
-    &\Phi(\mathbb{Z}) = \mathbb{P}(\mathbb{Z} \leq z) = \int_{-\infty}^z\phi(x)dx = \int_{-\infty}^z\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}} dx\\
-    &\mu = 0, \sigma^2 = 0\\
-    & X = \sigma\mathbb{Z} + \mu \Leftrightarrow \mathbb{Z} = \frac{X-\mu}{\sigma}
-  \end{align*}
-\end{enumerate}
-Limit Theorems
-\begin{enumerate}
-\item Central Limit Theorem
+  \newpage
+  \textbf{Random Variables:}
   \begin{enumerate}
-  \item Assumptions
+  \item Def:
+    \begin{equation}
+      \textrm{Random Variable($X$): } X:\Omega\rightarrow \mathbb{R}
+    \end{equation}
+  \item
+    \begin{equation}
+      \textrm{Prob mass function: } f(x): \mathbb{P}(X=a):X\rightarrow [0,1]
+    \end{equation}
+  \item 
+    \begin{equation}
+      \textrm{Prob density function: } f(x):
+    \end{equation}
+  \item Cumdist Properties (continuous):
     \begin{enumerate}
-    \item All $x \in X$ are independent for a random sample
-    \item All $X$ have the same distribution, $\mu$ and $\sigma$
+    \item Def:
+      \begin{equation}
+        \textrm{(Countable): }F(x) \equiv \mathbb{P}(X\leq a) =
+        \sum_{i=0}^a\mathbb{P}(X_i), a\in\Omega
+      \end{equation}
+      \begin{equation}
+        \textrm{(Continuous): } F(x) \equiv \mathbb{P}(X\leq a) =
+        \int_{-\infty}^a\mathbb{P}(X_i)dx
+      \end{equation}
+    \item $0 \leq F(x) \leq 1$
+    \item $ \lim_{x\rightarrow -\infty}F(x) = 0 = \mathbb{P}(\emptyset) \wedge
+      \lim_{x\rightarrow \infty}F(x) = 1 = \mathbb{P}(\Omega)$
+    \item $\forall (x,y) x<y \rightarrow F(x) \leq F(y)$
     \end{enumerate}
+  \item Cumdist/Prob Density
+    \begin{equation}
+      \textrm{Cumdist/Prob density: } F(x) \equiv \int_{-\infty}^{\infty} f(x)dx  
+    \end{equation}
+    \begin{equation}
+      \textrm{Prob density/Cumdist: } f(x) \equiv \frac{d}{dx}F(x)
+    \end{equation}
+  \item Expected($\mu$)
+    \begin{equation}
+      \textrm{(Countable): } \mathbb{E}(X) \equiv \sum_{i=0}^nX_i\mathbb{P}(X_i)
+    \end{equation}
+    \begin{equation}
+      \textrm{(Continuous): } \mathbb{E}(X) \equiv \int_{-\infty}^{\infty}X_i\mathbb{P}(X_i)dx
+    \end{equation}
+  \item Common Random Variables
     \begin{enumerate}
-    \item Sum of Averages = $n\mu$
-    \item Sum of Variances = $n\sigma^2$
-    \item $Var(X) = \frac{\sigma^2}{n}$
-    \item $\mathbb{E}(X) = \mu$
+    \item Bernoulli trials
+    \item Poisson Process/Continuous trials
     \end{enumerate}
-  \item Normal Approximation to binomial
-        \begin{align*}
-      \mathbb{P}(a \leq \mathbb{S} \leq b) \approx
-      \mathbb{P}(A-\frac{1}{2} \leq X \leq b + \frac{1}{2}),\textrm{ } mp > s, m(1-p)>s
-    \end{align*}
-  \item Worst Case Approximation:
+  \end{enumerate}
+
+  \newpage
+  \textbf{Moments:}
+  \begin{enumerate}
+  \item Definition 
+    \begin{equation}
+      nth\textrm{ Moment: }\mu_n \equiv \mathbb{E}[(X-b)^n]
+    \end{equation}
     \begin{align*}
-      \mathbb{P}(\abs{\bar{x}-p} \leq \epsilon) \equiv
-      \mathbb{P}(\abs{\mathbb{Z}} \leq 2\epsilon\sqrt{n}
+      n = 0& & \textrm{Constant}\\
+      n = 1& & \textrm{Expected Value (center)}\\
+      n = 2& & \textrm{Measure of Dispersion}\\
+      n = 3& & \textrm{Measure of asymmetry}\\
+      n = 4& & \textrm{Measure of peakedness}
+    \end{align*}
+  \item Types of Moments
+    \begin{equation}
+      \textrm{Raw Moments: } \mu_n' \equiv \mathbb{E}[(x-0)^n]
+    \end{equation}
+    \begin{equation}
+      \textrm{Central Moments: } \mu_n \equiv \mathbb{E}[(x-\mu)^n]
+    \end{equation}
+  \item Getting Moments
+    \begin{enumerate}
+    \item Use def of moment (i.e.) $mu_n \equiv \mathbb{E}[(X-b)^n$
+    \item $[PGF]$ Probability Generating Function (Descrete only)
+    \item $[MGF]$ Moment Generating Function (May not exist)
+      \begin{enumerate}
+      \item Def
+        \begin{equation}
+          M_x(t) \equiv \mathbb{E}(e^{tx})
+        \end{equation}
+      \item Raw moment from $MGF$
+        \begin{equation}
+          \frac{\partial^n}{\partial t^n} M_x(t)|_{t=0} = \mathbb{E}(X^n)
+        \end{equation}
+      \end{enumerate}
+    \item Characteristic equation
+    \end{enumerate}
+  \item Generating Central Moments from Raw Moments
+    \begin{equation}
+      \mu_n = \Sigma_{j=0}^b\binom{n}{k}(-1)^{n-j}\mu_j'\mu^{n-j}
+    \end{equation}
+  \item Important Moments
+    \begin{enumerate}
+    \item Mean$(\mu) \equiv \mu_1' = \mathbb{E}(X)$
+    \item Variance$(\sigma^2) \equiv \mu_2 = \mathbb{E}((X-\mu)^2)$
+    \item Skew$(\gamma_2) \equiv \frac{\mu_3}{\sigma^3} = \frac{\mathbb{E}((X-\mu)^3)}{\sigma^3}$
+    \item Kurtosis$(\gamma_3) \equiv \frac{\mu_4}{\sigma^4} -3$
+    \end{enumerate}
+  \end{enumerate}
+
+  \newpage
+  \textbf{Joint Probability:}
+  \begin{enumerate}
+  \item $f(x,y)$ is the joint probability density function of the sets
+    $X$ and $Y$
+  \item Marginal Density: $f(x) = \int_{-\infty}^{\infty}f(x,y)dy$
+  \item $X$ and $Y$ are Independent iff $f(x,y) = f(x)f(y)$
+  \item $F(x,y) = \int_{-\infty}^{x}\int_{-\infty}^{y}f(x,y)dxdy$
+  \item $f(x,y) = \frac{\partial^2 F}{\partial x \partial y}$
+  \item
+    \begin{equation}
+      \textrm{Correlation}(r) =
+    \frac{\mathbb{E}[(X-\mu_x)(Y-\mu_y)]}{\sigma_x \sigma_y}
+    \end{equation}
+  \end{enumerate}
+
+  \textbf{Limit Theorems:}
+  \begin{enumerate}
+  \item Central Limit Theorem
+    \begin{enumerate}
+    \item Assumptions
+      \begin{enumerate}
+      \item All $x \in X$ are independent for a random sample
+      \item All $X$ have the same distribution, $\mu$ and $\sigma$
+      \end{enumerate}
+    \item CLT approximated moments
+      \begin{enumerate}
+      \item Sum of Averages = $n\mu$
+      \item Sum of Variances = $n\sigma^2$
+      \item $\bar{\sigma}^2 = \frac{\sigma^2}{n}$
+      \item $\mathbb{E}(\bar{X}) = \mu$
+      \end{enumerate}
+
+    \item Normal Approximation to binomial
+      \begin{align*}
+        \mathbb{P}(a \leq \mathbb{S} \leq b) \approx
+        \mathbb{P}(A-\frac{1}{2} \leq X \leq b + \frac{1}{2}),\textrm{ } mp > s, m(1-p)>s
+      \end{align*}
+    \item Worst Case Approximation:
+      \begin{align*}
+        \mathbb{P}(\abs{\bar{x}-p} \leq \epsilon) \equiv
+        \mathbb{P}(\abs{\mathbb{Z}} \leq 2\epsilon\sqrt{n}
+      \end{align*}
+    \end{enumerate}
+  \item Markov's inequality: applies to any non-negative random variable
+    \begin{equation}
+      \mathbb{P}(X \geq a) \leq \frac{\mu}{a} , a >0
+    \end{equation}
+    \begin{equation}
+      \mathbb{P}(X \geq k\mu) \leq \frac{1}{k}
+    \end{equation}
+  \item Chebyshev's inequality: upper bound on dist
+    \begin{equation}
+      \mathbb{P}(\abs{X-\mu} \geq c) \leq \frac{\sigma^2}{c^2}, c>0
+    \end{equation}
+    \begin{equation}
+      \mathbb{P}(\abs{X-\mu} \geq k\sigma) \leq \frac{1}{k^2}
+    \end{equation}
+  \end{enumerate}
+
+  \newpage
+  \textbf{Distributions:}
+  \begin{enumerate}
+  \item $S = $ number of successes, $S: \mathbb{N} \rightarrow \mathbb{N}$
+  \item $W=$ waiting time, $W:\mathbb{N} \rightarrow \mathbb{N}$
+  \item $\mathbb{L}=$ life time, $\mathbb{L}: \mathbb{R} \rightarrow \mathbb{R}$
+  \item Binomial Dist. (countable)
+    \begin{align*}
+      &\abs{\Omega} = 2^n \\
+      &\mathbb{P}(S = k) = \binom{n}{k} p^k(1-p)^{m-k} \\
+      &\mu = np \\
+      &\sigma^2 = mp(1-p)
+    \end{align*}
+  \item K-nomial(multinomial) Dist. (countable)
+    \begin{align*}
+      &\abs{\Omega} = K^n \\
+      &\mathbb{P}(S = k) = \prod_{i=0}^k \binom{n-m_i}{m_i} p_i^{m_i} \\
+    \end{align*}
+  \item Geometric Dist. (countable)
+    \begin{align*}
+      &\mathbb{P}(W=k)=p(1-p)^{(k-1)} \\
+      &\mathbb{P}(W\leq K) = 1-(1-p)^k \\
+      &\mu = \frac{1}{p} \\
+      &\sigma^2= \frac{1-p}{p^2}
+    \end{align*}
+  \item Poisson Dist. (countable)
+    \begin{align*}
+      &\Lambda = t\lambda, \lambda = \textrm{ Longterm average rate} \\
+      &\mathbb{P}(S=k) = e^{-\Lambda}\frac{\Lambda^k}{k!} \\
+      &\mu = \Lambda \\
+      &\sigma^2 = \Lambda
+    \end{align*}
+  \item Uniform Dist (continuous):\\
+    \begin{equation}
+      p = \frac{1}{b-a}
+    \end{equation}
+    \begin{displaymath}
+      f(x) = \left\{
+        \begin{array}{lr}
+          p & : x \in [a,b]\\
+          0 & : x \notin [a,b]
+        \end{array}
+      \right.\\
+    \end{displaymath}\\
+  \item Linear Dist (continuous):
+    \begin{equation}
+      C(b-a)+D(b-a)^2=1
+    \end{equation}
+    \begin{displaymath}
+      f(x) = \left\{
+        \begin{array}{lr}
+          C+Dx & : x \in [a,b]\\
+          0 & : x \notin [a,b]
+        \end{array}
+      \right.\\
+    \end{displaymath}\\
+  \item Exponential Dist. (continuous)
+    \begin{align*}
+      &\mathbb{P}(\mathbb{L} > t) = \mathbb{P}(\mathbb{S} = 0) = \frac{\Lambda^0}{0!}e^{-\Lambda}, t>0\\
+      &F(t) = \mathbb{P}(\mathbb{L} \leq t) = 1 -\mathbb{P}(\mathbb{L} > t) = 1-e^{-\Lambda}\\ \\
+      &f(t) = \frac{d}{dt}F(t) = 
+      f(x) = \left\{
+        \begin{array}{lr}
+          \Lambda e^{-\Lambda} & : x \geq 0\\
+          0 & : x < 0
+        \end{array}
+      \right.\\
+      &\mu = \int_{-\infty}^{\infty}f(x)dx = \int_{0}^{\infty}t\lambda
+      e^{-\lambda x}dx = \frac{1}{\lambda}\\
+      &\sigma^2 = \frac{1}{\lambda^2}\\
+      &\textrm{Non-Poisson trials (aging): } \mathbb{P}(\mathbb{L}>t^* |
+      \mathbb{L} >t_0) = e^{-\int_{t_0}^{t^*} \lambda(x)dx}
+    \end{align*}
+  \item Standard Normal Dist. (continuous)
+    \begin{align*}
+      &\phi = \frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}} \\
+      &\Phi(\mathbb{Z}) = \mathbb{P}(\mathbb{Z} \leq z) = \int_{-\infty}^z\phi(x)dx = \int_{-\infty}^z\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}} dx\\
+      &\mu = 0, \sigma^2 = 0\\
+      & X = \sigma\mathbb{Z} + \mu \Leftrightarrow \mathbb{Z} = \frac{X-\mu}{\sigma}
     \end{align*}
   \end{enumerate}
-\item Markov's inequality: applies to any non-negative random variable
-  \begin{equation}
-    \mathbb{P}(X \geq a) \leq \frac{\mu}{a} , a >0
-  \end{equation}
-  \begin{equation}
-    \mathbb{P}(X \geq k\mu) \leq \frac{1}{k}
-  \end{equation}
-\item Chebyshev's inequality: upper bound on dist
-  \begin{equation}
-    \mathbb{P}(\abs{X-\mu} \geq c) \leq \frac{\sigma^2}{c^2}, c>0
-  \end{equation}
-  \begin{equation}
-    \mathbb{P}(\abs{X-\mu} \geq k\sigma) \leq \frac{1}{k^2}
-  \end{equation}
-\end{enumerate}
-Joint Probability
-\begin{enumerate}
-\item $f(x,y)$ is the joint probability density function of the sets
-  $X$ and $Y$
-\item $F(x,y) = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}f(x,y)dxdy$
-\item $F(x)=  \int_{-\infty}^{\infty}f(x,y)dy$
-\item Correlation
-\end{enumerate}
+
 \end{document}
