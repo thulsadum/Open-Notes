@@ -19,12 +19,12 @@
 \usepackage{graphicx} % Allows for eps images
 \usepackage{multicol} % Allows for multiple columns
 \usepackage[dvips,letterpaper,margin=0.75in,bottom=0.5in]{geometry}
- % Sets margins and page size
+% Sets margins and page size
 \pagestyle{empty} % Removes page numbers
 \makeatletter % Need for anything that contains an @ command 
 \renewcommand{\maketitle} % Redefine maketitle to conserve space
 { \begingroup \vskip 10pt \begin{center} \large {\bf \@title}
-p	\vskip 10pt \large \@author \hskip 20pt \@date \end{center}
+    p	\vskip 10pt \large \@author \hskip 20pt \@date \end{center}
   \vskip 10pt \endgroup \setcounter{footnote}{0} }
 \makeatother % End of region containing @ commands
 \renewcommand{\labelenumi}{(\alph{enumi})} % Use letters for enumerate
@@ -44,13 +44,13 @@ p	\vskip 10pt \large \@author \hskip 20pt \@date \end{center}
 \newcommand{\pdd}[2]{\frac{\partial^2 #1}{\partial #2^2}} 
 % for double partial derivatives
 \newcommand{\pdc}[3]{\left( \frac{\partial #1}{\partial #2}
- \right)_{#3}} % for thermodynamic partial derivatives
+  \right)_{#3}} % for thermodynamic partial derivatives
 \newcommand{\ket}[1]{\left| #1 \right>} % for Dirac bras
 \newcommand{\bra}[1]{\left< #1 \right|} % for Dirac kets
 \newcommand{\braket}[2]{\left< #1 \vphantom{#2} \right|
- \left. #2 \vphantom{#1} \right>} % for Dirac brackets
+  \left. #2 \vphantom{#1} \right>} % for Dirac brackets
 \newcommand{\matrixel}[3]{\left< #1 \vphantom{#2#3} \right|
- #2 \left| #3 \vphantom{#1#2} \right>} % for Dirac matrix elements
+  #2 \left| #3 \vphantom{#1#2} \right>} % for Dirac matrix elements
 \newcommand{\grad}[1]{\gv{\nabla} #1} % for gradient
 \let\divsymb=\div % rename builtin command \div to \divsymb
 \renewcommand{\div}[1]{\gv{\nabla} \cdot #1} % for divergence
@@ -75,7 +75,73 @@ p	\vskip 10pt \large \@author \hskip 20pt \@date \end{center}
 \begin{center}
   {\LARGE
     \textbf{CS232 Review}\\
+    \normalsize
   }
+\end{center}
+  \textbf{MidTerm 1}  
+  \begin{enumerate}
+  \item Bitwise Logical Programming (shift $<<$ $>>$ ,and $\&$, or
+    $|$,not $~$,xor $^\wedge$)
+  \item MIPS assembly
+    \begin{enumerate}
+    \item arithmetic, memory, control flow
+    \item MIPS $<->$ C
+    \end{enumerate}
+  \item Functions:
+    \begin{enumerate}
+    \item Register saving convetions
+    \item stack (and its use for saving state of program)
+    \item recursion
+    \end{enumerate}
+  \item Basic understanding of assembly level concepts
+    \begin{enumerate}
+    \item pointers, pointer arithmetic, structures
+    \item machine language
+    \item variable types in low level languages (not explicit, its how
+      its used)
+    \item compiling, linking, loading, MIPS memory image
+    \item 90/10 rule : spend 90\% of your time in 10\% of your code
+    \item Endianness: the convention used in the machine for ordering
+      bytes in memory.
+    \end{enumerate}
+    \begin{enumerate}
+    \item I/O programming and interrupts
+    \item Performace and Performance Turning
+    \item Single-cycle MIPS implementation
+    \end{enumerate}
+  \end{enumerate}
+  \textbf{MidTerm 2}
+  \begin{enumerate}
+  \item Generic datapath concepts
+    \begin{enumerate}
+    \item Tracing instructions through the datapath (e.g. mark all
+      wires active during the execution of instructions)
+    \item Computing the cycle time for a given datapath
+    \end{enumerate}
+  \item Single-cycle Datapath
+  \item Pipeling and the Pipedlined Datapath
+    \begin{enumerate}
+    \item Ideal speedup and the reasons that it is not achieved
+    \item Dependences, data hazards, and forwarding (which cases can
+      be handled?)
+    \item Control hazards, branch resolution, branch prediction, and stalling
+    \end{enumerate}
+  \item Performance
+    \begin{enumerate}
+    \item Components of processor performance: number of instructions,
+      CPI, clock period
+    \item Computing speedup
+    \item Throughput vs. Latency
+    \item Amdahl's Law
+    \end{enumerate}
+  \item I/O programming and interrupts
+    \begin{enumerate}
+    \item Memory-mapped I/O
+    \item Understand the structure of the interrupt handler \& what
+      the parts do
+    \end{enumerate}
+  \end{enumerate}
+  \textbf{MidTerm 3}
   \begin{enumerate}
   \item Caches
     \begin{enumerate}
@@ -116,7 +182,7 @@ p	\vskip 10pt \large \@author \hskip 20pt \@date \end{center}
       \item :
         \begin{equation}
           \label{eq: AMAT}
-         AMAT = HitTime + (MissRate * Miss) 
+          AMAT = HitTime + (MissRate * Miss) 
         \end{equation}
         \begin{equation}
           MemoryStallCycles = MemoryAccesses * MissRate * Miss penalty
@@ -213,7 +279,9 @@ p	\vskip 10pt \large \@author \hskip 20pt \@date \end{center}
       \end{enumerate}
     \end{enumerate}
   \end{enumerate}
-    
-\end{center}
+  \textbf{Post-Exam 3}
+  \begin{enumerate}
+  \item 
+  \end{enumerate}
 \end{document}
 % LocalWords:  LRU Associatity associatity

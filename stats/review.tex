@@ -108,6 +108,10 @@
   \begin{equation}
     \textrm{Counting events: } \abs{X} = 2^n
   \end{equation}
+\item Binomial Coefficient
+  \begin{equation}
+    (x+y)^n = \sum_{k=0}^n\binom{n}{k}x^{n-k}y^k
+  \end{equation}
 \end{enumerate}
 
 \textbf{Probability Function:}
@@ -228,7 +232,8 @@
   \item Important Moments
     \begin{enumerate}
     \item Mean$(\mu) \equiv \mu_1' = \mathbb{E}(X)$
-    \item Variance$(\sigma^2) \equiv \mu_2 = \mathbb{E}((X-\mu)^2)$
+    \item Variance$(\sigma^2) \equiv \mu_2 = \mathbb{E}((X-\mu)^2)=
+      \mathbb{E}(X^2) - \mu^2$
     \item Skew$(\gamma_2) \equiv \frac{\mu_3}{\sigma^3} = \frac{\mathbb{E}((X-\mu)^3)}{\sigma^3}$
     \item Kurtosis$(\gamma_3) \equiv \frac{\mu_4}{\sigma^4} -3$
     \end{enumerate}
@@ -275,7 +280,7 @@
     \item Worst Case Approximation:
       \begin{align*}
         \mathbb{P}(\abs{\bar{x}-p} \leq \epsilon) \equiv
-        \mathbb{P}(\abs{\mathbb{Z}} \leq 2\epsilon\sqrt{n}
+        \mathbb{P}(\abs{\mathbb{Z}} \leq 2\epsilon\sqrt{n})
       \end{align*}
     \end{enumerate}
   \item Markov's inequality: applies to any non-negative random variable
@@ -292,6 +297,10 @@
     \begin{equation}
       \mathbb{P}(\abs{X-\mu} \geq k\sigma) \leq \frac{1}{k^2}
     \end{equation}
+  \item Law of large numbers
+    \begin{equation}
+      s
+    \end{equation}
   \end{enumerate}
 
   \newpage
@@ -305,7 +314,7 @@
       &\abs{\Omega} = 2^n \\
       &\mathbb{P}(S = k) = \binom{n}{k} p^k(1-p)^{m-k} \\
       &\mu = np \\
-      &\sigma^2 = mp(1-p)
+      &\sigma^2 = np(1-p)
     \end{align*}
   \item K-nomial(multinomial) Dist. (countable)
     \begin{align*}
