@@ -19,12 +19,12 @@
 \usepackage{graphicx} % Allows for eps images
 \usepackage{multicol} % Allows for multiple columns
 \usepackage[dvips,letterpaper,margin=0.75in,bottom=0.5in]{geometry}
- % Sets margins and page size
+% Sets margins and page size
 \pagestyle{empty} % Removes page numbers
 \makeatletter % Need for anything that contains an @ command 
 \renewcommand{\maketitle} % Redefine maketitle to conserve space
 { \begingroup \vskip 10pt \begin{center} \large {\bf \@title}
-	\vskip 10pt \large \@author \hskip 20pt \@date \end{center}
+    \vskip 10pt \large \@author \hskip 20pt \@date \end{center}
   \vskip 10pt \endgroup \setcounter{footnote}{0} }
 \makeatother % End of region containing @ commands
 \renewcommand{\labelenumi}{(\alph{enumi})} % Use letters for enumerate
@@ -44,13 +44,13 @@
 \newcommand{\pdd}[2]{\frac{\partial^2 #1}{\partial #2^2}} 
 % for double partial derivatives
 \newcommand{\pdc}[3]{\left( \frac{\partial #1}{\partial #2}
- \right)_{#3}} % for thermodynamic partial derivatives
+  \right)_{#3}} % for thermodynamic partial derivatives
 \newcommand{\ket}[1]{\left| #1 \right>} % for Dirac bras
 \newcommand{\bra}[1]{\left< #1 \right|} % for Dirac kets
 \newcommand{\braket}[2]{\left< #1 \vphantom{#2} \right|
- \left. #2 \vphantom{#1} \right>} % for Dirac brackets
+  \left. #2 \vphantom{#1} \right>} % for Dirac brackets
 \newcommand{\matrixel}[3]{\left< #1 \vphantom{#2#3} \right|
- #2 \left| #3 \vphantom{#1#2} \right>} % for Dirac matrix elements
+  #2 \left| #3 \vphantom{#1#2} \right>} % for Dirac matrix elements
 \newcommand{\grad}[1]{\gv{\nabla} #1} % for gradient
 \let\divsymb=\div % rename builtin command \div to \divsymb
 \renewcommand{\div}[1]{\gv{\nabla} \cdot #1} % for divergence
@@ -74,257 +74,135 @@
 
 \begin{center}
   {\LARGE
-    \textbf{CS231 Review}\\
+    \textbf{CS 225}\\
   }
-  \begin{enumerate}
-  \item 
-    Logic
-    \begin{enumerate}
-    \item TODO
-    \end{enumerate}
-
-    % TODO
-    % ----------------------------------------------------------------------------
-  \item Proofs
-    \begin{enumerate}
-    \item Even: An integer $n$ is even if there is an integer $m$ such
-      that $n = 2m$.
-    \item Odd: An integer $n$ is odd if there is an integer $m$ s.t. $n =
-      2m + 1$
-    \item Multiplicative inverse: If $q$ and $r$ are real numbers, $r$ is a multiplicative inverse for $q$
-      if $qr = 1$.
-    \item Proof Methods
-      \begin{tabular}{ c | c | c  }
-        & prove & disprove\\
-        \hline
-        universal & general argument & speciﬁc counter-example\\
-        existential &  speciﬁc example & general argument\\
-      \end{tabular}
-\end{enumerate}
-
-% ----------------------------------------------------------------------------
-\item 
-  Number Theory
-  \begin{enumerate}
-  \item Factors and multiples\\
-    $a|b \textrm{ iff } b = an$
-  \item Prime Numbers\\
-    an integer $q \geq 2$ is prime iff positive factors of $q$ are
-    $q$ and $1$. An integer $q \geq 2$ is composite if it is not prime.
-  \item GCD:\\
-    Euclidean algorithm
-    \begin{enumerate}
-    \item def $\gcd(a,b)$:
-    \item $r =$ remainder$(a,b)$
-    \item if$(r = 0)$ return  $b$
-    \item return $\gcd(b,r)$
-    \end{enumerate}
-  \item LCD: $ \frac{ab}{\gcd(a, b)}$
-  \item Congruence mod k\\
-    Deﬁnition: If $k$ is any positive integer, two integers $a$ and $b$, $a ≡ b \mod(k)$ if $k | (a − b)$.
-  \item Equivalence classes\\
-    A set of inputs that evaulate to the same output\\ 
-  \end{enumerate}
-  \newpage
-  % ----------------------------------------------------------------------------
-  \item Sets:\\
-    \begin{enumerate}
-    \item Sets: Deﬁnition: A set is an unordered collection of
-      objects.\\
-      $\{a,b\}$, empty set = $\emptyset$
-    \item Tuples:  Deﬁnition: A set is an ordered collection of
-      objects.\\
-      Example $(a,b)$
-    \item Cardinality: Definition: the cardinality of a set is a
-      measure of the "number of elements of the set"\\
-      Cardinality of set $S$ = $|S|$
-    \item Inclusion: Definition: $A \subseteq B$ iff $\{\forall x, x \in
-      A \rightarrow x \in B\}$
-    \item Set operations
-      \begin{enumerate}
-      \item Intersection: $A \cap B = \{S | S \in A \wedge S \in B\}$\\
-        Disjoint: $A \cap B = \emptyset$
-      \item Union: $A \cup B = \{x:x\in A \vee x \in B\}$
-      \item Difference: $A-B = \{x:x\in A \wedge x\notin B\}$ 
-      \item Complement $\bar A = \{x: x\notin A \wedge x\in U\}$
-      \item Cartesian product: $A \times B = \{(x, y) | x \in A \wedge
-        y \in B\}$
-      \end{enumerate}
-    \item DeMorgan’s Law: $\bar{A \cup B} = \bar A \cap \bar B$
-    \item Inclusion-Exclusion Principle: $|A \cup B| = |A| + |B| − |A
-      \cap B|$
-    \item Product Rule: $|A \times B| = |A||B|$.
-    \end{enumerate}
-    % ----------------------------------------------------------------------------
-  \item 
-    Relations
-    \begin{enumerate}
-    \item Relation: $A$ relation $R$ on a set $A$ is a subset of $A \times A$, i.e. $R$ is a set of ordered pairs
-      of elements from $A$.
-    \item Reflexive: $R$ is reﬂexive if $xRx$ for all $x \in A$
-    \item Irreflexive $R$ is irreﬂexive if $x \textrm{ not R }x$ for
-      all $x \in A$.
-    \item Symmetric: $\forall x, y \in A, xRy \rightarrow yRx$
-    \item Antisymmetric: $\forall x, y \in A,(xRy \wedge yRx) \rightarrow x = y$
-    \item Transitive: $\forall a, b, c \in A$, if $aRb$ and $bRc$,
-      then $aRc$
-    \item Types of relations:
-      \begin{enumerate}
-      \item Partial order: a relation that is reﬂexive, antisymmetric, and
-        transitive.
-      \item Linear order (total order): partial
-        order in which every pair of elements are comparable. That is,
-        for every pair $x, y$, $x \geq y$ or $y \geq x$.
-      \item Strict partial order: a relation that is irreﬂexive,
-        antisymmetric, and transitive.
-      \item Equivalence relation: a relation that is reﬂexive, symmetric, and transitive.
-      \end{enumerate}
-    \end{enumerate}
-    \newpage
-%----------------------------------------------------------------------------
-  \item 
-    Functions
-    \begin{enumerate}
-    \item Function: For each input value, a function must provide one and only one output value.
-    \item 
-      Image: $f(A) = {f(x) : x \in A}$
-    \item 
-      Onto(surjective): $\forall y \in  B, \exists x \in A, f(x) = y$
-    \item 
-      One-to-One(injective): $\forall x, y \in A, f (x) = f (y) \rightarrow x =
-      y$
-    \item 
-      Bijection(one-to-one correspondence): Onto and One-to-One
-    \item 
-      Pigeonhole principle: Suppose you have $n$ objects and assign $k$
-      labels to these objects. If $n > k$, then two objects must get the
-      same label.
-    \end{enumerate}
-    % ----------------------------------------------------------------------------
-  \item 
-    Counting
-    \begin{enumerate}
-    \item Permuation: $\frac{n!}{(n - k)!}$
-    \item Combination: $\dbinom{n}{k}=\frac{n!}{k!(n-k)!}$
-    \item Combinations with repetition:  $\dbinom{k+n-1}{k}$
-    \item General Idenity: $\dbinom{n}{k} =  \dbinom{n}{n-k}$
-    \item Pascals Idenity:  $\dbinom{n+1}{k} =  \dbinom{n}{k} +
-      \dbinom{n}{k-1}$
-    \item Binomial Theorem: $(x+y)^n=\sum_{k=0}^n\dbinom{n}{k}x^{n-k}y^k$
-    \end{enumerate}
-    % ----------------------------------------------------------------------------
-  \item 
-    Graphs
-    \begin{enumerate}
-    \item Simple Graph: A graph with neither multiple edges nor loop
-      edges
-    \item An isomorphism from $G_1$ to $G_2$ is a bijection $f : V1 \rightarrow V2$ such
-      that vertices $a$ and $b$ are joined by an edge iff $f (a)$
-      and $f (b)$ are joined by an edge.
-    \item Complete graphs: $K_n$ is a graph with $n$ vertices in which
-      every vertex is connected to every other
-      vertex. $(\frac{n(n-1)}{2})$ edges
-    \item Cycles: Suppose that we have n vertices named $v_1 , . . . ,
-      v_n$ , where $n \geq 3$. Then the cycle $C_n$ is the graph with these
-      vertices and edges connecting $v_i$ to $v_i+1$ , plus an
-      additional edge from $v_n$ to $v_1$. $n$ edges
-    \item Wheels: The wheel $W_n$ is just like the cycle $C_n$ except
-      that it has an additional central “hub” node which is connected
-      to all the others. Notice that $W_n$ has $n + 1$ nodes (not $n$ nodes). It has $2n$ edges.
-    \item Walk: a walk of length $k$ from vertex $a$ to vertex $b$ is a
-      ﬁnite sequence of vertices $a = v1 , v2 , . . . , v_n = b$ and $a$
-      ﬁnite sequence of edges $e_1 , e_2 , . . . , e_{n−1}$ in which $e_i$ connects $v_i$ and $v_i+1$ , for all $i$
-    \item Path: A path is a walk (necessarily an open walk) in which no vertex is used more than once.
-    \item Acyclic: Doesn't contain any cycle
-    \item Cut edge: One edge is keeping the graph as one connected component
-    \item Euler Circuit: An Euler circuit of a graph $G$ is a closed
-      walk that uses each edge of the graph exactly once.
-    \item Bipartite: A graph $G = (V, E)$ is bipartite if we can split $V$
-      into two non-overlapping subsets $V_1$ and $V_2$ such that every edge in $G$ connects an element of $V_1$ with an element of $V_2$ .
-    \item HyperCube:
-      \begin{enumerate}
-      \item $Q_0$ is a single vertex with no edges 
-      \item $Q_n$ consists of two copies of $Q_{n−1}$ with edges joining corresponding
-        vertices.
-      \end{enumerate}
-    \end{enumerate}
-    % ----------------------------------------------------------------------------
-  \item 
-    Induction
-    \begin{enumerate}
-    \item Induciton: Proof by recursion
-    \item Strong Induction: Using multiple basecases to "reach back"
-      further
-    \end{enumerate}
-    % ----------------------------------------------------------------------------
-  \item Trees
-    \begin{enumerate}
-    \item TODO
-    \end{enumerate}
-    % ----------------------------------------------------------------------------
-  \item 
-    Big-O
-    \begin{enumerate}
-    \item Order of functions: $1 \prec \log{n} \prec n \prec n\log{n}\prec n^k \prec k^n \prec n!$
-    \item $f(x)$ is  $O(g(X)$ iff there are positive real numbers $c$
-      and $k$ s.t. $0 \leq f (x) \leq cg(x)$ for every $x \geq k$.
-    \item $g(x)$ is $\Omega(f (x))$ iff $f (x)$ is $O(g(x))$
-    \item $f (x)$ is $\Theta(g(x))$ iff $g(x)$ is $O(f (x))$ and $f (x)$ is $O(g(x))$
-    \end{enumerate}
-    \newpage
-    % ----------------------------------------------------------------------------
-  \item 
-    Algorithms
-    \begin{enumerate}
-    \item Unrolling:
-    \item Linear Search: $O(n)$
-    \item Binary search: $O(\log{n})$
-    \item Bubble sort: $O(n^2)$
-    \item Insertion sort: $O(n^2)$
-    \item Linked Lists: 
-    \item Merge: $O(n)$
-    \item Mergesort: $O(n\log{n})$
-    \item Tower of Hanoi: $O(2^n)$
-    \item Anatolii Karatsuba's Multiplication: $O(n^{\log_2 3} )$
-    \end{enumerate}
-  % ----------------------------------------------------------------------------
-  \item 
-    Sets of sets  
-    \begin{enumerate}
-    \item Powersets($\mathbb{P}$): set of all subsets of $S$, including the empty set and $S$ itself.
-    \item Partitions: A set $A$ is a collection of non-empty subsets
-      of $A$ which cover all the elements of $A$ and which don’t
-      overlap.
-      \begin{enumerate}
-      \item covers all of $A$: $\cup_{x \in p}$ $X=A$
-      \item non-empty: $A_i \neq \emptyset$ for all $X \in P$ 
-      \item no overlap: $X \cap Y = \emptyset$ for all $X, Y \in P,X \neq Y$
-      \end{enumerate}
-    \end{enumerate}
-  \item
-    Countabillity
-    \begin{enumerate}
-    \item Two sets $A$ and $B$ have the same cardinality $(|A| =
-      |B|)$ iff there is a bijection from $A$ to $B$
-    \item An inﬁnite set $A$ is countable iff there is a bijection from $\mathbb{N}$ onto $A$
-    \item Cantor Schroeder Bernstein Theorem: Deﬁnition: $|A| \leq |B|$ iff
-      there is a one-to-one function from $A$ to $B$
-    \end{enumerate}
-  \item 
-    Planargraphs
-    \begin{enumerate}
-    \item Planargraph:
-    \item Colorability: Always $4$ colorable
-    \item Homeomorphic: One graph is a subdivision of another, or they
-      are both subdivisions of some third graph.
-    \item $K_{3,3}$ is not planar
-    \item $K_5$ is not planar
-    \item Kuratowski’s Theorem: A graph is nonplanar iff it contains a subgraph homeomorphic to $K_{3,3}$ or $K_5$ .
-    \item Euler’s formula: $v − e + f = 2$
-    \item Handshaking theorem (degrees): sum of vertex degrees$= 2e$
-    \item Handshaking theorem (faces): sum of face degrees $= 2e$
-    \end{enumerate}
-  \end{enumerate}
   
 \end{center}
-\end{document}
+C++
+\begin{enumerate}
+\item C syntax
+\item Object Oriented
+\item Big three
+\item Templates
+\item Inheritance
+\item Generic Programming (Functors)
+\end{enumerate}
+Linear Data Structures
+\begin{enumerate}
+\item Array
+\item Linked List
+\item Linear ADT's (usually linear)
+  \begin{enumerate}
+  \item Lists
+    \begin{enumerate}
+    \item Runtimes:
+      \begin{align*}
+        &\textrm{SLL} & \textrm{Array}\\
+        \textrm{Insert/Remove at front:   } & O(1) & O(1)\\
+        \textrm{Insert at curr:   } & O(n) & O(n)\\
+        \textrm{Remove at curr:   } & O(1)\textrm{ Hack} & O(n)\\
+        \textrm{Insert at i:   } & O(n) & O(n) \\
+        \textrm{Remove at i:   } & O(n) & O(n) \\
+      \end{align*}
+    \end{enumerate}
+    \item Stacks (LIFO)
+      \begin{align*}
+        \textrm{Push: } & O(1) \\
+        \textrm{Pop: } & O(1) \\
+        \textrm{Find: } & O(n)
+      \end{align*}
+    \item Queues (FIFO)
+      \begin{align*}
+        \textrm{Push(enqueue): } & O(1) \\
+        \textrm{Pop(dequeue): } & O(1) \\
+        \textrm{Find: } & O(n)
+      \end{align*}
+    \end{enumerate}
+    Trees (asymmteric graphs)
+    \begin{enumerate}
+    \item Terminology
+      \begin{enumerate}
+      \item Leaf: Terminal node with not children
+      \item Root: Base node in a directed tree
+      \end{enumerate}
+    \item Traversals
+      \begin{enumerate}
+      \item All tree traversals are min $O(n)$
+      \item Preorder: Parent - Child - Child
+      \item Inorder: Child - Parent - Child
+      \item Postorder: Child - Child - Parent
+      \item Depth-first order:
+        In depth-first order, we always attempt to visit the node farthest from the root that we can, but with the caveat that it must be a child of a node we have already visited. Unlike a depth-first search on graphs, there is no need to remember all the nodes we have visited, because a tree cannot contain cycles. Pre-order is a special case of this. See depth-first search for more information.
+      \item Breadth-first order:
+Contrasting with depth-first order is breadth-first order, which always attempts to visit the node closest to the root that it has not already visited. See breadth-first search for more information. Also called a level-order traversal.
+      \end{enumerate}
+    \item N-airy Tree
+      \begin{enumerate}
+      \item Root: is a tree with a root node in which every node has at most two children.
+      \item Full: Every non-leaf node has $2$ leafs 
+      \item Perfect: is a full binary tree in which all leaves are at the same depth or same level, and in which every parent has two children.
+      \item Complete: is a binary tree in which every level, except possibly the last, is completely filled, and all nodes are as far left as possible.
+      \item Balanced: is commonly defined as a binary tree in which the height of the two subtrees of every node never differ by more than 1,[3] although in general it is a binary tree where no leaf is much farther away from the root than any other leaf.
+      \item BST:
+        \begin{enumerate}
+        \item The left subtree of a node contains only nodes with keys less than the node's key.
+        \item The right subtree of a node contains only nodes with keys greater than the node's key.
+        \item Both the left and right subtrees must also be binary search trees.
+        \end{enumerate}
+      \item AVL:
+        \begin{enumerate}
+        \item In computer science, an AVL tree is a self-balancing binary search tree, and it was the first such data structure to be invented.[1] In an AVL tree, the heights of the two child subtrees of any node differ by at most one. Lookup, insertion, and deletion all take $O(log n)$ time in both the average and worst cases, where n is the number of nodes in the tree prior to the operation. Insertions and deletions may require the tree to be rebalanced by one or more tree rotations.
+        \item Rotations $O(1)$: Look at the way you fingers move in a
+          right hand curl
+        \item Left Rotation: out the page right hand rule
+        \item Right Rotation: into of the page right hand rule
+        \end{enumerate}
+      \item B-Trees ($m$):
+        \begin{enumerate}
+        \item In computer science, a B-tree is a tree data structure
+          that keeps data sorted and allows searches, sequential
+          access, insertions, and deletions in logarithmic time. The
+          B-tree is a generalization of a binary search tree in that a
+          node can have more than two children. (Comer 1979, p. 123)
+          Unlike self-balancing binary search trees, the B-tree is
+          optimized for systems that read and write large blocks of
+          data. It is commonly used in databases and filesystems.
+        \item $m-1$ children
+        \end{enumerate}
+      \item KD-tree
+      \item Heap:
+        \begin{enumerate}
+        \item Heap Sort
+        \end{enumerate}
+      \end{enumerate}
+    \end{enumerate}
+    Graphs
+    \begin{enumerate}
+    \item MST: In computer science, a B-tree is a tree data structure that keeps data sorted and allows searches, sequential access, insertions, and deletions in logarithmic time. The B-tree is a generalization of a binary search tree in that a node can have more than two children. (Comer 1979, p. 123) Unlike self-balancing binary search trees, the B-tree is optimized for systems that read and write large blocks of data. It is commonly used in databases and filesystems.
+    \item In mathematics, a graph is an abstract representation of a set of objects where some pairs of the objects are connected by links. The interconnected objects are represented by mathematical abstractions called vertices, and the links that connect some pairs of vertices are called edges. Typically, a graph is depicted in diagrammatic form as a set of dots for the vertices, joined by lines or curves for the edges. Graphs are one of the objects of study in discrete mathematics.
+    \item Traversals:
+      \begin{enumerate}
+      \item BST
+        \begin{enumerate}
+        \item Enqueue the root node.
+        \item Dequeue a node and examine it.
+        \item -----If the element sought is found in this node, quit the search and return a result.
+        \item -----Otherwise enqueue any successors (the direct child nodes) that have not yet been discovered.
+        \item If the queue is empty, every node on the graph has been examined – quit the search and return "not found".
+        \item If the queue is not empty, repeat from Step 2.
+        \end{enumerate}
+      \item DST:
+      \item Kruskal's algorithm is an algorithm in graph theory that finds a minimum spanning tree for a connected weighted graph. This means it finds a subset of the edges that forms a tree that includes every vertex, where the total weight of all the edges in the tree is minimized. If the graph is not connected, then it finds a minimum spanning forest (a minimum spanning tree for each connected component). Kruskal's algorithm is an example of a greedy algorithm.
+      \item Prim's algorithm is a greedy algorithm that finds a minimum spanning tree for a connected weighted undirected graph. This means it finds a subset of the edges that forms a tree that includes every vertex, where the total weight of all the edges in the tree is minimized. The algorithm was developed in 1930 by Czech mathematician Vojtěch Jarník and later independently by computer scientist Robert C. Prim in 1957 and rediscovered by Edsger Dijkstra in 1959. Therefore it is also sometimes called the DJP algorithm, the Jarník algorithm, or the Prim–Jarník algorithm.
+      \item Dijkstra’s Algorithm: conceived by Dutch computer scientist Edsger Dijkstra in 1956 and published in 1959,[1][2] is a graph search algorithm that solves the single-source shortest path problem for a graph with nonnegative edge path costs, producing a shortest path tree. This algorithm is often used in routing and as a subroutine in other graph algorithms.
+      \end{enumerate}
+    \end{enumerate}
+    Other ADTS
+    \begin{enumerate}
+    \item Map(Associative Array)(Hash Maps)
+    \item Priority Queues: Either Heap or Unsorted Array, Always give
+      the min or max of the set
+    \item DistJoint Sets (Up-Trees)
+    \end{enumerate}
+  \end{enumerate}
+  \end{document}
