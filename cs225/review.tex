@@ -97,7 +97,7 @@ Linear Data Structures
     \begin{enumerate}
     \item Runtimes:
       \begin{align*}
-        &\textrm{SLL} & \textrm{Array}\\
+        &\textrm{SLL(Single Linked} & \textrm{Array}\\
         \textrm{Insert/Remove at front:   } & O(1) & O(1)\\
         \textrm{Insert at curr:   } & O(n) & O(n)\\
         \textrm{Remove at curr:   } & O(1)\textrm{ Hack} & O(n)\\
@@ -112,11 +112,14 @@ Linear Data Structures
         \textrm{Find: } & O(n)
       \end{align*}
     \item Queues (FIFO)
-      \begin{align*}
-        \textrm{Push(enqueue): } & O(1) \\
-        \textrm{Pop(dequeue): } & O(1) \\
-        \textrm{Find: } & O(n)
-      \end{align*}
+      \begin{tabular}{r  l  l }
+        & SLL & Array\\
+        Push(enqueue): & $O(1)$ (from tail)& $O(1)$ \\
+        Pop(dequeue) & $O(1)$ (from head)  & $O(1)$\\
+        Find & $O(n)$ & $O(n)$
+      \end{tabular}
+        
+
     \end{enumerate}
     Trees (asymmteric graphs)
     \begin{enumerate}
@@ -144,6 +147,14 @@ Contrasting with depth-first order is breadth-first order, which always attempts
       \item Complete: is a binary tree in which every level, except possibly the last, is completely filled, and all nodes are as far left as possible.
       \item Balanced: is commonly defined as a binary tree in which the height of the two subtrees of every node never differ by more than 1,[3] although in general it is a binary tree where no leaf is much farther away from the root than any other leaf.
       \item BST:
+        \begin{tabular}{r l l}
+          & Avg & Worst\\
+          insert & $O(lg(n))$ & $O(n)$ \\
+          remove & $O(lg(n))$ & $O(n)$ \\
+          find & $O(lg(n))$ & $O(n)$ \\
+          traversal & $O(n)$ & $O(n)$\\
+        \end{tabular}
+
         \begin{enumerate}
         \item The left subtree of a node contains only nodes with keys less than the node's key.
         \item The right subtree of a node contains only nodes with keys greater than the node's key.
@@ -151,6 +162,7 @@ Contrasting with depth-first order is breadth-first order, which always attempts
         \end{enumerate}
       \item AVL:
         \begin{enumerate}
+        \item Runtimes: insert = remove = find = $O(lg(n))$
         \item In computer science, an AVL tree is a self-balancing binary search tree, and it was the first such data structure to be invented.[1] In an AVL tree, the heights of the two child subtrees of any node differ by at most one. Lookup, insertion, and deletion all take $O(log n)$ time in both the average and worst cases, where n is the number of nodes in the tree prior to the operation. Insertions and deletions may require the tree to be rebalanced by one or more tree rotations.
         \item Rotations $O(1)$: Look at the way you fingers move in a
           right hand curl
@@ -159,6 +171,7 @@ Contrasting with depth-first order is breadth-first order, which always attempts
         \end{enumerate}
       \item B-Trees ($m$):
         \begin{enumerate}
+        \item Search: $O( log_m(n))$
         \item In computer science, a B-tree is a tree data structure
           that keeps data sorted and allows searches, sequential
           access, insertions, and deletions in logarithmic time. The
@@ -172,7 +185,9 @@ Contrasting with depth-first order is breadth-first order, which always attempts
       \item KD-tree
       \item Heap:
         \begin{enumerate}
-        \item Heap Sort
+        \item buildHeap: $O(n)$
+        \item sort (already a heap) $O(lg(n))$
+        \item Heap Sort: $O(nlg(n))$ worst
         \end{enumerate}
       \end{enumerate}
     \end{enumerate}
@@ -236,16 +251,16 @@ Contrasting with depth-first order is breadth-first order, which always attempts
         \end{enumerate}
 
       \item BST: Level Order analog
-        \begin{enumerate}
-        \item Runtime: adjList: $O(n+m)$, adjMatrix: $O(n^2)$
-        \item Always finds min path
-        \item Enqueue the root node.
-        \item Dequeue a node and examine it.
-        \item -----If the element sought is found in this node, quit the search and return a result.
-        \item -----Otherwise enqueue any successors (the direct child nodes) that have not yet been discovered.
-        \item If the queue is empty, every node on the graph has been examined – quit the search and return "not found".
-        \item If the queue is not empty, repeat from Step 2.
-        \end{enumerate}
+        % \begin{enumerate}
+        % \item Runtime: adjList: $O(n+m)$, adjMatrix: $O(n^2)$
+        % \item Always finds min path
+        % \item Enqueue the root node.
+        % \item Dequeue a node and examine it.
+        % \item -----If the element sought is found in this node, quit the search and return a result.
+        % \item -----Otherwise enqueue any successors (the direct child nodes) that have not yet been discovered.
+        % \item If the queue is empty, every node on the graph has been examined – quit the search and return "not found".
+        % \item If the queue is not empty, repeat from Step 2.
+        % \end{enumerate}
 
       \item Kruskal's algorithm:
         \begin{enumerate}
@@ -276,7 +291,7 @@ Contrasting with depth-first order is breadth-first order, which always attempts
 
       \item Dijkstra’s Algorithm:
         \begin{enumerate}
-        \item Def: conceived by Dutch computer scientist Edsger Dijkstra in 1956 and published in 1959,[1][2] is a graph search algorithm that solves the single-source shortest path problem for a graph with nonnegative edge path costs, producing a shortest path tree. This algorithm is often used in routing and as a subroutine in other graph algorithms.
+        \item Def: conceived by Dutch computer scientist Edsger Dijkstra in 1956 and published in 1959, is a graph search algorithm that solves the single-source shortest path problem for a graph with nonnegative edge path costs, producing a shortest path tree. This algorithm is often used in routing and as a subroutine in other graph algorithms.
         \item Runtime:
           \begin{tabular*}{1.0\linewidth}{r l l}
                   & adjMatrix & adjList\\
@@ -290,9 +305,27 @@ Contrasting with depth-first order is breadth-first order, which always attempts
     Other ADTS
     \begin{enumerate}
     \item Map(Associative Array)(Hash Maps)
+      \begin{enumerate}
+      \item SUHA: Simple Uniform Hashing Assumption
+      \item Seperate Chaining:
+        \begin{tabular}{r l l}
+          & Worst Case & SUHA\\
+          Insert & $O(1)$ & $O(1)$\\
+          Remove Sucessful & $O(n)$ & $O(1/2(n/N))\approx{O(1)}$\\
+          Remove Unsucessful & $O(n)$ & $O(n/N)\approx{O(1)}$
+        \end{tabular}
+      \item Linear Probing:
+      \item Double Hashing:
+      \end{enumerate}
+
     \item Priority Queues: Either Heap or Unsorted Array, Always give
       the min or max of the set
     \item DistJoint Sets (Up-Trees)
+      \begin{tabular}{r l}
+        Union & $O(1)$\\
+        Find & $O(lg(n))$
+      \end{tabular}
+
     \end{enumerate}
   \end{enumerate}
   \end{document}
