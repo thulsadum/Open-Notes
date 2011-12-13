@@ -113,36 +113,98 @@
   \textbf{MidTerm 2}
   \begin{enumerate}
   \item Generic datapath concepts
-    \begin{enumerate}
-    \item Tracing instructions through the datapath (e.g. mark all
-      wires active during the execution of instructions)
-    \item Computing the cycle time for a given datapath
-    \end{enumerate}
-  \item Single-cycle Datapath
+  \item Single Cycle Datapath: 1 instruction per cycle...always (set
+    clock cycle to the longest instruction time)
   \item Pipeling and the Pipedlined Datapath
     \begin{enumerate}
-    \item Ideal speedup and the reasons that it is not achieved
-    \item Dependences, data hazards, and forwarding (which cases can
-      be handled?)
-    \item Control hazards, branch resolution, branch prediction, and stalling
+    \item Ideal execution time = time to fill + 1 cycle per instruction
+      \begin{enumerate}
+      \item Not achieved due to hazards (and slow memory access)
+      \end{enumerate}
+
+    \item Dependences: A value being modified and used in later instructions
+    \item Data Hazards: Occurs when dependent instructions exectuted
+      before data has finished the writeback state.
+    \item Forwarding: Using pipeline registers' values instead of
+      register file. Can be done only if correct data exists in the
+      pipeline when it is needed (ld -> ld doesn't work because EX
+      requires at the begining but Mem has the good value at the end)
+    \item Control hazards: Possible incorrect PC value due to branches
+      and jumps
+    \item Branch resolution: If branch is incorretly predicted, bad
+      data must be 'flushed' out of the pipeline by turning the
+      control signals into retroactive nops.
+    \item Branch Prediction: Act of predicting a whether a branch is
+      taken. (Can be based on previous behaviour)
+    \item Stalling: Repeating the same stage of the pipeline and not
+      incrementing the PC counter.
     \end{enumerate}
   \item Performance
     \begin{enumerate}
-    \item Components of processor performance: number of instructions,
-      CPI, clock period
+    \item Dynamic Instruction Count: instructions actually executed
+    \item Cycles Per Instruction(CPI): Average cycles per instruction
+    \item Clock Cycle Time: Set to the max time it requires a pipeline
+      stage to complete. $\frac{1}{cpuFreq}$
     \item Computing speedup
+      \begin{enumerate}
+      \item $cpuTime = instructions\cdot CPI \cdot cycleTime$
+      \item $speedUp = \frac{performance_0}{performance_f}$
+      \end{enumerate}
+
     \item Throughput vs. Latency
+      \begin{enumerate}
+      \item Throughput: tasks per unit time, i.e. bandwidth
+      \item Latency: unit time per task, i.e. response time
+      \end{enumerate}
+
     \item Amdahl's Law
+      \begin{enumerate}
+      \item States that the perfomrance enhancement possible with a given improvememt is limited by the amount that the feature to be improved affects execution time.
+      \item Most importantly, Amdahl's law states that if one
+        parellisizes away some work, one is limited by the seriel component.
+      \item $Time_{total} = \frac{Time_{old}} { Time_{improved}} + Time_{unaffected}$
+      \end{enumerate}
+
     \end{enumerate}
   \item I/O programming and interrupts
     \begin{enumerate}
     \item Memory-mapped I/O
-    \item Understand the structure of the interrupt handler \& what
-      the parts do
+      \begin{enumerate}
+      \item Address space divided, with some representing physical memory locations and some referencing peripherals
+      \item CPU writes to appropriate I/O address which is trasmited along the bus so that devices can know when they are the target
+      \end{enumerate}
+
+    \item Structure of the interrupt/exception Handler
+      \begin{enumerate}
+      \item Interrupts/exceptions must be enabled
+      \item Execution is stopped, control given to OS, the OS executes
+        interrupt Handler
+      \item Interrupt/exception Handler
+        \begin{enumerate}
+        \item Allocated some kernel memory (can't use stack because
+          that may have caused the interrupt/exception)
+        \item Saves assembler temporaries
+        \item Backs up registers it will work with
+        \item Read cause register
+        \item Handle interrupt/exception (and acknowledge interrupt/exception)
+        \item Restore system back to pre interrupt/exception state
+        \item Jump back into code. 
+        \end{enumerate}
+      \item Endianness: Should bytes be stored most sig to least sig
+        or the othe way around?
+        \begin{enumerate}
+        \item Little vs Big
+        \item Swizzling: the act of converting endianness for inter
+          machine communication. (internet done in Big Endian)
+        \end{enumerate}
+
+      \end{enumerate}
+
     \end{enumerate}
   \end{enumerate}
   \textbf{MidTerm 3}
   \begin{enumerate}
+
   \item Caches
     \begin{enumerate}
     \item LRU: least recently used data, often used or approximated to
@@ -281,7 +343,66 @@
   \end{enumerate}
   \textbf{Post-Exam 3}
   \begin{enumerate}
-  \item 
+  \item Multi-core
+    \begin{enumerate}
+    \item Definition: A group of processors with a shared memory
+      system. Used because higher clock speed is very power
+      hungry/impractical and better exposes parallelism. 
+    \item Thread: A scheduled unit of processing. Can interact with
+      other threads or remain isolated.
+    \item Cache Coherence (MSI model):
+      \begin{enumerate}
+      \item Modified: Only one copy allowed. Can be changed.
+      \item Shared: Many copies allowed. Cannot be changed.
+      \item Invalid: No copies (except in main memory).
+      \item GetS: Requests a shared version of memory. Demotes
+        Modified states to Shared.
+      \item GetX: Requests an exclusive(modifiable) version of
+        memory. All other versions Invalidated.
+      \item Upgrade: Promote Shared state to Modified. Invalidates all
+        other versions.
+      \item source data: if demotion from modified to shared, occurs a
+        processor can source the data to another processor instead of
+        getting it from main memory (which is slower.)
+      \item write back: if no processor will have a copy of the
+        modified data then it must be written back to main memory.
+      \item Share: Accessing the same data in multiple processors
+        requiring numerous state changes (slow)
+      \item False sharing: Accessing data in the same cache block
+        effectively forcing the processors to fight over exclusive
+        state. *avoided by moving data to another cache block (padding
+        or some other means)
+      \end{enumerate}
+
+    \item Sequential Consistency: Strongest Memory Access model. All
+      instructions are sequentially accessed within their own thread
+      and thus are mearly interleaved with other threads if they exist.(Slow)
+    \item Locking/Blocking/Fencing: Because sequential consistency
+      isn't guarenteed (or even the default on most systems) one can
+      force critical sections of code into sequential consistency via
+      'fencing' off the section. This is supported in hardware via the
+      Compare-and-swap (CAS) call. Locking/Block is a common
+      implementation of this.
+    \end{enumerate}
+
+  \item Exploiting Parallelism
+    \begin{enumerate}
+    \item Vector Processing: Taking a single register and treating it
+      as multiple piece of data so that arithmetic/logic can be performed on
+      each section simulatinously. Single Instuction Multiple Data
+      (SIMD) is an example implentation given by intel.
+    \item Speed Ups via vector processing: limited by $\frac{register
+      Size}{dataSize}$ i.e. how many independent elements can be done
+      in one instruction and the cost of syncing them (ideally none)
+    \item Fork-Join parallelism model: Have a master thread and during
+      parallelisable sections of code, 'fork' of independent threads
+      and then sync when done to the master thread.
+    \item Speed Ups via multi-core parellism: Ignoring cache speed
+      ups (may result in super linear growth), one expects linear
+      growth with the number of processors minus the overhead of
+      splitting/syncing. Again limited by Amdahl's Law.
+    \end{enumerate}
+
   \end{enumerate}
 \end{document}
 % LocalWords:  LRU Associatity associatity
