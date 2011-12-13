@@ -87,11 +87,21 @@
     \item arithmetic, memory, control flow
     \item MIPS $<->$ C
     \end{enumerate}
+
   \item Functions:
     \begin{enumerate}
     \item Register saving convetions
+      \begin{enumerate}
+      \item $a$ registers are caller saved
+      \item $s$ registers are calle saved
+      \end{enumerate}
+
     \item stack (and its use for saving state of program)
-    \item recursion
+      \begin{enumerate}
+      \item kept track of via $sp$ register
+      \item Grows down
+      \end{enumerate}
+
     \end{enumerate}
   \item Basic understanding of assembly level concepts
     \begin{enumerate}
@@ -100,15 +110,9 @@
     \item variable types in low level languages (not explicit, its how
       its used)
     \item compiling, linking, loading, MIPS memory image
-    \item 90/10 rule : spend 90\% of your time in 10\% of your code
-    \item Endianness: the convention used in the machine for ordering
-      bytes in memory.
+    \item $\frac{90}{10}$ rule : spend $90\%$ of your time in $10\%$ of your code
     \end{enumerate}
-    \begin{enumerate}
-    \item I/O programming and interrupts
-    \item Performace and Performance Turning
-    \item Single-cycle MIPS implementation
-    \end{enumerate}
+
   \end{enumerate}
   \textbf{MidTerm 2}
   \begin{enumerate}
