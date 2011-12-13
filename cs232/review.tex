@@ -207,27 +207,42 @@
 
   \item Caches
     \begin{enumerate}
-    \item LRU: least recently used data, often used or approximated to
-      decide what to kick out of the cache
-    \item
-      Spacial Locality: Things near what was just used tend to get used
-      again.\\
-      Temporal Locality: Things that were just used, tend to get reused.
+    \item Locality
+      \begin{enumerate}
+      \item Spacial Locality: If a program accesses one memory address, there is a good chance that it will access other nearby addresses.
+      \item Temporal Locality: If a program accesses one memory address, there is a good chance that it will access the same address again.
+      \end{enumerate}
+
     \item Associatity: Relates how addresses get mapped inside of
-      the cache to the number of sets n. (Direct Map equal n sets for
-      n addresses, Fully associative 1 set for n addresses)
-    \item Write-back: Writing is done only to the cache. A modified
-      cache block is ``written'' back into higher memory just before
-      it is stored. (requires a dirty bit to denote that it has been
-      written to)
-    \item Multilevel caches: A cache that utilized 2 or more separate
+      the cache to the number of sets n.
+      \begin{enumerate}
+      \item Set Associative: cache is divided into groups of blocks called sets. Each address maps to one set in which it can be placed anywhere.
+      \item Direct Mapped: Set size of 1, index points to a single block chunk. Each memory address belongs in exactly one block.
+      \item Fully Associative: Set size of n, data can be stored in any cache block. Least Recently Used replaced when cache is full. The entire tag must be stored and every tag in the cache must be checked for cache hits/misses
+      \end{enumerate}
+      
+      \item LRU: least recently used data: Replacing elements in a cache that haven’t been used in a while. Helps keep temporal locality. On miss, the LRU is replaced. On hit, the LRU is updated.*often used or approximated
+        because of its expensive.
+
+      \item Multilevel caches: A cache that utilized 2 or more separate
       caches to store information. Typically the lower caches are
       small/fast/expensive where as the higher caches are
       large/fast/cheap.\\
       Note: If one can ensure almost certain hits in the higher caches
       and relatively good rates in the lower caches this greatly
       increases speed.
-    \item Computing cache size, bits, block offset, index, tag, and associatity
+
+    \item Write-back: Writing is done only to the cache. A modified
+      cache block is ``written'' back into higher memory just before
+      it is stored. (requires a dirty bit to denote that it has been
+      written to)
+
+    \item Write-Through: On write hit, updates both the cache and the
+      main memory  when writing.
+
+    \item Allocate on write: On write miss, load into the cache then write to cache 
+
+    \item Computing block offset, index, tag
       \begin{enumerate}
       \item N-Way associative cache has N blocks per set. Thus
         address $\rightarrow$ cache address is given by (= denotes
@@ -239,6 +254,13 @@
           |t = m-o-s | s = lg(\frac{size}{blockSize\cdot N})|o = lg(\frac{blockSize}{byte})|
         \end{equation}
       \end{enumerate}
+
+    \item Computing the size of cache and number of bits to implement it
+      \begin{enumerate}
+      \item $cacheSize =  blocks \cdot sizeOfBlock = cacheSize$
+      \item $sizeOfBlock =  (data + tag + valid + dirty + lruBits)$
+      \end{enumerate}
+
     \item Calculating cache performance and Average Memory Acess Time (AMAT) calculations.
       \begin{enumerate}
       \item :
@@ -257,10 +279,28 @@
     \end{enumerate}
   \item Cache-Aware programming
     \begin{enumerate}
-    \item Hardware stream/stride pre-fetching
+    \item Rearranging loops to improve spatial locality
+      \begin{enumerate}
+      \item stepping through columns in a row exploits spatial locality
+        misses once per block chunk
+      \item stepping through rows in one column has no spatial locality
+        misses $100\%$ of the time
+      \end{enumerate}
+
+    \item Using blocking to improve temporal locality
+      \begin{enumerate}
+      \item used when cache is exceeded and overwritten often, resulting in very few useful values in cache
+      \item implemented by striding loops and adding smaller inner loops
+      \end{enumerate}
+
     \item When to software pre-fetch
-    \item Blocking/ Tiling
+      \begin{enumerate}
+      \item Non-Stride access patterns
+      \item Linked Data Structures.
+      \end{enumerate}
+
     \end{enumerate}
+
   \item Virtual Memory (VM):
     \begin{enumerate}
     \item Indirection: Adding an intermediate interface that controls endpoints
@@ -282,18 +322,37 @@
         because of the page table's permission bits.
       \end{enumerate}
     \item Page table: Look up table that maps virtual to physical memory
+      \begin{enumerate}
+      \item page table register points to the page table.
+      \item page table is indexed by the VPN
+      \item page table contains PPN, valid bit, and dirty bit
+      \end{enumerate}
+
     \item Translation look-aside buffer (TLB): Looking up the page
-      table translations sucks....so we cache it...aka TLB 
+      table translations sucks....so we cache it...aka TLB
+      \begin{enumerate}
+      \item uses VPN as tag to PPNs
+      \end{enumerate}
+
     \item Hierarchical page table: Page Directories $\rightarrow$ Page
       Entry $\rightarrow$ Page Table $\rightarrow$ Address . (note
       saves memory because not all Entries and Directories are
-      filled.\\
-      P.S. page tables should be page sizes so they themselves can be
-      looked up easily....
-    \item Page faults(and its affect on virtual memory design): Miss
-      in the TLB, (resulting in memory seak for page). Miss in the
-      cache to get page/addresses. ew....  
+      filled.
+      \begin{enumerate}
+      \item  page tables should be page sizes so they themselves can be
+        looked up easily....
+      \end{enumerate}
+
+    \item Page faults
+      \begin{enumerate}
+      \item page is not in memory and must be pulled from disk
+      \item request page to replace (uses approximate LRU and write-back)
+      \item Pages are large to minimize miss rate
+      \item Pages are fully associative to minimize miss rate
+      \end{enumerate}
+
     \end{enumerate}
+
   \item Hard Disks
     \begin{enumerate}
     \item Platter: Cyclinder that houses magnetic particles organized
@@ -311,6 +370,7 @@
       random writes it very fast. (writes are slow due to having to
       clear the whole block before to write)
     \end{enumerate}
+
     \begin{enumerate}
     \item Error Correcting Codes
       \begin{enumerate}
@@ -326,20 +386,28 @@
           ability to detect as far but adds the ability to guess
           initial states.
         \end{enumerate}
-      \item Parity: Extra bit that is the result of xor the bitstring
+      \item Parity: Extra bit that is the result of $xor$ the bitstring
         (odd or even). Parity is recomputed when reading Ram and
         checked. If $P_{stored} \neq P_{computed}$ an error has occured.
       \item Hamming distance: Minimum path of states to no longer
         detect/correct errors.
       \item SECDED: Single-bit Error Correction, Double-bit Error
         Detection. Standard in ECC protect SDRAM.
+        \begin{enumerate}
+        \item Hamming Dist $ = 4$
+        \end{enumerate}
+
       \end{enumerate}
+
     \item Writing code to analyze cache with a hardware pre-fetcher
       \begin{enumerate}
       \item Needs to loop such that the stride can't be predicted by
-        prefecter (link list is a good canidate)
+        prefecter (linked structures or uniform random
+        variables are good canidates)
       \end{enumerate}
+
     \end{enumerate}
+
   \end{enumerate}
   \textbf{Post-Exam 3}
   \begin{enumerate}
