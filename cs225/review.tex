@@ -131,9 +131,9 @@ Linear Data Structures
     \item Traversals
       \begin{enumerate}
       \item All tree traversals are min $O(n)$
-      \item Preorder: Parent - Child - Child
-      \item Inorder: Child - Parent - Child
-      \item Postorder: Child - Child - Parent
+      \item Preorder: Parent $\rightarrow$ Child $\rightarrow$ Child
+      \item Inorder: Child $\rightarrow$ Parent $\rightarrow$ Child
+      \item Postorder: Child $\rightarrow$ Child $\rightarrow$ Parent
       \item Depth-first order:
         In depth-first order, we always attempt to visit the node farthest from the root that we can, but with the caveat that it must be a child of a node we have already visited. Unlike a depth-first search on graphs, there is no need to remember all the nodes we have visited, because a tree cannot contain cycles. Pre-order is a special case of this. See depth-first search for more information.
       \item Breadth-first order:
@@ -185,8 +185,13 @@ Contrasting with depth-first order is breadth-first order, which always attempts
       \item KD-tree
       \item Heap:
         \begin{enumerate}
+        \item height: $O(lg(n))$
+        \item insert: $O(lg(n))$
+        \item heapify Up/Down: $O(lg(n))$
+        \item findMin: $O(lg(n)$
+        \item remove: $O(lg(n))$
         \item buildHeap: $O(n)$
-        \item sort (already a heap) $O(lg(n))$
+        \item heap $\rightarrow$ sorted array: $O(lg(n))$
         \item Heap Sort: $O(nlg(n))$ worst
         \end{enumerate}
       \end{enumerate}
@@ -238,7 +243,6 @@ Contrasting with depth-first order is breadth-first order, which always attempts
         incidentEdges & $O(m)$ & $O(n)$ & $O(deg(v)$\\
       \end{tabular}
 
-
 % from wikipedia
     \item MST: In computer science, a B-tree is a tree data structure that keeps data sorted and allows searches, sequential access, insertions, and deletions in logarithmic time. The B-tree is a generalization of a binary search tree in that a node can have more than two children. (Comer 1979, p. 123) Unlike self-balancing binary search trees, the B-tree is optimized for systems that read and write large blocks of data. It is commonly used in databases and filesystems.
     \item In mathematics, a graph is an abstract representation of a set of objects where some pairs of the objects are connected by links. The interconnected objects are represented by mathematical abstractions called vertices, and the links that connect some pairs of vertices are called edges. Typically, a graph is depicted in diagrammatic form as a set of dots for the vertices, joined by lines or curves for the edges. Graphs are one of the objects of study in discrete mathematics.
@@ -251,35 +255,17 @@ Contrasting with depth-first order is breadth-first order, which always attempts
         \end{enumerate}
 
       \item BST: Level Order analog
-        % \begin{enumerate}
-        % \item Runtime: adjList: $O(n+m)$, adjMatrix: $O(n^2)$
-        % \item Always finds min path
-        % \item Enqueue the root node.
-        % \item Dequeue a node and examine it.
-        % \item -----If the element sought is found in this node, quit the search and return a result.
-        % \item -----Otherwise enqueue any successors (the direct child nodes) that have not yet been discovered.
-        % \item If the queue is empty, every node on the graph has been examined – quit the search and return "not found".
-        % \item If the queue is not empty, repeat from Step 2.
-        % \end{enumerate}
-
-      \item Kruskal's algorithm:
         \begin{enumerate}
-        \item Def: an algorithm in graph theory that finds a minimum spanning tree for a connected weighted graph. This means it finds a subset of the edges that forms a tree that includes every vertex, where the total weight of all the edges in the tree is minimized. If the graph is not connected, then it finds a minimum spanning forest (a minimum spanning tree for each connected component). Kruskal's algorithm is an example of a greedy algorithm.
+        \item Runtime: $O(n+m)$
+        \end{enumerate}
+
+      \item Kruskal's algorithm: Can touch any edge, (unions $n-1$ times)
+        \begin{enumerate}
         \item Runtime: $O(mlog(n)+m)$
         \end{enumerate}
 
-      \item Prim's algorithm:
+      \item Prim's algorithm: Can only touch edges of completed nodes
         \begin{enumerate}
-        \item Def: a greedy algorithm that finds a minimum spanning
-          tree for a connected weighted undirected graph. This means
-          it finds a subset of the edges that forms a tree that
-          includes every vertex, where the total weight of all the
-          edges in the tree is minimized. The algorithm was developed
-          in 1930 by Czech mathematician Vojtěch Jarník and later
-          independently by computer scientist Robert C. Prim in 1957
-          and rediscovered by Edsger Dijkstra in 1959. Therefore it is
-          also sometimes called the DJP algorithm, the Jarník
-          algorithm, or the Prim–Jarník algorithm.
         \item Runtime:
           \begin{tabular*}{1.0\linewidth}{r l l}
                   & adjMatrix & adjList\\
@@ -320,10 +306,10 @@ Contrasting with depth-first order is breadth-first order, which always attempts
 
     \item Priority Queues: Either Heap or Unsorted Array, Always give
       the min or max of the set
-    \item DistJoint Sets (Up-Trees)
+    \item DistJoint Sets (Up-Trees) (with path compression)
       \begin{tabular}{r l}
         Union & $O(1)$\\
-        Find & $O(lg(n))$
+        Find & $O(lg^*(n)) \approx O(1)$
       \end{tabular}
 
     \end{enumerate}
