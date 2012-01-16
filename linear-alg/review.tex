@@ -64,6 +64,7 @@
 \newtheorem{dfn}{Definition}
 \theoremstyle{remark}
 \newtheorem*{rmk}{Remark}
+\newcommand{\norm}[1]{\left| \left| #1 \right| \right|}
 % \def\rmdefault{bch} % Use Charter for main text font.
 
 % ***********************************************************
@@ -84,28 +85,58 @@
 Matrix Review
 \begin{enumerate}
 \item Definition Matrix table of numbers with $c$ colomuns and $r$
-  rows. *note starts counting a 1
+  rows.\footnote{Starts counting a 1}
   \begin{enumerate}
   \item Written: $\mathbf{A}_{r\times c}$
   \item $A_{i,j} \equiv$ the element in the $i$th row and $j$col
   \end{enumerate}
-\item Addition: 
-  $\mathbf{A} + mathbf{B} \rightarrow (\mathbf{A}+\mathbf{B})_{i,j} =  (\mathbf{B} + \mathbf{A})_{i,j} =A_{i,j} + B_{i,j}$
-\item Scalar Mult: $c\mathbf{A} \rightarrow (c\mathbf{A})_{i,j} =
-  c(\mathbf{A}_{i,j}), c\in \mathbb{R}$
 \item Vector
   \begin{enumerate}
   \item Def: a matrix such that $r=1$ or $c=1$
   \item Written: $\vec{v}$
   \item $a_{i} \equiv i$th element in the matrix
-  \item Length $\equiv \abs{\vec{v}} \equiv \sqrt{\sum_{i=1}^n a_i^2}$
+  \item Length $\equiv \norm{\vec{v}} \equiv \sqrt{\sum_{i=1}^n a_i^2}$
+  \item Vector Multiplication
+    \begin{enumerate}
+    \item Dot Product: $\vec{x}\cdot \vec{y} \equiv
+      \sum_{i=1}^{n}x_i+y_i$, $x,y\in \mathbb{R}^n \equiv \norm{\vec{x}}\norm{\vec{y}}\cos{\theta}$
+      \footnote{Dot Product is an inner product for Euclidean Space and
+        defines the notion of angle $\theta$ between vectors}
+    \item Cross Product: $\vec{x}\times \vec{y} \equiv
+      \left| \begin{array}{c c c}
+          \hat{i} & \hat{j} & \hat{k} \\
+          x_1 & x_2 & x_3 \\
+          y_1 & y_2 & y_3 \\
+      \end{array} \right|
+    $\footnote{See determinants for $|A|$} 
+    \end{enumerate}
   \end{enumerate}
-\item Vector Multiplication
+\item Matricies as vectors
   \begin{enumerate}
-  \item Dot Product: $\vec{a}\cdot \vec{b} \equiv
-    \sum_{i=1}^{n}a_i+b_i$, $a,b\in \mathbb{R}^n \equiv \abs{a}\abs{b}\cos(\theta}}$
-  \item Cross Product: 
+  \item $\vec{row}_{\mathbf{A},i} \equiv$ a $1 \times cols$ vector that is
+    composed of the $i$th row in Matrix $\mathbf{A}$
+  \item $\vec{col}_{\mathbf{A},j} \equiv$ a $1 \times rows$ vector that is
+    composed of the $j$th col in Matrix $\mathbf{A}$
   \end{enumerate}
+\item Matrix Artithetic
+  \begin{enumerate}
+  \item Addition: 
+    $\mathbf{A} + \mathbf{B} \rightarrow (\mathbf{A}+\mathbf{B})_{i,j} =  (\mathbf{B} + \mathbf{A})_{i,j} =A_{i,j} + B_{i,j}$
+  \item Scalar Mult: $c\mathbf{A} \rightarrow (c\mathbf{A})_{i,j} =
+    c(\mathbf{A}_{i,j}), c\in \mathbb{R}$
+  \item Matrix Mult: $\mathbf{A} \times \mathbf{B} \rightarrow
+    (\mathbf{A} \times \mathbf{B})_{i,j} =
+    \vec{row}_{\mathbf{A},i}\cdot
+    \vec{col}_{\mathbf{B},j}$\footnote{Matrix Mult is not cummlative}
+  \end{enumerate}
+\item Linear Combination: $\sum_{i=1}^kc_i\vec{v_i},$ $c\in\mathbb{R}
+  \wedge \vec{v}\in \mathbb{R}^n$\footnote{$\vec{0} \equiv$ vector in
+    $\mathbb{R}$ such that all components are $0$}
+\item Span: All possible Linear Combinations =
+  $\{\sum_{i=1}^kc_i\vec{v_i} | c_i \in \mathbb{R} \}$
+\item Linear Dependence: $\sum_{k=1}^{\abs{S}}c_k\vec{v_k}=\vec{0} \wedge
+  c_k \neq 0,$  $c_k \in \mathbb{R}, v_k \in S$
+\item Vector Space: 
 \end{enumerate}
 
 \end{document}
