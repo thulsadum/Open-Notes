@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+lang="en" xml:lang="en">
+<head>
+<title>CS 373 Notes</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-02-19 02:54:28 CST"/>
+<meta name="author" content=""/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+
+<h1 class="title">CS 373 Notes</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 General </a>
+<ul>
+<li><a href="#sec-1.1">1.1 Starting off </a></li>
+<li><a href="#sec-1.2">1.2 Strings </a></li>
+<li><a href="#sec-1.3">1.3 Language </a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2 Regular Languages </a>
+<ul>
+<li><a href="#sec-2.1">2.1 Deterministic Finite Automotas </a></li>
+<li><a href="#sec-2.2">2.2 Non-Deterministic Finite Automotas (NFA) </a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> General </h2>
+<div class="outline-text-2" id="text-1">
+
+
+</div>
+
+<div id="outline-container-1.1" class="outline-3">
+<h3 id="sec-1.1"><span class="section-number-3">1.1</span> Starting off </h3>
+<div class="outline-text-3" id="text-1.1">
+
+<ol>
+<li>
+Alphabet(&Sigma;) = finite non empty set
+</li>
+<li>
+\mathbb{N} in this class starts at 0
+</li>
+<li>
+A set X is countably infinite iff $&exist;$ a bijection $f:\mathbb{N} &rarr; X$
+</li>
+</ol>
+</div>
+
+</div>
+
+<div id="outline-container-1.2" class="outline-3">
+<h3 id="sec-1.2"><span class="section-number-3">1.2</span> Strings </h3>
+<div class="outline-text-3" id="text-1.2">
+
+<ol>
+<li>
+String(w) = sequence of characted in &Sigma;
+</li>
+<li>
+w:{c<sub>i</sub> &isin; &Sigma; | 0 &lt;= i &lt;= n}
+</li>
+<li>
+|w| = n = length of the string
+</li>
+<li>
+|w| = 0 &rarr; w = &epsilon;
+<ol>
+<li>
+Careful &sigma; &ne; &empty;
+</li>
+</ol>
+</li>
+<li>
+Substring subsequence of characters in w
+</li>
+<li>
+Concatination: w<sub>1</sub> &sdot; w<sub>2</sub>
+</li>
+<li>
+Reverse: w<sup>r</sup>
+</li>
+<li>
+Palindrum: w = w<sup>r</sup>
+</li>
+</ol>
+</div>
+
+</div>
+
+<div id="outline-container-1.3" class="outline-3">
+<h3 id="sec-1.3"><span class="section-number-3">1.3</span> Language </h3>
+<div class="outline-text-3" id="text-1.3">
+
+<ol>
+<li>
+Language(L) = set of strings
+</li>
+<li>
+&Sigma;<sup>n</sup> = {w : |w| = n}
+</li>
+<li>
+&Sigma;<sup>0</sup> = { &epsilon; }
+</li>
+<li>
+&Sigma;<sup>*</sup> = &cup;<sup>n</sup><sub>i=0</sub> &Sigma;<sup>i</sup>, Language of all strings
+</li>
+</ol>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Regular Languages </h2>
+<div class="outline-text-2" id="text-2">
+
+
+</div>
+
+<div id="outline-container-2.1" class="outline-3">
+<h3 id="sec-2.1"><span class="section-number-3">2.1</span> Deterministic Finite Automotas </h3>
+<div class="outline-text-3" id="text-2.1">
+
+<ol>
+<li>
+Finite state machine (M)
+</li>
+<li>
+Takes a string of inputs
+</li>
+<li>
+2 types of states
+<ol>
+<li>
+Accept
+</li>
+<li>
+Deny
+</li>
+</ol>
+</li>
+<li>
+There is 1 start state
+</li>
+<li>
+The set of all strings accepted by language of M or L(A)
+</li>
+<li>
+Formal Definition
+<ol>
+<li>
+a Language A $&isin; &Sigma;<sup>*</sup>$ is called regular iff there
+exists a DFA ,M, s.t. $L(M) = A$
+</li>
+<li>
+\A DFA is a 5 tuple $ M = (Q,&Sigma;, &delta;, q<sub>0</sub>, F)$
+<ol>
+<li>
+Q is a finte set of states
+</li>
+<li>
+&Sigma; is a finite alphabet
+</li>
+<li>
+$&delta;: Q&times;&Sigma; &rarr; Q$ is the transition function
+</li>
+<li>
+$q<sub>0</sub> &isin; Q$  is the inital state
+</li>
+<li>
+$F &sub; Q$ is the set of accept states
+</li>
+</ol>
+</li>
+<li>
+L(M) &equiv; language of all accepted strings
+</li>
+</ol>
+</li>
+<li>
+Closure properties/Regular Operations on languages
+<ol>
+<li>
+A<sub>1</sub> and A<sub>2</sub> are regular
+</li>
+<li>
+Union: A<sub>1</sub> &cup; A<sub>2</sub> = A<sub>3</sub>
+</li>
+<li>
+Concatenate: A<sub>1</sub> A<sub>2</sub> = A<sub>3</sub>
+</li>
+<li>
+Star: A<sub>1</sub><sup>*</sup> = A<sub>3</sub>
+</li>
+</ol>
+</li>
+</ol>
+</div>
+
+</div>
+
+<div id="outline-container-2.2" class="outline-3">
+<h3 id="sec-2.2"><span class="section-number-3">2.2</span> Non-Deterministic Finite Automotas (NFA) </h3>
+<div class="outline-text-3" id="text-2.2">
+
+<ol>
+<li>
+Formal Definition
+<ol>
+<li>
+M = (Q,&Sigma;,&delta;,q<sub>0</sub>,F)
+<ol>
+<li>
+Q = finite set of states
+</li>
+<li>
+&Sigma;  is a finate alphabet
+</li>
+<li>
+$&delta; = Q &times; &Sigma;<sub>&epsilon;</sub> &rarr; Pow(Q)$
+<ol>
+<li>
+$&Sigma;<sub>&epsilon;</sub> = &Sigma; &cup; {&epsilon;}$
+</li>
+</ol>
+</li>
+<li>
+$q<sub>0</sub>$ = start state
+</li>
+<li>
+$F &sub; Q$
+</li>
+</ol>
+</li>
+<li>
+NFA accepts w If we can write $w = {y<sub>1</sub> y<sub>2</sub> &hellip; y<sub>n</sub>
+y<sub>i</sub> &isin; &Sigma;<sub>&epsilon;</sub>}$ s.t. there exists a sequence of
+states path $R = {r<sub>0</sub>,r<sub>1</sub>,&hellip;}$
+<ol>
+<li>
+r<sub>0</sub> = q<sub>0</sub>
+</li>
+<li>
+$r<sub>i+1</sub>&isin;&delta;(r<sub>i</sub>,y<sub>i+1</sub>)$ for $i=0,1&hellip;m-1$
+</li>
+<li>
+$r<sub>m</sub> &isin; F$
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+Useful Lemma: For all NFA, M, there exists an DFA ,N, s.t. L(m)
+= L(n)
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="postamble">
+<p class="author"> Author: 
+<a href="mailto:marcell@marcell-x120e">&lt;marcell@marcell-x120e&gt;</a>
+</p>
+<p class="date"> Date: 2012-02-19 02:54:28 CST</p>
+<p class="creator">HTML generated by org-mode 6.33x in emacs 23</p>
+</div>
+</div>
+</body>
+</html>

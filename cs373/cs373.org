@@ -1,0 +1,130 @@
+
+CS 373 Notes
+| Sizes                | Examples                          | Countable? |
+|----------------------+-----------------------------------+------------|
+| Finite               | {a,b}                             | yes        |
+| Countable Infinite   | \mathbb{N},\mathbb{Z}, \mathbb{Q} | yes        |
+| Uncountable Infinity | \mathbb{R}, Pow(\mathbb{R})       | dno        |
+
+* General
+** Starting off
+     1) Alphabet(\Sigma) = finite non empty set
+     2) \mathbb{N} in this class starts at 0
+     3) A set X is countably infinite iff $\exists$ a bijection $f:\mathbb{N} \rightarrow X$
+** Strings
+   1) String(w) = sequence of characted in \Sigma
+   2) w:{c_i \in \Sigma | 0 <= i <= n}
+   3) |w| = n = length of the string
+   4) |w| = 0 \rightarrow w = \epsilon
+      1) Careful \sigma \neq \emptyset
+   5) Substring subsequence of characters in w
+   6) Concatination: w_1 \cdot w_2
+   7) Reverse: w^r
+   8) Palindrum: w = w^r
+** Language
+    1) Language(L) = set of strings
+    2) \Sigma^n = {w : |w| = n}
+    3) \Sigma^0 = { \epsilon }
+    4) \Sigma^* = \cup^n_{i=0} \Sigma^i, Language of all strings
+* Regular Languages
+** Deterministic Finite Automotas
+  1) Finite state machine (M)
+  2) Takes a string of inputs
+  3) 2 types of states
+     1) Accept
+     2) Deny
+  4) There is 1 start state
+  5) The set of all strings accepted by language of M or L(A)
+  6) Formal Definition
+     1) a Language A $\in \Sigma^*$ is called regular iff there
+        exists a DFA ,M, s.t. $L(M) = A$
+     2) \A DFA is a 5 tuple $ M = (Q,\Sigma, \delta, q_0, F)$
+	1) Q is a finte set of states
+	2) \Sigma is a finite alphabet
+	3) $\delta: Q\times\Sigma \rightarrow Q$ is the transition function
+	4) $q_0 \in Q$  is the inital state
+	5) $F \subset Q$ is the set of accept states
+     3) L(M) \equiv language of all accepted strings
+  7) Closure properties/Regular Operations on languages
+     1) A_1 and A_2 are regular
+     2) Union: A_1 \cup A_2 = A_3
+     3) Concatenate: A_1 A_2 = A_3
+     4) Star: A_1^* = A_3
+** Non-Deterministic Finite Automotas (NFA)
+   1) Formal Definition
+      1) M = (Q,\Sigma,\delta,q_0,F)
+	 1) Q = finite set of states
+	 2) \Sigma  is a finate alphabet
+	 3) $\delta = Q \times \Sigma_\epsilon \rightarrow Pow(Q)$
+	    1) $\Sigma_\epsilon = \Sigma \cup {\epsilon}$
+	 4) $q_0$ = start state
+	 5) $F \subset Q$
+      2) NFA accepts w If we can write $w = {y_1 y_2 ... y_n
+         y_i \in \Sigma_\epsilon}$ s.t. there exists a sequence of
+         states path $R = {r_0,r_1,...}$
+	 1) r_0 = q_0
+	 2) $r_{i+1}\in\delta(r_i,y_{i+1})$ for $i=0,1...m-1$
+	 3) $r_m \in F$
+   2) Useful Lemma: For all NFA, M, there exists an DFA ,N, s.t. L(m)
+      = L(n)
+
+
+** Regular Expressions
+   1) Def: R is a regex over a fixed alphabet iff one of the
+      following is true:
+      1) R = a \in \Sigma
+      2) R = \sigma
+      3) $R = \emptyset$
+      4) $R = R_1 \cup R_2,$ given $R_1 \wedge R_2$ are regex
+      5) $R = R_1 R_2,$ given $R_1 \wedge R_2$ are regex
+      6) $R = R^*$
+   2) Order of operations
+      1) star
+      2) concatination
+      3) union
+   3) Identities
+      1) $a \emptyset = \emptyset$
+      2) $a \sigma = \sigma$
+      3) $\emptyset^* = {\sigma}$
+
+
+** Generalized NFA (GNFA)
+   1) Definition
+      1) Q = set of all states
+      2) $Q^0 = Q - {q_start, q_accept}$
+      3) _The_ start state has out edges to every $q\in Q - {q_start}$, and
+         no in edges
+      4) _The_ accept state has inedges from every $q\in Q - {q_accept}$,
+         and no outedges
+      5) An edege exists from every $q_1\in Q^0$ to every $q_2\in Q^0$
+         even if $q_1=q_2$
+      6) Every edge is labed with a regex
+   2) Useful lemma: Any NFA can be written as a GNFA
+   3) lemma: Given a GNFA, M,  with 2 states, the regex between the 2
+      states describes the language of M
+
+** Pumping Lemma for regular languages
+  If A is regular, then $\exists p \in \mathbb{N}$ s.t. $\forall s
+   \in A$ for which $|s| >= p, s$ can be written as  $xyz$ and
+   satisfy the following conidition:
+   1) $\forall i >= 0, x y^i z \in A$
+   2) $|y|>0$ i.e. $y \neq \sigma$
+   3) $|xy| <= p$
+  P is called the "pumping length
+
+** Subsitutions
+** Reg Operations (closed under the Reg languages)
+   1) $A_1 \cup A_2$
+   2) $A_1 - A_2$
+   3) $\bar{A_1} = \Sigma^* - A_1$
+   4) $A_1 \cap A_2$
+   5) Symmetric Diff
+   6) $A_1 A_2$
+   7) $A_1^*$
+   8) $A^r$
+   9) Reg langagues are clased under subsitution
+   10) Reg langagues are clased under homomorphism
+   11) Reg langagues are clased under inverse homorphism
+   12) Reg langagues are clased under 
+* Non-Regular Languages
+

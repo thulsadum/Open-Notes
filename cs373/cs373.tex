@@ -1,0 +1,253 @@
+% Created 2012-02-19 Sun 14:28
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{soul}
+\usepackage{amssymb}
+\usepackage{hyperref}
+
+
+\title{CS 373 Notes}
+\author{}
+\date{19 February 2012}
+
+\begin{document}
+
+\maketitle
+
+\setcounter{tocdepth}{3}
+\tableofcontents
+\vspace*{1cm}
+
+
+\begin{center}
+\begin{tabular}{lll}
+ Sizes                 &  Examples                           &  Countable?  \\
+\hline
+ Finite                &  \{a,b\}                            &  yes         \\
+ Countable Infinite    &  \mathbb{N},\mathbb{Z}, \mathbb{Q}  &  yes         \\
+ Uncountable Infinity  &  \mathbb{R}, Pow(\mathbb{R})        &  dno         \\
+\end{tabular}
+\end{center}
+
+
+
+\section{General}
+\label{sec-1}
+
+\subsection{Starting off}
+\label{sec-1.1}
+
+\begin{enumerate}
+\item Alphabet($\Sigma$) = finite non empty set
+\item \mathbb{N} in this class starts at 0
+\item A set X is countably infinite iff $\exists$ a bijection $f:\mathbb{N} \rightarrow X$
+\end{enumerate}
+\subsection{Strings}
+\label{sec-1.2}
+
+\begin{enumerate}
+\item String(w) = sequence of characted in $\Sigma$
+\item w:\{c$_i$ \in $\Sigma$ | 0 <= i <= n\}
+\item |w| = n = length of the string
+\item |w| = 0 \rightarrow w = $\epsilon$
+
+\begin{enumerate}
+\item Careful $\sigma$ \neq \emptyset
+\end{enumerate}
+
+\item Substring subsequence of characters in w
+\item Concatination: w$_1$ \cdot w$_2$
+\item Reverse: w$^r$
+\item Palindrum: w = w$^r$
+\end{enumerate}
+\subsection{Language}
+\label{sec-1.3}
+
+\begin{enumerate}
+\item Language(L) = set of strings
+\item $\Sigma$$^n$ = \{w : |w| = n\}
+\item $\Sigma$$^0$ = \{ $\epsilon$ \}
+\item $\Sigma$^* = $\cup$$^n$$_{\mathrm{i=0}}$ $\Sigma$$^i$, Language of all strings
+\end{enumerate}
+\section{Regular Languages}
+\label{sec-2}
+
+\subsection{Deterministic Finite Automotas}
+\label{sec-2.1}
+
+\begin{enumerate}
+\item Finite state machine (M)
+\item Takes a string of inputs
+\item 2 types of states
+
+\begin{enumerate}
+\item Accept
+\item Deny
+\end{enumerate}
+
+\item There is 1 start state
+\item The set of all strings accepted by language of M or L(A)
+\item Formal Definition
+
+\begin{enumerate}
+\item a Language A $\in \Sigma^*$ is called regular iff there
+        exists a DFA ,M, s.t. $L(M) = A$
+\item \A DFA is a 5 tuple \$ M = (Q,$\Sigma$, $\delta$, q$_0$, F)\$
+
+\begin{enumerate}
+\item Q is a finte set of states
+\item $\Sigma$ is a finite alphabet
+\item $\delta: Q\times\Sigma \rightarrow Q$ is the transition function
+\item $q_0 \in Q$  is the inital state
+\item $F \subset Q$ is the set of accept states
+\end{enumerate}
+
+\item L(M) $\equiv$ language of all accepted strings
+\end{enumerate}
+
+\item Closure properties/Regular Operations on languages
+
+\begin{enumerate}
+\item A$_1$ and A$_2$ are regular
+\item Union: A$_1$ $\cup$ A$_2$ = A$_3$
+\item Concatenate: A$_1$ A$_2$ = A$_3$
+\item Star: A$_1$^* = A$_3$
+\end{enumerate}
+
+\end{enumerate}
+\subsection{Non-Deterministic Finite Automotas (NFA)}
+\label{sec-2.2}
+
+\begin{enumerate}
+\item Formal Definition
+
+\begin{enumerate}
+\item M = (Q,$\Sigma$,$\delta$,q$_0$,F)
+
+\begin{enumerate}
+\item Q = finite set of states
+\item $\Sigma$  is a finate alphabet
+\item $\delta = Q \times \Sigma_\epsilon \rightarrow Pow(Q)$
+
+\begin{enumerate}
+\item $\Sigma_\epsilon = \Sigma \cup {\epsilon}$
+\end{enumerate}
+
+\item $q_0$ = start state
+\item $F \subset Q$
+\end{enumerate}
+
+\item NFA accepts w If we can write $w = {y_1 y_2 ... y_n
+         y_i \in \Sigma_\epsilon}$ s.t. there exists a sequence of
+         states path $R = {r_0,r_1,...}$
+
+\begin{enumerate}
+\item r$_0$ = q$_0$
+\item $r_{i+1}\in\delta(r_i,y_{i+1})$ for $i=0,1...m-1$
+\item $r_m \in F$
+\end{enumerate}
+
+\end{enumerate}
+
+\item Useful Lemma: For all NFA, M, there exists an DFA ,N, s.t. L(m)
+      = L(n)
+\end{enumerate}
+\subsection{Regular Expressions}
+\label{sec-2.3}
+
+\begin{enumerate}
+\item Def: R is a regex over a fixed alphabet iff one of the
+      following is true:
+
+\begin{enumerate}
+\item R = a \in $\Sigma$
+\item R = $\sigma$
+\item $R = \emptyset$
+\item \$R = R$_1$ $\cup$ R$_2$,\$ given $R_1 \wedge R_2$ are regex
+\item \$R = R$_1$ R$_2$,\$ given $R_1 \wedge R_2$ are regex
+\item $R = R^*$
+\end{enumerate}
+
+\item Order of operations
+
+\begin{enumerate}
+\item star
+\item concatination
+\item union
+\end{enumerate}
+
+\item Identities
+
+\begin{enumerate}
+\item $a \emptyset = \emptyset$
+\item $a \sigma = \sigma$
+\item $\emptyset^* = {\sigma}$
+\end{enumerate}
+
+\end{enumerate}
+\subsection{Generalized NFA (GNFA)}
+\label{sec-2.4}
+
+\begin{enumerate}
+\item Definition
+
+\begin{enumerate}
+\item Q = set of all states
+\item $Q^0 = Q - {q_start, q_accept}$
+\item \underline{The} start state has out edges to every $q\in Q - {q_start}$, and
+         no in edges
+\item \underline{The} accept state has inedges from every $q\in Q - {q_accept}$,
+         and no outedges
+\item An edege exists from every $q_1\in Q^0$ to every $q_2\in Q^0$
+         even if $q_1=q_2$
+\item Every edge is labed with a regex
+\end{enumerate}
+
+\item Useful lemma: Any NFA can be written as a GNFA
+\item lemma: Given a GNFA, M,  with 2 states, the regex between the 2
+      states describes the language of M
+\end{enumerate}
+\subsection{Pumping Lemma for regular languages}
+\label{sec-2.5}
+
+  If A is regular, then $\exists p \in \mathbb{N}$ s.t. $\forall s
+   \in A$ for which $|s| >= p, s$ can be written as  $xyz$ and
+   satisfy the following conidition:
+\begin{enumerate}
+\item $\forall i >= 0, x y^i z \in A$
+\item $|y|>0$ i.e. $y \neq \sigma$
+\item $|xy| <= p$
+\end{enumerate}
+  P is called the ``pumping length
+
+\subsection{Subsitutions}
+\label{sec-2.6}
+
+\subsection{Reg Operations (closed under the Reg languages)}
+\label{sec-2.7}
+
+\begin{enumerate}
+\item $A_1 \cup A_2$
+\item $A_1 - A_2$
+\item $\bar{A_1} = \Sigma^* - A_1$
+\item $A_1 \cap A_2$
+\item Symmetric Diff
+\item $A_1 A_2$
+\item $A_1^*$
+\item $A^r$
+\item Reg langagues are clased under subsitution
+\item Reg langagues are clased under homomorphism
+\item Reg langagues are clased under inverse homorphism
+\item Reg langagues are clased under
+\end{enumerate}
+\section{Non-Regular Languages}
+\label{sec-3}
+
+
+
+\end{document}
