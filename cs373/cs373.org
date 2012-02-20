@@ -4,7 +4,7 @@ CS 373 Notes
 |----------------------+-----------------------------------+------------|
 | Finite               | {a,b}                             | yes        |
 | Countable Infinite   | \mathbb{N},\mathbb{Z}, \mathbb{Q} | yes        |
-| Uncountable Infinity | \mathbb{R}, Pow(\mathbb{R})       | dno        |
+| Uncountable Infinity | \mathbb{R}, Pow(\mathbb{R})       | no         |
 
 * General
 ** Starting off
