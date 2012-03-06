@@ -1,12 +1,19 @@
 
 CS 373 Notes
+* General
+
 | Sizes                | Examples                          | Countable? |
 |----------------------+-----------------------------------+------------|
 | Finite               | {a,b}                             | yes        |
 | Countable Infinite   | \mathbb{N},\mathbb{Z}, \mathbb{Q} | yes        |
 | Uncountable Infinity | \mathbb{R}, Pow(\mathbb{R})       | no         |
 
-* General
+
+| name                  | descriptipn | Machine |
+|-----------------------+-------------+---------|
+| regular               | LRk         | D PDA   |
+| context free language | CFG         | PDA     |
+
 ** Starting off
      1) Alphabet(\Sigma) = finite non empty set
      2) \mathbb{N} in this class starts at 0
@@ -68,7 +75,6 @@ CS 373 Notes
    2) Useful Lemma: For all NFA, M, there exists an DFA ,N, s.t. L(m)
       = L(n)
 
-
 ** Regular Expressions
    1) Def: R is a regex over a fixed alphabet iff one of the
       following is true:
@@ -86,7 +92,6 @@ CS 373 Notes
       1) $a \emptyset = \emptyset$
       2) $a \sigma = \sigma$
       3) $\emptyset^* = {\sigma}$
-
 
 ** Generalized NFA (GNFA)
    1) Definition
@@ -108,11 +113,45 @@ CS 373 Notes
    \in A$ for which $|s| >= p, s$ can be written as  $xyz$ and
    satisfy the following conidition:
    1) $\forall i >= 0, x y^i z \in A$
-   2) $|y|>0$ i.e. $y \neq \sigma$
+   2) $|y|>0$ i.e. $y \neq \epsilon$
    3) $|xy| <= p$
   P is called the "pumping length
 
 ** Subsitutions
+*** Substution simple definition
+   - A is a reg language and $A \mapsto f(A), A \subseteq E^*$
+   - A s described w. a regex and $R_a$ is a regex using $\Gamma$
+   - $\forall a \in \Sigma  a \mapsto R_a$ 
+   - $\epsilon \mapsto \epsilon$ and $\emptyset \mapsto \emptyset$
+*** Homomorphism
+    - $A \mapsto h(A)$
+    - $a \mapsto w, w \in \Gamma^*, a\in \Sigma$
+*** Inverse Homorphism
+    - $h^{-1}(A) = \{w\ \in \Sigma^* | h(w) \in A\}$
+** DFA Minimization
+*** Theory
+   Problem: Given a DFA, M, with L(M) = A, find another DFA, M_2c,
+   s.t. L(M) = L(M_2) and |Q_2| is as small as possible\\
+   - $\delta: Q \times \Sigma \rightarrow Q$\\
+     $\bar{\delta(q,w)} q\in Q, w\in \Sigma^*$ \\
+     $\bar{\delta(q,w)} \equiv$ interative call on delta for all $w_i$
+     in w
+
+     If $\exists w \in \Sigma^*$ s.t. $[\bar{\delta(p,w)} \in F$ and
+     $\delta{q,w} \notin F]$ or $[\bar{\delta(p,w)} \notin F$ and
+     $\delta{q,w} \in F]$ then p and q are distrguishable
+*** Algorithm
+#+BEGIN_SRC python
+  for (p,q) in Q^2:
+      if (p in F) and (not q in F):
+          A.push((p,q)) # marked list
+      else:
+          B.push((p,q)) # unmarked list
+  for (p,q) in B:
+      if (delta(p,a),delta(q,a)) in B:
+          A.push((p,q))
+#+END_SRC
+
 ** Reg Operations (closed under the Reg languages)
    1) $A_1 \cup A_2$
    2) $A_1 - A_2$
@@ -126,5 +165,23 @@ CS 373 Notes
    10) Reg langagues are clased under homomorphism
    11) Reg langagues are clased under inverse homorphism
    12) Reg langagues are clased under 
-* Non-Regular Languages
-
+* Context Free Grammars
+** Formal Definition:
+   1. $(V,\Sigma, R, S)$
+      1. $V =$ Finite set of _variables_ or "non-terminals"
+      2. \Sigma =  finite set of _terminals_
+	 1. $\Sigma \cap V = \emptyset$
+	 2. Convention: Variables are uppercase, symbols are lowercase
+      3. R = finite set of _rules_ or "subsitution rules" or "productions"
+	 1.Rules: examples
+	    1. $A \rightarrow aaBc | a$
+	       1. This means the for an A you can replace it with aaBc or a
+	    2. $A \Rightarrow OA1 \Rightarrow 00A11 \Rightarrow 001A011 \Rightarrow 001011$
+      4. S is the _start variable_
+   2. $L(G) = \{w\in \Sigma^* | S \Rightarrow^* w\}$
+   3. Notation:
+      1. Variables: A,B,C...
+      2. Terminal: a,b,c,...0,1,$ \epsilon $
+      3. $U \Rightarrow^* V$ is defined as $\exists$ sequence
+         $U_1..U_k$ , s.t. $U \Rightarrow U_1 \Rightarrow  U_2
+         \Rightarrow ... \Rightarrow U_k \rightarrow V$
