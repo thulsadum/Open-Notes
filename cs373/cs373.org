@@ -151,7 +151,6 @@ CS 373 Notes
       if (delta(p,a),delta(q,a)) in B:
           A.push((p,q))
 #+END_SRC
-
 ** Reg Operations (closed under the Reg languages)
    1) $A_1 \cup A_2$
    2) $A_1 - A_2$
@@ -185,3 +184,18 @@ CS 373 Notes
       3. $U \Rightarrow^* V$ is defined as $\exists$ sequence
          $U_1..U_k$ , s.t. $U \Rightarrow U_1 \Rightarrow  U_2
          \Rightarrow ... \Rightarrow U_k \rightarrow V$
+** Chomsky Normal form (CNF)
+   - All rules have the form
+     - $A\rightarrow BC$, where $B,C$ cannot be $S$
+     - $A\rightarrow a$
+     - if $A\rightarrow \epsilon$ then $A = S$
+   - Lemma: Any CFG can be written in CNF
+** Deterministic Push Down Automotas
+   - $M = (Q,\Sigma, \Gamma, \delta, q_0, F)$
+     - $\delta: Q \times \Sigma_\epsilon \times \Gamma_\epsilon
+       \rightarrow Q \times \Gamma_\epsilon$
+** Non-Deterministic Push Down Automotas (PDA)
+   - $M = (Q,\Sigma, \Gamma, \delta, q_0, F)$
+     - $\delta: Q \times \Sigma_\epsilon \times \Gamma_\epsilon
+       \rightarrow Pow(Q \times \Gamma_\epsilon)$
+
