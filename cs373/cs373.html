@@ -7,7 +7,7 @@ lang="en" xml:lang="en">
 <title>CS 373 Notes</title>
 <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-02-19 02:54:28 CST"/>
+<meta name="generated" content="2012-03-15 15:12:17 CDT"/>
 <meta name="author" content=""/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -88,6 +88,39 @@ lang="en" xml:lang="en">
 <ul>
 <li><a href="#sec-2.1">2.1 Deterministic Finite Automotas </a></li>
 <li><a href="#sec-2.2">2.2 Non-Deterministic Finite Automotas (NFA) </a></li>
+<li><a href="#sec-2.3">2.3 Regular Expressions </a></li>
+<li><a href="#sec-2.4">2.4 Generalized NFA (GNFA) </a></li>
+<li><a href="#sec-2.5">2.5 Pumping Lemma for regular languages </a></li>
+<li><a href="#sec-2.6">2.6 Subsitutions </a>
+<ul>
+<li><a href="#sec-2.6.1">2.6.1 Substution simple definition </a></li>
+<li><a href="#sec-2.6.2">2.6.2 Homomorphism </a></li>
+<li><a href="#sec-2.6.3">2.6.3 Inverse Homorphism </a></li>
+</ul>
+</li>
+<li><a href="#sec-2.7">2.7 DFA Minimization </a>
+<ul>
+<li><a href="#sec-2.7.1">2.7.1 Theory </a></li>
+<li><a href="#sec-2.7.2">2.7.2 Algorithm </a></li>
+</ul>
+</li>
+<li><a href="#sec-2.8">2.8 Reg Operations (closed under the Reg languages) </a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3 Context Free Grammars </a>
+<ul>
+<li><a href="#sec-3.1">3.1 Formal Definition: </a></li>
+<li><a href="#sec-3.2">3.2 Chomsky Normal form (CNF) </a></li>
+<li><a href="#sec-3.3">3.3 Deterministic Push Down Automotas </a></li>
+<li><a href="#sec-3.4">3.4 Non-Deterministic Push Down Automotas (PDA) </a></li>
+<li><a href="#sec-3.5">3.5 Relating PDA to CFL </a></li>
+<li><a href="#sec-3.6">3.6 Pumping Lemma for CFL's </a></li>
+<li><a href="#sec-3.7">3.7 Closure Properties of CFL's </a>
+<ul>
+<li><a href="#sec-3.7.1">3.7.1 Theorems for Closure </a></li>
+</ul>
+</li>
+<li><a href="#sec-3.8">3.8 CYK algorithm </a></li>
 </ul>
 </li>
 </ul>
@@ -97,6 +130,37 @@ lang="en" xml:lang="en">
 <div id="outline-container-1" class="outline-2">
 <h2 id="sec-1"><span class="section-number-2">1</span> General </h2>
 <div class="outline-text-2" id="text-1">
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col align="left" /><col align="left" /><col align="left" />
+</colgroup>
+<thead>
+<tr><th scope="col">Sizes</th><th scope="col">Examples</th><th scope="col">Countable?</th></tr>
+</thead>
+<tbody>
+<tr><td>Finite</td><td>{a,b}</td><td>yes</td></tr>
+<tr><td>Countable Infinite</td><td>\mathbb{N},\mathbb{Z}, \mathbb{Q}</td><td>yes</td></tr>
+<tr><td>Uncountable Infinity</td><td>\mathbb{R}, Pow(\mathbb{R})</td><td>no</td></tr>
+</tbody>
+</table>
+
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col align="left" /><col align="left" /><col align="left" />
+</colgroup>
+<thead>
+<tr><th scope="col">name</th><th scope="col">descriptipn</th><th scope="col">Machine</th></tr>
+</thead>
+<tbody>
+<tr><td>regular</td><td>LRk</td><td>D PDA</td></tr>
+<tr><td>context free language</td><td>CFG</td><td>PDA</td></tr>
+</tbody>
+</table>
+
 
 
 </div>
@@ -325,8 +389,561 @@ $r<sub>m</sub> &isin; F$
 <li>
 Useful Lemma: For all NFA, M, there exists an DFA ,N, s.t. L(m)
 = L(n)
+
 </li>
 </ol>
+</div>
+
+</div>
+
+<div id="outline-container-2.3" class="outline-3">
+<h3 id="sec-2.3"><span class="section-number-3">2.3</span> Regular Expressions </h3>
+<div class="outline-text-3" id="text-2.3">
+
+<ol>
+<li>
+Def: R is a regex over a fixed alphabet iff one of the
+following is true:
+<ol>
+<li>
+R = a &isin; &Sigma;
+</li>
+<li>
+R = &sigma;
+</li>
+<li>
+$R = &empty;$
+</li>
+<li>
+$R = R<sub>1</sub> &cup; R<sub>2</sub>,$ given $R<sub>1</sub> &and; R<sub>2</sub>$ are regex
+</li>
+<li>
+$R = R<sub>1</sub> R<sub>2</sub>,$ given $R<sub>1</sub> &and; R<sub>2</sub>$ are regex
+</li>
+<li>
+$R = R<sup>*</sup>$
+</li>
+</ol>
+</li>
+<li>
+Order of operations
+<ol>
+<li>
+star
+</li>
+<li>
+concatination
+</li>
+<li>
+union
+</li>
+</ol>
+</li>
+<li>
+Identities
+<ol>
+<li>
+$a &empty; = &empty;$
+</li>
+<li>
+$a &sigma; = &sigma;$
+</li>
+<li>
+$&empty;<sup>*</sup> = {&sigma;}$
+
+</li>
+</ol>
+</li>
+</ol>
+</div>
+
+</div>
+
+<div id="outline-container-2.4" class="outline-3">
+<h3 id="sec-2.4"><span class="section-number-3">2.4</span> Generalized NFA (GNFA) </h3>
+<div class="outline-text-3" id="text-2.4">
+
+<ol>
+<li>
+Definition
+<ol>
+<li>
+Q = set of all states
+</li>
+<li>
+$Q<sup>0</sup> = Q - {q<sub>start</sub>, q<sub>accept</sub>}$
+</li>
+<li>
+<span style="text-decoration:underline;">The</span> start state has out edges to every $q&isin; Q - {q<sub>start</sub>}$, and
+no in edges
+</li>
+<li>
+<span style="text-decoration:underline;">The</span> accept state has inedges from every $q&isin; Q - {q<sub>accept</sub>}$,
+and no outedges
+</li>
+<li>
+An edege exists from every $q<sub>1&isin;</sub> Q<sup>0</sup>$ to every $q<sub>2&isin;</sub> Q<sup>0</sup>$
+even if $q<sub>1</sub>=q<sub>2</sub>$
+</li>
+<li>
+Every edge is labed with a regex
+</li>
+</ol>
+</li>
+<li>
+Useful lemma: Any NFA can be written as a GNFA
+</li>
+<li>
+lemma: Given a GNFA, M,  with 2 states, the regex between the 2
+states describes the language of M
+
+</li>
+</ol>
+</div>
+
+</div>
+
+<div id="outline-container-2.5" class="outline-3">
+<h3 id="sec-2.5"><span class="section-number-3">2.5</span> Pumping Lemma for regular languages </h3>
+<div class="outline-text-3" id="text-2.5">
+
+<p>If A is regular, then $&exist; p &isin; \mathbb{N}$ s.t. $&forall; s
+&isin; A$ for which $|s| &gt;= p, s$ can be written as  $xyz$ and
+satisfy the following conidition:
+</p><ol>
+<li>
+$&forall; i &gt;= 0, x y<sup>i</sup> z &isin; A$
+</li>
+<li>
+$|y|&gt;0$ i.e. $y &ne; &epsilon;$
+</li>
+<li>
+$|xy| &lt;= p$
+</li>
+</ol>
+
+<p>P is called the "pumping length
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2.6" class="outline-3">
+<h3 id="sec-2.6"><span class="section-number-3">2.6</span> Subsitutions </h3>
+<div class="outline-text-3" id="text-2.6">
+
+
+</div>
+
+<div id="outline-container-2.6.1" class="outline-4">
+<h4 id="sec-2.6.1"><span class="section-number-4">2.6.1</span> Substution simple definition </h4>
+<div class="outline-text-4" id="text-2.6.1">
+
+<ul>
+<li>
+A is a reg language and $A \mapsto f(A), A \subseteq E<sup>*</sup>$
+</li>
+<li>
+A s described w. a regex and $R<sub>a</sub>$ is a regex using $&Gamma;$
+</li>
+<li>
+$&forall; a &isin; &Sigma;  a \mapsto R<sub>a</sub>$ 
+</li>
+<li>
+$&epsilon; \mapsto &epsilon;$ and $&empty; \mapsto &empty;$
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-2.6.2" class="outline-4">
+<h4 id="sec-2.6.2"><span class="section-number-4">2.6.2</span> Homomorphism </h4>
+<div class="outline-text-4" id="text-2.6.2">
+
+<ul>
+<li>
+$A \mapsto h(A)$
+</li>
+<li>
+$a \mapsto w, w &isin; &Gamma;<sup>*</sup>, a&isin; &Sigma;$
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-2.6.3" class="outline-4">
+<h4 id="sec-2.6.3"><span class="section-number-4">2.6.3</span> Inverse Homorphism </h4>
+<div class="outline-text-4" id="text-2.6.3">
+
+<ul>
+<li>
+$h<sup>-1</sup>(A) = \{w\ &isin; &Sigma;<sup>*</sup> | h(w) &isin; A\}$
+</li>
+</ul>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-2.7" class="outline-3">
+<h3 id="sec-2.7"><span class="section-number-3">2.7</span> DFA Minimization </h3>
+<div class="outline-text-3" id="text-2.7">
+
+
+</div>
+
+<div id="outline-container-2.7.1" class="outline-4">
+<h4 id="sec-2.7.1"><span class="section-number-4">2.7.1</span> Theory </h4>
+<div class="outline-text-4" id="text-2.7.1">
+
+<p>Problem: Given a DFA, M, with L(M) = A, find another DFA, M<sub>2c</sub>,
+s.t. L(M) = L(M<sub>2</sub>) and |Q<sub>2|</sub> is as small as possible<br/>
+</p><ul>
+<li>
+$&delta;: Q &times; &Sigma; &rarr; Q$<br/>
+$\bar{&delta;(q,w)} q&isin; Q, w&isin; &Sigma;<sup>*</sup>$ <br/>
+$\bar{&delta;(q,w)} &equiv;$ interative call on delta for all $w<sub>i</sub>$
+in w
+
+<p>
+If $&exist; w &isin; &Sigma;<sup>*</sup>$ s.t. $[\bar{&delta;(p,w)} &isin; F$ and
+$&delta;{q,w} &notin; F]$ or $[\bar{&delta;(p,w)} &notin; F$ and
+$&delta;{q,w} &isin; F]$ then p and q are distrguishable
+</p></li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-2.7.2" class="outline-4">
+<h4 id="sec-2.7.2"><span class="section-number-4">2.7.2</span> Algorithm </h4>
+<div class="outline-text-4" id="text-2.7.2">
+
+
+
+
+<pre class="example">for (p,q) in Q^2:
+    if (p in F) and (not q in F):
+        A.push((p,q)) # marked list
+    else:
+        B.push((p,q)) # unmarked list
+for (p,q) in B:
+    if (delta(p,a),delta(q,a)) in B:
+        A.push((p,q))
+</pre>
+
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-2.8" class="outline-3">
+<h3 id="sec-2.8"><span class="section-number-3">2.8</span> Reg Operations (closed under the Reg languages) </h3>
+<div class="outline-text-3" id="text-2.8">
+
+<ol>
+<li>
+$A<sub>1</sub> &cup; A<sub>2</sub>$
+</li>
+<li>
+$A<sub>1</sub> - A<sub>2</sub>$
+</li>
+<li>
+$\bar{A<sub>1</sub>} = &Sigma;<sup>*</sup> - A<sub>1</sub>$
+</li>
+<li>
+$A<sub>1</sub> &cap; A<sub>2</sub>$
+</li>
+<li>
+Symmetric Diff
+</li>
+<li>
+$A<sub>1</sub> A<sub>2</sub>$
+</li>
+<li>
+$A<sub>1</sub><sup>*</sup>$
+</li>
+<li>
+$A<sup>r</sup>$
+</li>
+<li>
+Reg langagues are clased under subsitution
+</li>
+<li>
+Reg langagues are clased under homomorphism
+</li>
+<li>
+Reg langagues are clased under inverse homorphism
+</li>
+<li>
+Reg langagues are clased under 
+</li>
+</ol>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Context Free Grammars </h2>
+<div class="outline-text-2" id="text-3">
+
+
+</div>
+
+<div id="outline-container-3.1" class="outline-3">
+<h3 id="sec-3.1"><span class="section-number-3">3.1</span> Formal Definition: </h3>
+<div class="outline-text-3" id="text-3.1">
+
+<ol>
+<li>
+$(V,&Sigma;, R, S)$
+<ol>
+<li>
+$V =$ Finite set of <span style="text-decoration:underline;">variables</span> or "non-terminals"
+</li>
+<li>
+&Sigma; =  finite set of <span style="text-decoration:underline;">terminals</span>
+<ol>
+<li>
+$&Sigma; &cap; V = &empty;$
+</li>
+<li>
+Convention: Variables are uppercase, symbols are lowercase
+</li>
+</ol>
+</li>
+<li>
+R = finite set of <span style="text-decoration:underline;">rules</span> or "subsitution rules" or "productions"
+1.Rules: examples
+<ol>
+<li>
+$A &rarr; aaBc | a$
+<ol>
+<li>
+This means the for an A you can replace it with aaBc or a
+</li>
+</ol>
+</li>
+<li>
+$A &rArr; OA1 &rArr; 00A11 &rArr; 001A011 &rArr; 001011$
+</li>
+</ol>
+</li>
+<li>
+S is the <span style="text-decoration:underline;">start variable</span>
+</li>
+</ol>
+</li>
+<li>
+$L(G) = \{w&isin; &Sigma;<sup>*</sup> | S &rArr;<sup>*</sup> w\}$
+</li>
+<li>
+Notation:
+<ol>
+<li>
+Variables: A,B,C&hellip;
+</li>
+<li>
+Terminal: a,b,c,&hellip;0,1,$ &epsilon; $
+</li>
+<li>
+$U &rArr;<sup>*</sup> V$ is defined as $&exist;$ sequence
+$U<sub>1</sub>..U<sub>k</sub>$ , s.t. $U &rArr; U<sub>1</sub> &rArr;  U<sub>2</sub>
+&rArr; &hellip; &rArr; U<sub>k</sub> &rarr; V$
+</li>
+</ol>
+</li>
+</ol>
+</div>
+
+</div>
+
+<div id="outline-container-3.2" class="outline-3">
+<h3 id="sec-3.2"><span class="section-number-3">3.2</span> Chomsky Normal form (CNF) </h3>
+<div class="outline-text-3" id="text-3.2">
+
+<ul>
+<li>
+All rules have the form
+<ul>
+<li>
+$A&rarr; BC$, where $B,C$ cannot be $S$
+</li>
+<li>
+$A&rarr; a$
+</li>
+<li>
+if $A&rarr; &epsilon;$ then $A = S$
+</li>
+</ul>
+</li>
+<li>
+Lemma: Any CFG can be written in CNF
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-3.3" class="outline-3">
+<h3 id="sec-3.3"><span class="section-number-3">3.3</span> Deterministic Push Down Automotas </h3>
+<div class="outline-text-3" id="text-3.3">
+
+<ul>
+<li>
+$M = (Q,&Sigma;, &Gamma;, &delta;, q<sub>0</sub>, F)$
+<ul>
+<li>
+$&delta;: Q &times; &Sigma;<sub>&epsilon;</sub> &times; &Gamma;<sub>&epsilon;</sub>
+&rarr; Q &times; &Gamma;<sub>&epsilon;</sub>$
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-3.4" class="outline-3">
+<h3 id="sec-3.4"><span class="section-number-3">3.4</span> Non-Deterministic Push Down Automotas (PDA) </h3>
+<div class="outline-text-3" id="text-3.4">
+
+<ul>
+<li>
+$M = (Q,&Sigma;, &Gamma;, &delta;, q<sub>0</sub>, F)$
+<ul>
+<li>
+$&delta;: Q &times; &Sigma;<sub>&epsilon;</sub> &times; &Gamma;<sub>&epsilon;</sub>
+&rarr; Pow(Q &times; &Gamma;<sub>&epsilon;</sub>)$
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-3.5" class="outline-3">
+<h3 id="sec-3.5"><span class="section-number-3">3.5</span> Relating PDA to CFL </h3>
+<div class="outline-text-3" id="text-3.5">
+
+<ul>
+<li>
+A language is context free iff $&exist;$ a PDA that recognizes it
+<ul>
+<li>
+Lemma: If A is CF, then $&exist;$ a PDA,$M$, s.t. $A = L(M)$
+</li>
+<li>
+Lemma: $&forall;$ PDA, $M$, $&exist;$ CFL, $G$, s.t. $L(G)=L(M)$
+<ul>
+<li>
+Proof Idea: Make a conical PDA (while preserving acceptance)
+as follows
+<ol>
+<li>
+1 accept states
+</li>
+<li>
+Stack is empty when accepting
+</li>
+<li>
+Every transition either push or pops but not both
+
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-3.6" class="outline-3">
+<h3 id="sec-3.6"><span class="section-number-3">3.6</span> Pumping Lemma for CFL's </h3>
+<div class="outline-text-3" id="text-3.6">
+
+</div>
+
+</div>
+
+<div id="outline-container-3.7" class="outline-3">
+<h3 id="sec-3.7"><span class="section-number-3">3.7</span> Closure Properties of CFL's </h3>
+<div class="outline-text-3" id="text-3.7">
+
+<ol>
+<li>
+A<sub>1</sub> &cap; A<sub>2</sub>
+</li>
+<li>
+A<sub>1</sub> &sdot; A<sub>2</sub>
+</li>
+<li>
+A<sub>1</sub><sup>*</sup>
+</li>
+<li>
+Closure under substituion
+</li>
+</ol>
+
+</div>
+
+<div id="outline-container-3.7.1" class="outline-4">
+<h4 id="sec-3.7.1"><span class="section-number-4">3.7.1</span> Theorems for Closure </h4>
+<div class="outline-text-4" id="text-3.7.1">
+
+<p>Let G<sub>i</sub> = (V<sub>i</sub>, &Sigma;<sub>i</sub>, R<sub>i</sub>, S<sub>i</sub>) for i=1,2 and A<sub>i</sub> =
+L(G<sub>i</sub>)<br/>
+Without loss of generality, assume V<sub>1</sub> &cap; V<sub>2</sub> = &empty; &and;
+S<sub>3</sub>
+</p>
+<ul>
+<li id="sec-3.7.1.1">Theorem: If A<sub>1</sub> and A<sub>2</sub> are CFL's, then A<sub>1</sub> &cup; A<sub>2</sub> is a CFL <br/>
+Proof:
+
+<p>
+Let G<sub>i</sub> = (V<sub>i</sub>, &Sigma;<sub>i</sub>, R<sub>i</sub>, S<sub>i</sub>) for i=1,2 and A<sub>i</sub> =
+L(G<sub>i</sub>)<br/>
+Without loss of generality, assume V<sub>1</sub> &cap; V<sub>2</sub> = &empty; &and;
+S<sub>3</sub>
+&notin; V<sub>1</sub> &cup; V<sub>2</sub>
+</p>
+<p>
+Construct G<sub>3</sub> = (V<sub>1</sub> &cup; V<sub>2</sub> &cup; {S<sub>3</sub>}, &Sigma;<sub>1</sub> &cup; &Sigma;<sub>2</sub>,
+R<sub>3</sub>, S<sub>3</sub>) with <br/>
+R<sub>3</sub>= R<sub>1</sub> &cup; R<sub>2</sub> &cup; {S<sub>3</sub> &rarr; S<sub>1|S</sub><sub>2</sub>}. \square
+</p></li>
+<li id="sec-3.7.1.2">Theorem: If A<sub>1</sub> and A<sub>2</sub> are CFL's then A<sub>1</sub> &sdot; A<sub>2</sub> is a CFL <br/>
+Proof:
+
+<p>
+&notin; V<sub>1</sub> &cup; V<sub>2</sub>
+Construct G<sub>3</sub> = (V<sub>1</sub> &cup; V<sub>2</sub> &cup; {S<sub>3</sub>}, &Sigma;<sub>1</sub> &cup; &Sigma;<sub>2</sub>,
+R<sub>1</sub> &cup; R<sub>2</sub> &cup; {S<sub>3</sub> &rarr;  S<sub>1</sub> S<sub>2</sub>}, S<sub>3</sub>)
+</p></li>
+<li id="sec-3.7.1.3">Theorem: If A<sub>1</sub> and A<sub>2</sub> are CFL's then  A<sub>1</sub><sup>*</sup> is a CFL <br/>
+Proof:
+Construct G<sub>3</sub> = (V<sub>1</sub> &cup; {S<sub>3</sub>}, &Sigma;<sub>1</sub>, R<sub>1</sub> &cup; {S<sub>2</sub>
+&rarr; S<sub>1</sub> S<sub>2</sub> | &epsilon; } )
+</li>
+</ul>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-3.8" class="outline-3">
+<h3 id="sec-3.8"><span class="section-number-3">3.8</span> CYK algorithm </h3>
+<div class="outline-text-3" id="text-3.8">
+
 </div>
 </div>
 </div>
@@ -334,7 +951,7 @@ Useful Lemma: For all NFA, M, there exists an DFA ,N, s.t. L(m)
 <p class="author"> Author: 
 <a href="mailto:marcell@marcell-x120e">&lt;marcell@marcell-x120e&gt;</a>
 </p>
-<p class="date"> Date: 2012-02-19 02:54:28 CST</p>
+<p class="date"> Date: 2012-03-15 15:12:17 CDT</p>
 <p class="creator">HTML generated by org-mode 6.33x in emacs 23</p>
 </div>
 </div>

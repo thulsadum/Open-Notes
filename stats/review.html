@@ -1,0 +1,810 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+           "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<meta name="GENERATOR" content="TtH 4.03">
+ <style type="text/css"> div.p { margin-top: 7pt;}</style>
+ <style type="text/css"><!--
+ td div.comp { margin-top: -0.6ex; margin-bottom: -1ex;}
+ td div.comb { margin-top: -0.6ex; margin-bottom: -.6ex;}
+ td div.hrcomp { line-height: 0.9; margin-top: -0.8ex; margin-bottom: -1ex;}
+ td div.norm {line-height:normal;}
+ span.roman {font-family: serif; font-style: normal; font-weight: normal;} 
+ span.overacc2 {position: relative;  left: .8em; top: -1.2ex;}
+ span.overacc1 {position: relative;  left: .6em; top: -1.2ex;} --></style>
+ <style type="text/css"><!--
+ .tiny {font-size:30%;}
+ .scriptsize {font-size:xx-small;}
+ .footnotesize {font-size:x-small;}
+ .smaller {font-size:smaller;}
+ .small {font-size:small;}
+ .normalsize {font-size:medium;}
+ .large {font-size:large;}
+ .larger {font-size:x-large;}
+ .largerstill {font-size:xx-large;}
+ .huge {font-size:300%;}
+ --></style>
+
+  	                             
+<title>No Title</title>
+
+
+<div style="text-align:center">  <div class="largerstill">    <b>Stats Review</b><br />
+    <span class="normalsize">
+    <span class="roman">by Marcell Vazquez-Chanlatte</span>
+    <br /></span></div>
+
+<div class="p"><!----></div>
+  </div><b>Counting:</b>
+
+<ol type="1">
+<li> Counting n tasks(m<sub>i</sub>) in order:
+  
+<br clear="all" /><table border="0" width="95%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ <span class="roman">Mult</span> <span class="roman">Principle</span><span class="roman">:</span>  | A | = </td><td nowrap="nowrap" align="center">
+<small>n</small><!--sup
+--><br /><span class="largerstill">&#8719;<br />
+</span><small>i = 0</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+m<sub>i</sub> </td></tr></table>
+</td><td width="1%">(1)</td></tr></table>
+
+
+<div class="p"><!----></div>
+</li>
+
+<li> The number of ways to do n non-overlapping tasks:
+  
+<br clear="all" /><table border="0" width="95%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ <span class="roman">Add</span> <span class="roman">Principle</span><span class="roman">:</span>  | A | = </td><td nowrap="nowrap" align="center">
+<small>n</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>i=0</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+m<sub>i</sub> </td></tr></table>
+</td><td width="1%">(2)</td></tr></table>
+
+
+<div class="p"><!----></div>
+</li>
+
+<li> Choose k ordered elements of A, | A | = n:
+  
+<br clear="all" /><table border="0" width="95%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ <span class="roman">Permutations</span><span class="roman">:</span>  P(n,k) = </td><td nowrap="nowrap" align="center">
+n!
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>(n&#8722;k)!<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td><td width="1%">(3)</td></tr></table>
+
+
+<div class="p"><!----></div>
+</li>
+
+<li> The number of unique non-ordered lists:
+  
+<br clear="all" /><table border="0" width="95%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ <span class="roman">Combinations</span><span class="roman">:</span>  C(n,k) = \binomnk = </td><td nowrap="nowrap" align="center">
+P(n,k)
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>P(k,k)<br /></td><td nowrap="nowrap" align="center">
+ = </td><td nowrap="nowrap" align="center">
+n!
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>(n&#8722;k)!k!<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td><td width="1%">(4)</td></tr></table>
+
+
+<div class="p"><!----></div>
+</li>
+
+<li> Size of the set(X) of all possible events in set
+  A, with size n:
+  
+<br clear="all" /><table border="0" width="95%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ <span class="roman">Counting</span> <span class="roman">events</span><span class="roman">:</span>  | X | = 2<sup>n</sup> </td></tr></table>
+</td><td width="1%">(5)</td></tr></table>
+
+
+<div class="p"><!----></div>
+</li>
+
+<li> Binomial Coefficient
+  
+<br clear="all" /><table border="0" width="95%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ (x+y)<sup>n</sup> = </td><td nowrap="nowrap" align="center">
+<small>n</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>k=0</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+\binomnkx<sup>n&#8722;k</sup>y<sup>k</sup> </td></tr></table>
+</td><td width="1%">(6)</td></tr></table>
+
+
+<div class="p"><!----></div>
+</li>
+</ol>
+
+<div class="p"><!----></div>
+<b>Probability Function:</b>
+
+<ol type="1">
+<li> \mathbbP(A):Event&#8594; [0,1]
+<div class="p"><!----></div>
+</li>
+
+<li> \mathbbP(&#8709;) = 0, \mathbbP(&#8486;)=1, where
+  &#8709; is the empty set, and &#8486; is the problem space
+<div class="p"><!----></div>
+</li>
+
+<li> \mathbbP(A&#8745;B) = \mathbbP(B)\mathbbP(A &#124; B),
+  Condition probability
+<div class="p"><!----></div>
+</li>
+
+<li> \mathbbP(A&#8746;B) = \mathbbP(A) + \mathbbP(B) &#8722; \mathbbP(A&#8745;B)
+<div class="p"><!----></div>
+</li>
+
+<li> \mathbbP(A<sup>c</sup>) = 1&#8722;\mathbbP(A), Reason: A&#8745;A<sup>c</sup> = &#8709;&#8743;\mathbbP(A&#8746;A<sup>c</sup>) = \mathbbP(&#8486;) &#8658; \mathbbP(A)+\mathbbP(A<sup>c</sup>) = 1
+<div class="p"><!----></div>
+</li>
+
+<li> Given: A has mutually disjoint, \mathbbP(&#8746;<sub>i=0</sub><sup>n</sup> A<sub>i</sub>) = &#8721;<sub>i=0</sub><sup>n</sup>\mathbbP(A<sub>i</sub>) 
+<div class="p"><!----></div>
+</li>
+
+<li> \mathbbP(A)=&#8721;<sub>i=0</sub><sup>n</sup>\mathbbP(t<sub>i</sub>), assuming t<sub>i</sub>&#8745;t<sub>j</sub> = &#8709;
+<div class="p"><!----></div>
+</li>
+
+<li> A &#8838; B &#8594; \mathbbP(A) &#8804; \mathbbP(B)
+<div class="p"><!----></div>
+</li>
+
+<li> Independent iff: \mathbbP(A&#8745;B) = \mathbbP(B)\mathbbP(B), alternatively written
+  \mathbbP(A&#124;B) = \mathbbP(A) for \mathbbP(B)  &#8800; 0
+<div class="p"><!----></div>
+</li>
+</ol>
+
+<div class="p"><!----></div>
+<b>Random Variables:</b>
+
+<ol type="1">
+<li> Def:
+  
+<br clear="all" /><table border="0" width="95%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ <span class="roman">Random</span> <span class="roman">Variable</span><span class="roman">(</span><span class="roman">X</span><span class="roman">)</span><span class="roman">:</span>  X:&#8486;&#8594; \mathbbR </td></tr></table>
+</td><td width="1%">(7)</td></tr></table>
+
+
+<div class="p"><!----></div>
+</li>
+
+<li>
+  
+<br clear="all" /><table border="0" width="95%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ <span class="roman">Prob</span> <span class="roman">mass</span> <span class="roman">function</span><span class="roman">:</span>  f(x): \mathbbP(X=a):X&#8594; [0,1] </td></tr></table>
+</td><td width="1%">(8)</td></tr></table>
+
+
+<div class="p"><!----></div>
+</li>
+
+<li> 
+  
+<br clear="all" /><table border="0" width="95%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ <span class="roman">Prob</span> <span class="roman">density</span> <span class="roman">function</span><span class="roman">:</span>  f(x): </td></tr></table>
+</td><td width="1%">(9)</td></tr></table>
+
+
+<div class="p"><!----></div>
+</li>
+
+<li> Cumdist Properties (continuous):
+  
+<ol type="a">
+<li> Def:
+    
+<br clear="all" /><table border="0" width="90%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ <span class="roman">(</span><span class="roman">Countable</span><span class="roman">)</span><span class="roman">:</span> F(x)  &#8801; \mathbbP(X &#8804; a) = </td><td nowrap="nowrap" align="center">
+<small>a</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>i=0</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+\mathbbP(X<sub>i</sub>), a &#8712; &#8486; </td></tr></table>
+</td><td width="1%">(10)</td></tr></table>
+
+
+    
+<br clear="all" /><table border="0" width="90%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ <span class="roman">(</span><span class="roman">Continuous</span><span class="roman">)</span><span class="roman">:</span>  F(x)  &#8801; \mathbbP(X &#8804; a) = </td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small>a</small><!--sup
+--><br /><br />
+<small>&#8722;&#8734;</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+\mathbbP(X<sub>i</sub>)dx </td></tr></table>
+</td><td width="1%">(11)</td></tr></table>
+
+
+<div class="p"><!----></div>
+</li>
+
+<li> 0  &#8804; F(x)  &#8804; 1
+<div class="p"><!----></div>
+</li>
+
+<li>  lim<sub>x&#8594; &#8722;&#8734;</sub>F(x) = 0 = \mathbbP(&#8709;) &#8743; lim<sub>x&#8594; &#8734;</sub>F(x) = 1 = \mathbbP(&#8486;)
+<div class="p"><!----></div>
+</li>
+
+<li> &#8704;(x,y) x &lt; y &#8594; F(x)  &#8804; F(y)
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+
+<li> Cumdist/Prob Density
+  
+<br clear="all" /><table border="0" width="95%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ <span class="roman">Cumdist</span><span class="roman">/</span><span class="roman">Prob</span> <span class="roman">density</span><span class="roman">:</span>  F(x)  &#8801; </td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small>&#8734;</small><!--sup
+--><br /><br />
+<small>&#8722;&#8734;</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+f(x)dx  </td></tr></table>
+</td><td width="1%">(12)</td></tr></table>
+
+
+  
+<br clear="all" /><table border="0" width="95%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ <span class="roman">Prob</span> <span class="roman">density</span><span class="roman">/</span><span class="roman">Cumdist</span><span class="roman">:</span>  f(x)  &#8801; </td><td nowrap="nowrap" align="center">
+d
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<br /></td><td nowrap="nowrap" align="center">
+F(x) </td></tr></table>
+</td><td width="1%">(13)</td></tr></table>
+
+
+<div class="p"><!----></div>
+</li>
+
+<li> Expected(&#956;)
+  
+<br clear="all" /><table border="0" width="95%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ <span class="roman">(</span><span class="roman">Countable</span><span class="roman">)</span><span class="roman">:</span>  \mathbbE(X)  &#8801; </td><td nowrap="nowrap" align="center">
+<small>n</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>i=0</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+X<sub>i</sub>\mathbbP(X<sub>i</sub>) </td></tr></table>
+</td><td width="1%">(14)</td></tr></table>
+
+
+  
+<br clear="all" /><table border="0" width="95%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ <span class="roman">(</span><span class="roman">Continuous</span><span class="roman">)</span><span class="roman">:</span>  \mathbbE(X)  &#8801; </td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small>&#8734;</small><!--sup
+--><br /><br />
+<small>&#8722;&#8734;</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+X<sub>i</sub>\mathbbP(X<sub>i</sub>)dx </td></tr></table>
+</td><td width="1%">(15)</td></tr></table>
+
+
+  
+  <b>Moments:</b>
+  
+<ol type="a">
+<li> Definition 
+    
+<br clear="all" /><table border="0" width="90%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ nth <span class="roman">Moment</span><span class="roman">:</span> &#956;<sub>n</sub>  &#8801; \mathbbE[(X&#8722;b)<sup>n</sup>] </td></tr></table>
+</td><td width="1%">(16)</td></tr></table>
+
+
+    
+      n = 0</td><td width="150">
+ </td><td width="150">
+ <span class="roman">Constant</span><br />
+      n = 1</td><td width="150">
+ </td><td width="150">
+ <span class="roman">Expected Value (center)</span><br />
+      n = 2</td><td width="150">
+ </td><td width="150">
+ <span class="roman">Measure of Dispersion</span><br />
+      n = 3</td><td width="150">
+ </td><td width="150">
+ <span class="roman">Measure of asymmetry</span><br />
+      n = 4</td><td width="150">
+ </td><td width="150">
+ <span class="roman">Measure of peakedness</span>
+    
+<div class="p"><!----></div>
+</li>
+
+<li> Types of Moments
+    
+<br clear="all" /><table border="0" width="90%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ <span class="roman">Raw</span> <span class="roman">Moments</span><span class="roman">:</span>  &#956;<sub>n</sub>&#8242; &#8801; \mathbbE[(x&#8722;0)<sup>n</sup>] </td></tr></table>
+</td><td width="1%">(17)</td></tr></table>
+
+
+    
+<br clear="all" /><table border="0" width="90%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ <span class="roman">Central</span> <span class="roman">Moments</span><span class="roman">:</span>  &#956;<sub>n</sub>  &#8801; \mathbbE[(x&#8722;&#956;)<sup>n</sup>] </td></tr></table>
+</td><td width="1%">(18)</td></tr></table>
+
+
+<div class="p"><!----></div>
+</li>
+
+<li> Getting Moments
+    
+<ol type="i">
+<li> Use def of moment (i.e.) mu<sub>n</sub>  &#8801; \mathbbE[(X&#8722;b)<sup>n</sup>
+<div class="p"><!----></div>
+</li>
+
+<li> [PGF] Probability Generating Function (Descrete only)
+<div class="p"><!----></div>
+</li>
+
+<li> [MGF] Moment Generating Function (May not exist)
+      
+<ol type="A">
+<li> Def
+        
+<br clear="all" /><table border="0" width="80%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ M<sub>x</sub>(t)  &#8801; \mathbbE(e<sup>tx</sup>) </td></tr></table>
+</td><td width="1%">(19)</td></tr></table>
+
+
+<div class="p"><!----></div>
+</li>
+
+<li> Raw moment from MGF
+        
+<br clear="all" /><table border="0" width="80%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ </td><td nowrap="nowrap" align="center">
+&#8706;<sup>n</sup>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<sup>n</sup><br /></td><td nowrap="nowrap" align="center">
+M<sub>x</sub>(t)&#124;<sub>t=0</sub> = \mathbbE(X<sup>n</sup>) </td></tr></table>
+</td><td width="1%">(20)</td></tr></table>
+
+
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+
+<li> Characteristic equation
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+
+<li> Generating Central Moments from Raw Moments
+    
+<br clear="all" /><table border="0" width="90%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ &#956;<sub>n</sub> = &#931;<sub>j=0</sub><sup>b</sup>\binomnk(&#8722;1)<sup>n&#8722;j</sup>&#956;<sub>j</sub>&#8242;&#956;<sup>n&#8722;j</sup> </td></tr></table>
+</td><td width="1%">(21)</td></tr></table>
+
+
+<div class="p"><!----></div>
+</li>
+
+<li> Important Moments
+    
+<ol type="i">
+<li> Mean(&#956;)  &#8801; &#956;<sub>1</sub>&#8242; = \mathbbE(X)
+<div class="p"><!----></div>
+</li>
+
+<li> Variance(&#963;<sup>2</sup>)  &#8801; &#956;<sub>2</sub> = \mathbbE((X&#8722;&#956;)<sup>2</sup>) = \mathbbE(X<sup>2</sup>) &#8722; &#956;<sup>2</sup>
+<div class="p"><!----></div>
+</li>
+
+<li> Skew(&#947;<sub>2</sub>)  &#8801; [(&#956;<sub>3</sub>)/(&#963;<sup>3</sup>)] = [(\mathbbE((X&#8722;&#956;)<sup>3</sup>))/(&#963;<sup>3</sup>)]
+<div class="p"><!----></div>
+</li>
+
+<li> Kurtosis(&#947;<sub>3</sub>)  &#8801; [(&#956;<sub>4</sub>)/(&#963;<sup>4</sup>)] &#8722;3
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+</ol>
+
+<b>Joint Probability:</b>
+
+<ol type="1">
+<li> f(x,y) is the joint probability density function of the sets
+  X and Y
+<div class="p"><!----></div>
+</li>
+
+<li> Marginal Density: f(x) = &#8747;<sub>&#8722;&#8734;</sub><sup>&#8734;</sup>f(x,y)dy
+<div class="p"><!----></div>
+</li>
+
+<li> X and Y are Independent iff f(x,y) = f(x)f(y)
+<div class="p"><!----></div>
+</li>
+
+<li> F(x,y) = &#8747;<sub>&#8722;&#8734;</sub><sup>x</sup>&#8747;<sub>&#8722;&#8734;</sub><sup>y</sup>f(x,y)dxdy
+<div class="p"><!----></div>
+</li>
+
+<li> f(x,y) = [(&#8706;<sup>2</sup> F)/(&#8706;x &#8706;y)]
+<div class="p"><!----></div>
+</li>
+
+<li>
+  
+<br clear="all" /><table border="0" width="95%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ <span class="roman">Correlation</span>(r) = </td><td nowrap="nowrap" align="center">
+\mathbbE[(X&#8722;&#956;<sub>x</sub>)(Y&#8722;&#956;<sub>y</sub>)]
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#963;<sub>x</sub> &#963;<sub>y</sub><br /></td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td><td width="1%">(22)</td></tr></table>
+
+
+<div class="p"><!----></div>
+</li>
+</ol>
+
+<div class="p"><!----></div>
+<b>Limit Theorems:</b>
+
+<ol type="1">
+<li> Central Limit Theorem
+  
+<ol type="a">
+<li> Assumptions
+    
+<ol type="i">
+<li> All x  &#8712; X are independent for a random sample
+<div class="p"><!----></div>
+</li>
+
+<li> All X have the same distribution, &#956; and &#963;
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+
+<li> CLT approximated moments
+    
+<ol type="i">
+<li> Sum of Averages = n&#956;
+<div class="p"><!----></div>
+</li>
+
+<li> Sum of Variances = n&#963;<sup>2</sup>
+<div class="p"><!----></div>
+</li>
+
+<li> <span class="overacc2">&#x2015;</span>&#963;<sup>2</sup> = [(&#963;<sup>2</sup>)/n]
+<div class="p"><!----></div>
+</li>
+
+<li> \mathbbE(<span class="overacc2">&#x2015;</span>X) = &#956;
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+
+<li> Normal Approximation to binomial
+    
+      (a    b) 
+      (A-1  X  b + 1),<span class="roman"> </span> mp &#62; s, m(1-p)&#62;s
+    
+<div class="p"><!----></div>
+</li>
+
+<li> Worst Case Approximation:
+    
+      ( -  -p  -   ) 
+      ( -    -   2)
+    
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+
+<li> Markov's inequality: applies to any non-negative random variable
+  
+<br clear="all" /><table border="0" width="95%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ \mathbbP(X  &#8805; a)  &#8804; </td><td nowrap="nowrap" align="center">
+&#956;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>a<br /></td><td nowrap="nowrap" align="center">
+, a  &gt; 0 </td></tr></table>
+</td><td width="1%">(23)</td></tr></table>
+
+
+  
+<br clear="all" /><table border="0" width="95%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ \mathbbP(X  &#8805; k&#956;)  &#8804; </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>k<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td><td width="1%">(24)</td></tr></table>
+
+
+<div class="p"><!----></div>
+</li>
+
+<li> Chebyshev's inequality: upper bound on dist
+  
+<br clear="all" /><table border="0" width="95%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ \mathbbP(| X&#8722;&#956;|  &#8805; c)  &#8804; </td><td nowrap="nowrap" align="center">
+&#963;<sup>2</sup>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>c<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+, c &gt; 0 </td></tr></table>
+</td><td width="1%">(25)</td></tr></table>
+
+
+  
+<br clear="all" /><table border="0" width="95%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ \mathbbP(| X&#8722;&#956;|  &#8805; k&#963;)  &#8804; </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>k<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td><td width="1%">(26)</td></tr></table>
+
+
+<div class="p"><!----></div>
+</li>
+
+<li> Law of large numbers
+  
+<br clear="all" /><table border="0" width="95%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ s </td></tr></table>
+</td><td width="1%">(27)</td></tr></table>
+
+
+<div class="p"><!----></div>
+</li>
+</ol>
+
+<div class="p"><!----></div>
+<b>Common Random Variables:</b>
+
+<ol type="1">
+<li> Bernoulli trials: Independent repeated trials of an experiment with two outcomes only
+<div class="p"><!----></div>
+</li>
+
+<li> Poisson Process: a stochastic process in which events occur continuously and independently of one another
+<div class="p"><!----></div>
+</li>
+</ol>
+
+<div class="p"><!----></div>
+<b>Distributions:</b>
+
+<ol type="1">
+<li> S =  number of successes, S: \mathbbN &#8594; \mathbbN
+<div class="p"><!----></div>
+</li>
+
+<li> W= waiting time, W:\mathbbN &#8594; \mathbbN
+<div class="p"><!----></div>
+</li>
+
+<li> \mathbbL= life time, \mathbbL: \mathbbR &#8594; \mathbbR
+<div class="p"><!----></div>
+</li>
+
+<li> p= prob of success
+<div class="p"><!----></div>
+</li>
+
+<li> Binomial Dist. (countable)
+  
+    </td><td width="150">
+ -     -  = 2^n <br />
+    </td><td width="150">
+(S = k) =  p^k(1-p)^m-k <br />
+    </td><td width="150">
+np <br />
+    </td><td width="150">
+^2 = np(1-p)
+  
+<div class="p"><!----></div>
+</li>
+
+<li> K-nomial(multinomial) Dist. (countable)
+  
+    </td><td width="150">
+ -     -  = K^n <br />
+    </td><td width="150">
+(S = k) = _i=0^k  p_i^m_i <br />
+  
+<div class="p"><!----></div>
+</li>
+
+<li> Negative Binomial Dist. (countable)
+  
+    </td><td width="150">
+r=<span class="roman">number of failures until the experiment is stopped</span> <br /><br />
+    </td><td width="150">
+f(x) = (1-p)^rp^k <br />
+    </td><td width="150">
+mgf = 1-p^r
+  
+<div class="p"><!----></div>
+</li>
+
+<li> Geometric Dist. (countable)
+  
+    </td><td width="150">
+(W=k)=p(1-p)^(k-1) <br />
+    </td><td width="150">
+(W K) = 1-(1-p)^k <br />
+    </td><td width="150">
+1 <br />
+    </td><td width="150">
+^2= 1-p
+  
+<div class="p"><!----></div>
+</li>
+
+<li> Poisson Dist. (countable)
+  
+    </td><td width="150">
+t, <span class="roman"> Longterm average rate</span> <br />
+    </td><td width="150">
+(S=k) = e^-^k <br />
+    </td><td width="150">
+ <br />
+    </td><td width="150">
+^2 = 
+  
+<div class="p"><!----></div>
+</li>
+
+<li> Uniform Dist (continuous):<br />
+  
+<br clear="all" /><table border="0" width="95%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ p = </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>b&#8722;a<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td><td width="1%">(28)</td></tr></table>
+
+
+  
+<br clear="all" /><table border="0" width="95%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ f(x) = </td><td align="left" class="cl">&#x23A7;<br />&#x23AA;<br />&#x23A8;<br />
+&#x23AA;<br />&#x23A9;
+ </td><td nowrap="nowrap" align="center">
+<table>
+<tr><td align="left"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+p </td></tr></table></td><td align="right"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+: x  &#8712; [a,b]</td></tr></table></td></tr>
+<tr><td align="left"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="right"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+: x  &#8713; [a,b] </td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+  </td></tr></table>
+</td></tr></table>
+
+<br />
+<div class="p"><!----></div>
+</li>
+
+<li> Linear Dist (continuous):
+  
+<br clear="all" /><table border="0" width="95%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ C(b&#8722;a)+D(b&#8722;a)<sup>2</sup>=1 </td></tr></table>
+</td><td width="1%">(29)</td></tr></table>
+
+
+  
+<br clear="all" /><table border="0" width="95%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ f(x) = </td><td align="left" class="cl">&#x23A7;<br />&#x23AA;<br />&#x23A8;<br />
+&#x23AA;<br />&#x23A9;
+ </td><td nowrap="nowrap" align="center">
+<table>
+<tr><td align="left"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+C+Dx </td></tr></table></td><td align="right"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+: x  &#8712; [a,b]</td></tr></table></td></tr>
+<tr><td align="left"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="right"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+: x  &#8713; [a,b] </td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+  </td></tr></table>
+</td></tr></table>
+
+<br />
+<div class="p"><!----></div>
+</li>
+
+<li> Exponential Dist. (continuous)
+  
+    </td><td width="150">
+( &#62; t) = ( = 0) = ^0e^-, t&#62;0<br />
+    </td><td width="150">
+F(t) = (  t) = 1 -( &#62; t) = 1-e^-<br /><br />
+    </td><td width="150">
+f(t) = dF(t) = 
+    f(x) = {
+      lr
+         e^- </td><td width="150">
+ : x  0<br />
+        0 </td><td width="150">
+ : x &lt; 0
+      
+    .<br />
+    </td><td width="150">
+_-^f(x)dx = _0^t
+    e^- xdx = 1<br />
+    </td><td width="150">
+^2 = 1<br />
+    </td><td width="150">
+<span class="roman">Non-Poisson trials (aging): </span> (&#62;t^*  - 
+     &#62;t_0) = e^-_t_0^t^* (x)dx
+  
+<div class="p"><!----></div>
+</li>
+
+<li> Standard Normal Dist. (continuous)
+  
+    </td><td width="150">
+1e^-x^2 <br />
+    </td><td width="150">
+() = (  z) = _-^z(x)dx = _-^z1e^-x^2 dx<br />
+    </td><td width="150">
+, ^2 = 0<br />
+    </td><td width="150">
+ X =  +    = X- 
+  
+<div class="p"><!----></div>
+</li>
+</ol>
+
+<div class="p"><!----></div>
+
+<br /><br /><hr /><small>File translated from
+T<sub><span class="small">E</span></sub>X
+by <a href="http://hutchinson.belmont.ma.us/tth/">
+T<sub><span class="small">T</span></sub>H</a>,
+version 4.03.<br />On 15 Mar 2012, 12:16.</small>
+</html>

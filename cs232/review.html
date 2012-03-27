@@ -1,0 +1,889 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+           "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<meta name="GENERATOR" content="TtH 4.03">
+ <style type="text/css"> div.p { margin-top: 7pt;}</style>
+ <style type="text/css"><!--
+ td div.comp { margin-top: -0.6ex; margin-bottom: -1ex;}
+ td div.comb { margin-top: -0.6ex; margin-bottom: -.6ex;}
+ td div.hrcomp { line-height: 0.9; margin-top: -0.8ex; margin-bottom: -1ex;}
+ td div.norm {line-height:normal;}
+ span.roman {font-family: serif; font-style: normal; font-weight: normal;} 
+ span.overacc2 {position: relative;  left: .8em; top: -1.2ex;}
+ span.overacc1 {position: relative;  left: .6em; top: -1.2ex;} --></style>
+ <style type="text/css"><!--
+ .tiny {font-size:30%;}
+ .scriptsize {font-size:xx-small;}
+ .footnotesize {font-size:x-small;}
+ .smaller {font-size:smaller;}
+ .small {font-size:small;}
+ .normalsize {font-size:medium;}
+ .large {font-size:large;}
+ .larger {font-size:x-large;}
+ .largerstill {font-size:xx-large;}
+ .huge {font-size:300%;}
+ --></style>
+
+  	                            
+<title>No Title</title>
+
+
+<div style="text-align:center">  <div class="largerstill">    <b>CS232 Review</b><br />
+    <span class="normalsize">
+  </span></div>
+</div>
+  <b>MidTerm 1</b>  
+  
+<ol type="1">
+<li> Bitwise Logical Programming (shift  &lt;&lt;   &gt;&gt;  ,and &amp;, or
+    &#124;,not &nbsp;,xor <sup>&#8743;</sup>)
+<div class="p"><!----></div>
+</li>
+
+<li> MIPS assembly
+    
+<ol type="a">
+<li> arithmetic, memory, control flow
+<div class="p"><!----></div>
+</li>
+
+<li> MIPS  &lt; &#8722; &gt;  C
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+
+<li> Functions:
+    
+<ol type="a">
+<li> Register saving convetions
+      
+<ol type="i">
+<li> a registers are caller saved
+<div class="p"><!----></div>
+</li>
+
+<li> s registers are calle saved
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+
+<li> stack (and its use for saving state of program)
+      
+<ol type="i">
+<li> kept track of via sp register
+<div class="p"><!----></div>
+</li>
+
+<li> Grows down
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+
+<li> Basic understanding of assembly level concepts
+    
+<ol type="a">
+<li> pointers, pointer arithmetic, structures
+<div class="p"><!----></div>
+</li>
+
+<li> machine language
+<div class="p"><!----></div>
+</li>
+
+<li> variable types in low level languages (not explicit, its how
+      its used)
+<div class="p"><!----></div>
+</li>
+
+<li> compiling, linking, loading, MIPS memory image
+<div class="p"><!----></div>
+</li>
+
+<li> [90/10] rule : spend 90% of your time in 10% of your code
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+</ol>
+  <b>MidTerm 2</b>
+  
+<ol type="1">
+<li> Generic datapath concepts
+<div class="p"><!----></div>
+</li>
+
+<li> Single Cycle Datapath: 1 instruction per cycle...always (set
+    clock cycle to the longest instruction time)
+<div class="p"><!----></div>
+</li>
+
+<li> Pipeling and the Pipedlined Datapath
+    
+<ol type="a">
+<li> Ideal execution time = time to fill + 1 cycle per instruction
+      
+<ol type="i">
+<li> Not achieved due to hazards (and slow memory access)
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+
+<li> Dependences: A value being modified and used in later instructions
+<div class="p"><!----></div>
+</li>
+
+<li> Data Hazards: Occurs when dependent instructions exectuted
+      before data has finished the writeback state.
+<div class="p"><!----></div>
+</li>
+
+<li> Forwarding: Using pipeline registers' values instead of
+      register file. Can be done only if correct data exists in the
+      pipeline when it is needed (ld -&#62; ld doesn't work because EX
+      requires at the begining but Mem has the good value at the end)
+<div class="p"><!----></div>
+</li>
+
+<li> Control hazards: Possible incorrect PC value due to branches
+      and jumps
+<div class="p"><!----></div>
+</li>
+
+<li> Branch resolution: If branch is incorretly predicted, bad
+      data must be 'flushed' out of the pipeline by turning the
+      control signals into retroactive nops.
+<div class="p"><!----></div>
+</li>
+
+<li> Branch Prediction: Act of predicting a whether a branch is
+      taken. (Can be based on previous behaviour)
+<div class="p"><!----></div>
+</li>
+
+<li> Stalling: Repeating the same stage of the pipeline and not
+      incrementing the PC counter.
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+
+<li> Performance
+    
+<ol type="a">
+<li> Dynamic Instruction Count: instructions actually executed
+<div class="p"><!----></div>
+</li>
+
+<li> Cycles Per Instruction(CPI): Average cycles per instruction
+<div class="p"><!----></div>
+</li>
+
+<li> Clock Cycle Time: Set to the max time it requires a pipeline
+      stage to complete. [1/cpuFreq]
+<div class="p"><!----></div>
+</li>
+
+<li> Computing speedup
+      
+<ol type="i">
+<li> cpuTime = instructions&#183;CPI &#183;cycleTime
+<div class="p"><!----></div>
+</li>
+
+<li> speedUp = [(performance<sub>0</sub>)/(performance<sub>f</sub>)]
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+
+<li> Throughput vs. Latency
+      
+<ol type="i">
+<li> Throughput: tasks per unit time, i.e. bandwidth
+<div class="p"><!----></div>
+</li>
+
+<li> Latency: unit time per task, i.e. response time
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+
+<li> Amdahl's Law
+      
+<ol type="i">
+<li> States that the perfomrance enhancement possible with a given improvememt is limited by the amount that the feature to be improved affects execution time.
+<div class="p"><!----></div>
+</li>
+
+<li> Most importantly, Amdahl's law states that if one
+        parellisizes away some work, one is limited by the seriel component.
+<div class="p"><!----></div>
+</li>
+
+<li> Time<sub>total</sub> = [(Time<sub>old</sub>)/( Time<sub>improved</sub>)] + Time<sub>unaffected</sub>
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+
+<li> I/O programming and interrupts
+    
+<ol type="a">
+<li> Memory-mapped I/O
+      
+<ol type="i">
+<li> Address space divided, with some representing physical memory locations and some referencing peripherals
+<div class="p"><!----></div>
+</li>
+
+<li> CPU writes to appropriate I/O address which is trasmited along the bus so that devices can know when they are the target
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+
+<li> Structure of the interrupt/exception Handler
+      
+<ol type="i">
+<li> Interrupts/exceptions must be enabled
+<div class="p"><!----></div>
+</li>
+
+<li> Execution is stopped, control given to OS, the OS executes
+        interrupt Handler
+<div class="p"><!----></div>
+</li>
+
+<li> Interrupt/exception Handler
+        
+<ol type="A">
+<li> Allocated some kernel memory (can't use stack because
+          that may have caused the interrupt/exception)
+<div class="p"><!----></div>
+</li>
+
+<li> Saves assembler temporaries
+<div class="p"><!----></div>
+</li>
+
+<li> Backs up registers it will work with
+<div class="p"><!----></div>
+</li>
+
+<li> Read cause register
+<div class="p"><!----></div>
+</li>
+
+<li> Handle interrupt/exception (and acknowledge interrupt/exception)
+<div class="p"><!----></div>
+</li>
+
+<li> Restore system back to pre interrupt/exception state
+<div class="p"><!----></div>
+</li>
+
+<li> Jump back into code.
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+
+<li> Endianness: Should bytes be stored most sig to least sig
+        or the othe way around?
+        
+<ol type="A">
+<li> Little vs Big
+<div class="p"><!----></div>
+</li>
+
+<li> Swizzling: the act of converting endianness for inter
+          machine communication. (internet done in Big Endian)
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+</ol>
+  <b>MidTerm 3</b>
+  
+<ol type="1">
+<li> Caches
+    
+<ol type="a">
+<li> Locality
+      
+<ol type="i">
+<li> Spacial Locality: If a program accesses one memory address, there is a good chance that it will access other nearby addresses.
+<div class="p"><!----></div>
+</li>
+
+<li> Temporal Locality: If a program accesses one memory address, there is a good chance that it will access the same address again.
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+
+<li> Associatity: Relates how addresses get mapped inside of
+      the cache to the number of sets n.
+      
+<ol type="i">
+<li> Set Associative: cache is divided into groups of blocks called sets. Each address maps to one set in which it can be placed anywhere.
+<div class="p"><!----></div>
+</li>
+
+<li> Direct Mapped: Set size of 1, index points to a single block chunk. Each memory address belongs in exactly one block.
+<div class="p"><!----></div>
+</li>
+
+<li> Fully Associative: Set size of n, data can be stored in any cache block. Least Recently Used replaced when cache is full. The entire tag must be stored and every tag in the cache must be checked for cache hits/misses
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+
+<li> LRU: least recently used data: Replacing elements in a cache that haven’t been used in a while. Helps keep temporal locality. On miss, the LRU is replaced. On hit, the LRU is updated.*often used or approximated
+        because of its expensive.
+<div class="p"><!----></div>
+</li>
+
+<li> Multilevel caches: A cache that utilized 2 or more separate
+      caches to store information. Typically the lower caches are
+      small/fast/expensive where as the higher caches are
+      large/fast/cheap.<br />
+      Note: If one can ensure almost certain hits in the higher caches
+      and relatively good rates in the lower caches this greatly
+      increases speed.
+<div class="p"><!----></div>
+</li>
+
+<li> Write-back: Writing is done only to the cache. A modified
+      cache block is "written" back into higher memory just before
+      it is stored. (requires a dirty bit to denote that it has been
+      written to)
+<div class="p"><!----></div>
+</li>
+
+<li> Write-Through: On write hit, updates both the cache and the
+      main memory  when writing.
+<div class="p"><!----></div>
+</li>
+
+<li> Allocate on write: On write miss, load into the cache then write to cache
+<div class="p"><!----></div>
+</li>
+
+<li> Computing block offset, index, tag
+      
+<ol type="i">
+<li> N-Way associative cache has N blocks per set. Thus
+        address &#8594; cache address is given by (= denotes
+        number of bits in the bitstring at that point dedicated.
+        
+<br clear="all" /><table border="0" width="85%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ &#124;Tag=m&#8722;s&#8722;o&#124;Index=s&#124;offset=o&#124;, m = addressSize </td></tr></table>
+</td><td width="1%">(1)</td></tr></table>
+
+
+        
+<br clear="all" /><table border="0" width="85%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ &#124;t = m&#8722;o&#8722;s &#124; s = lg(</td><td nowrap="nowrap" align="center">
+size
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>blockSize&#183;N<br /></td><td nowrap="nowrap" align="center">
+)&#124;o = lg(</td><td nowrap="nowrap" align="center">
+blockSize
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>byte<br /></td><td nowrap="nowrap" align="center">
+)&#124; </td></tr></table>
+</td><td width="1%">(2)</td></tr></table>
+
+
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+
+<li> Computing the size of cache and number of bits to implement it
+      
+<ol type="i">
+<li> cacheSize = blocks &#183;sizeOfBlock = cacheSize
+<div class="p"><!----></div>
+</li>
+
+<li> sizeOfBlock = (data + tag + valid + dirty + lruBits)
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+
+<li> Calculating cache performance and Average Memory Acess Time (AMAT) calculations.
+      
+<ol type="i">
+<li> :
+        <a id="eq: AMAT">
+</a>
+<br clear="all" /><table border="0" width="85%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  AMAT = HitTime + (MissRate * Miss)  </td></tr></table>
+</td><td width="1%">(3)</td></tr></table>
+
+
+        
+<br clear="all" /><table border="0" width="85%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ MemoryStallCycles = MemoryAccesses * MissRate * Miss penalty </td></tr></table>
+</td><td width="1%">(4)</td></tr></table>
+
+
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+
+<li> Memory access pattern and linearizing array access:
+<div class="p"><!----></div>
+</li>
+
+<li> Memory access pattern analysis: Look for temperal and
+      spacial locaility. Calculate mis-rates and how to maximize
+      locality. (Blocking/ Tiling)
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+
+<li> Cache-Aware programming
+    
+<ol type="a">
+<li> Rearranging loops to improve spatial locality
+      
+<ol type="i">
+<li> stepping through columns in a row exploits spatial locality
+        misses once per block chunk
+<div class="p"><!----></div>
+</li>
+
+<li> stepping through rows in one column has no spatial locality
+        misses 100% of the time
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+
+<li> Using blocking to improve temporal locality
+      
+<ol type="i">
+<li> used when cache is exceeded and overwritten often, resulting in very few useful values in cache
+<div class="p"><!----></div>
+</li>
+
+<li> implemented by striding loops and adding smaller inner loops
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+
+<li> When to software pre-fetch
+      
+<ol type="i">
+<li> Non-Stride access patterns
+<div class="p"><!----></div>
+</li>
+
+<li> Linked Data Structures.
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+
+<li> Virtual Memory (VM):
+    
+<ol type="a">
+<li> Indirection: Adding an intermediate interface that controls endpoints
+<div class="p"><!----></div>
+</li>
+
+<li> Use of indirection in VM: Virtual Memory &#8594; OS
+      &#8594; physical memory.This eliminates the need for
+      explicit overlaying in programs.
+<div class="p"><!----></div>
+</li>
+
+<li> Advantages of VM.
+      
+<ol type="i">
+<li> Larger than memory processes: We can store "memory" on
+        disk via paging. Also because its virtual we can say we have
+        "n" bits of mem but only have to allocate as much as needed.
+<div class="p"><!----></div>
+</li>
+
+<li> Identical/Conflicting address mapping: 2 programs can both
+        map to the same address because the OS/PageTable deals with
+        actual mapping. i.e. sure you can have 0x4004 (hands you 0xff0f00)
+<div class="p"><!----></div>
+</li>
+
+<li> Sand-boxing processes: The page table has permission bits
+        that tells the OS who can touch the cookie jar.
+<div class="p"><!----></div>
+</li>
+
+<li> Controlled sharing between processes: If two addresses
+        need to share, it can be done under adult(OS) super vision
+        because of the page table's permission bits.
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+
+<li> Page table: Look up table that maps virtual to physical memory
+      
+<ol type="i">
+<li> page table register points to the page table.
+<div class="p"><!----></div>
+</li>
+
+<li> page table is indexed by the VPN
+<div class="p"><!----></div>
+</li>
+
+<li> page table contains PPN, valid bit, and dirty bit
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+
+<li> Translation look-aside buffer (TLB): Looking up the page
+      table translations sucks....so we cache it...aka TLB
+      
+<ol type="i">
+<li> uses VPN as tag to PPNs
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+
+<li> Hierarchical page table: Page Directories &#8594; Page
+      Entry &#8594; Page Table &#8594; Address . (note
+      saves memory because not all Entries and Directories are
+      filled.
+      
+<ol type="i">
+<li>  page tables should be page sizes so they themselves can be
+        looked up easily....
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+
+<li> Page faults
+      
+<ol type="i">
+<li> page is not in memory and must be pulled from disk
+<div class="p"><!----></div>
+</li>
+
+<li> request page to replace (uses approximate LRU and write-back)
+<div class="p"><!----></div>
+</li>
+
+<li> Pages are large to minimize miss rate
+<div class="p"><!----></div>
+</li>
+
+<li> Pages are fully associative to minimize miss rate
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+
+<li> Hard Disks
+    
+<ol type="a">
+<li> Platter: Cyclinder that houses magnetic particles organized
+      in tracks:
+<div class="p"><!----></div>
+</li>
+
+<li> Head: Reads/Writes magnetics particles (moves by arm)
+<div class="p"><!----></div>
+</li>
+
+<li> Track: Circular collection of sectors
+<div class="p"><!----></div>
+</li>
+
+<li> Sector: Partition of Track where data is actually stored
+<div class="p"><!----></div>
+</li>
+
+<li> 
+      
+<br clear="all" /><table border="0" width="90%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ readWriteTime = Seek+RotDely +sectorRead&#183;sectors </td></tr></table>
+</td><td width="1%">(5)</td></tr></table>
+
+
+<div class="p"><!----></div>
+</li>
+
+<li> Random vs Sequential read/write performance
+<div class="p"><!----></div>
+</li>
+
+<li> Solid state disks (SSD): Flash memory based, everything but
+      random writes it very fast. (writes are slow due to having to
+      clear the whole block before to write)
+<div class="p"><!----></div>
+</li>
+</ol>
+
+<div class="p"><!----></div>
+    
+<ol type="a">
+<li> Error Correcting Codes
+      
+<ol type="i">
+<li> Error detection vs. Error correction:
+        
+<ol type="A">
+<li> Error Detection is the ability to detect that somehow a
+          bit (or more) has been flipped.
+<div class="p"><!----></div>
+</li>
+
+<li> Error Correction is the ability to detect an error has
+          occurred and guess what it might have been before being flipped.
+<div class="p"><!----></div>
+</li>
+
+<li> Relationship: Error Detection is achievable with fewer
+          bits and can be done to a further level of error (more bits
+          flipped) but does not correct. Correction gives up the
+          ability to detect as far but adds the ability to guess
+          initial states.
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+
+<li> Parity: Extra bit that is the result of xor the bitstring
+        (odd or even). Parity is recomputed when reading Ram and
+        checked. If P<sub>stored</sub>  &#8800; P<sub>computed</sub> an error has occured.
+<div class="p"><!----></div>
+</li>
+
+<li> Hamming distance: Minimum path of states to no longer
+        detect/correct errors.
+<div class="p"><!----></div>
+</li>
+
+<li> SECDED: Single-bit Error Correction, Double-bit Error
+        Detection. Standard in ECC protect SDRAM.
+        
+<ol type="A">
+<li> Hamming Dist  = 4
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+
+<li> Writing code to analyze cache with a hardware pre-fetcher
+      
+<ol type="i">
+<li> Needs to loop such that the stride can't be predicted by
+        prefecter (linked structures or uniform random
+        variables are good canidates)
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+</ol>
+  <b>Post-Exam 3</b>
+  
+<ol type="1">
+<li> Multi-core
+    
+<ol type="a">
+<li> Definition: A group of processors with a shared memory
+      system. Used because higher clock speed is very power
+      hungry/impractical and better exposes parallelism.
+<div class="p"><!----></div>
+</li>
+
+<li> Thread: A scheduled unit of processing. Can interact with
+      other threads or remain isolated.
+<div class="p"><!----></div>
+</li>
+
+<li> Cache Coherence (MSI model):
+      
+<ol type="i">
+<li> Modified: Only one copy allowed. Can be changed.
+<div class="p"><!----></div>
+</li>
+
+<li> Shared: Many copies allowed. Cannot be changed.
+<div class="p"><!----></div>
+</li>
+
+<li> Invalid: No copies (except in main memory).
+<div class="p"><!----></div>
+</li>
+
+<li> GetS: Requests a shared version of memory. Demotes
+        Modified states to Shared.
+<div class="p"><!----></div>
+</li>
+
+<li> GetX: Requests an exclusive(modifiable) version of
+        memory. All other versions Invalidated.
+<div class="p"><!----></div>
+</li>
+
+<li> Upgrade: Promote Shared state to Modified. Invalidates all
+        other versions.
+<div class="p"><!----></div>
+</li>
+
+<li> source data: if demotion from modified to shared, occurs a
+        processor can source the data to another processor instead of
+        getting it from main memory (which is slower.)
+<div class="p"><!----></div>
+</li>
+
+<li> write back: if no processor will have a copy of the
+        modified data then it must be written back to main memory.
+<div class="p"><!----></div>
+</li>
+
+<li> Share: Accessing the same data in multiple processors
+        requiring numerous state changes (slow)
+<div class="p"><!----></div>
+</li>
+
+<li> False sharing: Accessing data in the same cache block
+        effectively forcing the processors to fight over exclusive
+        state. *avoided by moving data to another cache block (padding
+        or some other means)
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+
+<li> Sequential Consistency: Strongest Memory Access model. All
+      instructions are sequentially accessed within their own thread
+      and thus are mearly interleaved with other threads if they exist.(Slow)
+<div class="p"><!----></div>
+</li>
+
+<li> Locking/Blocking/Fencing: Because sequential consistency
+      isn't guarenteed (or even the default on most systems) one can
+      force critical sections of code into sequential consistency via
+      'fencing' off the section. This is supported in hardware via the
+      Compare-and-swap (CAS) call. Locking/Block is a common
+      implementation of this.
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+
+<li> Exploiting Parallelism
+    
+<ol type="a">
+<li> Vector Processing: Taking a single register and treating it
+      as multiple piece of data so that arithmetic/logic can be performed on
+      each section simulatinously. Single Instuction Multiple Data
+      (SIMD) is an example implentation given by intel.
+<div class="p"><!----></div>
+</li>
+
+<li> Speed Ups via vector processing: limited by [register Size/dataSize] i.e. how many independent elements can be done
+      in one instruction and the cost of syncing them (ideally none)
+<div class="p"><!----></div>
+</li>
+
+<li> Fork-Join parallelism model: Have a master thread and during
+      parallelisable sections of code, 'fork' of independent threads
+      and then sync when done to the master thread.
+<div class="p"><!----></div>
+</li>
+
+<li> Speed Ups via multi-core parellism: Ignoring cache speed
+      ups (may result in super linear growth), one expects linear
+      growth with the number of processors minus the overhead of
+      splitting/syncing. Again limited by Amdahl's Law.
+<div class="p"><!----></div>
+</li>
+</ol>
+<div class="p"><!----></div>
+</li>
+</ol>
+
+<br /><br /><hr /><small>File translated from
+T<sub><span class="small">E</span></sub>X
+by <a href="http://hutchinson.belmont.ma.us/tth/">
+T<sub><span class="small">T</span></sub>H</a>,
+version 4.03.<br />On 15 Mar 2012, 12:18.</small>
+</html>

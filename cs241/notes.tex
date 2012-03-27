@@ -1,0 +1,411 @@
+% Created 2012-03-04 Sun 00:38
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{soul}
+\usepackage{amssymb}
+\usepackage{hyperref}
+
+
+\title{CS 241 Midterm study guide}
+\author{}
+\date{04 March 2012}
+
+\begin{document}
+
+\maketitle
+
+\setcounter{tocdepth}{3}
+\tableofcontents
+\vspace*{1cm}
+\section{POSIX}
+\label{sec-1}
+
+\subsection{Examples}
+\label{sec-1.1}
+
+\section{System Calls}
+\label{sec-2}
+
+\section{Libraries}
+\label{sec-3}
+
+\subsection{strlen vs sizeof}
+\label{sec-3.1}
+
+\section{Pointers}
+\label{sec-4}
+
+\subsection{Pointer Operations}
+\label{sec-4.1}
+
+\subsubsection{Pointer Arithmetic}
+\label{sec-4.1.1}
+
+\subsection{NULL}
+\label{sec-4.2}
+
+\subsection{Function Pointers}
+\label{sec-4.3}
+
+\subsection{Strings}
+\label{sec-4.4}
+
+\subsubsection{What's the difference between char $c[ 80 ]$ and char* c}
+\label{sec-4.4.1}
+
+\begin{itemize}
+
+\item What about when they're used in sizeof()?\\
+\label{sec-4.4.1.1}
+
+\end{itemize} % ends low level
+\subsubsection{What's the difference between a string and a string literal?}
+\label{sec-4.4.2}
+
+\subsubsection{How do strcpy, strcat, and strncat work?}
+\label{sec-4.4.3}
+
+\section{Memory}
+\label{sec-5}
+
+\subsection{Memory Fragmentation}
+\label{sec-5.1}
+
+\subsubsection{Internal}
+\label{sec-5.1.1}
+
+\subsubsection{External}
+\label{sec-5.1.2}
+
+\subsection{Cache/Page Table replacment policies}
+\label{sec-5.2}
+
+\subsubsection{OPT}
+\label{sec-5.2.1}
+
+\subsubsection{LRU}
+\label{sec-5.2.2}
+
+\subsubsection{Working Set}
+\label{sec-5.2.3}
+
+\begin{itemize}
+
+\item Locality\\
+\label{sec-5.2.3.1}
+
+\end{itemize} % ends low level
+\subsubsection{Thrashing}
+\label{sec-5.2.4}
+
+\subsubsection{Belady's anomaly}
+\label{sec-5.2.5}
+
+\subsubsection{When is a process swapped out to disk}
+\label{sec-5.2.6}
+
+\subsection{Stack}
+\label{sec-5.3}
+
+\subsubsection{When is the stack full?}
+\label{sec-5.3.1}
+
+\subsection{Heap}
+\label{sec-5.4}
+
+\subsubsection{Page faults}
+\label{sec-5.4.1}
+
+\begin{itemize}
+
+\item SEGFAULT\\
+\label{sec-5.4.1.1}
+
+\end{itemize} % ends low level
+\subsubsection{How does malloc and free work?}
+\label{sec-5.4.2}
+
+\begin{itemize}
+
+\item Memory Selection Algorithms\\
+\label{sec-5.4.2.1}
+
+\begin{itemize}
+
+\item Implicit Free Lists\\
+\label{sec-5.4.2.1.1}
+
+
+\item Explicit Free Lists\\
+\label{sec-5.4.2.1.2}
+
+
+\item Segregated Free Lists\\
+\label{sec-5.4.2.1.3}
+
+
+\item Buddy System\\
+\label{sec-5.4.2.1.4}
+
+\end{itemize} % ends low level
+\end{itemize} % ends low level
+\subsection{Virtual Memory and Paging/Segmentation}
+\label{sec-5.5}
+
+\subsubsection{Virtual vs Physical memory}
+\label{sec-5.5.1}
+
+\begin{itemize}
+
+\item Advantages of virtual memory\\
+\label{sec-5.5.1.1}
+
+\end{itemize} % ends low level
+\subsubsection{Paging vs Segmentation}
+\label{sec-5.5.2}
+
+\subsubsection{Virtual to Physical address translation in multi-level page tables}
+\label{sec-5.5.3}
+
+\begin{itemize}
+
+\item MMU\\
+\label{sec-5.5.3.1}
+
+\begin{itemize}
+
+\item Example: How does the virtual memory subsystem know the exact location where a particular page is stored on disk, if it is swapped out of memory?\\
+\label{sec-5.5.3.1.1}
+
+\end{itemize} % ends low level
+
+\item TLB\\
+\label{sec-5.5.3.2}
+
+
+\item Algorithm for address translation goes here\\
+\label{sec-5.5.3.3}
+
+\begin{itemize}
+
+\item Example: Assuming a 32-bit address space and 4 KB pages, what is the virtual page \# and offset for virtual address 0xd34f6a5?\\
+\label{sec-5.5.3.3.1}
+
+
+\item Example: Suppose we have a 64-bit address space and 16 KB pages. How big is the page table of a single process? What if it was multi-level?\\
+\label{sec-5.5.4.1}
+
+\end{itemize} % ends low level
+\end{itemize} % ends low level
+\subsubsection{Advantages of multi-level page tables}
+\label{sec-5.5.4}
+
+\subsubsection{Determining optimal page size}
+\label{sec-5.5.5}
+
+\subsubsection{Calculating the number of pages per page table}
+\label{sec-5.5.6}
+
+\section{Threads and Processes}
+\label{sec-6}
+
+\subsection{Process}
+\label{sec-6.1}
+
+\subsubsection{Creating a process using fork()}
+\label{sec-6.1.1}
+
+\begin{itemize}
+\item Starts new process with an incremented PC count
+\end{itemize}
+\subsubsection{exec()}
+\label{sec-6.1.2}
+
+\begin{itemize}
+
+\item Example: Explain how a shell process can execute a different program.\\
+\label{sec-6.1.2.1}
+
+\end{itemize} % ends low level
+\subsubsection{Orphans and Zombies}
+\label{sec-6.1.3}
+
+\subsection{Threads}
+\label{sec-6.2}
+
+\subsubsection{Shared Resources}
+\label{sec-6.2.1}
+
+\subsubsection{Creating a thread using pthread$_{\mathrm{create}}$()}
+\label{sec-6.2.2}
+
+\subsubsection{pthread$_{\mathrm{detach}}$() and pthread$_{\mathrm{join}}$}
+\label{sec-6.2.3}
+
+\begin{itemize}
+
+\item Example: Explain how one process can wait on the return value of another process.\\
+\label{sec-6.2.3.1}
+
+\end{itemize} % ends low level
+\subsubsection{Exiting a thread with out a thread library exit call}
+\label{sec-6.2.4}
+
+\begin{itemize}
+
+\item How it happens: calling exit(), return, or termination\\
+\label{sec-6.2.4.1}
+
+
+\item Problems\\
+\label{sec-6.2.4.2}
+
+\end{itemize} % ends low level
+\subsubsection{What are the maximum number of threads that can be run concurrently? How is this number determined?}
+\label{sec-6.2.5}
+
+\subsection{Context Switching}
+\label{sec-6.3}
+
+\subsubsection{In Processes}
+\label{sec-6.3.1}
+
+\subsubsection{In Threads}
+\label{sec-6.3.2}
+
+\subsubsection{Kernel-Space vs User-Space thread managment}
+\label{sec-6.3.3}
+
+\subsection{Memory Consistency}
+\label{sec-6.4}
+
+\subsubsection{Shared memory}
+\label{sec-6.4.1}
+
+\begin{itemize}
+
+\item Example: X is a global variable and initially X=0. What are the possible values for X after two threads both try to increment X?\\
+\label{sec-6.4.1.1}
+
+\end{itemize} % ends low level
+\subsubsection{Locking, Blocking, and Semaphores}
+\label{sec-6.4.2}
+
+\begin{itemize}
+
+\item Mutual exclusion\\
+\label{sec-6.4.2.1}
+
+
+\item Semaphore and mutex\\
+\label{sec-6.4.2.2}
+
+
+\item Designing a a lock system for concurrent programming\\
+\label{sec-6.4.2.3}
+
+\end{itemize} % ends low level
+\subsubsection{POSIX wait()}
+\label{sec-6.4.3}
+
+\section{Scheduling}
+\label{sec-7}
+
+\subsection{Five state model: started ,running, ready, blocked, terminated}
+\label{sec-7.1}
+
+\subsection{Scheduling schemes}
+\label{sec-7.2}
+
+\subsubsection{Wait Time}
+\label{sec-7.2.1}
+
+\subsubsection{Turnaround time}
+\label{sec-7.2.2}
+
+\subsubsection{Response time}
+\label{sec-7.2.3}
+
+\subsubsection{Preempting}
+\label{sec-7.2.4}
+
+\subsubsection{Quanta}
+\label{sec-7.2.5}
+
+\subsubsection{Fairness, progress guarentees, and interactive systems}
+\label{sec-7.2.6}
+
+\subsubsection{Schemes}
+\label{sec-7.2.7}
+
+\begin{itemize}
+
+\item Round Robin\\
+\label{sec-7.2.7.1}
+
+\begin{itemize}
+
+\item Quanta length vs performance\\
+\label{sec-7.2.7.1.1}
+
+\end{itemize} % ends low level
+
+\item First Come First Serve (FCFS)\\
+\label{sec-7.2.7.2}
+
+
+\item Pre-emptive SJF\\
+\label{sec-7.2.7.3}
+
+
+\item Non-preemptive\\
+\label{sec-7.2.7.4}
+
+\begin{itemize}
+
+\item Smallest Initial response time?\\
+\label{sec-7.2.7.4.1}
+
+
+\item Smallest Initial wait?\\
+\label{sec-7.2.7.4.2}
+
+
+\item Smallest Initial turnaround time?\\
+\label{sec-7.2.7.4.3}
+
+
+\item smalled average wait time?\\
+\label{sec-7.2.7.4.4}
+
+
+\item longest average wait time?\\
+\label{sec-7.2.7.4.5}
+
+\end{itemize} % ends low level
+\end{itemize} % ends low level
+\subsection{Execution Order}
+\label{sec-7.3}
+
+\subsection{Starvation}
+\label{sec-7.4}
+
+\subsection{Blocking}
+\label{sec-7.5}
+
+\subsection{Signals and Interrupts}
+\label{sec-7.6}
+
+\subsubsection{Explain how re-entrant functions are used in C.}
+\label{sec-7.6.1}
+
+\subsection{Convoy Effect}
+\label{sec-7.7}
+
+
+\end{document}

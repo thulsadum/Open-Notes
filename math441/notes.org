@@ -1,0 +1,108 @@
+Diff Eq Notes
+
+* Initial Definitions
+  - Definition:
+    - DE is an equation that describes the properties of an unkown
+    function(s)
+
+  - Ordinary DE:
+    - describes functions of 1 variable
+
+  - Partial DE:
+    - describes multivariable functions
+
+  - Notation:
+    - independent variable: y
+    - dependent variable: t
+* Operator Notation
+  Definition:
+  $\frac{d^n}{dt^n} = D^n \rightarrow f^{(n)} = D^n(f)$
+* Linear Diff Equations
+  Definition: For an operator,L, the DE: L(y) = 0 is linear iff:
+  - L(y_1+y_1) = L(y_1)+L(y_2)
+  - L(cy) = cL(y)
+
+* Initial Value Problems
+  \begin{displaymath}
+  IVP = \left \{
+  \begin{array}{lr}
+  DE\\
+  y_0 = C
+  \end{array}
+  \right.
+  \end{displaymath}
+
+* Seperable DE
+** Definition
+   - Can be written as f(y)dy = g(t)dt
+   - Technique for Solving: $\int f(y)dy = \int g(t)dt$
+** Homogenous Equations
+* Exact Equations
+  - \Psi(x,y) = \Psi( f(x), y(x) )
+  - \Psi_x = \Psi_f f_x + \Psi_y y_x
+  - Technique for Solving:
+    - Suppose DE is of the form: M(x,y) + N(x,y) y_x = 0
+    - If M_y = N_x, then DE is an Exact Eq, solve for \Psi
+* First Order Linear Eq
+** Integration Factors
+** Bernoulli's equations
+** Existence and Uniquness Theorem
+*** Picard Iteration
+*** Lipsichitz Condition
+*** Uniform Convergence
+**** Weirstress M Test
+*** Existence Theorem
+*** Uniqueness Theorm
+* Autonomous Equations
+* Second Order Linear Eq
+  Definition:
+
+** Theorm: The general solution to Second Order Linear Eq
+   Claim: The general soln of eq1$\equiv [y'' + p(t)y' + g(t)y = 0]$  is y = c_1
+   y_1 +c_2 y_2\\
+
+*** Proof:
+**** Q1: 
+     Given y_1 and y_2 are solutions, why is c_1 y_1+ c_2 y_2 a solution
+       	- Eq1 = D^2(y) + p(t)D(y)+q(t)y = 0
+       	- Eq1 = [D^2 + p(t)D + q(t)]y = 0
+       	- Let L = [D^2 + p(t)D + q(t)] \rightarrow eq1 \equiv L(y)=0
+       	- Notice the L is a linear operator and thus obeys the
+          superposition principle
+       	- Thus $y = c_1 y_1 +c_2 y_2$ is a solution $\square$
+**** Q2: 
+     Given 2 indepent solutions y_1 and y_2 for the DE, $\forall$ IVP and its unique solution y, $\exists (c_1,c_2)
+       	\in \mathbb{C}^2$ s.t. $y=c_1y_1 + c_2y_2$
+***** The Wronskian:
+W(f,g)(t) = \left |
+\begin{array}{cccc}
+	 f_1(x) & f_2(x) & \cdots & f_n(x) \\
+	 f_1'(x) & f_2'(x) & \cdots & f_n' (x)\\
+	 \vdots & \vdots & \ddots & \vdots \\
+	 f_1^{(n-1)}(x)& f_2^{(n-1)}(x) & \cdots & f_n^{(n-1)}(x)
+\end{array} \right |,\qquad x\in I
+***** Sub Proof of Q2
+      Consider IVP: $y'' + py' + qy = 0$
+      - Take c_1 and c_2 s.t.: 
+	$\left ( 
+	\begin{array}{c}
+	 a \\
+	 b
+	\end{array} \right ) =
+ 	\left ( 
+	\begin{array}{cc}
+	 y_1 & y_2 \\
+	 y_1' & y_2' \\
+	\end{array} \right ) _{t=t_0}
+	\left (
+	\begin{array}{c}
+	c_1\\
+	c_2
+	\end{array} \right )$
+      - Notice this is only solvable iff $W(y_1,y_2)_{t=t_0} \neq 0$
+      - Theorm: If u and v solve $y'' + p(t)y' + g(t)y = 0$ then
+        W(u,v)=0 for all t or W is never 0
+
+** Second Order Homogenous Eq
+
+** Complex Number Review
