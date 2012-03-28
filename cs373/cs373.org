@@ -243,3 +243,67 @@ Proof:
      Construct G_3 = (V_1 \cup {S_3}, \Sigma_1, R_1 \cup {S_2
      \rightarrow S_1 S_2 | \epsilon } )
 ** CYK algorithm
+*** Dynamic Programming (sequential optimization)
+    - Richard Bellman 1950
+    - sequential decision making
+    - extensive form games
+    - optimal control theory
+    - Dijkstra's Algorithm
+
+*** Algorithm
+    Is G \Rightarrow^{ \star } w true or false?
+   
+    G = (V, \Sigma, R, S),
+    Put G into Chomsky Normal Form,
+    w \in \Sigma^{ \star }
+
+    Cocke, Schwartz, Younger, Kasame
+  
+#+BEGIN_SRC python
+  """
+  Preconditions:
+  let the input be a string S consisting of n characters: a1 ... an.
+  let the grammar contain r nonterminal symbols R1 ... Rr.
+  This grammar contains the subset Rs which is the set of start symbols.
+  let P[n,n,r] be an array of booleans. Initialize all elements of P to false.
+  """
+  
+  for each i = 1 to n:
+      for each unit production Rj -> ai:
+          P[i][1][j] = true
+  for each i = 2 to n: # Length of span
+      for j in range(1,n-i+2): # Start of span
+          for k in range(1,i): # Partition of span
+              A = filter(RA -> RB RC, G) # A = list of productions s.t. RA -> RB RC
+              for production in A:
+                  if P[j][k][B] and P[j+k][i-k][C]:
+                      P[j][i][A] = True
+  if any P[1][n]: #x is iterated over the set s, where s are all the indices for Rs)
+      print 'S is member of language'
+  else:
+      print 'S is not member of language'
+#+END_SRC
+* Context Sensitive Grammers
+** Formal Definition of CSG and Non-Contracting Grammars
+   G = (V, \Sigma, R, S)
+
+   1) V is finite set of _variables_
+   2) \Sigma  is a finite set of _terminals_ and \Sigma \cap V =
+      \emptyset
+   3) 
+   4)  \alpha \rightarrow \beta
+   5)  | \alpha | \leq | \beta |
+
+** Normal Form Definition
+
+   3) R is a finite set of rules of the form \alpha A \beta
+      \rightarrow \alpha \gamma \beta in which A is a variable and
+      \alpha, \beta, \gamma are strings of terminals and variables.
+
+      - \alpha, \beta \in (V \cup \Sigma)^{\star}
+      - \gamma \in (V \cup \Sigma)^{\star } - {\epsilon }
+
+   4) S \in V is the start _variable_
+
+   5) One additional rule allowed S \rightarrow \epsilon and S is not
+      on the right side of any rule
