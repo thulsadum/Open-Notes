@@ -1,4 +1,4 @@
-% Created 2012-03-15 Thu 14:51
+% Created 2012-05-02 Wed 19:03
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -9,11 +9,11 @@
 \usepackage{soul}
 \usepackage{amssymb}
 \usepackage{hyperref}
-
+\usepackage{header}
 
 \title{CS 373 Notes}
 \author{}
-\date{15 March 2012}
+\date{02 May 2012}
 
 \begin{document}
 
@@ -22,7 +22,6 @@
 \setcounter{tocdepth}{3}
 \tableofcontents
 \vspace*{1cm}
-
 \section{General}
 \label{sec-1}
 
@@ -53,40 +52,60 @@
 
 
 
-\subsection{Starting off}
+\subsection{Chomsky Heirarchy}
 \label{sec-1.1}
 
-\begin{enumerate}
-\item Alphabet($\Sigma$) = finite non empty set
-\item \mathbb{N} in this class starts at 0
-\item A set X is countably infinite iff $\exists$ a bijection $f:\mathbb{N} \rightarrow X$
-\end{enumerate}
-\subsection{Strings}
+
+\begin{center}
+\begin{tabular}{rlll}
+        Type  &  Grammar            &  Rules                                                        &  Machine                          \\
+\hline
+           0  &  Unrestricted       &  $\alpha$ \rightarrow $\beta$                                 &  Turning Machines (recognizable)  \\
+           1  &  Context-Sensitive  &  $\alpha$ \rightarrow $\beta$, \abs{\beta} \geq \abs{\alpha}  &  non-det LBA                      \\
+           2  &  Context-Free       &  A \rightarrow $\alpha$                                       &  non-det PDA                      \\
+ 3$^{\star}$  &  Regular            &  A \rightarrow a, A \rightarrow aB                            &  DFA/NFA                          \\
+\end{tabular}
+\end{center}
+
+
+
+\begin{itemize}
+\item S \rightarrow $\epsilon$ also allowed, but S then cannot appear on the right side of rules
+\end{itemize}
+\subsection{Starting off}
 \label{sec-1.2}
 
 \begin{enumerate}
-\item String(w) = sequence of characted in $\Sigma$
-\item w:\{c$_i$ \in $\Sigma$ | 0 <= i <= n\}
-\item |w| = n = length of the string
-\item |w| = 0 \rightarrow w = $\epsilon$
-
-\begin{enumerate}
-\item Careful $\sigma$ \neq \emptyset
+\item Alphabet($\Sigma$) = finite non empty set
+\item $\mathbb{N}$ in this class starts at 0
+\item A set X is countably infinite iff $\exists$ a bijection $f:\mathbb{N} \rightarrow X$
 \end{enumerate}
-
-\item Substring subsequence of characters in w
-\item Concatination: w$_1$ \cdot w$_2$
-\item Reverse: w$^r$
-\item Palindrum: w = w$^r$
-\end{enumerate}
-\subsection{Language}
+\subsection{Strings}
 \label{sec-1.3}
 
 \begin{enumerate}
+\item String(w) = sequence of characted in $\Sigma$
+\item $w:\{c_i\in\Sigma |0\leq i\leq n\}$
+\item $|w|= n \equiv$ length of the string
+\item $|w| = 0 \rightarrow w = \epsilon$
+
+\begin{enumerate}
+\item Careful $\sigma \neq \emptyset$
+\end{enumerate}
+
+\item Substring subsequence of characters in w
+\item Concatination: $w_1 \cdot w_2$
+\item Reverse: $w^r$
+\item Palindrum: $w = w^r$
+\end{enumerate}
+\subsection{Language}
+\label{sec-1.4}
+
+\begin{enumerate}
 \item Language(L) = set of strings
-\item $\Sigma$$^n$ = \{w : |w| = n\}
-\item $\Sigma$$^0$ = \{ $\epsilon$ \}
-\item $\Sigma$^* = $\cup$$^n$$_{\mathrm{i=0}}$ $\Sigma$$^i$, Language of all strings
+\item $\Sigma^n = \{w : |w| = n\}$
+\item $\Sigma^0 = \{ \epsilon \}$
+\item $\Sigma^{\star} = \cup^n_{i=0} \Sigma^i$, Language of all strings
 \end{enumerate}
 \section{Regular Languages}
 \label{sec-2}
@@ -109,9 +128,9 @@
 \item Formal Definition
 
 \begin{enumerate}
-\item a Language A $\in \Sigma^*$ is called regular iff there
+\item a Language A $\in \Sigma^{\star}$ is called regular iff there
         exists a DFA ,M, s.t. $L(M) = A$
-\item \A DFA is a 5 tuple \$ M = (Q,$\Sigma$, $\delta$, q$_0$, F)\$
+\item A DFA is a 5 tuple $M = (Q,\Sigma, \delta, q_0, F)$
 
 \begin{enumerate}
 \item Q is a finte set of states
@@ -128,9 +147,9 @@
 
 \begin{enumerate}
 \item A$_1$ and A$_2$ are regular
-\item Union: A$_1$ $\cup$ A$_2$ = A$_3$
-\item Concatenate: A$_1$ A$_2$ = A$_3$
-\item Star: A$_1$^* = A$_3$
+\item Union: $A_1 \cup A_2 = A_3$
+\item Concatenate: $A_1 A_2 = A_3$
+\item Star: $A_1^{\star} = A_3$
 \end{enumerate}
 
 \end{enumerate}
@@ -141,7 +160,7 @@
 \item Formal Definition
 
 \begin{enumerate}
-\item M = (Q,$\Sigma$,$\delta$,q$_0$,F)
+\item $M = (Q,\Sigma,\delta,q_0,F)$
 
 \begin{enumerate}
 \item Q = finite set of states
@@ -179,12 +198,12 @@
       following is true:
 
 \begin{enumerate}
-\item R = a \in $\Sigma$
-\item R = $\sigma$
-\item $R = \emptyset$
-\item \$R = R$_1$ $\cup$ R$_2$,\$ given $R_1 \wedge R_2$ are regex
-\item \$R = R$_1$ R$_2$,\$ given $R_1 \wedge R_2$ are regex
-\item $R = R^*$
+\item $R=a\in\Sigma$
+\item $R=\sigma$
+\item $R=\emptyset$
+\item $R=R_1\cup R_2$, given $R_1$ and $R_2$ are regex
+\item $R = R_1 R_2$, given $R_1 \wedge R_2$ are regex
+\item $R = R^{\star}$
 \end{enumerate}
 
 \item Order of operations
@@ -200,7 +219,7 @@
 \begin{enumerate}
 \item $a \emptyset = \emptyset$
 \item $a \sigma = \sigma$
-\item $\emptyset^* = {\sigma}$
+\item $\emptyset^{\star} = {\sigma}$
 \end{enumerate}
 
 \end{enumerate}
@@ -212,10 +231,10 @@
 
 \begin{enumerate}
 \item Q = set of all states
-\item $Q^0 = Q - {q_start, q_accept}$
-\item \underline{The} start state has out edges to every $q\in Q - {q_start}$, and
+\item $Q^0 = Q - {q_{start}, q_{accept}}$
+\item \underline{The} start state has out edges to every $q\in Q - {q_{start}}$, and
          no in edges
-\item \underline{The} accept state has inedges from every $q\in Q - {q_accept}$,
+\item \underline{The} accept state has inedges from every $q\in Q - {q_{accept}}$,
          and no outedges
 \item An edege exists from every $q_1\in Q^0$ to every $q_2\in Q^0$
          even if $q_1=q_2$
@@ -246,9 +265,9 @@
 \label{sec-2.6.1}
 
 \begin{itemize}
-\item A is a reg language and $A \mapsto f(A), A \subseteq E^*$
-\item A s described w. a regex and $R_a$ is a regex using $\Gamma$
-\item $\forall a \in \Sigma  a \mapsto R_a$
+\item A is a reg language and $A \mapsto f(A), A \subseteq \Sigma^{\star}$
+\item A is described w. a regex and $R_a$ is a regex using $\Gamma$
+\item $\forall a \in \Sigma a \mapsto R_a$
 \item $\epsilon \mapsto \epsilon$ and $\emptyset \mapsto \emptyset$
 \end{itemize}
 \subsubsection{Homomorphism}
@@ -273,14 +292,12 @@
    Problem: Given a DFA, M, with L(M) = A, find another DFA, M$_{\mathrm{2c}}$,
    s.t. L(M) = L(M$_2$) and |Q$_2$| is as small as possible\\
 \begin{itemize}
-\item \$$\delta$: Q $\times$ $\Sigma$ \rightarrow Q\$\\
-     $\bar{\delta(q,w)} q\in Q, w\in \Sigma^*$ \\
-     $\bar{\delta(q,w)} \equiv$ interative call on delta for all $w_i$
+\item $\delta: Q \times \Sigma \rightarrow Q$
+\item $\bar{\delta}(q,w) q\in Q, w\in \Sigma^{\star}$
+\item $\bar{\delta}(q,w) \equiv$ interative call on delta for all $w_i$
      in w
-
-     If $\exists w \in \Sigma^*$ s.t. $[\bar{\delta(p,w)} \in F$ and
-     $\delta{q,w} \notin F]$ or $[\bar{\delta(p,w)} \notin F$ and
-     $\delta{q,w} \in F]$ then p and q are distrguishable
+\item If $\exists w \in \Sigma^*$ s.t. $[\bar{\delta(p,w)} \in F$ and
+     $\delta{q,w} \notin F]$ or $[\bar{\delta}(p,w) \notin F$ and $\delta{q,w} \in F]$ then p and q are distrguishable
 \end{itemize}
 \subsubsection{Algorithm}
 \label{sec-2.7.2}
@@ -304,18 +321,71 @@ for (p,q) in B:
 \begin{enumerate}
 \item $A_1 \cup A_2$
 \item $A_1 - A_2$
-\item $\bar{A_1} = \Sigma^* - A_1$
+\item $\bar{A_1} = \Sigma^{\star} - A_1$
 \item $A_1 \cap A_2$
 \item Symmetric Diff
 \item $A_1 A_2$
-\item $A_1^*$
+\item $A_1^{\star}$
 \item $A^r$
 \item Reg langagues are clased under subsitution
 \item Reg langagues are clased under homomorphism
 \item Reg langagues are clased under inverse homorphism
 \item Reg langagues are clased under
 \end{enumerate}
-\section{Context Free Grammars}
+\subsection{Right Invariant Equivilance}
+\label{sec-2.9}
+
+   Def: An equivilance relation is called \underline{right invariant} or
+   \underline{concatenation invariant} iff $x\sim y \implies \forall w \in
+   \Sigma^{\star} xw\sim yw$
+\subsection{Myhill-Nerod Theorem}
+\label{sec-2.10}
+
+\begin{itemize}
+\item \underline{Claim}: The following statments are equivalent
+
+\begin{enumerate}
+\item A is a regular language
+\item $\exists$ a right invariant equivilance relation that has a
+      finite index, and $A=$ union of some of the equivilance classes
+\item $\stackrel{A}{\sim}$ is of finite index
+\end{enumerate}
+
+\end{itemize}
+   
+\begin{itemize}
+\item \underline{Proof}: $1\rightarrow 2$
+
+\begin{enumerate}
+\item Let M be any DFA, $M=(Q,\Sigma,\delta,q_0,F)$ s.t. $A=L(M)$
+\item Let $\stackrel{A}{\sim}$ be define as in Right Invariant Equivilance
+\item The number of equivilance classes is $\leq |Q|$
+\item A is then the union of classes that correspond to F $\square$
+\end{enumerate}
+
+\item \underline{Proof}: $2\rightarrow 3$
+
+\begin{enumerate}
+\item Show that the partition of $\Sigma^{\star}$ produced by a right
+      invariant is a refinement of the parition induced by $\stackrel{A}{\sim}$
+\item Since $\sim$ is right invariant, $\forall z\in
+       \Sigma^{\star},xz\sim yz$ which implies that $xz\in A$ iff $yz
+       \in A$ which by definition implies $x\stackrel{A}{\sim} y$
+\end{enumerate}
+
+\item \underline{Proof}: $3\rightarrow 1$
+
+\begin{enumerate}
+\item Construct a DFA using $\stackrel{A}{\sim}$
+\item Let $Q \equiv$ set of equivilance classes of $\stackrel{A}{\sim}$
+\item Let $[x]\in \Sigma^{\star}, [x]\in Q$, denote the equivilance
+       class that x belongs to
+\item Let $\delta([x],a)\equiv [xa]$, by def of $\stackrel{A}{\sim}$
+\item Let $q_0 \equiv [\epsilon]$ and $F\equiv{[x] : x\in A}$
+\end{enumerate}
+
+\end{itemize}
+\section{Context Free Langagues}
 \label{sec-3}
 
 \subsection{Formal Definition:}
@@ -349,13 +419,13 @@ for (p,q) in B:
 \item S is the \underline{start variable}
 \end{enumerate}
 
-\item $L(G) = \{w\in \Sigma^* | S \Rightarrow^* w\}$
+\item $L(G) = \{w\in \Sigma^{\star} | S \productionstar w\}$
 \item Notation:
 
 \begin{enumerate}
 \item Variables: A,B,C\ldots{}
-\item Terminal: a,b,c,\ldots{}0,1,\$ $\epsilon$ \$
-\item $U \Rightarrow^* V$ is defined as $\exists$ sequence
+\item Terminal: a,b,c,\ldots{}0,1,$\epsilon$
+\item $U \productionstar V$ is defined as $\exists$ sequence
          $U_1..U_k$ , s.t. $U \Rightarrow U_1 \Rightarrow  U_2
          \Rightarrow ... \Rightarrow U_k \rightarrow V$
 \end{enumerate}
@@ -427,22 +497,53 @@ for (p,q) in B:
 \subsection{Pumping Lemma for CFL's}
 \label{sec-3.6}
 
+   \underline{Theorem}: If A is a CFL, then $\exists p \geq 0, p\in\mathbb{Z}
+   s.t. \forall s\in A : |S| \geq p \implies \exists$ a paritition
+   $s=uvxyz$ that satisfy the follow conditions 
+
+\begin{enumerate}
+\item $\forall i \geq 0, uv^ixy^iz \in A$
+\item $|vy| > 0$
+\item $|vxy| \leq p$
+\end{enumerate}
+   \underline{Proof}:
+\begin{enumerate}
+\item Let G be a CFG s.t. $A=L(G)$
+\item Let $b$ be the max length of the right side of a rule $\in R$
+      and assume $b \geq 2$
+
+\begin{enumerate}
+\item If $b < 2$ the language must be finite thus the pumping lemma
+         is trivially true
+\end{enumerate}
+
+\item Consider the derivation tree if the tree height is $h$, then the
+      length of the generated string,s, $\leq b^h$
+\item Let p = b$^{\mathrm{|V|+1}}$, where $V =$ set of variables
+\item Observe that for any $s\in A$ that $|S| \geq p \implies h
+      \geq |v|+1$
+\item Choose the `smallest' derivation tree by height for s
+\item The longest path has length $|v|+1$ and vists $|v|+2$ variables
+\item Note that $|v|<$ variables visted, thus by the \textbf{Pidgen Hole       Principle} there must be at least 1 variable repeated
+\item Thus There is a cycle in the production process strings which
+      can then be repeated an indefiniate amount of times in the form
+      $uv^ixy^iz \square$
+\end{enumerate}
 \subsection{Closure Properties of CFL's}
 \label{sec-3.7}
 
 \begin{enumerate}
-\item A$_1$ $\cap$ A$_2$
-\item A$_1$ \cdot A$_2$
-\item A$_1$$^{\star}$
+\item $A_1 \cap A_2$
+\item $A_1 \cdot A_2$
+\item $A_1^{\star}$
 \item Closure under substituion
 \end{enumerate}
 \subsubsection{Theorems for Closure}
 \label{sec-3.7.1}
 
-    Let G$_i$ = (V$_i$, $\Sigma$$_i$, R$_i$, S$_i$) for i=1,2 and A$_i$ =
-    L(G$_i$)\\
-    Without loss of generality, assume V$_1$ $\cap$ V$_2$ = \emptyset \wedge
-    S$_3$
+    Let $G_i = (V_i, \Sigma_i, R_i, S_i)$ for $i=1,2$ and $A_i = L(G_i)$ \\
+    Without loss of generality, assume $V_1 \cap V_2 = \emptyset \wedge
+    S_3$
     
 \begin{itemize}
 
@@ -450,35 +551,450 @@ for (p,q) in B:
 \label{sec-3.7.1.1}
 
 Proof:
-
-    Let G$_i$ = (V$_i$, $\Sigma$$_i$, R$_i$, S$_i$) for i=1,2 and A$_i$ =
-    L(G$_i$)\\
-    Without loss of generality, assume V$_1$ $\cap$ V$_2$ = \emptyset \wedge
-     S$_3$
-    $\notin$ V$_1$ $\cup$ V$_2$
-    
-    Construct G$_3$ = (V$_1$ $\cup$ V$_2$ $\cup$ \{S$_3$\}, $\Sigma$$_1$ $\cup$ $\Sigma$$_2$,
-    R$_3$, S$_3$) with \\
-    R$_3$= R$_1$ $\cup$ R$_2$ $\cup$ \{S$_3$ \rightarrow S$_1$|S$_2$\}. \square
+\begin{enumerate}
+\item Let $G_i = (V_i, \Sigma_i, R_i, S_i)$ for $i=1,2$ and $A_i = L(G_i)$
+\item Without loss of generality, assume $V_1 \cap V_2 = \emptyset \wedge S_3 \notin V_1 \cup V_2$
+\item Construct $G_3 = (V_1 \cup V_2 \cup \{S_3\}, \Sigma_1 \cup
+       \Sigma_2, R_3, S_3)$ with $R_3= R_1 \cup R_2 \cup \{S_3 \rightarrow S_1|S_2\}. \square$
+\end{enumerate}
 
 \item Theorem: If A$_1$ and A$_2$ are CFL's then A$_1$ \cdot A$_2$ is a CFL\\
 \label{sec-3.7.1.2}
 
-     Proof:
-     
-     $\notin$ V$_1$ $\cup$ V$_2$
-     Construct G$_3$ = (V$_1$ $\cup$ V$_2$ $\cup$ \{S$_3$\}, $\Sigma$$_1$ $\cup$ $\Sigma$$_2$,
-     R$_1$ $\cup$ R$_2$ $\cup$ \{S$_3$ \rightarrow  S$_1$ S$_2$\}, S$_3$)
+     Proof:     
+\begin{enumerate}
+\item $\notin V_1 \cup V_2$
+\item Construct $G_3 = (V_1 \cup V_2 \cup \{S_3\}, \Sigma_1 \cup
+        \Sigma_2, R_1 \cup R_2 \cup \{S_3 \rightarrow S_1 S_2\}, S_3)$
+\end{enumerate}
 
 \item Theorem: If A$_1$ and A$_2$ are CFL's then  A$_1$$^{\star}$ is a CFL\\
 \label{sec-3.7.1.3}
 
      Proof:
-     Construct G$_3$ = (V$_1$ $\cup$ \{S$_3$\}, $\Sigma$$_1$, R$_1$ $\cup$ \{S$_2$
-     \rightarrow S$_1$ S$_2$ | $\epsilon$ \} )
+     Construct $G_3 = (V_1 \cup \{S_3\}, \Sigma_1, R_1 \cup \{S_2 \rightarrow S_1 S_2 | \epsilon \})$
 \end{itemize} % ends low level
 \subsection{CYK algorithm}
 \label{sec-3.8}
 
+\subsubsection{Dynamic Programming (sequential optimization)}
+\label{sec-3.8.1}
+
+\begin{itemize}
+\item Richard Bellman 1950
+\item sequential decision making
+\item extensive form games
+\item optimal control theory
+\item Dijkstra's Algorithm
+\end{itemize}
+\subsubsection{Algorithm}
+\label{sec-3.8.2}
+
+    Is $G \productionstar$ w true or false?
+   
+    $G = (V, \Sigma, R, S)$,
+    Put G into Chomsky Normal Form,
+    $w \in \Sigma^{ \star }$
+
+    Cocke, Schwartz, Younger, Kasame
+  
+
+\begin{verbatim}
+"""
+Preconditions:
+let the input be a string S consisting of n characters: a1 ... an.
+let the grammar contain r nonterminal symbols R1 ... Rr.
+This grammar contains the subset Rs which is the set of start symbols.
+let P[n,n,r] be an array of booleans. Initialize all elements of P to false.
+"""
+
+for each i = 1 to n:
+    for each unit production Rj -> ai:
+        P[i][1][j] = true
+for each i = 2 to n: # Length of span
+    for j in range(1,n-i+2): # Start of span
+        for k in range(1,i): # Partition of span
+            A = filter(RA -> RB RC, G) # A = list of productions s.t. RA -> RB RC
+            for production in A:
+                if P[j][k][B] and P[j+k][i-k][C]:
+                    P[j][i][A] = True
+if any P[1][n]: #x is iterated over the set s, where s are all the indices for Rs)
+    print 'S is member of language'
+else:
+    print 'S is not member of language'
+\end{verbatim}
+
+
+\section{Context Sensitive Languages}
+\label{sec-4}
+
+\subsection{Formal Definition:  Non-Contracting Grammars}
+\label{sec-4.1}
+
+   $G=(V,\Sigma,R,S)$
+\begin{enumerate}
+\item V is finite set of \underline{variables}
+\item $\Sigma$  is a finite set of \underline{terminals} and $\Sigma\capV=
+      \emptyset$
+\item $\alpha\rightarrow\beta$
+\item $|\alpha|\leq|\beta|$
+\end{enumerate}
+\subsection{Normal Form Definition}
+\label{sec-4.2}
+
+   3) R is a finite set of rules of the form $\alpha A\beta
+      \rightarrow\alpha\gamma\beta$ in which $A$ is a variable and
+      $\alpha,\beta,\gamma$ are strings of terminals and variables.
+
+\begin{enumerate}
+\item $\alpha,\beta\in(V\cup\Sigma)^{\star}$
+\item $\gamma\in(V\cup\Sigma)^{\star}-{\epsilon}$
+\item $S\in V$ is the start \underline{variable}
+\item One additional rule allowed $S\rightarrow \epsilon$ and $S$ is not on the right side of any rule
+\end{enumerate}
+\subsection{Linear Bounded Automaton}
+\label{sec-4.3}
+
+\subsubsection{Informal Definition}
+\label{sec-4.3.1}
+
+    Has no stack but can read/write anywhere on the input string
+\section{Turing Machines}
+\label{sec-5}
+
+\subsection{Formal Def}
+\label{sec-5.1}
+
+   A \underline{Turing Machine} is a 7-tuple $(Q,\Sigma,\Gamma,\delta,q_0,
+   q_{accept},q _{reject})$ with $Q\Sigma,\Gamma\equiv$ non empty sets
+
+\begin{itemize}
+\item Q is set of \underline{states}
+\item $\Sigma$ is the \underline{input alphabet}, which does not contain the blank
+     symbol \_
+\item $\Gamma$ is the \underline{tape alphabet}, in which $\_\in\Gamma$ and $\Sigma
+     \subset\Gamma$
+\item $\delta$ : $Q\times\Gamma\rightarrow Q\times\Gamma\times
+     \{L,R\}$ is the \underline{transition function}
+\item $q_0\in Q$ is the \underline{start state}
+\item $q_{accept}\in Q$ is the \underline{accept state}
+\item $q_{reject}\in Q$ is the \underline{reject state}
+\item $q_{accept}\neq q_{reject}$
+\end{itemize}
+\subsection{Configurations}
+\label{sec-5.2}
+
+   A configuration of the turing machine $\equiv c_i =(q_i,p_i,t_i)$,
+   where $q_i \in Q,p_i$ is the head pos, and $t_i\in \Gamma^{\star}$
+   is the tape contents.
+
+   Notice that configurations are unique, and from them given the next
+   input symbol one can determine the next configuration. i.e.
+   \begin{equation}
+   \delta(q_i,\gamma_i):(c_i,\gamma_i) \mapsto
+   (q_{i+1},p_{i+1},D_{i+1}) \mapsto c_{i+1}
+   \end{equation}
+   for $D_{i+1}\in \{L,R\}$
+   
+\subsubsection{Halting Configs}
+\label{sec-5.2.1}
+
+    If either of the following type of configs is encountered, the turning
+    machine halts and returns `accept' or `reject' respectively.
+\begin{itemize}
+
+\item Accept Config\\
+\label{sec-5.2.1.1}
+
+     \begin{equation}
+     c_{accept} \iff q_i = q_{accept}
+     \end{equation}
+
+\item Reject Config\\
+\label{sec-5.2.1.2}
+
+     \begin{equation}
+     c_{reject} \iff q_i = q_{reject}
+     \end{equation}
+
+\end{itemize} % ends low level
+\subsection{Turning Recognizable}
+\label{sec-5.3}
+
+   M is \underline{Recognizable} iff $\forall w \in L, M$
+   accepts
+\subsection{Turing Decidable}
+\label{sec-5.4}
+
+   M, is \underline{Decidable} iff $\forall w \in L, M$ accepts \underline{and}
+   $\forall w \notin L, M$ rejects
+\subsubsection{Co-Recognizablity}
+\label{sec-5.4.1}
+
+\begin{enumerate}
+\item Define: $Sigma^{\star} - A = \bar{A}$ is recognizable
+\end{enumerate}
+\begin{itemize}
+
+\item Decidablility Theorem:\\
+\label{sec-5.4.1.1}
+
+\begin{enumerate}
+\item A language is only Turing Decidable iff it is both recognizable
+        and co-recognizable
+\item If a language is not decidable then its compliment is not recognizable
+\end{enumerate}
+\end{itemize} % ends low level
+\subsection{Turing Machine Variants:}
+\label{sec-5.5}
+
+   Note that none of these add any power
+   
+\begin{itemize}
+\item Multi-Tape: $\delta:Q\times\Gamma^k\rightarrow Q\times\Gamma^k\times\{L,R\}^k$
+
+\begin{itemize}
+\item Emulate on single tape by striping and recording/marking virtual head position
+\end{itemize}
+
+\item Adding Stay: $\delta:Q\times\Gamma\rightarrow Q\times\Gamma\times\{L,R,S\}$ where S doesn't move the head
+
+\begin{itemize}
+\item Emulate by moving left and then right while not changing tape contents
+\end{itemize}
+
+\item Non-Deterministic:
+\end{itemize}
+\subsection{Universial Turing Machine}
+\label{sec-5.6}
+
+   Turing machine that take a turing machine, M, as a string encoding
+   denoted as $\langle M \rangle$
+
+\subsection{Undecidability}
+\label{sec-5.7}
+
+\subsubsection{Halting Problem}
+\label{sec-5.7.1}
+
+\begin{enumerate}
+\item Theorem: $A_{TM}$ is not Turing Decidable
+\item Proof by Contradiction:
+
+\begin{enumerate}
+\item Suppose $A_{TM}$ were decidable.
+\item Let H be a TM that decides $A_{TM}$
+
+\begin{enumerate}
+\item $H(\langle M, w \rangle) =$
+
+\begin{enumerate}
+\item accept if $w \in L(M)$
+\item reject if $w \notin L(M)$
+\end{enumerate}
+
+\end{enumerate}
+
+\item Construct a TM, D, which uses H and give the opposite result
+
+\begin{enumerate}
+\item $D \equiv$ on input $\langle M \rangle$, in which M is a
+             T.M
+
+\begin{enumerate}
+\item Run H on input $\langle M, \langle M \rangle \rangle$
+\item Return the opposite of what H outputs
+\end{enumerate}
+
+\end{enumerate}
+
+\item Therefore  $D(\langle M \rangle):$
+
+\begin{enumerate}
+\item accept if M rejects $\langle M\rangle$
+\item reject if M accepts $\langle M\rangle$
+\end{enumerate}
+
+\item Note that this implies $D(\langle D \rangle):$
+
+\begin{enumerate}
+\item accept if D rejects $\langle D\rangle$
+\item reject if D accepts $\langle D\rangle$
+\end{enumerate}
+
+\item Notice that this is a contradiction, thus H and D cannot exist
+\end{enumerate}
+
+\end{enumerate}
+\subsection{Reduction}
+\label{sec-5.8}
+
+   Using a language that is known to be undecidable prove that another
+   language is not undecidable.
+
+\subsubsection{Map Reductions}
+\label{sec-5.8.1}
+
+\begin{itemize}
+
+\item Computable Functions\\
+\label{sec-5.8.1.1}
+
+     A function $f:\Sigma^{\star} \rightarrow \Sigma^{\star}$ is
+     called \underline{computable} iff $\exists$ a TM, M, s.t. M halts $\forall
+     w\in \Sigma^{\star}$, and after halting, $f(w)$ appears alone on
+     the tape.
+
+\item Mapping reducible\\
+\label{sec-5.8.1.2}
+
+     A language A is called \underline{mapping reducible} to language B, written
+     $A \leq_M B$ iff: 
+     \begin{equation}
+     \exists (f: \Sigma^{\star} \rightarrow
+     \Sigma^{\star})
+     , \forall w \in \Sigma^{\star} : [w \in A \iff
+     f(w) \in B ]
+     \end{equation}
+\begin{itemize}
+
+\item Theorems\\
+\label{sec-5.8.1.2.1}
+
+\begin{enumerate}
+\item Note the rule of thumb for these theorems is that $\leq_M$
+         more or less reflects the Chomsky Heirarchy:
+\item \textbf{Theorem}: $[A\leq_M B] \implies$ [If B is Turing Decidable, then A is
+         turing Decidable]
+\item \textbf{Collary}: $[A\leq_M B] \implies$ [If A is Turing Undecidable, then B
+         is Turing Undecidable]
+\item \textbf{Theorem}: $[A\leq_M B] \implies$ [If B is Turing
+         Recognizable then A is Turing Recognizable]
+\item \textbf{Collary}: $[A\leq_M B] \implies$ [If A is Turing
+         Unrecognizable then B is Turing Unrecognizable]
+\end{enumerate}
+\end{itemize} % ends low level
+\end{itemize} % ends low level
+\subsubsection{Rice's Theorem:}
+\label{sec-5.8.2}
+
+\begin{enumerate}
+\item If P is a set of TM's with a property that satisfies:
+
+\begin{enumerate}
+\item $\forall$ TM's $M$ and $M_2$ s.t. $L(M_1) = L(M_2)$,
+          $\langle M_1 \rangle \in P$ iff $\langle M_2 \rangle \in P$
+\item $\exists$ TM M$_1$ and M$_2$ for which $\langle M_1 \rangle \in
+          P$ and $\langle M_2 \rangle \notin P$
+\end{enumerate}
+
+\item Then the language of P is \underline{not} Turing Decidable
+\end{enumerate}
+\section{Kolmogorov Complexity}
+\label{sec-6}
+
+\begin{itemize}
+\item How `Small'(state number) of a turing machine is needed to
+    generate a given string
+\end{itemize}
+\section{Complexity Theory:}
+\label{sec-7}
+
+\subsection{Definition:}
+\label{sec-7.1}
+
+\begin{enumerate}
+\item \textbf{Time Complexity}: How many steps does a Turing machine take to decide?
+\item \textbf{Space Complexity}: How much space does a turing machine need on the tape to decide?
+\item Let $f(n) \equiv$ the max number of steps for a TM to decide w,
+      with $n=|w|$
+
+\begin{enumerate}
+\item $f(n) = O(g(n)) \iff \exists (c,n_0) \in \mathbb{R} \times \mathbb{Z}$ s.t. $\forall n \geq
+         f(n), f(n) \leq c g(n)$
+\item Which is equivelent to: 
+         \begin{equation}
+         \forall w \in \Sigma^{\star}: \abs{w} \geq n_0 \iff f(\abs{w}) \leq c g(\abs{w})
+         \end{equation}
+\end{enumerate}
+
+\end{enumerate}
+\subsection{Complexity Classes}
+\label{sec-7.2}
+
+\begin{enumerate}
+\item Let $t: \mathbb{N} \rightarrow \mathbb{N}$ be a function
+\item Let $D \equiv$ set of all decidable TMs
+\item Let $TIME[t(n)] \equiv {A \in D | \exists}$ a TM that decides A
+      in $O(t(n))$ steps
+\end{enumerate}
+\subsubsection{P vs NP}
+\label{sec-7.2.1}
+
+\begin{itemize}
+
+\item P\\
+\label{sec-7.2.1.1}
+
+     \begin{equation}
+     P \equiv \cup_{k\in \mathbb{N}} TIME(n^k)
+     \end{equation}
+\begin{enumerate}
+\item Notice that $TIME(n^k) \subset TIME(n^{k+1})$
+\item Thus $P =$ all language for which $\exists$ a TM that decides
+        in polynomial time
+\end{enumerate}
+
+\item NP\\
+\label{sec-7.2.1.2}
+
+     \begin{equation}
+     NP \equiv \cup_{k\in \mathbb{N}} NTIME(n^k)
+     \end{equation}
+\begin{enumerate}
+\item $NTIME(t(n)) \equiv \{A\in D | \exists$ a nondeterministic TM
+        that decides A in $O(t(n))$ steps\}
+\item Note that this appears to be equivlent to verification via bruteforce
+
+\begin{enumerate}
+\item $\textbf{Satisfyability Problem}$:
+           A language $A\in NP \iff A$ is polinomially \underline{verifiable}.
+
+\begin{enumerate}
+\item $A$ is \underline{verifiable} iff $\exists$ a poly-time DTM that
+              takes input $w$ for $A$ and the \underline{certificate} $c$ and
+              decides if $w \in A$
+\end{enumerate}
+
+\end{enumerate}
+
+\end{enumerate}
+
+\item Million Dollar Question\\
+\label{sec-7.2.1.3}
+
+\begin{enumerate}
+\item Does $P=NP$ ?
+\end{enumerate}
+
+\item Hardest NP problems\\
+\label{sec-7.2.1.4}
+
+\begin{enumerate}
+\item A Problem, P, is \underline{NP-Complete} iff:
+
+\begin{enumerate}
+\item $P\in NP$
+\item $\forall A \in NP, A \leq_P P$
+
+\begin{enumerate}
+\item Where $\leq_P$ is a mapping reduction where $f$ is
+              computable in polynomial time
+\end{enumerate}
+
+\end{enumerate}
+
+\end{enumerate}
+\end{itemize} % ends low level
 
 \end{document}
