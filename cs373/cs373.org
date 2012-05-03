@@ -407,6 +407,12 @@ Proof:
 ** Turing Decidable
    M, is _Decidable_ iff $\forall w \in L, M$ accepts _and_
    $\forall w \notin L, M$ rejects
+*** Co-Recognizablity
+    1. Define: $Sigma^{\star} - A = \bar{A}$ is recognizable
+**** Decidablility Theorem:
+     1. A language is only Turing Decidable iff it is both recognizable
+	and co-recognizable
+     2. If a language is not decidable then its compliment is not recognizable
 ** Turing Machine Variants:
    Note that none of these add any power
    
@@ -415,5 +421,116 @@ Proof:
    - Adding Stay: $\delta:Q\times\Gamma\rightarrow Q\times\Gamma\times\{L,R,S\}$ where S doesn't move the head
      - Emulate by moving left and then right while not changing tape contents
    - Non-Deterministic:
+** Universial Turing Machine
+   Turing machine that take a turing machine, M, as a string encoding
+   denoted as $\langle M \rangle$
 
+** Undecidability
+*** Halting Problem
+    1. Theorem: $A_{TM}$ is not Turing Decidable
+    2. Proof by Contradiction:
+       1. Suppose $A_{TM}$ were decidable.
+       2. Let H be a TM that decides $A_{TM}$
+	  1. $H(\langle M, w \rangle) =$ 
+	     1. accept if $w \in L(M)$
+	     2. reject if $w \notin L(M)$
+       3. Construct a TM, D, which uses H and give the opposite result
+	  1. $D \equiv$ on input $\langle M \rangle$, in which M is a
+             T.M
+	     1. Run H on input $\langle M, \langle M \rangle \rangle$
+	     2. Return the opposite of what H outputs
+       4. Therefore  $D(\langle M \rangle):$
+	  1. accept if M rejects $\langle M\rangle$
+	  2. reject if M accepts $\langle M\rangle$
+       5. Note that this implies $D(\langle D \rangle):$
+	1. accept if D rejects $\langle D\rangle$
+	2. reject if D accepts $\langle D\rangle$
+       6. Notice that this is a contradiction, thus H and D cannot exist
+
+** Reduction
+   Using a language that is known to be undecidable prove that another
+   language is not undecidable.
+
+*** Map Reductions
+**** Computable Functions
+     A function $f:\Sigma^{\star} \rightarrow \Sigma^{\star}$ is
+     called _computable_ iff $\exists$ a TM, M, s.t. M halts $\forall
+     w\in \Sigma^{\star}$, and after halting, $f(w)$ appears alone on
+     the tape.
+**** Mapping reducible
+     A language A is called _mapping reducible_ to language B, written
+     $A \leq_M B$ iff: 
+     \begin{equation}
+     \exists (f: \Sigma^{\star} \rightarrow
+     \Sigma^{\star})
+     , \forall w \in \Sigma^{\star} : [w \in A \iff
+     f(w) \in B ]
+     \end{equation}
+***** Theorems
+      1. Note the rule of thumb for these theorems is that $\leq_M$
+         more or less reflects the Chomsky Heirarchy:
+      2. \textbf{Theorem}: $[A\leq_M B] \implies$ [If B is Turing Decidable, then A is
+         turing Decidable]
+      3. \textbf{Collary}: $[A\leq_M B] \implies$ [If A is Turing Undecidable, then B
+         is Turing Undecidable]
+      4. \textbf{Theorem}: $[A\leq_M B] \implies$ [If B is Turing
+         Recognizable then A is Turing Recognizable]
+      5. \textbf{Collary}: $[A\leq_M B] \implies$ [If A is Turing
+         Unrecognizable then B is Turing Unrecognizable]
+*** Rice's Theorem:
+    1. If P is a set of TM's with a property that satisfies:
+       1. $\forall$ TM's $M$ and $M_2$ s.t. $L(M_1) = L(M_2)$,
+          $\langle M_1 \rangle \in P$ iff $\langle M_2 \rangle \in P$
+       2. $\exists$ TM M_1 and M_2 for which $\langle M_1 \rangle \in
+          P$ and $\langle M_2 \rangle \notin P$
+    2. Then the language of P is _not_ Turing Decidable
+* Kolmogorov Complexity
+  - How 'Small'(state number) of a turing machine is needed to
+    generate a given string
+
+* Complexity Theory:
+** Definition:
+   1. \textbf{Time Complexity}: How many steps does a Turing machine take to decide?
+   2. \textbf{Space Complexity}: How much space does a turing machine need on the tape to decide?
+   3. Let $f(n) \equiv$ the max number of steps for a TM to decide w,
+      with $n=|w|$
+      1. $f(n) = O(g(n)) \iff \exists (c,n_0) \in \mathbb{R} \times \mathbb{Z}$ s.t. $\forall n \geq
+         f(n), f(n) \leq c g(n)$
+      2. Which is equivelent to: 
+	 \begin{equation}
+	 \forall w \in \Sigma^{\star}: \abs{w} \geq n_0 \iff f(\abs{w}) \leq c g(\abs{w})
+	 \end{equation}
+** Complexity Classes
+   1. Let $t: \mathbb{N} \rightarrow \mathbb{N}$ be a function
+   2. Let $D \equiv$ set of all decidable TMs
+   3. Let $TIME[t(n)] \equiv {A \in D | \exists}$ a TM that decides A
+      in $O(t(n))$ steps
+*** P vs NP
+**** P
+     \begin{equation}
+     P \equiv \cup_{k\in \mathbb{N}} TIME(n^k)
+     \end{equation}
+     2. Notice that $TIME(n^k) \subset TIME(n^{k+1})$
+     3. Thus $P =$ all language for which $\exists$ a TM that decides
+       	in polynomial time
+**** NP
+     \begin{equation}
+     NP \equiv \cup_{k\in \mathbb{N}} NTIME(n^k)
+     \end{equation}
+     1. $NTIME(t(n)) \equiv \{A\in D | \exists$ a nondeterministic TM
+        that decides A in $O(t(n))$ steps}
+     2. Note that this appears to be equivlent to verification via bruteforce
+	1. $\textbf{Satisfyability Problem}$:
+	   A language $A\in NP \iff A$ is polinomially _verifiable_.
+	   1. $A$ is _verifiable_ iff $\exists$ a poly-time DTM that
+              takes input $w$ for $A$ and the _certificate_ $c$ and
+              decides if $w \in A$ 
+**** Million Dollar Question
+     1. Does $P=NP$ ?
+**** Hardest NP problems
+     1. A Problem, P, is _NP-Complete_ iff:
+	1. $P\in NP$
+	2. $\forall A \in NP, A \leq_P P$
+	   1. Where $\leq_P$ is a mapping reduction where $f$ is
+              computable in polynomial time
 
