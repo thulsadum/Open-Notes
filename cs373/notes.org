@@ -1,0 +1,536 @@
+#+LaTeX_HEADER: \usepackage{header}
+CS 373 Notes
+* General
+
+| Sizes                | Examples                          | Countable? |
+|----------------------+-----------------------------------+------------|
+| Finite               | {a,b}                             | yes        |
+| Countable Infinite   | \mathbb{N},\mathbb{Z}, \mathbb{Q} | yes        |
+| Uncountable Infinity | \mathbb{R}, Pow(\mathbb{R})       | no         |
+
+
+| name                  | descriptipn | Machine |
+|-----------------------+-------------+---------|
+| regular               | LRk         | D PDA   |
+| context free language | CFG         | PDA     |
+
+** Chomsky Heirarchy
+|      Type | Grammar           | Rules                                                   | Machine                         |
+|-----------+-------------------+---------------------------------------------------------+---------------------------------|
+|         0 | Unrestricted      | \alpha \rightarrow \beta                                | Turning Machines (recognizable) |
+|         1 | Context-Sensitive | \alpha \rightarrow \beta, \abs{\beta} \geq \abs{\alpha} | non-det LBA                     |
+|         2 | Context-Free      | A \rightarrow \alpha                                    | non-det PDA                     |
+| 3^{\star} | Regular           | A \rightarrow a, A \rightarrow aB                       | DFA/NFA                         |
+
+- S \rightarrow \epsilon also allowed, but S then cannot appear on the right side of rules
+** Starting off
+     1) Alphabet($\Sigma$) = finite non empty set
+     2) $\mathbb{N}$ in this class starts at 0
+     3) A set X is countably infinite iff $\exists$ a bijection $f:\mathbb{N} \rightarrow X$
+** Strings
+   1) String(w) = sequence of characted in \Sigma
+   2) $w:\{c_i\in\Sigma |0\leq i\leq n\}$
+   3) $|w|= n \equiv$ length of the string
+   4) $|w| = 0 \rightarrow w = \epsilon$
+      1) Careful $\sigma \neq \emptyset$
+   5) Substring subsequence of characters in w
+   6) Concatination: $w_1 \cdot w_2$
+   7) Reverse: $w^r$
+   8) Palindrum: $w = w^r$
+** Language
+    1) Language(L) = set of strings
+    2) $\Sigma^n = \{w : |w| = n\}$
+    3) $\Sigma^0 = \{ \epsilon \}$
+    4) $\Sigma^{\star} = \cup^n_{i=0} \Sigma^i$, Language of all strings
+* Regular Languages
+** Deterministic Finite Automotas
+  1) Finite state machine (M)
+  2) Takes a string of inputs
+  3) 2 types of states
+     1) Accept
+     2) Deny
+  4) There is 1 start state
+  5) The set of all strings accepted by language of M or L(A)
+  6) Formal Definition
+     1) a Language A $\in \Sigma^{\star}$ is called regular iff there
+        exists a DFA ,M, s.t. $L(M) = A$
+     2) A DFA is a 5 tuple $M = (Q,\Sigma, \delta, q_0, F)$
+	1) Q is a finte set of states
+	2) \Sigma is a finite alphabet
+	3) $\delta: Q\times\Sigma \rightarrow Q$ is the transition function
+	4) $q_0 \in Q$  is the inital state
+	5) $F \subset Q$ is the set of accept states
+     3) L(M) \equiv language of all accepted strings
+  7) Closure properties/Regular Operations on languages
+     1) A_1 and A_2 are regular
+     2) Union: $A_1 \cup A_2 = A_3$
+     3) Concatenate: $A_1 A_2 = A_3$
+     4) Star: $A_1^{\star} = A_3$
+** Non-Deterministic Finite Automotas (NFA)
+   1) Formal Definition
+      1) $M = (Q,\Sigma,\delta,q_0,F)$
+	 1) Q = finite set of states
+	 2) \Sigma  is a finate alphabet
+	 3) $\delta = Q \times \Sigma_\epsilon \rightarrow Pow(Q)$
+	    1) $\Sigma_\epsilon = \Sigma \cup {\epsilon}$
+	 4) $q_0$ = start state
+	 5) $F \subset Q$
+      2) NFA accepts w If we can write $w = {y_1 y_2 ... y_n
+         y_i \in \Sigma_\epsilon}$ s.t. there exists a sequence of
+         states path $R = {r_0,r_1,...}$
+	 1) r_0 = q_0
+	 2) $r_{i+1}\in\delta(r_i,y_{i+1})$ for $i=0,1...m-1$
+	 3) $r_m \in F$
+   2) Useful Lemma: For all NFA, M, there exists an DFA ,N, s.t. L(m)
+      = L(n)
+
+** Regular Expressions
+   1) Def: R is a regex over a fixed alphabet iff one of the
+      following is true:
+      1) $R=a\in\Sigma$
+      2) $R=\sigma$
+      3) $R=\emptyset$
+      4) $R=R_1\cup R_2$, given $R_1$ and $R_2$ are regex
+      5) $R = R_1 R_2$, given $R_1 \wedge R_2$ are regex
+      6) $R = R^{\star}$
+   2) Order of operations
+      1) star
+      2) concatination
+      3) union
+   3) Identities
+      1) $a \emptyset = \emptyset$
+      2) $a \sigma = \sigma$
+      3) $\emptyset^{\star} = {\sigma}$
+
+** Generalized NFA (GNFA)
+   1) Definition
+      1) Q = set of all states
+      2) $Q^0 = Q - {q_{start}, q_{accept}}$
+      3) _The_ start state has out edges to every $q\in Q - {q_{start}}$, and
+         no in edges
+      4) _The_ accept state has inedges from every $q\in Q - {q_{accept}}$,
+         and no outedges
+      5) An edege exists from every $q_1\in Q^0$ to every $q_2\in Q^0$
+         even if $q_1=q_2$
+      6) Every edge is labed with a regex
+   2) Useful lemma: Any NFA can be written as a GNFA
+   3) lemma: Given a GNFA, M,  with 2 states, the regex between the 2
+      states describes the language of M
+
+** Pumping Lemma for regular languages
+  If A is regular, then $\exists p \in \mathbb{N}$ s.t. $\forall s
+   \in A$ for which $|s| >= p, s$ can be written as  $xyz$ and
+   satisfy the following conidition:
+   1) $\forall i >= 0, x y^i z \in A$
+   2) $|y|>0$ i.e. $y \neq \epsilon$
+   3) $|xy| <= p$
+  P is called the "pumping length
+
+** Subsitutions
+*** Substution simple definition
+   - A is a reg language and $A \mapsto f(A), A \subseteq \Sigma^{\star}$
+   - A is described w. a regex and $R_a$ is a regex using $\Gamma$
+   - $\forall a \in \Sigma a \mapsto R_a$ 
+   - $\epsilon \mapsto \epsilon$ and $\emptyset \mapsto \emptyset$
+*** Homomorphism
+    - $A \mapsto h(A)$
+    - $a \mapsto w, w \in \Gamma^*, a\in \Sigma$
+*** Inverse Homorphism
+    - $h^{-1}(A) = \{w\ \in \Sigma^* | h(w) \in A\}$
+** DFA Minimization
+*** Theory
+   Problem: Given a DFA, M, with L(M) = A, find another DFA, M_2c,
+   s.t. L(M) = L(M_2) and |Q_2| is as small as possible\\
+   - $\delta: Q \times \Sigma \rightarrow Q$
+   - $\bar{\delta}(q,w) q\in Q, w\in \Sigma^{\star}$
+   - $\bar{\delta}(q,w) \equiv$ interative call on delta for all $w_i$
+     in w
+   - If $\exists w \in \Sigma^*$ s.t. $[\bar{\delta(p,w)} \in F$ and
+     $\delta{q,w} \notin F]$ or $[\bar{\delta}(p,w) \notin F$ and $\delta{q,w} \in F]$ then p and q are distrguishable
+*** Algorithm
+#+BEGIN_SRC python
+  for (p,q) in Q^2:
+      if (p in F) and (not q in F):
+          A.push((p,q)) # marked list
+      else:
+          B.push((p,q)) # unmarked list
+  for (p,q) in B:
+      if (delta(p,a),delta(q,a)) in B:
+          A.push((p,q))
+#+END_SRC
+** Reg Operations (closed under the Reg languages)
+   1) $A_1 \cup A_2$
+   2) $A_1 - A_2$
+   3) $\bar{A_1} = \Sigma^{\star} - A_1$
+   4) $A_1 \cap A_2$
+   5) Symmetric Diff
+   6) $A_1 A_2$
+   7) $A_1^{\star}$
+   8) $A^r$
+   9) Reg langagues are clased under subsitution
+   10) Reg langagues are clased under homomorphism
+   11) Reg langagues are clased under inverse homorphism
+   12) Reg langagues are clased under
+** Right Invariant Equivilance
+   Def: An equivilance relation is called _right invariant_ or
+   _concatenation invariant_ iff $x\sim y \implies \forall w \in
+   \Sigma^{\star} xw\sim yw$
+** Myhill-Nerod Theorem
+   - _Claim_: The following statments are equivalent
+    1) A is a regular language
+    2) $\exists$ a right invariant equivilance relation that has a
+      finite index, and $A=$ union of some of the equivilance classes
+    3) $\stackrel{A}{\sim}$ is of finite index
+   
+   - _Proof_: $1\rightarrow 2$
+    1) Let M be any DFA, $M=(Q,\Sigma,\delta,q_0,F)$ s.t. $A=L(M)$
+    2) Let $\stackrel{A}{\sim}$ be define as in Right Invariant Equivilance
+    3) The number of equivilance classes is $\leq |Q|$
+    4) A is then the union of classes that correspond to F $\square$
+
+   - _Proof_: $2\rightarrow 3$
+    1) Show that the partition of $\Sigma^{\star}$ produced by a right
+      invariant is a refinement of the parition induced by $\stackrel{A}{\sim}$
+    2) Since $\sim$ is right invariant, $\forall z\in
+       \Sigma^{\star},xz\sim yz$ which implies that $xz\in A$ iff $yz
+       \in A$ which by definition implies $x\stackrel{A}{\sim} y$
+   - _Proof_: $3\rightarrow 1$
+    1) Construct a DFA using $\stackrel{A}{\sim}$
+    2) Let $Q \equiv$ set of equivilance classes of $\stackrel{A}{\sim}$
+    3) Let $[x]\in \Sigma^{\star}, [x]\in Q$, denote the equivilance
+       class that x belongs to
+    4) Let $\delta([x],a)\equiv [xa]$, by def of $\stackrel{A}{\sim}$
+    5) Let $q_0 \equiv [\epsilon]$ and $F\equiv{[x] : x\in A}$
+* Context Free Langagues
+** Formal Definition:
+   1. $(V,\Sigma, R, S)$
+      1. $V =$ Finite set of _variables_ or "non-terminals"
+      2. \Sigma =  finite set of _terminals_
+	 1. $\Sigma \cap V = \emptyset$
+	 2. Convention: Variables are uppercase, symbols are lowercase
+      3. R = finite set of _rules_ or "subsitution rules" or "productions"
+	 1.Rules: examples
+	    1. $A \rightarrow aaBc | a$
+	       1. This means the for an A you can replace it with aaBc or a
+	    2. $A \Rightarrow OA1 \Rightarrow 00A11 \Rightarrow 001A011 \Rightarrow 001011$
+      4. S is the _start variable_
+   2. $L(G) = \{w\in \Sigma^{\star} | S \productionstar w\}$
+   3. Notation:
+      1. Variables: A,B,C...
+      2. Terminal: a,b,c,...0,1,$\epsilon$
+      3. $U \productionstar V$ is defined as $\exists$ sequence
+         $U_1..U_k$ , s.t. $U \Rightarrow U_1 \Rightarrow  U_2
+         \Rightarrow ... \Rightarrow U_k \rightarrow V$
+** Chomsky Normal form (CNF)
+   - All rules have the form
+     - $A\rightarrow BC$, where $B,C$ cannot be $S$
+     - $A\rightarrow a$
+     - if $A\rightarrow \epsilon$ then $A = S$
+   - Lemma: Any CFG can be written in CNF
+** Deterministic Push Down Automotas
+   - $M = (Q,\Sigma, \Gamma, \delta, q_0, F)$
+     - $\delta: Q \times \Sigma_\epsilon \times \Gamma_\epsilon
+       \rightarrow Q \times \Gamma_\epsilon$
+** Non-Deterministic Push Down Automotas (PDA)
+   - $M = (Q,\Sigma, \Gamma, \delta, q_0, F)$
+     - $\delta: Q \times \Sigma_\epsilon \times \Gamma_\epsilon
+       \rightarrow Pow(Q \times \Gamma_\epsilon)$
+** Relating PDA to CFL
+   - A language is context free iff $\exists$ a PDA that recognizes it
+     - Lemma: If A is CF, then $\exists$ a PDA,$M$, s.t. $A = L(M)$
+     - Lemma: $\forall$ PDA, $M$, $\exists$ CFL, $G$, s.t. $L(G)=L(M)$
+       - Proof Idea: Make a conical PDA (while preserving acceptance)
+         as follows
+	 1. 1 accept states
+	 2. Stack is empty when accepting
+	 3. Every transition either push or pops but not both
+
+** Pumping Lemma for CFL's
+   _Theorem_: If A is a CFL, then $\exists p \geq 0, p\in\mathbb{Z}
+   s.t. \forall s\in A : |S| \geq p \implies \exists$ a paritition
+   $s=uvxyz$ that satisfy the follow conditions 
+
+   1) $\forall i \geq 0, uv^ixy^iz \in A$
+   2) $|vy| > 0$
+   3) $|vxy| \leq p$
+
+   _Proof_:
+   1) Let G be a CFG s.t. $A=L(G)$
+   2) Let $b$ be the max length of the right side of a rule $\in R$
+      and assume $b \geq 2$
+      1) If $b < 2$ the language must be finite thus the pumping lemma
+         is trivially true
+   3) Consider the derivation tree if the tree height is $h$, then the
+      length of the generated string,s, $\leq b^h$
+   4) Let p = b^{|V|+1}, where $V =$ set of variables
+   5) Observe that for any $s\in A$ that $|S| \geq p \implies h
+      \geq |v|+1$
+   6) Choose the 'smallest' derivation tree by height for s
+   7) The longest path has length $|v|+1$ and vists $|v|+2$ variables
+   8) Note that $|v|<$ variables visted, thus by the *Pidgen Hole
+      Principle* there must be at least 1 variable repeated
+   9) Thus There is a cycle in the production process strings which
+      can then be repeated an indefiniate amount of times in the form
+      $uv^ixy^iz \square$
+** Closure Properties of CFL's
+   1) $A_1 \cap A_2$
+   2) $A_1 \cdot A_2$
+   3) $A_1^{\star}$
+   4) Closure under substituion
+*** Theorems for Closure
+    Let $G_i = (V_i, \Sigma_i, R_i, S_i)$ for $i=1,2$ and $A_i = L(G_i)$ \\
+    Without loss of generality, assume $V_1 \cap V_2 = \emptyset \wedge
+    S_3$
+    
+**** Theorem: If A_1 and A_2 are CFL's, then A_1 \cup A_2 is a CFL
+Proof:
+    1) Let $G_i = (V_i, \Sigma_i, R_i, S_i)$ for $i=1,2$ and $A_i = L(G_i)$
+    2) Without loss of generality, assume $V_1 \cap V_2 = \emptyset \wedge S_3 \notin V_1 \cup V_2$
+    3) Construct $G_3 = (V_1 \cup V_2 \cup \{S_3\}, \Sigma_1 \cup
+       \Sigma_2, R_3, S_3)$ with $R_3= R_1 \cup R_2 \cup \{S_3 \rightarrow S_1|S_2\}. \square$
+**** Theorem: If A_1 and A_2 are CFL's then A_1 \cdot A_2 is a CFL
+     Proof:     
+     1) $\notin V_1 \cup V_2$
+     2) Construct $G_3 = (V_1 \cup V_2 \cup \{S_3\}, \Sigma_1 \cup
+        \Sigma_2, R_1 \cup R_2 \cup \{S_3 \rightarrow S_1 S_2\}, S_3)$
+**** Theorem: If A_1 and A_2 are CFL's then  A_1^{\star} is a CFL
+     Proof:
+     Construct $G_3 = (V_1 \cup \{S_3\}, \Sigma_1, R_1 \cup \{S_2 \rightarrow S_1 S_2 | \epsilon \})$
+** CYK algorithm
+*** Dynamic Programming (sequential optimization)
+    - Richard Bellman 1950
+    - sequential decision making
+    - extensive form games
+    - optimal control theory
+    - Dijkstra's Algorithm
+
+*** Algorithm
+    Is $G \productionstar$ w true or false?
+   
+    $G = (V, \Sigma, R, S)$,
+    Put G into Chomsky Normal Form,
+    $w \in \Sigma^{ \star }$
+
+    Cocke, Schwartz, Younger, Kasame
+  
+#+BEGIN_SRC python
+  """
+  Preconditions:
+  let the input be a string S consisting of n characters: a1 ... an.
+  let the grammar contain r nonterminal symbols R1 ... Rr.
+  This grammar contains the subset Rs which is the set of start symbols.
+  let P[n,n,r] be an array of booleans. Initialize all elements of P to false.
+  """
+  
+  for each i = 1 to n:
+      for each unit production Rj -> ai:
+          P[i][1][j] = true
+  for each i = 2 to n: # Length of span
+      for j in range(1,n-i+2): # Start of span
+          for k in range(1,i): # Partition of span
+              A = filter(RA -> RB RC, G) # A = list of productions s.t. RA -> RB RC
+              for production in A:
+                  if P[j][k][B] and P[j+k][i-k][C]:
+                      P[j][i][A] = True
+  if any P[1][n]: #x is iterated over the set s, where s are all the indices for Rs)
+      print 'S is member of language'
+  else:
+      print 'S is not member of language'
+#+END_SRC
+* Context Sensitive Languages
+** Formal Definition:  Non-Contracting Grammars
+   $G=(V,\Sigma,R,S)$
+   1) V is finite set of _variables_
+   2) \Sigma  is a finite set of _terminals_ and $\Sigma\capV=
+      \emptyset$
+   4)  $\alpha\rightarrow\beta$
+   5)  $|\alpha|\leq|\beta|$
+
+** Normal Form Definition
+   3) R is a finite set of rules of the form $\alpha A\beta
+      \rightarrow\alpha\gamma\beta$ in which $A$ is a variable and
+      $\alpha,\beta,\gamma$ are strings of terminals and variables.
+
+      - $\alpha,\beta\in(V\cup\Sigma)^{\star}$
+      - $\gamma\in(V\cup\Sigma)^{\star}-{\epsilon}$
+
+   4) $S\in V$ is the start _variable_
+
+   5) One additional rule allowed $S\rightarrow \epsilon$ and $S$ is not on the right side of any rule
+** Linear Bounded Automaton
+*** Informal Definition
+    Has no stack but can read/write anywhere on the input string
+* Turing Machines
+** Formal Def
+   A _Turing Machine_ is a 7-tuple $(Q,\Sigma,\Gamma,\delta,q_0,
+   q_{accept},q _{reject})$ with $Q\Sigma,\Gamma\equiv$ non empty sets
+
+   - Q is set of _states_
+   - \Sigma is the _input alphabet_, which does not contain the blank
+     symbol \_
+   - \Gamma is the _tape alphabet_, in which $\_\in\Gamma$ and $\Sigma
+     \subset\Gamma$
+   - \delta : $Q\times\Gamma\rightarrow Q\times\Gamma\times
+     \{L,R\}$ is the _transition function_
+   - $q_0\in Q$ is the _start state_
+   - $q_{accept}\in Q$ is the _accept state_
+   - $q_{reject}\in Q$ is the _reject state_
+   - $q_{accept}\neq q_{reject}$
+** Configurations
+   A configuration of the turing machine $\equiv c_i =(q_i,p_i,t_i)$,
+   where $q_i \in Q,p_i$ is the head pos, and $t_i\in \Gamma^{\star}$
+   is the tape contents.
+
+   Notice that configurations are unique, and from them given the next
+   input symbol one can determine the next configuration. i.e.
+   \begin{equation}
+   \delta(q_i,\gamma_i):(c_i,\gamma_i) \mapsto
+   (q_{i+1},p_{i+1},D_{i+1}) \mapsto c_{i+1}
+   \end{equation}
+   for $D_{i+1}\in \{L,R\}$
+   
+*** Halting Configs
+    If either of the following type of configs is encountered, the turning
+    machine halts and returns 'accept' or 'reject' respectively.
+**** Accept Config
+     \begin{equation}
+     c_{accept} \iff q_i = q_{accept}
+     \end{equation}
+**** Reject Config
+     \begin{equation}
+     c_{reject} \iff q_i = q_{reject}
+     \end{equation}
+
+** Turning Recognizable
+   M is _Recognizable_ iff $\forall w \in L, M$
+   accepts
+** Turing Decidable
+   M, is _Decidable_ iff $\forall w \in L, M$ accepts _and_
+   $\forall w \notin L, M$ rejects
+*** Co-Recognizablity
+    1. Define: $Sigma^{\star} - A = \bar{A}$ is recognizable
+**** Decidablility Theorem:
+     1. A language is only Turing Decidable iff it is both recognizable
+	and co-recognizable
+     2. If a language is not decidable then its compliment is not recognizable
+** Turing Machine Variants:
+   Note that none of these add any power
+   
+   - Multi-Tape: $\delta:Q\times\Gamma^k\rightarrow Q\times\Gamma^k\times\{L,R\}^k$
+     - Emulate on single tape by striping and recording/marking virtual head position
+   - Adding Stay: $\delta:Q\times\Gamma\rightarrow Q\times\Gamma\times\{L,R,S\}$ where S doesn't move the head
+     - Emulate by moving left and then right while not changing tape contents
+   - Non-Deterministic:
+** Universial Turing Machine
+   Turing machine that take a turing machine, M, as a string encoding
+   denoted as $\langle M \rangle$
+
+** Undecidability
+*** Halting Problem
+    1. Theorem: $A_{TM}$ is not Turing Decidable
+    2. Proof by Contradiction:
+       1. Suppose $A_{TM}$ were decidable.
+       2. Let H be a TM that decides $A_{TM}$
+	  1. $H(\langle M, w \rangle) =$ 
+	     1. accept if $w \in L(M)$
+	     2. reject if $w \notin L(M)$
+       3. Construct a TM, D, which uses H and give the opposite result
+	  1. $D \equiv$ on input $\langle M \rangle$, in which M is a
+             T.M
+	     1. Run H on input $\langle M, \langle M \rangle \rangle$
+	     2. Return the opposite of what H outputs
+       4. Therefore  $D(\langle M \rangle):$
+	  1. accept if M rejects $\langle M\rangle$
+	  2. reject if M accepts $\langle M\rangle$
+       5. Note that this implies $D(\langle D \rangle):$
+	1. accept if D rejects $\langle D\rangle$
+	2. reject if D accepts $\langle D\rangle$
+       6. Notice that this is a contradiction, thus H and D cannot exist
+
+** Reduction
+   Using a language that is known to be undecidable prove that another
+   language is not undecidable.
+
+*** Map Reductions
+**** Computable Functions
+     A function $f:\Sigma^{\star} \rightarrow \Sigma^{\star}$ is
+     called _computable_ iff $\exists$ a TM, M, s.t. M halts $\forall
+     w\in \Sigma^{\star}$, and after halting, $f(w)$ appears alone on
+     the tape.
+**** Mapping reducible
+     A language A is called _mapping reducible_ to language B, written
+     $A \leq_M B$ iff: 
+     \begin{equation}
+     \exists (f: \Sigma^{\star} \rightarrow
+     \Sigma^{\star})
+     , \forall w \in \Sigma^{\star} : [w \in A \iff
+     f(w) \in B ]
+     \end{equation}
+***** Theorems
+      1. Note the rule of thumb for these theorems is that $\leq_M$
+         more or less reflects the Chomsky Heirarchy:
+      2. \textbf{Theorem}: $[A\leq_M B] \implies$ [If B is Turing Decidable, then A is
+         turing Decidable]
+      3. \textbf{Collary}: $[A\leq_M B] \implies$ [If A is Turing Undecidable, then B
+         is Turing Undecidable]
+      4. \textbf{Theorem}: $[A\leq_M B] \implies$ [If B is Turing
+         Recognizable then A is Turing Recognizable]
+      5. \textbf{Collary}: $[A\leq_M B] \implies$ [If A is Turing
+         Unrecognizable then B is Turing Unrecognizable]
+*** Rice's Theorem:
+    1. If P is a set of TM's with a property that satisfies:
+       1. $\forall$ TM's $M$ and $M_2$ s.t. $L(M_1) = L(M_2)$,
+          $\langle M_1 \rangle \in P$ iff $\langle M_2 \rangle \in P$
+       2. $\exists$ TM M_1 and M_2 for which $\langle M_1 \rangle \in
+          P$ and $\langle M_2 \rangle \notin P$
+    2. Then the language of P is _not_ Turing Decidable
+* Kolmogorov Complexity
+  - How 'Small'(state number) of a turing machine is needed to
+    generate a given string
+
+* Complexity Theory:
+** Definition:
+   1. \textbf{Time Complexity}: How many steps does a Turing machine take to decide?
+   2. \textbf{Space Complexity}: How much space does a turing machine need on the tape to decide?
+   3. Let $f(n) \equiv$ the max number of steps for a TM to decide w,
+      with $n=|w|$
+      1. $f(n) = O(g(n)) \iff \exists (c,n_0) \in \mathbb{R} \times \mathbb{Z}$ s.t. $\forall n \geq
+         f(n), f(n) \leq c g(n)$
+      2. Which is equivelent to: 
+	 \begin{equation}
+	 \forall w \in \Sigma^{\star}: \abs{w} \geq n_0 \iff f(\abs{w}) \leq c g(\abs{w})
+	 \end{equation}
+** Complexity Classes
+   1. Let $t: \mathbb{N} \rightarrow \mathbb{N}$ be a function
+   2. Let $D \equiv$ set of all decidable TMs
+   3. Let $TIME[t(n)] \equiv {A \in D | \exists}$ a TM that decides A
+      in $O(t(n))$ steps
+*** P vs NP
+**** P
+     \begin{equation}
+     P \equiv \cup_{k\in \mathbb{N}} TIME(n^k)
+     \end{equation}
+     2. Notice that $TIME(n^k) \subset TIME(n^{k+1})$
+     3. Thus $P =$ all language for which $\exists$ a TM that decides
+       	in polynomial time
+**** NP
+     \begin{equation}
+     NP \equiv \cup_{k\in \mathbb{N}} NTIME(n^k)
+     \end{equation}
+     1. $NTIME(t(n)) \equiv \{A\in D | \exists$ a nondeterministic TM
+        that decides A in $O(t(n))$ steps}
+     2. Note that this appears to be equivlent to verification via bruteforce
+	1. $\textbf{Satisfyability Problem}$:
+	   A language $A\in NP \iff A$ is polinomially _verifiable_.
+	   1. $A$ is _verifiable_ iff $\exists$ a poly-time DTM that
+              takes input $w$ for $A$ and the _certificate_ $c$ and
+              decides if $w \in A$ 
+**** Million Dollar Question
+     1. Does $P=NP$ ?
+**** Hardest NP problems
+     1. A Problem, P, is _NP-Complete_ iff:
+	1. $P\in NP$
+	2. $\forall A \in NP, A \leq_P P$
+	   1. Where $\leq_P$ is a mapping reduction where $f$ is
+              computable in polynomial time
+
