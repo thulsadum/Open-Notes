@@ -1,4 +1,4 @@
-% Created 2012-03-04 Sun 00:38
+% Created 2012-05-10 Thu 18:04
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -13,7 +13,7 @@
 
 \title{CS 241 Midterm study guide}
 \author{}
-\date{04 March 2012}
+\date{10 May 2012}
 
 \begin{document}
 
@@ -79,45 +79,62 @@
 \subsubsection{Internal}
 \label{sec-5.1.1}
 
+    Interprocesses fragmentation causes by poor ``mallocing'' (doesn't
+    have malloc)
 \subsubsection{External}
 \label{sec-5.1.2}
 
+    Physical to Virtual fragmentation managed by the kernel
 \subsection{Cache/Page Table replacment policies}
 \label{sec-5.2}
 
 \subsubsection{OPT}
 \label{sec-5.2.1}
 
+    Theortically optimal page replacement algorithm. Swaps out page
+    used furtherst in the future\ldots{}.this is impossible for general systems
 \subsubsection{LRU}
 \label{sec-5.2.2}
 
+    Least recently used\ldots{}.see cs232 notes
 \subsubsection{Working Set}
 \label{sec-5.2.3}
 
+    The complete set of data needed to complete an operation. Often
+    very localized in either time or space.
 \begin{itemize}
 
 \item Locality\\
 \label{sec-5.2.3.1}
 
+     see cs232
 \end{itemize} % ends low level
 \subsubsection{Thrashing}
 \label{sec-5.2.4}
 
+    Access pattern that assures high miss rate in the cache due to
+    limitations of replacment algorithm
 \subsubsection{Belady's anomaly}
 \label{sec-5.2.5}
 
+    Sometimes as the size of the cache increases, miss rate also
+    increases. Proved for page faults using FIFO
 \subsubsection{When is a process swapped out to disk}
 \label{sec-5.2.6}
 
+    When it is evicted by the replacment policy
+    
 \subsection{Stack}
 \label{sec-5.3}
 
 \subsubsection{When is the stack full?}
 \label{sec-5.3.1}
 
+    When it meets the heap in the address space
 \subsection{Heap}
 \label{sec-5.4}
 
+   Dynamic memory
 \subsubsection{Page faults}
 \label{sec-5.4.1}
 
@@ -407,5 +424,300 @@
 \subsection{Convoy Effect}
 \label{sec-7.7}
 
+   The slow down of traffic due to queuing slowing down the whole system
+
+
+\hrule
+Final
+\hrule
+\section{C Programming}
+\label{sec-8}
+
+\begin{enumerate}
+\item What is POSIX?
+\item What is a library function? What is a system call? What is the
+    difference? Given an example of a pure library function and a pure system call.
+\item How does pointer arithmetic work?
+\item What is the * operator? What does it do? What is the \& operator?
+    What does it do? What is a function pointer? How do you define a function pointer?
+\item What functions have you learned about in CS 241 that take a function pointer as a parameter?
+\item What is a “C string”? How is a “C string” represented in memory?
+\item What is NULL?
+\item What is the difference between strlen() and sizeof()?
+\item What’s the difference between a stack and a heap variable? What
+    about global and static variables?
+\item How do malloc() and free() work?
+\item What’s the difference between char c\footnote{FOOTNOTE DEFINITION NOT FOUND: 80 } and char *c? \ldots{}what
+     about when they’re used in sizeof()?
+\item What is the difference between a string and a string
+     literal?
+\item How do strcpy(), strcat(), strncpy(), and strncat() work?
+\item How do printf() and scanf() work? What are the common
+     formatting arguments?
+\item How do you read a series of lines from a file or stdin using fgets()?
+\end{enumerate}
+\section{Memory}
+\label{sec-9}
+
+\begin{enumerate}
+\item What is the difference between physical and virtual memory?
+\item What are common memory allocation algorithms and what are the advantages of each?
+\item How are virtual addresses translated to physical addresses in multi-level page tables?
+\item How do page size and the number of levels of page tables affect
+      the number of entries in a page table?
+\item What is the difference between internal and external fragmentation?
+\item What are the different page replacement policies and the
+      advantages of each?
+\item Describe how the buddy system works and the run time for its operations.
+\item What is thrashing? When does it occur?
+\item What causes a SEGFAULT and what happens when one occurs?
+\item When is a process swapped out to disk?
+\item What is the difference between the MMU and the TLB? Describe
+       the function of each.
+\item Name three benefits of virtual memory (as opposed to allowing
+       programs to directly access physical memory).
+\item Name one advantage of segmentation over paging, and one
+       advantage of paging over segmentation.
+\item How is a page table similar to an inode? What is the difference
+       between these structures?
+\item Assuming a 32-bit address space and 4 KB pages, what is the
+       virtual page \# and offset for virtual address 0xd34f6a5?
+\item Give an example of a page fault that is an error, and an
+       example of a page fault that is not an error.
+\item Assume LRU page eviction and three pages of physical
+       memory. Describe what happens
+\item when the application accesses virtual memory pages in this
+       sequence: 3,4,5,4,1,6,9,3,9,8,4,8,8,2.
+\item How many page faults occur in the above example?
+\item Why are pages set to read-only in the copy-on-write technique?
+\item Suppose we have a 64-bit address space and 16 KB pages. How big
+       is the page table of a single process, if the system uses
+       single-level page tables? What is the problem here? How would multi-level page tables help solve this problem?
+\item Which page replacement scheme is better, OPT or LRU? Why?
+\item Why does LRU not suffer from Belady’s anomaly?
+\item How does the virtual memory subsystem know the exact location
+       where a particular page is stored on disk, if it is swapped out of memory?
+\item How is the working set computed? How is the notion of a working
+       set useful for managing memory of processes?
+\item Compare and contrast (give one benefit and one disadvantage)
+       for: implicit, explicit, segregated, and buddy free lists.
+\end{enumerate}
+\section{Processes and Threads}
+\label{sec-10}
+
+\begin{enumerate}
+\item What resources are shared between threads of the same process?
+\item Invent some code using pthread$_{\mathrm{create}}$() statements. What could be
+      its output?
+\item What are the possible values for X after both threads complete
+      execution? (X is a global
+      variable and initially X = 0.)
+\item What happens when a thread calls exit()?
+\item What happens to a process’s resources when it terminates normally?
+\item Describe what happens when a process calls fork(). Be able to trace
+      through the code.
+\item Under what conditions would a process exit normally?
+\item Explain the actions needed to perform a process context switch.
+\item Explain the actions needed to perform a thread process switch.
+\item What are the advantages and disadvantages of kernel-level threads
+       over user-level threads?
+\item Compare the use of fork() to the use of pthread$_{\mathrm{create}}$().
+\item In a multiprocessor system, what system characteristics will cause
+       other threads of the same
+       process to block?
+\item How can a process become orphaned and what does the OS do with it?
+       What's a zombie?
+\item Write a piece of code using fork() to create a process tree of
+       depth n, where each process (a node in the tree) except for the
+       ``leaf'' processes has exactly m child processes.
+\item Describe how to use the POSIX call wait().
+\item Explain what happens when a process calls exec().
+\item Explain how reentrant functions are used in C.
+\item What are the maximum number of threads that can be run
+       concurrently? How is this number determined?
+\item If a process spawns a number of threads, in what order will these
+       threads run?
+\item Explain how to use pthread$_{\mathrm{detach}}$() and pthread$_{\mathrm{join}}$().
+\item Explain how a shell process can execute a different program
+       without using system().
+\item Explain how one process can wait on the return value of another
+       process.
+\item Describe the transitions between running, ready and blocked in the
+       5 state model.
+\item Understand how pthread$_{\mathrm{exit}}$() differs from exit().
+\end{enumerate}
+\section{Scheduling}
+\label{sec-11}
+
+\begin{enumerate}
+\item What is starvation? Which scheduling policies have the possibility
+      of resulting in starvation?
+\item Which scheduling algorithm results the smallest average wait time?
+\item What scheduling algorithm has the longest average response time?
+\item Define turnaround time, waiting time and response time in the
+      context of scheduling algorithms.
+\item What is the convoy effect?
+\item Why do processes need to be scheduled?
+\item How does bounded wait apply to scheduling?
+\item Which scheduling algorithm minimizes average initial response time?
+      Waiting time? Total response time?
+\item Why is SJF/PSJF hard to implement in real systems?
+\item What does it mean to preempt a process?
+\item What does it mean for a scheduling algorithm to be preemptive?
+\item Describe Round-Robin scheduling and its performance advantages
+       and disadvantages.
+\item Describe the First Come First Serve (FCFS) scheduling
+       algorithm. Explain the performance advantages and disadvantages.
+\item Describe the Pre-emptive and Non-preemptive SJF scheduling
+       algorithms. Explain the performance advantages and disadvantages.
+\item Describe the Preemptive Priority-based scheduling
+       algorithm. Explain the performance advantages and disadvantages.
+\item How does the length of the time quantum affect Round-Robin
+       scheduling?
+\item Define fairness in terms of scheduling algorithms. What are the
+       fairness properties of each of the scheduling disciplines discussed in class?
+\item Which scheduling algorithms guarantee progress?
+\item A process was switched from running to ready state. Describe the
+       characteristics of the scheduling algorithm being used.
+\item Which properties of scheduling algorithms affect the performance
+       of interactive systems?
+\end{enumerate}
+\section{Synchronization}
+\label{sec-12}
+
+\begin{enumerate}
+\item What is the readers-writers problem?
+\item What is the producers-consumers problem?
+\item What is the dining philosopher problem?
+\item Recognize a correct solution to the readers-writers problem, the
+    producers-consumers problem, and the dining philosopher. Be able
+    to identify and explain an error in a specific implementation of any of the classic synchronization problems.
+\item What happens when readers are prioritized over writers in the
+      classic “readers writer problem”? How about if writers are prioritized over readers?
+\item What is required so that deadlock and starvation do not occur in
+      the dining philosopher’s problem? Give examples of solutions.
+\item What is the difference between starvation, deadlock, race
+      conditions and critical sections? Describe each.
+\item What would happen if a system’s hardware synchronization primitive were replaced with a software function?
+\item Which type of variables must be protected against concurrent
+    readers and writers in any combination?
+\item Given two threads running example code that contains a critical
+     section, be able to identify if progress and mutual exclusion are ensured.
+\end{enumerate}
+\section{Mutexes and Semaphores}
+\label{sec-13}
+
+\begin{enumerate}
+\item Understand the common semaphore and mutex functions (sem$_{\mathrm{wait}}$(),
+      sem$_{\mathrm{post}}$(), etc).
+\item How does a semaphore perform, in both the parent and child, after
+      a fork()?
+\item What are proper and improper code replacements for a
+     test$_{\mathrm{and}}$$_{\mathrm{set}}$() operation?
+\item How does the internal counter of a POSIX semaphore work? What does
+    it mean if the value of the semaphore is 1?
+\item How can the reader-writer problem be solved using only POSIX mutexes?
+\item Using only one mutex, is it possible to create a semaphore? If
+      so, how? If not, why?
+\item Understand how to solve the producer-consumer problem using
+      mutexes and semaphores.
+\item What is a buffer overflow? What is a buffer underflow? Understand how failures in synchronization could cause buffer over and underflows.
+\item What is progress?
+\item What is mutual exclusion?
+\item What are condition variables? Understand how they can be used in
+     code.
+\item Understand how to fix deadlocks and starvation in code involving mutexes, semaphores, and conditional variables.
+\end{enumerate}
+\section{Processes and Deadlock}
+\label{sec-14}
+
+\begin{enumerate}
+\item Define deadlock.
+\item Define circular wait, mutual exclusion, hold and wait, and no
+      preemption. How are these related to deadlock?
+\item How would the implementation of a web server using threads differ from one using processes?
+\item What can happen if synchronization in a multiple-threaded program is not programmed carefully?
+\item Why might an operating system use a resource allocation graph?
+\item What are the conditions of a deadlock? How could you guarantee that each one of these conditions can be prevented?
+\item What does waitpid() do?
+\item What are the approaches for solving deadlock?
+\item What is the difference between Deadlock Prevention, Deadlock
+      Detection \& Recovery, and Deadlock Avoidance? What deadlock handling mechanism would you use?
+\item What are the components of a resource allocation graph?
+\item What problem does the Banker’s Algorithm solve? Given a set of
+     processes how would you use the Banker’s Algorithm?
+\item What is a safe state and how can you determine if a system is in a
+     safe state?
+\end{enumerate}
+\section{IPC}
+\label{sec-15}
+
+\begin{enumerate}
+\item What is the difference between a FIFO and a pipe?
+\item How would you redirect standard out to a file?
+\item What is the difference between a pipe, a FIFO, and an ordinary file on disk?
+\item What happens when two processes read and write to a memory
+      mapped file?
+\item Explain how two processes can share memory using shmem.
+\item Explain how a process can set which signals are caught or
+      ignored using a signal set.
+\item How can one process send a signal to another?
+\item Describe the purpose of a POSIX signal.
+\item Some signals cannot caught or ignored. Which signals are they and
+      why shouldn’t they be allowed to be caught?
+\item What does “kill -<parameter> pid” do?
+\item How is the function sigwait() used?
+\item How does the function alarm() work?
+\end{enumerate}
+\section{Networking}
+\label{sec-16}
+
+\begin{enumerate}
+\item When do you use the close() system call with sockets?
+\item Discuss how a multithreaded web server running on a single
+      processor system could be optimized using the process scheduling
+      methods discussed in class. Which do you recommend?
+\item How do select() and poll() work? What problem do they it solve?
+\item Describe the Posix accept() function.
+\item How does HTTP work?
+\item Describe the services provided by TCP.
+\item How does TCP connection establishment work?
+\item Describe the services provided by UDP.
+\item Explain the difference between a regular and a connected UDP socket.
+\item How do sockets support the client-server model?
+\item Which is better, UDP or TCP? Which one would you use?
+\item How does the Domain Name System (DNS) work?
+\item How does DNS use caching?
+\item How is DNS related to IP?
+\end{enumerate}
+\section{File systems and I/O}
+\label{sec-17}
+
+\begin{enumerate}
+\item Given a description of the block size and i-node structure, what is the maximum size of a file?
+\item How many i-node operations are required to fetch a file at /path/to/file?
+\item What information is stored in an i-node? What information isn’t?
+\item What data structure best describes an i-node?
+\item What are the advantages and disadvantages of an i-node based file system?
+\item Given the description of an i-node file system, how many i-node
+   accesses are required to read the entire contents of a file of a
+   given size? How many blocks does this file consume on disk?
+\item What is an advantage of a soft link over a hard link?
+\item What is I/O polling? What are advantages and disadvantages?
+\item Describe disk I/O access using DMA.
+\item How are file descriptors shared between threads in a single
+    process? How are they shared between after a process executes a fork()?
+\item When the size of a block changes in an i-node based file system,
+    how does this change the maximum size of a file?
+\item How do polling and interrupt driven I/O differ? What are the
+    advantages and disadvantages of each?
+\item How does the page-out process work?
+\item Understand how hard-links result in different file names affecting
+    the same i-node.
+\item If an i-node based file system has a certain number of direct and
+    single-indirect blocks, how large is the file?
+\item Where does fstat() look to find the information that it returns?
+\item How does a file system use caching?
+\end{enumerate}
 
 \end{document}

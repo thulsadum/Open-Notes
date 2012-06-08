@@ -105,7 +105,17 @@
      "sec-7.5"
      "sec-7.6"
      "sec-7.6.1"
-     "sec-7.7")
+     "sec-7.7"
+     "sec-8"
+     "sec-9"
+     "sec-10"
+     "sec-11"
+     "sec-12"
+     "sec-13"
+     "sec-14"
+     "sec-15"
+     "sec-16"
+     "sec-17")
     (TeX-run-style-hooks
      "hyperref"
      "amssymb"

@@ -1,0 +1,278 @@
+#+LaTeX_HEADER: \usepackage{header}
+
+Diff Eq Notes
+
+* Initial Definitions
+  - Definition:
+    - DE is an equation that describes the properties of an unkown
+    function(s)
+
+  - Ordinary DE:
+    - describes functions of 1 variable
+
+  - Partial DE:
+    - describes multivariable functions
+
+  - Notation:
+    - independent variable: y
+    - dependent variable: t
+* Operator Notation
+  Definition:
+  $\frac{d^n}{dt^n} = D^n \rightarrow f^{(n)} = D^n(f)$
+* Linear Diff Equations
+  Definition: For an operator,L, the DE: L(y) = 0 is linear iff:
+  - L(y_1+y_1) = L(y_1)+L(y_2)
+  - L(cy) = cL(y)
+
+* Initial Value Problems
+  \begin{equation}
+  IVP = \left \{
+  \begin{array}{lr}
+  DE\\
+  y = C_1\\
+  \vdots\\
+  y^{(n)} = C_n
+  \end{array}
+  \right.
+  \end{equation}
+
+* Seperable DE
+** Definition   
+*** Form
+    \begin{equation}
+    \d{y}{t}=f(y)g(t)
+    \end{equation}
+*** Solution
+    1) Let DE be $\d{y}{t}=f(y)g(t)$
+    2) Seperating terms: $\frac{dt}{f(y)}\d{y}{t}=\frac{dt}{f(y)}f(y)g(t) \implies \frac{dy}{f(y)}=g(t)dt$
+       1) If $f(y)^{-1}$ is not defined from some t, solve outside of
+	  that range and consider those t separately
+    3) Integrate both sides: $\int \frac{dy}{f(y)}=\int g(t)dt$
+    4) If possible solve for $y(t)$
+ 
+* Homogenous Equations
+** Form
+   \begin{equation}
+   \d{y}{t}=f(\frac{y}{t})
+   \end{equation}
+** Technique for Solving:
+   1) Let $v=\frac{y}{t} \implies y=vt$
+   2) Change of variable: $y'=v't+v \implies v't+v=f(v)$
+   3) Moving $v$ to left side: $t\d{v}{t}=f(v)-v = g(v)$
+   4) Seperating: $\frac{dv}{g(v)}=\frac{dt}{t}$
+   5) Solve using Seperable D.E. techniques
+* Exact Equations
+** Form
+   \begin{equation}
+   \pd{}{t}\Psi(f(t),y(t)) = \pd{\Psi}{f}\d{f}{t} + \pd{\Psi}{y}\d{y}{t}
+   \end{equation}
+** Technique for Solving:
+   2) Suppose DE is of the form: $M(x,y) + N(x,y) y_x = 0$
+   3) If M_y = N_x, then DE is an Exact Eq, solve for $\Psi(x,y) = \Psi( f(x), y(x))$
+* First Order Linear Eq
+** Form
+   \begin{equation}
+   y' + p(t)y = f(t)
+   \end{equation}
+** Solving using Integration Factors
+   1) Let \mu be a mult factor s.t. $\mu y' + \mu'y=g(t) \implies [\mu(t) y(t)]'= g(t)$
+   2) Thus $\mu'=\mu p(t) \implies \frac{d\mu}{\mu}=p(t)dt \implies
+      \mu = e^{\int p(t)dt }$
+   3) Therfore
+      \begin{equation}
+      y(t)e^{\int p(t)dt}=\int g(t)dt
+      \end{equation} $\square$
+** Bernoulli's equations
+*** Form
+    \begin{equation}
+    y'+p(t)y=q(t)y^n, n\in \mathbb{Z}
+    \end{equation}
+*** Solution
+    1) Let $v=y^{2-n} \implies v'=(1-n)y^{-n}y'$
+    2) Thus $y'=\frac{v'}{1-n}$ and $y = y^n v$
+    3) Subsituting in Bernoulli equation: $\frac{v'}{1-n}y^n+p(t)y^nv=q(t)y^n$
+    4) Moving into standard form: 
+       \begin{equation}
+       v'+(1-n)p(t)v=(1-n)q(t)
+       \end{equation}
+    5) Solve using Integration Factors $\square$
+** Existence and Uniquness Theorem
+*** Picard Iteration
+*** Lipsichitz Condition
+*** Uniform Convergence
+**** Weirstress M Test
+*** Existence Theorem
+*** Uniqueness Theorm
+* Autonomous Equations
+** Form
+   \begin{equation}
+   y'=f(y)
+   \end{equation}
+** Anaylsis
+*** Differentiation Fields
+* Second Order Linear Eq
+** The Wronskian:
+\begin{equation}
+W(f,g)(t) = \left |
+\begin{array}{cccc}
+	 f_1(x) & f_2(x) & \cdots & f_n(x) \\
+	 f_1'(x) & f_2'(x) & \cdots & f_n' (x)\\
+	 \vdots & \vdots & \ddots & \vdots \\
+	 f_1^{(n-1)}(x)& f_2^{(n-1)}(x) & \cdots & f_n^{(n-1)}(x)
+\end{array} \right |,\qquad x\in I
+\end{equation}
+
+** Existence Theorem
+   1) Claim: For all D.E. there exists a $y(t)$ that satisfies it
+      locally on some interval
+
+   2) Proof:
+       1) Let $y'=v \rightarrow v'=y''$
+       2) Therefore $v'=-py'-qy=-pv-qy$ , by plugging into the DE
+       3) In matrix form:
+	  \begin{equation}
+	  \left [
+	  \begin{array}{c}
+	  y\\v
+	  \end{array} \right ]'=
+	  \left [
+	  \begin{array}{lr}
+	  0 & 1\\
+	  -q & -p
+	  \end{array} \right ]
+	  \left [
+	  \begin{array}{c}
+	  y\\v
+	  \end{array} \right ]
+	  \end{equation}
+       4) Note that this is a linear first order matrix system which there
+	  is an existence therom for
+** Uniqueness
+** Second Order Linear Homogenous Diff Eq (S.O.L.H.D.E)
+*** Form
+    \begin{equation}
+    a(x)\dd{y}{t} + b(x)\d{y}{t} + c(x)y=0
+    \end{equation}
+*** Generating Second Solution
+    
+    1) Claim: if $y_1\neq 0$ be a solution to the D.E. then,
+       \begin{equation}
+       y_2 = Cy_1\int \frac{e^{-\int p dt}}{y_1^2}
+       \end{equation}
+       and y_2 = solution independent of y_1
+    2) Proof:
+       1) 
+*** Theorm: The general solution to S.O.L.H.E
+    Claim: The general soln of eq1$\equiv [y''+p(t)y'+g(t)y=0]$ is:
+    \begin{equation}
+    y_h=c_1y_1+c_2 y_2
+    \end{equation}
+*** Proof:
+***** Q1: 
+      Given y_1 and y_2 are solutions, why is $c_1y_1+c_2y_2$ a solution
+       	 1) $Eq1=D^2(y)+p(t)D(y)+q(t)y=0$
+       	 2) $Eq1=[D^2+p(t)D+q(t)]y=0$
+       	 3) Let $L=[D^2+p(t)D+q(t)]\rightarrow eq1\equiv L(y)=0$
+       	 4) Notice the L is a linear operator and thus obeys the
+            superposition principle
+       	 5) Thus $y = c_1 y_1 +c_2 y_2$ is a solution $\square$
+***** Q2: 
+      Given 2 indepent solutions y_1 and y_2 for the DE, $\forall$ IVP and its unique solution y, $\exists (c_1,c_2)
+	 \in \mathbb{C}^2$ s.t. $y=c_1y_1 + c_2y_2 \equiv \vec{y}\cdot\vec{c}$
+	 
+****** Sub Proof of Q2
+       Consider IVP: $y''+py'+qy=0$
+       1) Take c_1 and c_2 s.t.:
+	  \begin{equation}
+	  \left [
+	  \begin{array}{c}
+	   a\\
+	   b
+	  \end{array}\right ]=
+	  \left [
+	  \begin{array}{cc}
+	  y_1&y_2\\
+	  y_1'&y_2'\\
+	  \end{array} \right ]_{t=t_0}
+	  \left [
+	  \begin{array}{c}
+	  c_1\\
+	  c_2
+	  \end{array} \right ]}
+	  \end{equation}
+       2) Notice this is only solvable iff $W(y_1,y_2)_{t=t_0}\neq 0$
+       3) _Theorem_: If u and v solve $y'' + p(t)y' + g(t)y = 0$ then
+	  W(u,v)=0 for all t or W is never 0
+***** Q3:
+****** Abel's Identity
+       If u,v solve the D.E. then $W'+p(t)W=0 \rightarrow ce^{-\int p(t)dt}$
+****** Finding the general solution
+      Goal: The general soln is of the form $y=\vec{y}\cdot\vec{c}$
+      1) Recall the matrix form of the D.E. from the Existence theorem
+         proof.
+      2) Also Recall that that the equation was only solvable if
+         $W(y_1,y_2)(t_0)\neq 0$
+      3) Observe that $W'=(uv'+uv'')-(u'V+u'v') =-pW$
+      4) _Lemma_: if u,v are linearly dependent, then $W(u,v)=0$ on I
+** Inhomogenious equation
+*** Form
+    \begin{equation}
+    y^{(n)}(x)+p(x)y'(x)+q(x)y=f(x)
+    \end{equation}
+*** Exponential Shift Law
+    \begin{equation}
+    P(D)[e^{\alpha u(t)}]=p(D+\alpha)u(t)[e^{\alpha t}]
+    \end{equation}
+*** Expontial-Polynomial Functional offesets
+**** Form
+     \begin{equation}
+     ay''+by'+cy=e^{\alpha t}g(t); \alpha\in\mathbb{C}
+     \end{equation}
+**** Characteristic Polynomial
+     \begin{equation}
+     p(r)=aD^2+bD+c
+     \end{equation}
+     Note that the DE in Operator notation is: $[aD^2+bD+c]$
+**** Finding Particular Solution for S.O.L.E
+     _Theorem_:
+     - Let $k$ be s.t. $(r-\alpha)^k$ are roots of $p(\alpha)$
+     - Then 
+       \begin{equation}
+       y_p=\frac{t^ke^{\alpha t}}{p^{(k)}(\alpha)}
+       \end{equation}
+**** Method of Undetermined Coefficents
+     _Idea_: if f(t) is a comprised of strict multiplications (no division) sinusoidal,exponetials, and
+     polynomials then the solution of the S.O.L.E with const
+     coefficents is in terms of of the same types you began with.
+
+     _Cases_:
+     
+     if $f(t)=e^{\alpha t}$ (polynomial of $deg(k+m)$), then guess
+     $y_p=e^{\alpha t}\Sigma_{j=0}^k C_jt^j$
+
+*** Lagrange Variation of Parameters
+**** Equation:
+     \begin{equation}
+     y_p=\int{\frac{y_1f(x)}{W(y_1,y_2)}dt}+\int{\frac{y_2f(x)}{W(y_1,y_2)}dt}
+     \end{equation}
+**** Derivation:
+     See General Derivation
+** Foulrier Transform
+** Sturm Sepectum Theorem and Strum Comparison Theorem
+* General Linear Diff Eq and Variation of Parameters
+** Form
+   \begin{equation}
+   y^{(n)}(x)+\sum_{k=0}^na_k(x)y^{(k)}(x)=f(x)
+   \end{equation}
+** Equation:
+   \begin{equation}
+   \sum_{k=0}^n[y_k(x)\int{\frac{W_k(x)}{W(X)}dx}]
+   \end{equation}
+   $W(x)\equiv$ Wronskian determinant of the fundamental system
+   and $W_i(x)\equiv$ the Wronskian determinant of the fundamental system
+   with the $i-th$ column replaced by $(0,0,\ldots,f(x))$   
+*** Derivation:
+
+** Theorem for L.D.E
+   If $u(t)+iv(t)$ is a solution to the D.E. then $u(t) \wedge v(t)$
+   are solutions

@@ -99,8 +99,8 @@ CS 373 Notes
       3) union
    3) Identities
       1) $a \emptyset = \emptyset$
-      2) $a \sigma = \sigma$
-      3) $\emptyset^{\star} = {\sigma}$
+      2) $a \epsilon = a$
+      3) $\emptyset^{\star} = \{\epsilon\}$
 
 ** Generalized NFA (GNFA)
    1) Definition

@@ -1,0 +1,607 @@
+% Created 2012-05-03 Thu 23:00
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{soul}
+\usepackage{amssymb}
+\usepackage{hyperref}
+
+
+\title{notes}
+\author{}
+\date{03 May 2012}
+
+\begin{document}
+
+\maketitle
+
+\setcounter{tocdepth}{3}
+\tableofcontents
+\vspace*{1cm}
+\section{\textbf{DONE} General}
+\label{sec-1}
+
+  \texttt{CLOSED:} \textit{2012-05-03 Thu 18:18}\newline
+\begin{enumerate}
+\item Data Models: Notation for describing the structure of the data in
+     the DB
+\item Relational Model: Relations are tables representing info. Columns
+     are headed by attributes. Rows are called tuples
+\item Keys: A constraint on relations that uniquely identifies tuples
+     in a table
+\end{enumerate}
+\section{\textbf{TODO} E/R (5)}
+\label{sec-2}
+
+\subsection{Enitity-Relationship Model:}
+\label{sec-2.1}
+
+   Description of entity sets, relationships amoung entity sets, and
+   attributes of entity sets and relationships
+\subsection{Entity-Relationship Diagrams}
+\label{sec-2.2}
+
+   We use rectangles, diamonds, and ovals to draw entity sets,
+   relationships, and attributes, respectively
+\subsection{Multiplicity of Binary Relationships}
+\label{sec-2.3}
+
+\subsubsection{One-to-One}
+\label{sec-2.3.1}
+
+    Entity is one set is paired with an Entity from another set
+\subsubsection{Many-to-One}
+\label{sec-2.3.2}
+
+    A single Entity from one set associates with many Entities from
+    another set
+\subsubsection{Many-to-Many}
+\label{sec-2.3.3}
+
+    Co-Many-to-One: Many to One both ways
+\subsubsection{Subclasses}
+\label{sec-2.3.4}
+
+    The E/R model uses `isa' to represent the fact that one entity set
+    is a special case of another
+\begin{itemize}
+\item Similar with inheritance as Objects
+\end{itemize}
+\subsubsection{\textbf{TODO} Stategies for E/R conversion}
+\label{sec-2.3.5}
+
+\section{\textbf{TODO} Schema Design (10)}
+\label{sec-3}
+
+\subsection{Functional Dependencies}
+\label{sec-3.1}
+
+   If A$_j$, B$_j$ are attributes of R a FD on R $\equiv A_1A_2...A_n
+   \rightarrow B_1B_2...B_m$
+\subsection{Key Relation}
+\label{sec-3.2}
+
+   $A = {A_1,A_2,...A_n}$ is a key iff
+\begin{enumerate}
+\item If B is a set of all attributes in R then A is a key if
+      $A\rightarrow B$
+\item No subset of A, call $A'$, satisfies $A' \rightarrow B$
+\end{enumerate}
+\subsection{Super Key:}
+\label{sec-3.3}
+
+   a set B that contains the key A. This means it only satisfies
+   condition 1 of the key relation
+\subsection{Closure}
+\label{sec-3.4}
+
+   Set of all attributes impliable based on a givenset of attributes
+\subsection{\textbf{TODO} Minimal Basis}
+\label{sec-3.5}
+
+\subsection{Boyce-Codd Normal Form (BCNF)}
+\label{sec-3.6}
+
+   A relational schemem $R$, is in BCNF iff $\forall$ dependcies
+   $X\rightarrow Y$, at least one of the following is true:
+\begin{enumerate}
+\item $X\rightarrow Y$ is a trivial FD ($X \subseteq Y$)
+\item $X$ is a superkey for $R$
+
+\begin{enumerate}
+\item Eliminates redundancy
+\item May cause loss of FD's
+\end{enumerate}
+
+\end{enumerate}
+\subsection{Lossless-Join Decomposition:}
+\label{sec-3.7}
+
+   A useful property of a decomposition is that the original relation
+   can be recovered exactly by taking the natural joing of the
+   relations in the decomposition
+\subsection{Dependency-Preserving Decomposition:}
+\label{sec-3.8}
+
+   A decomposition that we can check for all the functional
+   dependencies that hold in the original relation
+\subsection{Third Normal Form (3NF):}
+\label{sec-3.9}
+
+   $X \rightarrow Y$ iff
+\begin{enumerate}
+\item $X\rightarrow Y$ is a trivial FD ($X \subseteq Y$)$
+\item $X \subseteq Y$
+\item $X$ is a superkey
+\item $A-X$ is a subset of a canidate key
+
+\begin{itemize}
+\item Preserves functional dependencies
+\item May not remove all redundancies
+\end{itemize}
+
+\end{enumerate}
+\subsection{The Chase:}
+\label{sec-3.10}
+
+   Algorithm for testing for a lossless-join
+\section{\textbf{DONE} Relational Algebra (5)}
+\label{sec-4}
+
+  \texttt{CLOSED:} \textit{2012-05-03 Thu 18:18}\newline
+  This algebra underlies most query languages for the relational model.
+\subsection{Union ($\cup$)}
+\label{sec-4.1}
+
+   Same as set theory
+\subsection{Intersection ($\cap$)}
+\label{sec-4.2}
+
+   Same as set theory
+\subsection{Difference ($-$)}
+\label{sec-4.3}
+
+   Same as set theory
+\subsection{Selection ($\sigma$)}
+\label{sec-4.4}
+
+\begin{enumerate}
+\item Syntax: $\sigma_C(R)$, where $C=$ boolean condition on attributes.
+\item Returns: Relation where all attributes satisfy C
+\end{enumerate}
+\subsection{Projection ($\pi$)}
+\label{sec-4.5}
+
+\begin{enumerate}
+\item Syntax: $\pi_A(R)$, where $A=$ list of attributes
+\item Returns: Relation with only columns corresponding with A
+\end{enumerate}
+\subsection{Caresian product ($\times$)}
+\label{sec-4.6}
+
+   Same as set theory
+\subsection{Theta-Join ($\bowtie_\theta$)}
+\label{sec-4.7}
+
+\begin{enumerate}
+\item Syntax: $R_1 \bowtie_\theta R_2$, where $\theta$ is an boolean attribute condition
+\item Return: Relation with all joint tuples that satisfy $\theta$
+\end{enumerate}
+\subsubsection{Natural Join ($\bowtie$)}
+\label{sec-4.7.1}
+
+\begin{enumerate}
+\item $C$ = All common attributes columns are equal
+\end{enumerate}
+\subsection{Renaming ($\rho$)}
+\label{sec-4.8}
+
+\subsection{\textbf{DONE} Bags}
+\label{sec-4.9}
+
+   \texttt{CLOSED:} \textit{2012-05-03 Thu 18:18}\newline
+   Same as sets except duplicate elements are allowed
+\subsubsection{Relations as Bags}
+\label{sec-4.9.1}
+
+    Most modern DB's implement relations as bags and not sets. This
+    makes many common operations faster but pushes the burden of
+    avoiding duplication on the designers
+\subsubsection{Extensions to relational Alg}
+\label{sec-4.9.2}
+
+    To match the capabilities of SQL, some bag operations must extend
+    the standard relational alg
+\begin{itemize}
+
+\item Duplicate-Elimination ($\delta$)\\
+\label{sec-4.9.2.1}
+
+\begin{enumerate}
+\item Turns the bag into a set
+\end{enumerate}
+
+\item Aggregation\\
+\label{sec-4.9.2.2}
+
+\begin{enumerate}
+\item Summarize a column of a relation
+\item Typical aggregation ops: $SUM(A), AVG(A), COUNT(A), MIN(A), MAX(A)$
+\end{enumerate}
+
+\item Grouping ($\gamma$)\\
+\label{sec-4.9.2.3}
+
+\begin{enumerate}
+\item Syntax: $\gamma_L(R)$
+\item Partitions relation into groups based on a list of Attributes L
+\end{enumerate}
+
+\item OuterJoins ($\stackrel{o}{\bowtie}$)\\
+\label{sec-4.9.2.4}
+
+\begin{enumerate}
+\item Syntax: $R_1 \stackrel{o}{\bowtie_\theta} R_2$
+\item Does a $\bowtie_\theta$ and then adds dangling tuples (tuples
+        that have no corresponding slot in other relation padding
+        attributes with NULL)
+\end{enumerate}
+
+\item Sort($\tau$)\\
+\label{sec-4.9.2.5}
+
+\begin{enumerate}
+\item Syntax: $\tau(R,L)$
+\item Returns R sorted by list of attributes (Extra attributes are
+        used for tie breaking)
+\end{enumerate}
+\end{itemize} % ends low level
+\section{\textbf{TODO} SQL (10)}
+\label{sec-5}
+
+  The language SQL is the principal query language for relational
+  database systems.
+\section{\textbf{TODO} SQL Constraints (5)}
+\label{sec-6}
+
+  
+\subsection{Comparison of constraints}
+\label{sec-6.1}
+
+
+\begin{center}
+\begin{tabular}{llll}
+ Type of constraint     &  Where Declared       &  When Activated             &  Guaranteed to Hold?  \\
+\hline
+ Attribute-based CHECK  &  With Attribute       &  On inseration to relation  &  Not if subqueries    \\
+                        &                       &  or attribute Update        &                       \\
+\hline
+ Tuple-based CHECK      &  Element of relation  &  On insertion to relation   &  Not if subqueries    \\
+                        &  schema               &  or tuple update            &                       \\
+\hline
+ Assertion              &  Element of database  &  On any change to           &  YES                  \\
+                        &  schema               &  any mentioned relation     &                       \\
+\end{tabular}
+\end{center}
+
+
+
+
+\subsection{Referential-Integrity Constraints;}
+\label{sec-6.2}
+
+\begin{enumerate}
+\item Declaration that a value appearing in some attribute(s) of a set
+      must appear in the corresponding attribute(s) of some other
+      relation
+\item Syntax: A REFERENCES R(A$_2$)
+\item Syntax: FOREIGN KEY (<attributes>) REFERENCES <table>(<attributes>)o
+\end{enumerate}
+\subsection{Attribute-Based Check Constraints}
+\label{sec-6.3}
+
+\begin{enumerate}
+\item Constraint on the value of an attribute by adding CHECK
+      <condition> to be checked on the attribute
+\end{enumerate}
+\subsection{Tuple-Based Check Constraints}
+\label{sec-6.4}
+
+\begin{enumerate}
+\item Containt on the tuples of a relation by adding CHECK <conditon>
+      to be checked on the entire relation/tuple
+\end{enumerate}
+\subsection{Modifying Constraints:}
+\label{sec-6.5}
+
+\begin{enumerate}
+\item A tuple-based check can be add/deleted using ALTER
+\end{enumerate}
+\subsection{Assertions}
+\label{sec-6.6}
+
+\begin{enumerate}
+\item Delcaration of an assertion as an element in the database schema
+\item The delcaration give a condition to be checked:
+
+\begin{enumerate}
+\item May involve multiple relations and may invole the relation as
+         a whole
+\end{enumerate}
+
+\end{enumerate}
+\subsection{Triggers:}
+\label{sec-6.7}
+
+\begin{enumerate}
+\item Event Driven (e.g. insertion, deletion, or update) check
+      check of a condition ,which if true, starts a subroutine with
+      any valid SQL statements
+\end{enumerate}
+\section{\textbf{TODO} Views}
+\label{sec-7}
+
+\subsection{Virtual Views}
+\label{sec-7.1}
+
+\begin{enumerate}
+\item Definition of how a virtual relation (aka view) can be
+      constructed from other relations.
+\item Once defined the can be treated as effective relations
+
+\begin{enumerate}
+\item Write operations only work in a restricted case, see
+         Updatable Views
+\end{enumerate}
+
+\end{enumerate}
+\subsection{\textbf{TODO} Updatable Views}
+\label{sec-7.2}
+
+\subsection{Instead-Of Triggers:}
+\label{sec-7.3}
+
+\begin{enumerate}
+\item Because many views are not writable, SQL provides this trigger
+      to switch how a tuple gets written into the database
+
+\begin{enumerate}
+\item Useful for emulating Table like functionallity in views
+\end{enumerate}
+
+\end{enumerate}
+\section{\textbf{DONE} Indexing (5)}
+\label{sec-8}
+
+  \texttt{CLOSED:} \textit{2012-05-03 Thu 18:18}\newline
+\subsection{Clustered}
+\label{sec-8.1}
+
+\begin{enumerate}
+\item All or most of the relation is sequentially set up on neightboring
+\end{enumerate}
+   parts of blocks
+\subsection{Dense Indexes}
+\label{sec-8.2}
+
+\begin{enumerate}
+\item Index in which there is a key-pointer pair for every record in
+      the data file (could be a tuple or more indexes)
+\end{enumerate}
+\subsection{Sparse Indexes}
+\label{sec-8.3}
+
+\begin{enumerate}
+\item Index in which there is a key-pointer pair for every block in datafile
+
+\begin{enumerate}
+\item Only useful if the data is clustered and thus the position of
+         the next element in the block can be inferred by the current position
+         in the block
+\end{enumerate}
+
+\end{enumerate}
+\subsection{Multilevel Indexes}
+\label{sec-8.4}
+
+\begin{enumerate}
+\item Indirection in the indexes (indexes point to indexes) which often saves space and allows
+      for more complex datastructures
+\end{enumerate}
+\subsection{Inverted Indexes:}
+\label{sec-8.5}
+
+\begin{enumerate}
+\item The relation between documents and the words they contain is
+      often represented by an index structure with word-pointer pairs.
+\item The pointer goes to a place in a ``bucket'' file where there is a
+      list of pointers to places where the word occurs
+\end{enumerate}
+\section{\textbf{TODO} B+ Trees (5)}
+\label{sec-9}
+
+  Like a B tree however no data is stored in 
+\section{\textbf{TODO} Extensible hash tables (5)}
+\label{sec-10}
+
+\section{\textbf{TODO} KD-Trees (5)}
+\label{sec-11}
+
+\section{\textbf{TODO} Query Processing (15)}
+\label{sec-12}
+
+\begin{enumerate}
+\item Method in which queries are compiled, which involves extensive
+     optimization followed by Execution
+\end{enumerate}
+\subsection{Query Plans}
+\label{sec-12.1}
+
+\begin{enumerate}
+\item Queres are compiled into \underline{logical plans} often modeled after
+      relation algebra, and then conververted into a \underline{physical plan}
+
+\begin{enumerate}
+\item Logical Plan: Relational algebra like representation of query
+\item Physical Plan: Specific algorithm to implement logical plan
+\end{enumerate}
+
+\end{enumerate}
+\subsection{Scanning}
+\label{sec-12.2}
+
+\subsubsection{Table Scanning}
+\label{sec-12.2.1}
+
+\begin{enumerate}
+\item Read each block holding tuples of the relation
+\end{enumerate}
+\subsubsection{Index Scanning}
+\label{sec-12.2.2}
+
+\begin{enumerate}
+\item Utilize an index over an attribute to scan tuples in sorted
+       order
+\end{enumerate}
+\subsection{Cost Measures for Physics Operators}
+\label{sec-12.3}
+
+\subsubsection{Parameters for measuring Costs}
+\label{sec-12.3.1}
+
+
+\begin{center}
+\begin{tabular}{lllll}
+           &  M                           &  B(R)                 &  T(R)          &  V(R,a)               \\
+\hline
+ Meaning:  &  \# of Mem Blocks Avaliable  &  Blocks needed for R  &  \# of tuples  &  \# of unique values  \\
+\end{tabular}
+\end{center}
+
+
+\subsubsection{Join Cost}
+\label{sec-12.3.2}
+
+    \begin{equation}
+    T(A \bowtie B) = \frac{T(A)T(B)}{max(V(A,x), V(B,x))}
+    \end{equation}
+\subsection{\textbf{TODO} One-Pass Algorithms}
+\label{sec-12.4}
+
+
+\begin{center}
+\begin{tabular}{lll}
+ Operators                     &  Approximate M     &  Disk I/O              \\
+                               &  required          &                        \\
+\hline
+ $\sigma, \pi$                 &  $1$               &  $B$                   \\
+ $\gamma, \delta$              &  $B$               &  $B$                   \\
+ $\cup,\cap,-,\times,\bowtie$  &  $min(B(R),B(S))$  &  $B(R)+B(S)$           \\
+ $\bowtie$                     &  $M \geq 2$        &  $\frac{B(R)B(S)}{M}$  \\
+\end{tabular}
+\end{center}
+
+
+
+\begin{enumerate}
+\item If one argument fits in main mem, one can execute read the
+      smaller relation to mem, and read the other argument a block at
+      a time
+\end{enumerate}
+\subsubsection{\textbf{TODO} Nested-Loop Join}
+\label{sec-12.4.1}
+
+\begin{enumerate}
+\item Simple join algorithm works even if neither arguments fit in
+       main mem.
+
+\begin{enumerate}
+\item It reads as much as it can of the smaller relation into mem
+\item Compares that with the entire other argument a block at a
+          time
+\end{enumerate}
+
+\end{enumerate}
+\subsection{\textbf{TODO} Two-Pass Algorithms}
+\label{sec-12.5}
+
+   Most algorithms for arguments that are to large to fit into mem are
+   either sort-based hash-based or index-based
+\subsubsection{Sort-Based Algorithms}
+\label{sec-12.5.1}
+
+
+\begin{center}
+\begin{tabular}{lll}
+ Operators              &  Approximate M       &  Disk I/O        \\
+                        &  required            &                  \\
+\hline
+ $\tau,\gamma, \delta$  &  $\sqrt{B}$          &  $3B$            \\
+ $\cup,\cap,-$          &  $\sqrt{B(R)+B(S)}$  &  $3(B(R)+B(S))$  \\
+ $\bowtie$              &  $\sqrt{B(R)+B(S)}$  &  $3(B(R)+B(S))$  \\
+\end{tabular}
+\end{center}
+
+
+\begin{enumerate}
+\item Partiton argument(s) into main-mem-sized, sorted sublists
+\item Sorted sublists are merges accordingly
+\end{enumerate}
+\begin{itemize}
+
+\item Two-Phase, Multiway Merge Sort (TPMMS)\\
+\label{sec-12.5.1.1}
+
+
+\item Diplicate Elimination\\
+\label{sec-12.5.1.2}
+
+
+\item Join\\
+\label{sec-12.5.1.3}
+
+\end{itemize} % ends low level
+\subsubsection{Hash-Based Algorithms}
+\label{sec-12.5.2}
+
+
+\begin{center}
+\begin{tabular}{lll}
+ Operators                 &  Approximate M  &  Disk I/O                          \\
+                           &  required       &                                    \\
+\hline
+ $\gamma, \delta$          &  $\sqrt{B}$     &  $3B$                              \\
+ $\cup, \cap, -, \bowtie$  &  $\sqrt{B(S)}$  &  $3(B(R)+B(S))$                    \\
+ $\bowtie$                 &  $\sqrt{B(S)}$  &  $(3-\frac{2M}{B(S)})(B(R)+B(S))$  \\
+\end{tabular}
+\end{center}
+
+
+
+\begin{enumerate}
+\item Use a hash function to partition arguments into buckets.
+\item Apply operation to each bucket individually (unary) or in
+      pairs(binary)
+\end{enumerate}
+\subsubsection{Hashing vs Sorting}
+\label{sec-12.5.3}
+
+\begin{enumerate}
+\item Hashes are often faster since they require only one arg to be \underline{small}
+\item Sort-Based are convenient if data \underline{needs} to be sorted either
+       while working or outputing
+\end{enumerate}
+\subsubsection{Index-Based Algorithms}
+\label{sec-12.5.4}
+
+\begin{enumerate}
+\item Speed up selections when applicable
+\item If one relation is `small' and the other has an index on join
+      attribute then index-based algorithms are often quite fast
+\end{enumerate}
+
+\end{document}

@@ -1,4 +1,5 @@
-* TODO General
+* DONE General
+  CLOSED: [2012-05-03 Thu 18:18]
   1. Data Models: Notation for describing the structure of the data in
      the DB
   2. Relational Model: Relations are tables representing info. Columns
@@ -25,7 +26,7 @@
     The E/R model uses 'isa' to represent the fact that one entity set
     is a special case of another
     - Similar with inheritance as Objects
-*** Stategies for E/R conversion
+*** TODO Stategies for E/R conversion
 * TODO Schema Design (10)
 ** Functional Dependencies
    If A_j, B_j are attributes of R a FD on R $\equiv A_1A_2...A_n
@@ -56,13 +57,17 @@
    A decomposition that we can check for all the functional
    dependencies that hold in the original relation
 ** Third Normal Form (3NF):
-   A relaxed form of BCNF, called 3NF, allows an FD $X\rightarrow A$
-   even if X is not a superkey, provided A is member of some key
-   - Preserves functional dependencies
-   - May not remove all redundancies
+   $X \rightarrow Y$ iff
+   1. $X\rightarrow Y$ is a trivial FD ($X \subseteq Y$)$
+   2. $X \subseteq Y$
+   3. $X$ is a superkey
+   4. $A-X$ is a subset of a canidate key 
+     - Preserves functional dependencies
+     - May not remove all redundancies
 ** The Chase:
    Algorithm for testing for a lossless-join
 * DONE Relational Algebra (5)
+  CLOSED: [2012-05-03 Thu 18:18]
   This algebra underlies most query languages for the relational model.
 ** Union ($\cup$)
    Same as set theory
@@ -84,13 +89,184 @@
 *** Natural Join ($\bowtie$)
     1. $C$ = All common attributes columns are equal
 ** Renaming ($\rho$)
+** DONE Bags
+   CLOSED: [2012-05-03 Thu 18:18]
+   Same as sets except duplicate elements are allowed
+*** Relations as Bags
+    Most modern DB's implement relations as bags and not sets. This
+    makes many common operations faster but pushes the burden of
+    avoiding duplication on the designers
+*** Extensions to relational Alg
+    To match the capabilities of SQL, some bag operations must extend
+    the standard relational alg
+**** Duplicate-Elimination ($\delta$)
+     1. Turns the bag into a set
+**** Aggregation
+     1. Summarize a column of a relation
+     2. Typical aggregation ops: $SUM(A), AVG(A), COUNT(A), MIN(A), MAX(A)$
+**** Grouping ($\gamma$)
+     1. Syntax: $\gamma_L(R)$
+     2. Partitions relation into groups based on a list of Attributes L
+**** OuterJoins ($\stackrel{o}{\bowtie}$)
+     1. Syntax: $R_1 \stackrel{o}{\bowtie_\theta} R_2$
+     2. Does a $\bowtie_\theta$ and then adds dangling tuples (tuples
+        that have no corresponding slot in other relation padding
+        attributes with NULL) 
+**** Sort($\tau$)
+     1. Syntax: $\tau(R,L)$
+     2. Returns R sorted by list of attributes (Extra attributes are
+        used for tie breaking)
 * TODO SQL (10)
   The language SQL is the principal query language for relational
   database systems.
 * TODO SQL Constraints (5)
-* TODO Indexing (dense, sparse, clustered) (5)
+  
+** Comparison of constraints
+   | Type of constraint    | Where Declared      | When Activated            | Guaranteed to Hold? |
+   |-----------------------+---------------------+---------------------------+---------------------|
+   | Attribute-based CHECK | With Attribute      | On inseration to relation | Not if subqueries   |
+   |                       |                     | or attribute Update       |                     |
+   |-----------------------+---------------------+---------------------------+---------------------|
+   | Tuple-based CHECK     | Element of relation | On insertion to relation  | Not if subqueries   |
+   |                       | schema              | or tuple update           |                     |
+   |-----------------------+---------------------+---------------------------+---------------------|
+   | Assertion             | Element of database | On any change to          | YES                 |
+   |                       | schema              | any mentioned relation    |                     |
+
+
+** Referential-Integrity Constraints;
+   1. Declaration that a value appearing in some attribute(s) of a set
+      must appear in the corresponding attribute(s) of some other
+      relation
+   2. Syntax: A REFERENCES R(A_2)
+   3. Syntax: FOREIGN KEY (<attributes>) REFERENCES <table>(<attributes>)o
+** Attribute-Based Check Constraints
+   1. Constraint on the value of an attribute by adding CHECK
+      <condition> to be checked on the attribute
+** Tuple-Based Check Constraints
+   1. Containt on the tuples of a relation by adding CHECK <conditon>
+      to be checked on the entire relation/tuple
+** Modifying Constraints:
+   1. A tuple-based check can be add/deleted using ALTER
+** Assertions
+   1. Delcaration of an assertion as an element in the database schema
+   2. The delcaration give a condition to be checked:
+      1. May involve multiple relations and may invole the relation as
+         a whole
+** Triggers:
+   1. Event Driven (e.g. insertion, deletion, or update) check
+      check of a condition ,which if true, starts a subroutine with
+      any valid SQL statements
+* TODO Views
+** Virtual Views
+   1. Definition of how a virtual relation (aka view) can be
+      constructed from other relations. 
+   2. Once defined the can be treated as effective relations 
+      1. Write operations only work in a restricted case, see
+         Updatable Views
+** TODO Updatable Views
+** Instead-Of Triggers:
+   1. Because many views are not writable, SQL provides this trigger
+      to switch how a tuple gets written into the database
+      1. Useful for emulating Table like functionallity in views
+* DONE Indexing (5)
+  CLOSED: [2012-05-03 Thu 18:18]
+** Clustered
+   1. All or most of the relation is sequentially set up on neightboring
+   parts of blocks
+** Dense Indexes
+   1. Index in which there is a key-pointer pair for every record in
+      the data file (could be a tuple or more indexes)
+** Sparse Indexes
+   1. Index in which there is a key-pointer pair for every block in datafile
+      1. Only useful if the data is clustered and thus the position of
+         the next element in the block can be inferred by the current position
+         in the block
+** Multilevel Indexes
+   1. Indirection in the indexes (indexes point to indexes) which often saves space and allows
+      for more complex datastructures
+** Inverted Indexes:
+   1. The relation between documents and the words they contain is
+      often represented by an index structure with word-pointer pairs.
+   2. The pointer goes to a place in a "bucket" file where there is a
+      list of pointers to places where the word occurs
 * TODO B+ Trees (5)
+  Like a B tree however no data is stored in 
 * TODO Extensible hash tables (5)
 * TODO KD-Trees (5)
-* TODO Query Processing (10)
-* TODO SQL+indexing+query processing (5)
+* TODO Query Processing (15)
+  1. Method in which queries are compiled, which involves extensive
+     optimization followed by Execution
+** Query Plans
+   1. Queres are compiled into _logical plans_ often modeled after
+      relation algebra, and then conververted into a _physical plan_
+      1. Logical Plan: Relational algebra like representation of query
+      2. Physical Plan: Specific algorithm to implement logical plan
+** Scanning
+*** Table Scanning
+    1. Read each block holding tuples of the relation
+*** Index Scanning
+    1. Utilize an index over an attribute to scan tuples in sorted
+       order
+** Cost Measures for Physics Operators
+*** Parameters for measuring Costs
+|          | M                         | B(R)                | T(R)        | V(R,a)             |
+|----------+---------------------------+---------------------+-------------+--------------------|
+| Meaning: | # of Mem Blocks Avaliable | Blocks needed for R | # of tuples | # of unique values |
+*** Join Cost
+    \begin{equation}
+    T(A \bowtie B) = \frac{T(A)T(B)}{max(V(A,x), V(B,x))}
+    \end{equation}
+** TODO One-Pass Algorithms
+   | Operators                    | Approximate M    | Disk I/O             |
+   |                              | required         |                      |
+   |------------------------------+------------------+----------------------|
+   | $\sigma, \pi$                | $1$              | $B$                  |
+   | $\gamma, \delta$             | $B$              | $B$                  |
+   | $\cup,\cap,-,\times,\bowtie$ | $min(B(R),B(S))$ | $B(R)+B(S)$          |
+   | $\bowtie$                    | $M \geq 2$       | $\frac{B(R)B(S)}{M}$ |
+
+   1. If one argument fits in main mem, one can execute read the
+      smaller relation to mem, and read the other argument a block at
+      a time
+*** TODO Nested-Loop Join
+    1. Simple join algorithm works even if neither arguments fit in
+       main mem. 
+       1. It reads as much as it can of the smaller relation into mem
+       2. Compares that with the entire other argument a block at a
+          time
+** TODO Two-Pass Algorithms
+   Most algorithms for arguments that are to large to fit into mem are
+   either sort-based hash-based or index-based
+*** Sort-Based Algorithms
+   | Operators             | Approximate M      | Disk I/O       |
+   |                       | required           |                |
+   |-----------------------+--------------------+----------------|
+   | $\tau,\gamma, \delta$ | $\sqrt{B}$         | $3B$           |
+   | $\cup,\cap,-$         | $\sqrt{B(R)+B(S)}$ | $3(B(R)+B(S))$ |
+   | $\bowtie$             | $\sqrt{B(R)+B(S)}$ | $3(B(R)+B(S))$ |
+    1. Partiton argument(s) into main-mem-sized, sorted sublists
+    2. Sorted sublists are merges accordingly
+**** Two-Phase, Multiway Merge Sort (TPMMS)
+**** Diplicate Elimination
+**** Join
+*** Hash-Based Algorithms
+   | Operators                | Approximate M | Disk I/O                         |
+   |                          | required      |                                  |
+   |--------------------------+---------------+----------------------------------|
+   | $\gamma, \delta$         | $\sqrt{B}$    | $3B$                             |
+   | $\cup, \cap, -, \bowtie$ | $\sqrt{B(S)}$ | $3(B(R)+B(S))$                   |
+   | $\bowtie$                | $\sqrt{B(S)}$ | $(3-\frac{2M}{B(S)})(B(R)+B(S))$ |
+
+   1. Use a hash function to partition arguments into buckets.
+   2. Apply operation to each bucket individually (unary) or in
+      pairs(binary)       
+*** Hashing vs Sorting
+    1. Hashes are often faster since they require only one arg to be _small_
+    2. Sort-Based are convenient if data _needs_ to be sorted either
+       while working or outputing
+*** Index-Based Algorithms
+   1. Speed up selections when applicable
+   2. If one relation is 'small' and the other has an index on join
+      attribute then index-based algorithms are often quite fast
+
