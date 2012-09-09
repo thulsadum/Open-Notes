@@ -1,19 +1,30 @@
-% Created 2012-05-05 Sat 18:03
+% Created 2012-09-03 Mon 13:56
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
 \usepackage{graphicx}
 \usepackage{longtable}
 \usepackage{float}
 \usepackage{wrapfig}
 \usepackage{soul}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{latexsym}
 \usepackage{amssymb}
 \usepackage{hyperref}
+\tolerance=1000
 \usepackage{header}
+\providecommand{\alert}[1]{\textbf{#1}}
 
 \title{Diff Eq Notes}
-\author{}
-\date{05 May 2012}
+\author{Marcell J. Vazquez-Chanlatte}
+\date{\today}
+\hypersetup{
+  pdfkeywords={},
+  pdfsubject={},
+  pdfcreator={Emacs Org-mode version 7.8.11}}
 
 \begin{document}
 
@@ -29,30 +40,23 @@
 
 \begin{itemize}
 \item Definition:
-
 \begin{itemize}
 \item DE is an equation that describes the properties of an unkown
 \end{itemize}
-
+function(s)
 \item Ordinary DE:
-
 \begin{itemize}
 \item describes functions of 1 variable
 \end{itemize}
-
 \item Partial DE:
-
 \begin{itemize}
 \item describes multivariable functions
 \end{itemize}
-
 \item Notation:
-
 \begin{itemize}
 \item independent variable: y
 \item dependent variable: t
 \end{itemize}
-
 \end{itemize}
 \section{Operator Notation}
 \label{sec-2}
@@ -61,9 +65,8 @@
   $\frac{d^n}{dt^n} = D^n \rightarrow f^{(n)} = D^n(f)$
 \section{Stability}
 \label{sec-3}
-
 \subsection{Definition}
-\label{sec-3.1}
+\label{sec-3-1}
 
 \begin{enumerate}
 \item Stability $\equiv$ a system in which long term behvaior does not
@@ -73,17 +76,13 @@
     \lim_{t\rightarrow \infty} y_h = 0 \pm \epsilon
     \end{equation}
 \item For S.O.L.E
-
 \begin{enumerate}
 \item Stable iff either of the equivalent statments is true:
-
 \begin{enumerate}
 \item $Re(r) < 0$
 \item $a,b,c >0$ or $a,b,c <0$
 \end{enumerate}
-
 \end{enumerate}
-
 \end{enumerate}
 \section{Initial Value Problems}
 \label{sec-4}
@@ -98,45 +97,40 @@
   \end{array}
   \right.
   \end{equation}
- 
+
 \section{Seperable DE}
 \label{sec-5}
-
 \subsection{Definition}
-\label{sec-5.1}
-
+\label{sec-5-1}
 \subsubsection{Form}
-\label{sec-5.1.1}
+\label{sec-5-1-1}
 
     \begin{equation}
     \d{y}{t}=f(y)g(t)
     \end{equation}
 \subsubsection{Solution}
-\label{sec-5.1.2}
+\label{sec-5-1-2}
 
 \begin{enumerate}
 \item Let DE be $\d{y}{t}=f(y)g(t)$
 \item Seperating terms: $\frac{dt}{f(y)}\d{y}{t}=\frac{dt}{f(y)}f(y)g(t) \implies \frac{dy}{f(y)}=g(t)dt$
-
 \begin{enumerate}
 \item If $f(y)^{-1}$ is not defined from some t, solve outside of
           that range and consider those t separately
 \end{enumerate}
-
 \item Integrate both sides: $\int \frac{dy}{f(y)}=\int g(t)dt$
 \item If possible solve for $y(t)$
 \end{enumerate}
 \section{Homogenous Equations}
 \label{sec-6}
-
 \subsection{Form}
-\label{sec-6.1}
+\label{sec-6-1}
 
    \begin{equation}
    \d{y}{t}=f(\frac{y}{t})
    \end{equation}
 \subsection{Technique for Solving:}
-\label{sec-6.2}
+\label{sec-6-2}
 
 \begin{enumerate}
 \item Let $v=\frac{y}{t} \implies y=vt$
@@ -147,15 +141,14 @@
 \end{enumerate}
 \section{Exact Equations}
 \label{sec-7}
-
 \subsection{Form}
-\label{sec-7.1}
+\label{sec-7-1}
 
    \begin{equation}
    \pd{}{t}\Psi(f(t),y(t)) = \pd{\Psi}{f}\d{f}{t} + \pd{\Psi}{y}\d{y}{t}
    \end{equation}
 \subsection{Technique for Solving:}
-\label{sec-7.2}
+\label{sec-7-2}
 
 \begin{enumerate}
 \item Suppose DE is of the form: $M(x,y) + N(x,y) y_x = 0$
@@ -163,19 +156,16 @@
 \end{enumerate}
 \section{Autonomous Equations}
 \label{sec-8}
-
 \subsection{Form}
-\label{sec-8.1}
+\label{sec-8-1}
 
    \begin{equation}
    y'=f(y)
    \end{equation}
 \subsection{Anaylsis}
-\label{sec-8.2}
-
+\label{sec-8-2}
 \subsubsection{Differentiation Fields}
-\label{sec-8.2.1}
-
+\label{sec-8-2-1}
 \section{Linear Diff Equations}
 \label{sec-9}
 
@@ -185,16 +175,15 @@
 \item L(cy) = cL(y)
 \end{itemize}
 \subsection{First Order Linear Eq}
-\label{sec-9.1}
-
+\label{sec-9-1}
 \subsubsection{Form}
-\label{sec-9.1.1}
+\label{sec-9-1-1}
 
     \begin{equation}
     y' + p(t)y = f(t)
     \end{equation}
 \subsubsection{Solving using Integration Factors}
-\label{sec-9.1.2}
+\label{sec-9-1-2}
 
 \begin{enumerate}
 \item Let $\mu$ be a mult factor s.t. $\mu y' + \mu'y=g(t) \implies [\mu(t) y(t)]'= g(t)$
@@ -206,25 +195,22 @@
        \end{equation} $\square$
 \end{enumerate}
 \subsubsection{Bernoulli's equations}
-\label{sec-9.1.3}
-
+\label{sec-9-1-3}
 \begin{itemize}
 
 \item Form\\
-\label{sec-9.1.3.1}
-
-     \begin{equation}
+\label{sec-9-1-3-1}%
+\begin{equation}
      y'+p(t)y=q(t)y^n, n\in \mathbb{Z}
      \end{equation}
 
-\item Solution\\
-\label{sec-9.1.3.2}
-
+\item Solution
+\label{sec-9-1-3-2}%
 \begin{enumerate}
 \item Let $v=y^{2-n} \implies v'=(1-n)y^{-n}y'$
 \item Thus $y'=\frac{v'}{1-n}$ and $y = y^n v$
 \item Subsituting in Bernoulli equation: $\frac{v'}{1-n}y^n+p(t)y^nv=q(t)y^n$
-\item Moving into standard form: 
+\item Moving into standard form:
         \begin{equation}
         v'+(1-n)p(t)v=(1-n)q(t)
         \end{equation}
@@ -232,35 +218,30 @@
 \end{enumerate}
 \end{itemize} % ends low level
 \subsubsection{Picard Iteration}
-\label{sec-9.1.4}
-
+\label{sec-9-1-4}
 \begin{itemize}
 
 \item Integral Equations\\
-\label{sec-9.1.4.1}
-
-     Suppose $f$ is continous, then a function $y=\Phi(t)$
+\label{sec-9-1-4-1}%
+Suppose $f$ is continous, then a function $y=\Phi(t)$
      solves the IVP iff $y=\Phi(t)$ solves the corresponding integral equation:
      \begin{equation}
      y(t)=y_0+\int_{t_0}^t f(s,y(s))ds
      \end{equation}
 
-\item Idea\\
-\label{sec-9.1.4.2}
-
+\item Idea
+\label{sec-9-1-4-2}%
 \begin{enumerate}
 \item Let $f(t) = \d{y}{t}$
 \item Construct a sequence of functions $\{g_n(t) : n \geq 0, n\in \mathbb{Z}\}$ that converges to soln:
-
 \begin{enumerate}
 \item $y_0(t) = y_0$
 \item $y_{n+1}(t)=y_0+ \int_{t_0}^tf(s,y_n(t))ds$
 \end{enumerate}
-
 \end{enumerate}
 \end{itemize} % ends low level
 \subsubsection{Lipsichitz Condition}
-\label{sec-9.1.5}
+\label{sec-9-1-5}
 
 \begin{enumerate}
 \item For $f(t,y) \in \mathbb{R}$, f is Lipsichitz iff $\exists L\in \mathbb{R}$:
@@ -274,21 +255,18 @@
 \item \underline{Lemma}: if $f_y$ is bounded then f is Lipsichitz
 \end{enumerate}
 \subsubsection{Uniform Convergence (U.C.)}
-\label{sec-9.1.6}
-
+\label{sec-9-1-6}
 \begin{itemize}
 
 \item Definition:\\
-\label{sec-9.1.6.1}
-
-     A sequence of functions $\{f_n(t) : n\geq 0 ; n\in\mathbb{Z}\}$
+\label{sec-9-1-6-1}%
+A sequence of functions $\{f_n(t) : n\geq 0 ; n\in\mathbb{Z}\}$
      defined on the inverval $I$ \underline{uniformially converges} to $f(t)$ iff
      $\forall t > 0, \exists N\in \mathbb{Z}$ s.t. $\abs{f_n(t)-f(t)}
      < \epsilon$ everywhere on I $\forall n > N$
 
 \item \\
-
-
+%
      \underline{Theorem}: Given $\f_n(t)$ is continuous on I, if
      $\lim_{n\rightarrow \infty}{f_n(t)} \rightarrow f(t)$ with U.C, then:
 \begin{enumerate}
@@ -302,36 +280,30 @@
 \end{enumerate}
 
 \item Weirstress M Test\\
-\label{sec-9.1.6.3}
-
-     \underline{Theorem}: 
+\label{sec-9-1-6-3}%
+\underline{Theorem}:
 \begin{itemize}
 \item If $\forall n \in I, \abs{f_n(t)} \leq M_n$ and if $\sum_{n=0}^\infty M_n< L$ for some $L\in \mathbb{R}$,
 \item Then $\sum_{n=0}^\infty f_n(t)$ Converges Uniformially on I
 \end{itemize}
 \end{itemize} % ends low level
 \subsubsection{Existence Theorem}
-\label{sec-9.1.7}
+\label{sec-9-1-7}
 
 \begin{enumerate}
 \item \underline{Claim}:
-
 \begin{enumerate}
 \item If:
-
 \begin{enumerate}
 \item $f(y)$ is continous
 \item $f$ is Lipsichitz w.r.t. $y \in R\equiv \{\(t,y) :
              \abs{t-t_0}\leq T$ and $\abs{y-y_0} \leq k\}$
 \item $\sum_{k=1}^\infty [y_k(t)-y_{k-1}(t)]$ converges uniformially
 \end{enumerate}
-
 \item Then: $\exists$ a solution to the IVP on the interval
           $\abs{t-t_0}\leq T_1=min(T,\frac{k}{m})$ where $\abs{f(t,y)} \leq M\in R$
 \end{enumerate}
-
 \item \underline{Proof}:
-
 \begin{enumerate}
 \item Converting the IVP to an I.E.: $y(t)=y_0+\int_{t_0}^t f(s,y(s))ds$
 \item Note theat: $\abs{y_k(t)-y_{k-1}(t)} \leq \frac{M}{L}
@@ -343,46 +315,36 @@
           on the interval.
 \item Therefore $\exists$ a solution to the IVP $\square$
 \end{enumerate}
-
 \end{enumerate}
 \subsubsection{Uniqueness Theorm}
-\label{sec-9.1.8}
+\label{sec-9-1-8}
 
 \begin{enumerate}
 \item \underline{Claim}:
-
 \begin{enumerate}
 \item If $\Phi(t)$ and $\Psi(t)$ are solutions of $y'\equiv
           f(y,t) \in R$ and if $f$ is Lipseitz w.r.t. $y\in R$
 \item Then $\abs{\Phi(t) - Psi(t)} \leq e^{L\abs{t-t_0}}
           \abs{\Phi(t_0) - \Psi(t_0)} = 0$
-
 \begin{enumerate}
 \item Because they solve the same I.V.P. $\abs{\Phi(t_0) -
              \Psi(t_0)} = 0$
 \end{enumerate}
-
 \item Equivalently: Then $\Psi(t) = \Psi(t)$
 \end{enumerate}
-
 \item \underline{Proof}:
-
 \begin{enumerate}
 \item $E\equiv \abs{\Phi(t)-\Psi(t)}^2$
-
 \begin{enumerate}
 \item Note that $E\geq 0$
 \end{enumerate}
-
 \item $\d{}{t}E=2(\Phi(t)-\Psi(t))(\Phi'(t)-\Psi'(t))$
 \item $E'\stackrel{DE}{=}2(\Phi(t)-\Psi(t))(f(t,\Phi)-f(t,\Psi))$
 \item $E'\stackrel{Lip}{\leq} 2\abs{\Phi(t)-\Psi(t)}L\abs{\Phi(t)-\Psi(t)}$
 \item Thus $E' \leq 2LE \implies E'-2LE \leq 0\implies (E(t) e^{-2Lt})' \leq 0$
-
 \begin{enumerate}
 \item Note that E' is stricly decreasing
 \end{enumerate}
-
 \item Therefore: $e^{-t}E(t)\leq e^{2Lt_0} E(t_0) \implies
           E(t)\leq e^{2L(t-t_0)}E(t_0)$
 \item Substituting: $\abs{\Phi(t)-\Psi(t)}^2 \leq e^{2L(t-t_0)} \abs{\Phi(t_0)-\Psi(t_0)}^2$
@@ -391,13 +353,11 @@
           \Psi(t_0)} = 0$
 \item Thus $\Phi(t)=\Psi(t) \square$
 \end{enumerate}
-
 \end{enumerate}
 \subsection{Second Order Linear Eq}
-\label{sec-9.2}
-
+\label{sec-9-2}
 \subsubsection{The Wronskian:}
-\label{sec-9.2.1}
+\label{sec-9-2-1}
 
 \begin{equation}
 W(f,g)(t) = \left |
@@ -408,15 +368,13 @@ W(f,g)(t) = \left |
          f_1^{(n-1)}(x)& f_2^{(n-1)}(x) & \cdots & f_n^{(n-1)}(x)
 \end{array} \right |,\qquad x\in I
 \end{equation}
-
 \subsubsection{Existence Theorem}
-\label{sec-9.2.2}
+\label{sec-9-2-2}
 
 \begin{enumerate}
 \item Claim: For all D.E. there exists a $y(t)$ that satisfies it
        locally on some interval
 \item Proof:
-
 \begin{enumerate}
 \item Let $y'=v \rightarrow v'=y''$         2) Therefore $v'=-py'-qy=-pv-qy$ , by plugging into the DE
 \item In matrix form:
@@ -438,40 +396,33 @@ W(f,g)(t) = \left |
 \item Note that this is a linear first order matrix system which there
            is an existence therom for
 \end{enumerate}
-
 \end{enumerate}
 \subsubsection{Uniqueness}
-\label{sec-9.2.3}
-
+\label{sec-9-2-3}
 \subsubsection{Second Order Linear Homogenous Diff Eq (S.O.L.H.D.E)}
-\label{sec-9.2.4}
-
+\label{sec-9-2-4}
 \begin{itemize}
 
 \item Form\\
-\label{sec-9.2.4.1}
-
-     \begin{equation}
+\label{sec-9-2-4-1}%
+\begin{equation}
      a(x)\dd{y}{t} + b(x)\d{y}{t} + c(x)y=0
      \end{equation}
 
 \item Theorm: The general solution to S.O.L.H.E\\
-\label{sec-9.2.4.2}
-
-     Claim: The general soln of eq1$\equiv [y''+p(t)y'+g(t)y=0]$ is:
+\label{sec-9-2-4-2}%
+Claim: The general soln of eq1$\equiv [y''+p(t)y'+g(t)y=0]$ is:
      \begin{equation}
      y_h=c_1y_1+c_2 y_2
      \end{equation}
 
-\item Proof:\\
-\label{sec-9.2.4.3}
-
+\item Proof:
+\label{sec-9-2-4-3}%
 \begin{itemize}
 
 \item Q1:\\
-\label{sec-9.2.4.3.1}
-
-      Given y$_1$ and y$_2$ are solutions, why is $c_1y_1+c_2y_2$ a solution
+\label{sec-9-2-4-3-1}%
+Given y$_1$ and y$_2$ are solutions, why is $c_1y_1+c_2y_2$ a solution
 \begin{enumerate}
 \item $Eq1=D^2(y)+p(t)D(y)+q(t)y=0$
 \item $Eq1=[D^2+p(t)D+q(t)]y=0$
@@ -482,29 +433,25 @@ W(f,g)(t) = \left |
 \end{enumerate}
 
 \item Q2:\\
-\label{sec-9.2.4.3.2}
-
-      Given 2 indepent solutions y$_1$ and y$_2$ for the DE, $\forall$ IVP and its unique solution y, $\exists (c_1,c_2)
+\label{sec-9-2-4-3-2}%
+Given 2 indepent solutions y$_1$ and y$_2$ for the DE, $\forall$ IVP and its unique solution y, $\exists (c_1,c_2)
          \in \mathbb{C}^2$ s.t. $y=c_1y_1 + c_2y_2 \equiv \vec{y}\cdot\vec{c}$
-         
 
-\item Q3:\\
-\label{sec-9.2.4.3.3}
 
+\item Q3:
+\label{sec-9-2-4-3-3}%
 \begin{itemize}
 
-\item Abel's Identity\\
-\label{sec-9.2.4.3.3.1}
-
+\item Abel's Identity
+\label{sec-9-2-4-3-3-1}%
 \begin{enumerate}
 \item If u,v solve the D.E. then $W'+p(t)W=0 \rightarrow ce^{-\int p(t)dt}$
 \item Alternatively: $W' +p(t)W=0 \implies W'=0 \implies W=C$
 \end{enumerate}
 
 \item Finding the general solution\\
-\label{sec-9.2.4.3.3.2}
-
-      Goal: The general soln is of the form $y=\vec{y}\cdot\vec{c}$
+\label{sec-9-2-4-3-3-2}%
+Goal: The general soln is of the form $y=\vec{y}\cdot\vec{c}$
 \begin{enumerate}
 \item Recall the matrix form of the D.E. from the Existence theorem
          proof.
@@ -516,9 +463,8 @@ W(f,g)(t) = \left |
 \end{itemize} % ends low level
 \end{itemize} % ends low level
 
-\item Generating Second Solution\\
-\label{sec-9.2.4.4}
-
+\item Generating Second Solution
+\label{sec-9-2-4-4}%
 \begin{enumerate}
 \item Claim: if $y_1\neq 0$ be a solution to the D.E. then,
         \begin{equation}
@@ -526,7 +472,6 @@ W(f,g)(t) = \left |
         \end{equation}
         and y$_2$ = solution independent of y$_1$
 \item Proof:
-
 \begin{enumerate}
 \item Consider $(\frac{y_2}{y_1})' = \frac{y_1 y_2' - y_1'y_2}{y_1^2}=\frac{W(y_1,y_2)}{y_1^2}$
 \item Given that $W'+p(t)W=0 \implies W(t)=ce^{-\int p(t) dt}$
@@ -535,121 +480,100 @@ W(f,g)(t) = \left |
 \item Solving: $y_2=Cy_1\int \frac{e^{-\int p
            dt}}{y_1^2} \square$
 \end{enumerate}
-
 \end{enumerate}
 \end{itemize} % ends low level
 \subsubsection{Second Order Linear Inhomogenious Diff Eq (S.O.L.I.D.E)}
-\label{sec-9.2.5}
-
+\label{sec-9-2-5}
 \begin{itemize}
 
 \item Form\\
-\label{sec-9.2.5.1}
-
-     \begin{equation}
+\label{sec-9-2-5-1}%
+\begin{equation}
      y^{(n)}(t)+p(t)y'(t)+q(t)y=f(t)
      \end{equation}
 
-\item General Solution\\
-\label{sec-9.2.5.2}
-
+\item General Solution
+\label{sec-9-2-5-2}%
 \begin{enumerate}
 \item \underline{Claim}: The general soln of $y^{(n)}(t)+p(t)y'(t)+q(t)y=f(t)$ is:
          \begin{equation}
          y=y_h+k(t)
          \end{equation}
-
 \begin{enumerate}
 \item $y_h = c_1y_1+c_2y_2$ is the solution to the homogenous
             equation i.e. $f(t)=0$
 \item Functional Offset $(k(t))$: variation or `offset' from the homogenous equation
 \end{enumerate}
-
 \item \underline{Proof}:
-
 \begin{enumerate}
 \item Sub-Claim: $y_h+k$ is a solution
-
 \begin{enumerate}
 \item Using Operator notation: $D^2y+pDy+qy=f \implies [D^2+pD+q](y)=f$
 \item Let $L\equivD^2+pD+q \implies L(y)=f$
-
 \begin{enumerate}
 \item Note that L is linear
 \end{enumerate}
-
 \item $L(y_h+k) = L(y_h+k)=L(y_h)+L(y_p)$
 \item $L(y_h)=0,L(y_p)=f \implies L(y_h+k)=f+0 = f \square$
 \end{enumerate}
-
 \item Sub-Claim: $\forall y_i$, if $y_i$ is a solution to the
             S.O.L.I.D.E, then $y_i=y_h+k$
-
 \begin{enumerate}
 \item $[L(y_i)=f$ and $L(k)=f] \implies L(y_i-k) = f-f=0$
 \item By Existence of S.O.L.H.D.E, $L(y_i-k)=0 \implies$ \$y$_i$-k=y$_h$\$
 \item Thus $y_i=k+y_h \square$
 \end{enumerate}
-
 \end{enumerate}
-
 \end{enumerate}
 
 \item Exponential Shift Law\\
-\label{sec-9.2.5.3}
-
-     \begin{equation}
+\label{sec-9-2-5-3}%
+\begin{equation}
      P(D)[e^{\alpha u(t)}]=p(D+\alpha)u(t)[e^{\alpha t}]
      \end{equation}
 
-\item Expontial-Polynomial Functional offesets\\
-\label{sec-9.2.5.4}
-
+\item Expontial-Polynomial Functional offesets
+\label{sec-9-2-5-4}%
 \begin{itemize}
 
 \item Form\\
-\label{sec-9.2.5.4.1}
-
-      \begin{equation}
+\label{sec-9-2-5-4-1}%
+\begin{equation}
       ay''+by'+cy=e^{\alpha t}g(t); \alpha\in\mathbb{C}
       \end{equation}
 
 \item Characteristic Polynomial\\
-\label{sec-9.2.5.4.2}
-
-      \begin{equation}
+\label{sec-9-2-5-4-2}%
+\begin{equation}
       p(r)=aD^2+bD+c
       \end{equation}
       Note that the DE in Operator notation is: $[aD^2+bD+c]$
 
 \item Finding Particular Solution for S.O.L.E\\
-\label{sec-9.2.5.4.3}
-
-      \underline{Theorem}:
+\label{sec-9-2-5-4-3}%
+\underline{Theorem}:
 \begin{itemize}
 \item Let $k$ be s.t. $(r-\alpha)^k$ are roots of $p(\alpha)$
-\item Then 
+\item Then
         \begin{equation}
         y_p=\frac{t^ke^{\alpha t}}{p^{(k)}(\alpha)}
         \end{equation}
 \end{itemize}
 
 \item Method of Undetermined Coefficents\\
-\label{sec-9.2.5.4.4}
-
-      \underline{Idea}: if f(t) is a comprised of strict multiplications (no division) sinusoidal,exponetials, and
+\label{sec-9-2-5-4-4}%
+\underline{Idea}: if f(t) is a comprised of strict multiplications (no division) sinusoidal,exponetials, and
       polynomials then the solution of the S.O.L.E with const
       coefficents is in terms of of the same types you began with.
 
       \underline{Cases}:
-      
+
       if $f(t)=e^{\alpha t}$ (polynomial of $deg(k+m)$), then guess
       $y_p=e^{\alpha t}\Sigma_{j=0}^k C_jt^j$
 \end{itemize} % ends low level
 
-\item Annihilator Method\\
-\label{sec-9.2.5.5}
-
+\item Annihilator Method
+\label{sec-9-2-5-5}%
 \begin{enumerate}
 \item Given: $(D^2+aD+b)y=e^{\alpha t}f(t)$, where $f(t)$ is a polynomial
 \item Attempt to multiply both sides by a Differential Operator ($G$) s.t.
@@ -661,88 +585,76 @@ W(f,g)(t) = \left |
         the method of undetermined coefficents
 \end{enumerate}
 
-\item Lagrange Variation of Parameters\\
-\label{sec-9.2.5.6}
-
+\item Lagrange Variation of Parameters
+\label{sec-9-2-5-6}%
 \begin{itemize}
 
 \item Equation:\\
-\label{sec-9.2.5.6.1}
-
-      \begin{equation}
+\label{sec-9-2-5-6-1}%
+\begin{equation}
       y_p=\int{\frac{y_1f(x)}{W(y_1,y_2)}dt}+\int{\frac{y_2f(x)}{W(y_1,y_2)}dt}
       \end{equation}
 
 \item Derivation:\\
-\label{sec-9.2.5.6.2}
-
-      See General Derivation
+\label{sec-9-2-5-6-2}%
+See General Derivation
 \end{itemize} % ends low level
 \end{itemize} % ends low level
 \subsubsection{Foulrier Transform}
-\label{sec-9.2.6}
-
+\label{sec-9-2-6}
 \subsubsection{Strum Comparison Theorem}
-\label{sec-9.2.7}
+\label{sec-9-2-7}
 
-    \underline{Theorem}: 
+    \underline{Theorem}:
 \begin{enumerate}
 \item If:
-
 \begin{enumerate}
 \item $u''+q_1(t)u=0$ and $v''+q_2v =0$
 \item $q_1>q_2$
 \end{enumerate}
-
 \item Then:
-
 \begin{enumerate}
 \item $u$ vanishes as some point between $2$ zeros of $v$
 \end{enumerate}
-
 \end{enumerate}
 \subsection{General Linear Diff Eq and Variation of Parameters}
-\label{sec-9.3}
-
+\label{sec-9-3}
 \subsubsection{Form}
-\label{sec-9.3.1}
+\label{sec-9-3-1}
 
     \begin{equation}
     y^{(n)}(x)+\sum_{k=0}^na_k(x)y^{(k)}(x)=f(x)
     \end{equation}
 \subsubsection{Equation:}
-\label{sec-9.3.2}
+\label{sec-9-3-2}
 
     \begin{equation}
     \sum_{k=0}^n[y_k(x)\int{\frac{W_k(x)}{W(X)}dx}]
     \end{equation}
     $W(x)\equiv$ Wronskian determinant of the fundamental system
     and $W_i(x)\equiv$ the Wronskian determinant of the fundamental system
-    with the $i-th$ column replaced by $(0,0,\ldots,f(x))$   
+    with the $i-th$ column replaced by $(0,0,\ldots,f(x))$
 \begin{itemize}
 
-\item Derivation:\\
-\label{sec-9.3.2.1}
-
+\item Derivation:
+\label{sec-9-3-2-1}%
 
 \end{itemize} % ends low level
 \subsubsection{Theorem for L.D.E}
-\label{sec-9.3.3}
+\label{sec-9-3-3}
 
     If $u(t)+iv(t)$ is a solution to the D.E. then $u(t) \wedge v(t)$
     are solutions
-
 \section{First Order Systems of Linear Diff Equations with Const Coefficents}
 \label{sec-10}
-
 \subsection{Form}
-\label{sec-10.1}
+\label{sec-10-1}
 
    \begin{equation}
    \vec{r}' = A\vec{r}
    \end{equation}
 \subsubsection{Example 1st Order}
-\label{sec-10.1.1}
+\label{sec-10-1-1}
 
     \begin{equation}
     \vec{r}' = \left [
@@ -764,7 +676,7 @@ W(f,g)(t) = \left |
     \end{array} \right ]
     \end{equation}
 \subsection{Solution}
-\label{sec-10.2}
+\label{sec-10-2}
 
 \begin{enumerate}
 \item Guess: $\vec{r} = \vec{a} e^{\lambda t}$, $\vec{a} \in D$
@@ -772,16 +684,13 @@ W(f,g)(t) = \left |
       \vec{a} = A \vec{a}$
 \item Factoring we get $(A-\lambda I)\vec{a} = \vec{0}$
 \item \underline{Characteristic Polynomial} $\equiv \abs{A-\lambda I}$
-
 \begin{enumerate}
 \item For the 2-d version we get
          \begin{equation}
          \abs{A-\lambda I} = \lambda^2 + tr(A) + |A|
          \end{equation}
 \end{enumerate}
-
 \item Solve for Eigen Value and Corresponding Eigen Vectors
-
 \begin{enumerate}
 \item \underline{Complete e-value}: K-Repeated Eigen value produces K linearly
          independent eigen vectors
@@ -790,35 +699,30 @@ W(f,g)(t) = \left |
          \begin{equation}
          \vec{r} = u(t)\vec{a}e^{\lambda t} + \vec{c}
          \end{equation}
-
 \begin{enumerate}
 \item Typically $u(t)$ is a polynomial as in the $D$-1 case
 \end{enumerate}
-
 \end{enumerate}
-
 \end{enumerate}
 \subsection{Classification}
-\label{sec-10.3}
+\label{sec-10-3}
 
    Let $p\equiv tr(A)$ and $q\equiv |A|$
-
 \subsubsection{Theorem: Change of coordinates}
-\label{sec-10.3.1}
+\label{sec-10-3-1}
 
-    1. \underline{Claim}: $\vec{x}' = A\vec{x} \equiv \vec{y}' = B\vec{y}
+\begin{enumerate}
+\item \underline{Claim}: $\vec{x}' = A\vec{x} \equiv \vec{y}' = B\vec{y}
        \iff |A-\lamba I| = |B-\lamba I|$ and $(tr[A])^2 -4|A|
        \neq 0$
 \begin{enumerate}
 \item $(tr[A])^2 -4|A| \neq 0$ excludes repeated roots
+\end{enumerate}
 \item \underline{Alternate version}: $\exists$ non-singular matrix $U$ s.t. $\vec{y}=U\vec{x}$ and $B = UAU^{-1}$
-
 \begin{enumerate}
 \item This is a change of cordinates
 \end{enumerate}
-
 \item \underline{Light Proof}: Suppose $\vec{x}' = A\vec{x} \equiv \vec{y}' = B\vec{y}'$
-
 \begin{enumerate}
 \item By the claim $|B-\lambda I| = |UAU^{-1} - \lambda I|$
 \item Note that $\lambda I = \lambda U U^{-1} = U\lambda I U^{-1} \implies |B -
@@ -828,7 +732,6 @@ W(f,g)(t) = \left |
           multiplication: $|U||U^{-1}||A-\lambda I| = |A-\lambda I|$
 \item Thus: $|B - \lambda I| = |A - \lambda I|$
 \end{enumerate}
-
 \end{enumerate}
 
 \end{document}
