@@ -2,6 +2,7 @@
 CS 373 Notes
 * General
 
+| /                    | <>                                | <          |
 | Sizes                | Examples                          | Countable? |
 |----------------------+-----------------------------------+------------|
 | Finite               | {a,b}                             | yes        |
@@ -9,20 +10,23 @@ CS 373 Notes
 | Uncountable Infinity | \mathbb{R}, Pow(\mathbb{R})       | no         |
 
 
+| /                     | <>          | <       |
 | name                  | descriptipn | Machine |
 |-----------------------+-------------+---------|
 | regular               | LRk         | D PDA   |
 | context free language | CFG         | PDA     |
 
 ** Chomsky Heirarchy
-|      Type | Grammar           | Rules                                                   | Machine                         |
-|-----------+-------------------+---------------------------------------------------------+---------------------------------|
-|         0 | Unrestricted      | \alpha \rightarrow \beta                                | Turning Machines (recognizable) |
-|         1 | Context-Sensitive | \alpha \rightarrow \beta, \abs{\beta} \geq \abs{\alpha} | non-det LBA                     |
-|         2 | Context-Free      | A \rightarrow \alpha                                    | non-det PDA                     |
-| 3^{\star} | Regular           | A \rightarrow a, A \rightarrow aB                       | DFA/NFA                         |
 
-- S \rightarrow \epsilon also allowed, but S then cannot appear on the right side of rules
+#+MACRO: note1 S \rightarrow \epsilon also allowed, but S then cannot appear on the right side of rules
+|    / | <>                | >                                                       | >                               |
+| Type | Grammar           | Rules                                                   | Machine                         |
+|------+-------------------+---------------------------------------------------------+---------------------------------|
+|    0 | Unrestricted      | \alpha \rightarrow \beta                                | Turning Machines (recognizable) |
+|    1 | Context-Sensitive | \alpha \rightarrow \beta, \abs{\beta} \geq \abs{\alpha} | non-det LBA                     |
+|    2 | Context-Free      | A \rightarrow \alpha                                    | non-det PDA                     |
+|    3 | Regular           | A \rightarrow a, A \rightarrow aB                       | DFA/NFA                         |
+
 ** Starting off
      1) Alphabet($\Sigma$) = finite non empty set
      2) $\mathbb{N}$ in this class starts at 0
@@ -130,7 +134,7 @@ CS 373 Notes
 *** Substution simple definition
    - A is a reg language and $A \mapsto f(A), A \subseteq \Sigma^{\star}$
    - A is described w. a regex and $R_a$ is a regex using $\Gamma$
-   - $\forall a \in \Sigma a \mapsto R_a$ 
+   - $\forall a \in \Sigma a \mapsto R_a$
    - $\epsilon \mapsto \epsilon$ and $\emptyset \mapsto \emptyset$
 *** Homomorphism
     - $A \mapsto h(A)$
@@ -181,7 +185,7 @@ CS 373 Notes
     2) $\exists$ a right invariant equivilance relation that has a
       finite index, and $A=$ union of some of the equivilance classes
     3) $\stackrel{A}{\sim}$ is of finite index
-   
+
    - _Proof_: $1\rightarrow 2$
     1) Let M be any DFA, $M=(Q,\Sigma,\delta,q_0,F)$ s.t. $A=L(M)$
     2) Let $\stackrel{A}{\sim}$ be define as in Right Invariant Equivilance
@@ -248,7 +252,7 @@ CS 373 Notes
 ** Pumping Lemma for CFL's
    _Theorem_: If A is a CFL, then $\exists p \geq 0, p\in\mathbb{Z}
    s.t. \forall s\in A : |S| \geq p \implies \exists$ a paritition
-   $s=uvxyz$ that satisfy the follow conditions 
+   $s=uvxyz$ that satisfy the follow conditions
 
    1) $\forall i \geq 0, uv^ixy^iz \in A$
    2) $|vy| > 0$
@@ -281,7 +285,7 @@ CS 373 Notes
     Let $G_i = (V_i, \Sigma_i, R_i, S_i)$ for $i=1,2$ and $A_i = L(G_i)$ \\
     Without loss of generality, assume $V_1 \cap V_2 = \emptyset \wedge
     S_3$
-    
+
 **** Theorem: If A_1 and A_2 are CFL's, then A_1 \cup A_2 is a CFL
 Proof:
     1) Let $G_i = (V_i, \Sigma_i, R_i, S_i)$ for $i=1,2$ and $A_i = L(G_i)$
@@ -289,7 +293,7 @@ Proof:
     3) Construct $G_3 = (V_1 \cup V_2 \cup \{S_3\}, \Sigma_1 \cup
        \Sigma_2, R_3, S_3)$ with $R_3= R_1 \cup R_2 \cup \{S_3 \rightarrow S_1|S_2\}. \square$
 **** Theorem: If A_1 and A_2 are CFL's then A_1 \cdot A_2 is a CFL
-     Proof:     
+     Proof:
      1) $\notin V_1 \cup V_2$
      2) Construct $G_3 = (V_1 \cup V_2 \cup \{S_3\}, \Sigma_1 \cup
         \Sigma_2, R_1 \cup R_2 \cup \{S_3 \rightarrow S_1 S_2\}, S_3)$
@@ -306,13 +310,13 @@ Proof:
 
 *** Algorithm
     Is $G \productionstar$ w true or false?
-   
+
     $G = (V, \Sigma, R, S)$,
     Put G into Chomsky Normal Form,
     $w \in \Sigma^{ \star }$
 
     Cocke, Schwartz, Younger, Kasame
-  
+
 #+BEGIN_SRC python
   """
   Preconditions:
@@ -321,7 +325,7 @@ Proof:
   This grammar contains the subset Rs which is the set of start symbols.
   let P[n,n,r] be an array of booleans. Initialize all elements of P to false.
   """
-  
+
   for each i = 1 to n:
       for each unit production Rj -> ai:
           P[i][1][j] = true
@@ -388,7 +392,7 @@ Proof:
    (q_{i+1},p_{i+1},D_{i+1}) \mapsto c_{i+1}
    \end{equation}
    for $D_{i+1}\in \{L,R\}$
-   
+
 *** Halting Configs
     If either of the following type of configs is encountered, the turning
     machine halts and returns 'accept' or 'reject' respectively.
@@ -415,7 +419,7 @@ Proof:
      2. If a language is not decidable then its compliment is not recognizable
 ** Turing Machine Variants:
    Note that none of these add any power
-   
+
    - Multi-Tape: $\delta:Q\times\Gamma^k\rightarrow Q\times\Gamma^k\times\{L,R\}^k$
      - Emulate on single tape by striping and recording/marking virtual head position
    - Adding Stay: $\delta:Q\times\Gamma\rightarrow Q\times\Gamma\times\{L,R,S\}$ where S doesn't move the head
@@ -431,7 +435,7 @@ Proof:
     2. Proof by Contradiction:
        1. Suppose $A_{TM}$ were decidable.
        2. Let H be a TM that decides $A_{TM}$
-	  1. $H(\langle M, w \rangle) =$ 
+	  1. $H(\langle M, w \rangle) =$
 	     1. accept if $w \in L(M)$
 	     2. reject if $w \notin L(M)$
        3. Construct a TM, D, which uses H and give the opposite result
@@ -459,7 +463,7 @@ Proof:
      the tape.
 **** Mapping reducible
      A language A is called _mapping reducible_ to language B, written
-     $A \leq_M B$ iff: 
+     $A \leq_M B$ iff:
      \begin{equation}
      \exists (f: \Sigma^{\star} \rightarrow
      \Sigma^{\star})
@@ -496,7 +500,7 @@ Proof:
       with $n=|w|$
       1. $f(n) = O(g(n)) \iff \exists (c,n_0) \in \mathbb{R} \times \mathbb{Z}$ s.t. $\forall n \geq
          f(n), f(n) \leq c g(n)$
-      2. Which is equivelent to: 
+      2. Which is equivelent to:
 	 \begin{equation}
 	 \forall w \in \Sigma^{\star}: \abs{w} \geq n_0 \iff f(\abs{w}) \leq c g(\abs{w})
 	 \end{equation}
@@ -524,7 +528,7 @@ Proof:
 	   A language $A\in NP \iff A$ is polinomially _verifiable_.
 	   1. $A$ is _verifiable_ iff $\exists$ a poly-time DTM that
               takes input $w$ for $A$ and the _certificate_ $c$ and
-              decides if $w \in A$ 
+              decides if $w \in A$
 **** Million Dollar Question
      1. Does $P=NP$ ?
 **** Hardest NP problems
@@ -533,4 +537,3 @@ Proof:
 	2. $\forall A \in NP, A \leq_P P$
 	   1. Where $\leq_P$ is a mapping reduction where $f$ is
               computable in polynomial time
-
