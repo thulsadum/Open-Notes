@@ -3,3 +3,8 @@ notes.prv
 prv_notes.fmt
 *~
 auto
+*.tex
+*.pdf
+*.html
+*.pyg
+\#*
