@@ -1,0 +1,99 @@
+#+TITLE:     
+#+EMAIL:     
+#+DATE:      
+#+DESCRIPTION:
+#+KEYWORDS:
+#+LANGUAGE:  en
+#+OPTIONS:   H:3 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP:   
+#+LINK_HOME: 
+#+XSLT:
+#+STYLE: <link rel="stylesheet" type="text/css" href="cheatsheet.css" />
+#+LaTeX_CLASS_OPTIONS: [landscape, twocolumn]
+#+LaTeX_HEADER: \usepackage{../header}
+
+* Spring-Mass-Damping System
+  Phase delay spring mass system delta force response:
+  - $\phi(\omega) \equiv -arg\tilde{G}(\omega) = \tan^{-1}{2\zeta \frac{\omega \omega_n}{2}}$
+  Dampening
+  #+BEGIN_LaTeX
+    \begin{cases}
+      Over Damped & \text{if } \zeta > 0\\
+      Under Damped & \text{if } \zeta < 0\\
+      Critically Damped & \text{if } \zeta = 0
+    \end{cases}
+  #+END_LaTeX
+  
+* Complex Fourier Series
+    #+BEGIN_LaTeX
+      \begin{math}
+        \dfn \displaystyle\omega_n \equiv \frac{n \pi}{L}, L \equiv \text{ half period}
+        \dfn \displaystyle c_n \equiv \frac{1}{2L} \int\limits_{-L}^{L} f(x) e^{-i \omega_n t}\\
+        2 c_n = \begin{cases}
+          a_{n} - i b_{n} & \text{for} n > 0\\
+          a_{n} + i b_{n} & \text{for} n < 0\\
+          a_0 & \text{for} n = 0
+        \end{cases}\\
+        \displaystyle f(x) = \sum\limits_{n=-\infty}^{\infty} c_n \exp(i \omega_n t) dt$
+      \end{math}
+    #+END_LaTeX
+
+* Quality Factor
+  #+BEGIN_LaTeX
+      \begin{math}
+        \dfn Q \equiv \text{ peak value of } G\cdot k=\frac{1}{2 \zeta}
+        \dfn \text{Half power points: } \omega_1, \omega_2 \equiv \text{ freq s.t } G\cdot
+        k=\frac{Q}{\sqrt{2}}
+        \dfn \Delta \omega \equiv \omega_2 - \omega_2 = \frac{\omega_n}{Q}\\
+      \end{math}
+  #+END_LaTeX
+  - One usually takes $\omega_n \approx \omega_{\text{resonance}}$
+
+* Generalization with Linear Operators $\mathcal{L}$
+  $\mathcal{L}\{r(t)\} = \int\limits_{-\infty}^{\infty} L(t, \tau) r(\tau) d\tau$
+  - This looks alot like convolution
+
+** Typical Properties of $\mathcal{L}$
+   Though not required many systems have the properties
+   - Time-shift invarant
+     \dfn $\mathcal{L}\{r(t-\Delta)\} = f(t - \Delta)$
+   - Causal
+     
+     
+** Convolution, Laplace, Fourier
+   Theorem: 
+   Given $\mathcal{L}\{x(t)\} = F(t)$, where $L$ is a _linear_ time-shift invariant 
+   operator with quiescent initial conditions.\\
+   #+BEGIN_LaTeX
+     \begin{math}
+       \displaystyle x(t) = F(t) \otimes G(t) \equiv
+       \int\limits_{-\infty}^{t} F(\tau)G(t-\tau) d\tau\\
+       \bar{x}(t) = \bar{F}(t)\cdot\bar{G}(t)\\
+       \tilde{x}(t) = \tilde{F}(t)\cdot\tilde{G}(t)
+     \end{math}
+     
+   #+END_LaTeX
+* Non Intertial Reference Frames
+  #+BEGIN_LaTeX    
+    \begin{math}
+      \displaystyle \sum\limits_{F\in \text{Real}} \vec{F} + \sum\limits_{F\in
+        \text{Fictitious}} \v{F}= m\cdot\v{a}_{rel}\\\\
+      a_{rel} = 2\v{\omega}\times \v{v}^{rel} + \v{\dot{\omega}}\times\v{r}^{rel} +
+      \v{a}_O + \v{\omega}\times(\v{\omega} \times\v{r}^{rel})\\
+      \dfn
+      \text{Coriolis Force: } -m (2\v{\omega}\times \v{v}^{rel})
+      \dfn
+      \text{Azimuthal Force: } -m \v{\dot{\omega}}\times\v{r}^{rel}
+      \dfn
+      \text{"Elevator Force": } -m \v{a}_O
+      \dfn
+      \text{Centrifugal Force: } -m(\v{\omega}\times(\v{\omega} \times\v{r}^{rel}))
+    \end{math}
+  #+END_LaTeX
+
+  The Coriolis Force causes things to veer to the right in the northern hemisphere,
+  and left in the southern hemisphere.
