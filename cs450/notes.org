@@ -1,8 +1,71 @@
-
-* Scientific Computing
-
+* Scientific Computing/Numerical Analysis
+** Overview
+*** Types of problems
+*** General Strategy
+** Approximations in Scientific Computing
+*** Sources of approximations
+*** Absolute Error and Relative Error
+*** Data Error and Computation Error
+*** Truncation Error and Rounding Error
+*** Forward Error and Backword Error
+*** Sensitivity and Conditioning
+*** Stability and Accuracy
+** Computer Arithmetic
+*** Floating Point NUmbers
+*** Normalization
+*** Properties of Floating Point Systems
+*** Rounding
+*** Machine Precision
+*** Subnormals and Gradual Underflow
+*** Exceptional Values
+*** Floating Point Arithmetic
+*** Cancellation
 * Systems of Linear Equations
-
+** Motivation and Definition
+** Existence and Uniqueness
+   See linalg notes
+** Sensitivity and Conditioning
+   - What is the "size" of a of a vector and its perturbations.
+   - What is the "size" of a matrix and its perturbations.
+*** Vector Norms
+*** Matrix Norms
+** Solving Linear Systems
+*** PA=LU Factorization
+    See Linalg
+*** Gaussian Elimination
+    See Linalg
+*** Gauss-Jordan Elimination
+    See Linalg
+*** Solving Modified Problems
+*** Improving Accuracy
+*** Error Bounds
+*** Residual
+** Banded Systems
 * Linear Least Squares
-
+** Motivation and Definition
+** Existence and Uniqueness
+   See Linalg Notes
+*** Normal Equations
+*** Orthogonality and Orthogonal Projectors
+** Sensitivity and Conditioning
+** Problem Transformations
+*** Augmented System
+*** Orthogonal Transformations
+*** QR factorization
+*** Reduced $\hat{Q}\hat{R}$
+** Orthogonalization Methods
+*** Householder Transformations
+*** Givens Rotation
+*** Gram-Schmidt Orthogalization
+*** Rank Deficiency
+** Singular Value Decomposition
+*** Other Applications of SVG
+*** Comparison of Methods
 * Eigenvalue Problems
+** Eigenvalues and Eigen Vectors
+** Existence and Uniqueness
+** Algebraic Multiplicity
+** Eigenspace and Invariant Subspace
+** Localizing Eigen Values
+** Power Iteration
+** Deflation

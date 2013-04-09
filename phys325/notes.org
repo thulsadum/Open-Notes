@@ -16,7 +16,6 @@
 #+LaTeX_HEADER: \usepackage{../header}
 
 * Newton's Laws and Galilean Invariance
-
 * Kinematics
 
 * Field Theory
@@ -32,4 +31,7 @@
 ** Non Forced
 ** Forced
 * Fourier Series
+** 
 * Impulse Response
+* Mechanics in Non-Inertial Frames
+** Fictitious Forces
