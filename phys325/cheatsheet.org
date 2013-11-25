@@ -82,8 +82,8 @@
     \begin{math}
       \displaystyle \sum\limits_{F\in \text{Real}} \vec{F} + \sum\limits_{F\in
         \text{Fictitious}} \v{F}= m\cdot\v{a}_{rel}\\\\
-      a_{rel} = 2\v{\omega}\times \v{v}^{rel} + \v{\dot{\omega}}\times\v{r}^{rel} +
-      \v{a}_O + \v{\omega}\times(\v{\omega} \times\v{r}^{rel})\\
+      \v{F}_{fict} = m(2\v{\omega}\times \v{v}^{rel} + \v{\dot{\omega}}\times\v{r}^{rel}
+      + \v{a}_O + \v{\omega}\times(\v{\omega} \times\v{r}^{rel}))\\
       \dfn
       \text{Coriolis Force: } -m (2\v{\omega}\times \v{v}^{rel})
       \dfn
@@ -97,3 +97,35 @@
 
   The Coriolis Force causes things to veer to the right in the northern hemisphere,
   and left in the southern hemisphere.
+* Rotational Stuff
+  - Parallel Axis Theorem: $I_q = I_{cm} + mr^2$
+  - $O \equiv$ Instantaneous center of rotation, $Q \equiv$ arbitrary point
+  - $\v{\Gamma}_O \equiv \sum_a \v{r}_a\times\v{F}_a = \d{}{t}L_O$
+  - $\v{\Gamma}_O = \v{R}\times\v{F}_{total} + \v{\Gamma}_{CM}$
+  - $\d{}{t}\v{L}_q = \v{\Gamma}_Q^{\text{actual}} + \v{\Gamma}_Q^{\text{fictitious}}$
+* Hamiltonian
+  + $T = T_2 + T_1 + T_0$
+    - $T_2 \equiv$ quadratic in generalized velocity
+    - $T_1 \equiv$ linear in generalized velocity
+    - $T_0 \equiv$ non-generalized KE terms
+  + $H = T_2 - T_0$
+* Lagrangian
+  For Classical Mechanics: $\mathcal{L} = T - V$
+** Minimize Action
+   $A[q(t)] \equiv \int_{t_1}^{t_2} L(q(t), \dot(q)(t), t)dt$ \\
+   $\delta F[y(x)] \equiv \int_{x_1}^{x_2}\eta(x) \pd{f}{y}dx + \int_{x_1}^{x_2} \eta\prime(x) \pd{}{y'} f dx$
+* Virtual Work
+  Work done by infinitesimally small displacment.
+  (doesn't affect forces acting on the system)
+  - $F dx_\alpha = F_{x_1} dx_1 + F_{x_2}dx_2 \cdots F_{x_n} dx_n$
+* Calculus of Variations
+** Lagrange Multipliers
+   Minimize $F[y(x)] \equiv \int_{x_1}^{x_2} f(x, y(x), y'(x)) dx$ \\
+   given the constraint $G[y(x)] \equiv \int_{x_1}^{x_2} g(x, y(x), y'(x)) dx = \gamma$ \\
+   Trick:\\
+   #+BEGIN_LaTeX
+     \begin{math}
+       C[y(x)] \equiv F[y(x)] - \lambda G[y(x)] = \int_{x_1}^{x_2}[f(x, y(x), y'(x)) - \lambda g(x, y(x), y'(x)) dx  
+     \end{math}
+   #+END_LaTeX 
+
