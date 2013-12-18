@@ -1,0 +1,77 @@
+#+TITLE:
+#+EMAIL:
+#+DATE:
+#+DESCRIPTION:
+#+KEYWORDS:
+#+LANGUAGE:  en
+#+OPTIONS:   H:3 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP:
+#+LINK_HOME:
+#+XSLT:
+#+STYLE: <link rel="stylesheet" type="text/css" href="cheatsheet.css" />
+#+LaTeX_CLASS_OPTIONS: [landscape, twocolumn]
+#+LaTeX_HEADER: \usepackage{../header}
+#+LaTeX_HEADER:
+
+* Maxwell's Equations
+   | /                                                       | <                                      |
+   | General                                                 | In Matter                              |
+   |---------------------------------------------------------+----------------------------------------|
+   | $\div{\v{E}} = \frac{\rho}{\epsilon_0}$                 | $\div{\v{D}} = \rho_f$                 |
+   | $\div{\v{B}} = 0$                                       | $\curl{\v{E}} = -\dot{\v{B}}$          |
+   | $\curl{\v{E}} = -\dot{\v{B}}$                           | $\div{\v{B}} = 0$                      |
+   | $\curl{\v{B}} = \mu_0 (\v{J} + \epsilon_0 \dot{\v{E}})$ | $\curl{\v{H}} = \v{J}_f + \dot{\v{D}}$ |
+
+** Auxiliary Fields
+   - $\v{D} \equiv \epsilon_0 \v{E} + \v{P}$
+   - $\v{H} \equiv \frac{1}{\mu_0}\v{B} - \v{M}$
+** Potentials
+  | $\v{E} = -\grad{V} - \dot{\v{A}}$ | $\v{B} = \curl{\v{A}}$ |
+  | $\div{\v{A}} = 0$                 |                        |
+* Constitutive Relations in linear media
+  | /                                                            | <                                             |
+  | $\v{P} = \epsilon_0 \tensor{\chi_e} \v{E}$                   | $\v{M} = \tensor{\chi_m} \v{H}$               |
+  | $\epsilon_r \equiv 1 + \chi_e = \frac{\epsilon}{\epsilon_0}$ | $\mu_r \equiv 1 + \chi_m = \frac{\mu}{\mu_0}$ |
+* Polarization and Magnetization
+  | /       | <                                   | <                                    |
+  |         | E                                   | M                                    |
+  |---------+-------------------------------------+--------------------------------------|
+  | Surface | $\sigma_b \equiv \v{P}\cdot \uv{n}$ | $\v{k_b} \equiv \v{M} \times \uv{n}$ |
+  | Volume  | $\rho_b \equiv -\div{\v{P}}$        | $\v{j_b} \equiv \curl{\v{M}}$        |
+  - $\alpha = \alpha_f + \alpha_b$, $\alpha \in \{\sigma$, $\rho$, $\v{k}\}$
+  - $\v{j} = \v{j}_f + \v{j}_b + \dot{\v{P}} = \v{j}_f + \v{j}_b + \v{j}_p$
+
+* Poisson's Equations $\laplace{V}=\frac{\rho}{\epsilon_0}, \laplace{\v{A}} = \mu_0 \v{j}$
+** Laplace's Equations $\laplace{V}=0$
+   - Separation of variables
+     - Cylindrical:
+     - Spherical:
+     - Cartesian:
+** Method of Images
+ (uniqueness) If to charge configurations share the same B.C. then the potentials are the same
+** Feynman's Method
+   Use complex numbers for 2-d Problems
+** Boundary Conditions
+   | /                                                       | <                                                                                       |
+   | General                                                 | In Matter                                                                               |
+   |---------------------------------------------------------+-----------------------------------------------------------------------------------------|
+   | $\v{E}_a - \v{E}_b = \frac{\sigma}{\epsilon_0}\uv{n}$   | $\v{D}_a^{\perp} - \v{D}_b^{\perp} = \sigma_f$                                          |
+   | $\pd{V_a}{n} - \pd{V_b}{n} = \frac{\sigma}{\epsilon_0}$ | $\v{D}_a^{\parallel} - \v{D}_b^{\parallel} = \v{P}_a^{\parallel} - \v{P}_b^{\parallel}$ |
+   | $\v{B}_a-\v{B}_b = \mu_0(\v{K} \times \uv{n})$          | $\v{H}_a^{\parallel} - \v{H}_b^{\parallel} = \v{K}_f \times \uv{n}$                     |
+   | $V_a = V_b$                                             | $\v{D}_a^{\perp} - \v{D}_b^{\perp} = -(\v{M}_a^{\perp} - \v{M}_b^{\perp})$              |
+   | $\v{A}_a = \v{A}_b$                                     |                                                                                         |
+** Electrostactic Conductors
+   - $V(\v{r_i}) = V(\v{r_j}) \forall r_i, r_j \in \text{Conductor} \iff \v{E}_{\text{in}} = \v{0}$
+** Capacitors, Inductors, and EMF
+   | $C\equiv \frac{Q}{V} \sim \frac{A}{d}$                                       | $L\equiv \frac{\Phi}{I}$                                                  |
+   | $W = \frac{1}{2} CV^2 = \frac{\epsilon_0}{2}\int_{\mathbb{V}} (dr') \v{E}^2$ | $W = \frac{1}{2} CV^2 = \frac{1}{2 \mu_0}\int_{\mathbb{V}} (dr') \v{B}^2$ |
+   |                                                                              |                                                                           |
+   | $\mathcal{E} = \oint f_s \cdot dl$                                           | $\mathcal{E} = \dot{\Phi} = -L \dot{I}$                                   |
+   | $M_{21} =M_{12}$                                                             | $\Phi_2 = M_{21} I_1$                                                     |
+
+
+
