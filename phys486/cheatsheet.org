@@ -1,0 +1,45 @@
+#+TITLE:
+#+EMAIL:
+#+DATE:
+#+DESCRIPTION:
+#+KEYWORDS:
+#+LANGUAGE:  en
+#+OPTIONS:   H:3 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP:
+#+LINK_HOME:
+#+XSLT:
+#+STYLE: <link rel="stylesheet" type="text/css" href="cheatsheet.css" />
+#+LaTeX_CLASS_OPTIONS: [landscape, twocolumn]
+#+LaTeX_HEADER: \usepackage{../header}
+#+LaTeX_HEADER:
+
+* Math Background
+** Hilbert Spaces
+*** Matrix Mechinaics
+*** Wave Mechanics
+** Commutators $[ \hat{A}, \hat{B} ]$
+   - $[ \hat{A}, \hat{B} ] = \hat{A}\hat{B} -\hat{B}\hat{A}$
+** Generalized uncertainty principle
+   - $\sigma_A^2 \sigma_B^2 \geq (\frac{1}{2i}\left < [\hat{A}, \hat{B}] \right >)$
+* Schrödinger Equation
+  - $i \bar{h} \dot{\Psi} = \hat{H} \Psi$
+** Operators
+   | /                | <                                    | <                             | <                 | <           | <           |
+   | Meaning          | symbols                              | \ket{x}                       | \ket{p}           | eigen state | eigen value |
+   |------------------+--------------------------------------+-------------------------------+-------------------+-------------+-------------|
+   | position         | $\hat{x}$                            | $x$                           | $i\bar{h}\grad_p$ |             |             |
+   | momentum         | $\hat{p}$                            | $\hat{p} = -i\bar{h} \grad_x$ | $\hat{p}=p$       |             |             |
+   | angular momentum | $\hat{L}\equiv \hat{r}\times\hat{P}$ |                               |                   |             |             |
+   | spin             | $\hat\sigma$                         |                               |                   |             |             |
+*** Matrix forms
+#+BEGIN_LaTeX
+      \sigma_j = 
+      \begin{pmatrix}
+        \delta_{j3}&\delta_{j1}-i\delta_{j2}\\
+        \delta_{j1}+i\delta_{j2}&-\delta_{j3}
+      \end{pmatrix}
+#+END_LaTeX
