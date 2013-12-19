@@ -15,31 +15,64 @@
 #+STYLE: <link rel="stylesheet" type="text/css" href="cheatsheet.css" />
 #+LaTeX_CLASS_OPTIONS: [landscape, twocolumn]
 #+LaTeX_HEADER: \usepackage{../header}
-#+LaTeX_HEADER:
+#+LaTeX_HEADER: \geometry{left=.4in,right=.4in,top=.4in,bottom=.4in}
 
 * Math Background
 ** Hilbert Spaces
 *** Matrix Mechinaics
+    | /                        | <           | <                                                               |
+    | Name                     | symbol      | definition                                                      |
+    |--------------------------+-------------+-----------------------------------------------------------------|
+    | Ket                      | $\ket{f}$   | $\hat{I} \ket{f} = \sum_{i} \braket{f}{\alpha}_i\ket{\alpha}_i$ |
+    | Bra                      | $\bra{f}$   | $\ket{f}^*$                                                     |
+    | Operator                 | $\hat{Q}$   | $\bra{i}\hat{Q} \ket{j}$                                        |
+    | Projection Op            | $\hat{P}_i$ | $\ket{i}\bra{i}$                                                |
+    | Identity Op              | $\hat{I}$   | $\sum_i \hat{P}_i$                                              |
+    | Unitary Op               |             | $\hat{Q}^{\dagger} \hat{Q} = 1$                                 |
+    | Hermitian (self adjoint) |             | $\hat{Q}^\dagger = \hat{Q}$                                     |
+
 *** Wave Mechanics
 ** Commutators $[ \hat{A}, \hat{B} ]$
    - $[ \hat{A}, \hat{B} ] = \hat{A}\hat{B} -\hat{B}\hat{A}$
 ** Generalized uncertainty principle
    - $\sigma_A^2 \sigma_B^2 \geq (\frac{1}{2i}\left < [\hat{A}, \hat{B}] \right >)$
 * Schrödinger Equation
-  - $i \bar{h} \dot{\Psi} = \hat{H} \Psi$
-** Operators
-   | /                | <                                    | <                             | <                 | <           | <           |
-   | Meaning          | symbols                              | \ket{x}                       | \ket{p}           | eigen state | eigen value |
-   |------------------+--------------------------------------+-------------------------------+-------------------+-------------+-------------|
-   | position         | $\hat{x}$                            | $x$                           | $i\bar{h}\grad_p$ |             |             |
-   | momentum         | $\hat{p}$                            | $\hat{p} = -i\bar{h} \grad_x$ | $\hat{p}=p$       |             |             |
-   | angular momentum | $\hat{L}\equiv \hat{r}\times\hat{P}$ |                               |                   |             |             |
-   | spin             | $\hat\sigma$                         |                               |                   |             |             |
+  - $i \hbar \dot{\Psi} = \hat{H} \Psi$
+** Physical Operators
+   | /                      | <                                                     | <             | <                     |
+   | Meaning                | symbols                                               | eigen state   | eigen value           |
+   |------------------------+-------------------------------------------------------+---------------+-----------------------|
+   | position               | $\hat{r} = r$                                         | \ket{r}       | r                     |
+   | momentum               | $\hat{p} = -i\hbar \grad_x$                           | \ket{p}       | p                     |
+   | Orbital L_z            | $\hat{L}_z \equiv \hat{s}\times\hat{p}$               |               | m \hbar               |
+   |                        | $\hat{L}^2 = \hat{L_x}^2 + \hat{L_y}^2 + \hat{L_z}^2$ | $Y_{l, m}$    | $\hbar^2(l(l+1))$     |
+   | spin_j                 | $\hat{S}_j = \frac{\hbar}{2}\hat{\sigma}_j$           | $\ket{\pm z}$ | $\pm \frac{\hbar}{2}$ |
+   | Energy                 | $\bar{H} \equiv \hat{T}(\hat{p}) + \hat{V}(\hat{r})$  |               |                       |
+   | Rotation about $\v{k}$ | $\hat{R}(\phi \v{k}) = e^{-i\hat{J}_z \phi / \hbar}$  |               |                       |
+   | Time Evolution         | $\ket{\Psi(t)} = e^{-i\hat{H} t/\hbar}$               |               |                       |
 *** Matrix forms
 #+BEGIN_LaTeX
-      \sigma_j = 
-      \begin{pmatrix}
-        \delta_{j3}&\delta_{j1}-i\delta_{j2}\\
-        \delta_{j1}+i\delta_{j2}&-\delta_{j3}
-      \end{pmatrix}
+  \sigma_j = 
+  \begin{pmatrix}
+    \delta_{j3}&\delta_{j1}-i\delta_{j2}\\
+    \delta_{j1}+i\delta_{j2}&-\delta_{j3}
+  \end{pmatrix}\\
+  \hat{L}_j = 
+  \frac{\hbar}{\sqrt{2}} \begin{pmatrix}
+    \delta_{j3}&\delta_{j1}-i\delta_{j2}&2\\
+    \delta_{j1}+i\delta_{j2}&-\delta_{j3}&3
+  \end{pmatrix}
 #+END_LaTeX
+** Changing Basis (between position and momentum)
+   Just a Fourier transform
+   | /                                                                                             | <                                                                                            |
+   | x \rightarrow p                                                                               | p \rightarrow x                                                                              |
+   |-----------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------|
+   |                                                                                               |                                                                                              |
+   | $\tilde{f}(p) = \frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty} f(x) e^{-i p x / \hbar} dx$ | $f(x) = \frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty} \tilde{f}(p) e^{i p x / \hbar} dp$ |
+
+* SHO
+* Infinite Square Well
+* Finite Square Well
+* Delta Function Potentials
+** 
