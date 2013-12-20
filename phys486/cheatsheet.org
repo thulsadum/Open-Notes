@@ -25,35 +25,36 @@
     |--------------------------+------------------------+-----------------------------------------------------------------------------------------------|
     | Ket                      | $\ket{f}$              | $\hat{I} \ket{f} = \sum_{i} \braket{f}{\alpha}_i\ket{\alpha}_i$                               |
     | Bra                      | $\bra{f}$              | $\ket{f}^\dagger$                                                                             |
-    | Operator                 | $\hat{Q}$              | $\bra{i}\hat{Q} \ket{j}$                                                                      |
-    | Adjoint Op               | $\hat{Q}^\dagger$      | $\braket{\hat{Q}^\dagger A}{B} = \braket{A}{\hat{Q}B}$                                        |
+    | Operator                 | $\hat{Q}$              | $\mathbb{Q}_{ij}= \bra{i}\hat{Q} \ket{j}$                                                      |
+    | Adjoint Op               | $\hat{Q}^\dagger$      | $\braket{\hat{Q}^\dagger A}{B} = \braket{A}{\hat{Q}B}$, $A^\dagger_{ij} = A^*_{ji}$             |
     | Projection Op            | $\hat{P}_i$            | $\ket{i}\bra{i}$                                                                              |
-    | Identity Op              | $\hat{I}$              | $\sum_i \hat{P}_i$                                                                            |
+    | Identity Op              | $\hat{\mathbb{I}}$     | $\sum_i \hat{P}_i = \mathbb{I}$                                                               |
     | Unitary Op               |                        | $\hat{Q}^{\dagger} \hat{Q} = 1$                                                               |
     | Hermitian (self adjoint) |                        | $\hat{Q}^\dagger = \hat{Q}$                                                                   |
-    | Commutator               | $[ \hat{A}, \hat{B} ]$ | $\hat{A}\hat{B} -\hat{B}\hat{A} = -[ \hat{B}, \hat{A} ]$                                                            |
+    | Commutator               | $[ \hat{A}, \hat{B} ]$ | $\hat{A}\hat{B} -\hat{B}\hat{A} = -[ \hat{B}, \hat{A} ]$                                      |
     | Generalized Uncertainty  |                        | $\sigma_A^2 \sigma_B^2 \geq \left ( \frac{1}{2i}\left < [\hat{A}, \hat{B}] \right > \right )$ |
 
-** Changing Basis (between position and momentum)
 
-   | /                                                                                             | <                                                                                            |
-   | x \rightarrow p                                                                               | p \rightarrow x                                                                              |
-   |-----------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------|
-   |                                                                                               |                                                                                              |
-   | $\tilde{f}(p) = \frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty} f(x) e^{-i p x / \hbar} dx$ | $f(x) = \frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty} \tilde{f}(p) e^{i p x / \hbar} dp$ |
 * Physical Operators
   | /                      | <                                                                   | <                                               | <                 |
   | Meaning                | symbols                                                             | eigen state                                     | eigen value       |
   |------------------------+---------------------------------------------------------------------+-------------------------------------------------+-------------------|
   | position               | $\hat{x_j} = x_j$                                                   | $1$                                             | $x_j$             |
-  | momentum               | $\hat{p} = -i\hbar \pd{}{xf_j}$                                     | $\frac{1}{\sqrt{2\pi\hbar}}e^{i p_j x_j/\hbar}$ | $p_j$             |
+  | momentum               | $\hat{p} = -i\hbar \pd{}{xf_j}$                                     | $\frac{1}{\sqrt{2\pi\hbar}}e^{i p_j x_j/\hbar}$    | $p_j$             |
   | Angular Momentum in z  | $\hat{J}_z \equiv \hat{r}\times\hat{p}\equiv \hat{S}_z + \hat{L}_z$ | $Y_{j,m}$                                       | $\hbar m$         |
   | (Angular Momentum)^2   | $\hat{J}^2 = \hat{J_x}^2 + \hat{J_y}^2 + \hat{J_z}^2$               | $Y_{j, m}$                                      | $\hbar^2(j(j+1))$ |
   | Energy                 | $\bar{H} \equiv \hat{T}(\hat{p}) + \hat{V}(\hat{r})$                | see sec. 4                                      | $E$               |
   | Rotation about $\v{k}$ | $\hat{R}(\phi \v{k}) = e^{-i\hat{J}_z \phi / \hbar}$                |                                                 |                   |
   | Time Evolution         | $\hat{\tau}(t) \equiv e^{-i\hat{H} t/ \hbar}$                       |                                                 |                   |
 ** Important Commutators
-   | $[\hat{x_l}, \hat{p_m}] = i\hbar\delta_{lm}$ | $[\hat{t}, \hat{E}] = i\hbar$ | $[L_l, L_m] = i\hbar \epsilon_{lmn} L_n$ |
+   | $[\hat{x_l}, \hat{p_m}] = i\hbar\delta_{lm}$ | $[\hat{t}, \hat{E}] = i\hbar$ | $[L_l, L_m] = i\hbar \abs{\left < L_n \right >} \epsilon_{lmn}$ |
+** Changing Basis (between \alpha and \beta basis)
+   In General: $\hat{R}\ket{\Psi}_\alpha = \ket{\Psi}_\beta, \hat{R}^\dagger \hat{Q}_\alpha \hat{R} = \hat{Q}_\beta, \mathbb{R}_{ij} = \braket{\alpha_i}{\beta_j}$
+   | /                                                                                             | <                                                                                            |
+   | x \rightarrow p                                                                               | p \rightarrow x                                                                              |
+   |-----------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------|
+   |                                                                                               |                                                                                              |
+   | $\tilde{f}(p) = \frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty} f(x) e^{-i p x / \hbar} dx$ | $f(x) = \frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty} \tilde{f}(p) e^{i p x / \hbar} dp$ |
 ** Ladder Operators
   | /                                           | <                                                                                                               |
   | Operator                                    | Definition                                                                                                      |
@@ -95,21 +96,21 @@
 * Hamiltonians (Energy Eigen states and values)
 
 ** Non-Scattering
-   | /           | <                                         | <                                                                                                     | <                                               |
-   |             | $\hat{V}_{\text{eff}}$                    | Eigen State                                                                                           | Eigen Value (E)                                 |
-   |-------------+-------------------------------------------+-------------------------------------------------------------------------------------------------------+-------------------------------------------------|
-   | 1-D         |                                           |                                                                                                       |                                                 |
-   |-------------+-------------------------------------------+-------------------------------------------------------------------------------------------------------+-------------------------------------------------|
-   | ISW         | $0$ if $x \in [-\frac{L}{2},\frac{L}{2}]$ | $\ket{n} = \sqrt{\frac{2}{L}} \sin(k_n x) \equiv f_1$                                                 | $F_1(n) \equiv \frac{n^2 \hbar^2 \pi^2}{2mL^2}$ |
-   |             | else $\infty$                             | $0, k_n \equiv \sqrt{\frac{2mE_n}{\hbar}}$                                                            |                                                 |
-   | SHO         | $\frac{m \omega^2}{2}\hat{x}^2$           | $\ket{0} = \left ( \frac{m\omega}{\pi \hbar} \right )^{\frac{1}{4}} e^{-\frac{m\omega}{2 \hbar} x^2}$ | $F_2(n) \equiv \hbar \omega (n + \frac{1}{2})$  |
-   |             |                                           | $\ket{n} = (n!)^{-\frac{1}{2}} (a_+)^n \ket{0} \equiv f_2$                                            |                                                 |
-   |-------------+-------------------------------------------+-------------------------------------------------------------------------------------------------------+-------------------------------------------------|
-   | 3-D         |                                           |                                                                                                       |                                                 |
-   |-------------+-------------------------------------------+-------------------------------------------------------------------------------------------------------+-------------------------------------------------|
-   | ISW         |                                           | $\ket{n_1, n_2, n_3} = \prod_k^3  f_1(n_k)$                                                           | $\sum_k^3 F_1(n_k)$                             |
-   | SHO         |                                           | $\ket{n_1, n_2, n_3} = \prod_k^3 f_2(n_k)$                                                            | $\sum_k^3 F_2(n_k)$                             |
-   |             | $\frac{Z e^2}{\abs{\hat{r}}}$             | $\ket{n,l,m} = R_{nl}Y_{l,m}$                                                                         | $-\frac{\mu c^2 Z^2 e^4}{2\hbar}\frac{1}{n^2}$  |
+   | /   | <                                         | <                                                                                                     | <                                               |
+   |     | $\hat{V}_{\text{eff}}$                    | Eigen State                                                                                           | Eigen Value (E)                                 |
+   |-----+-------------------------------------------+-------------------------------------------------------------------------------------------------------+-------------------------------------------------|
+   | 1-D |                                           |                                                                                                       |                                                 |
+   |-----+-------------------------------------------+-------------------------------------------------------------------------------------------------------+-------------------------------------------------|
+   | ISW | $0$ if $x \in [-\frac{L}{2},\frac{L}{2}]$ | $\ket{n} = \sqrt{\frac{2}{L}} \sin(k_n x) \equiv f_1$                                                 | $F_1(n) \equiv \frac{n^2 \hbar^2 \pi^2}{2mL^2}$ |
+   |     | else $\infty$                             | $0, k_n \equiv \sqrt{\frac{2mE_n}{\hbar}}$                                                            |                                                 |
+   | SHO | $\frac{m \omega^2}{2}\hat{x}^2$           | $\ket{0} = \left ( \frac{m\omega}{\pi \hbar} \right )^{\frac{1}{4}} e^{-\frac{m\omega}{2 \hbar} x^2}$ | $F_2(n) \equiv \hbar \omega (n + \frac{1}{2})$  |
+   |     |                                           | $\ket{n} = (n!)^{-\frac{1}{2}} (a_+)^n \ket{0} \equiv f_2$                                            |                                                 |
+   |-----+-------------------------------------------+-------------------------------------------------------------------------------------------------------+-------------------------------------------------|
+   | 3-D |                                           |                                                                                                       |                                                 |
+   |-----+-------------------------------------------+-------------------------------------------------------------------------------------------------------+-------------------------------------------------|
+   | ISW |                                           | $\ket{n_1, n_2, n_3} = \prod_k^3  f_1(n_k)$                                                           | $\sum_k^3 F_1(n_k)$                             |
+   | SHO |                                           | $\ket{n_1, n_2, n_3} = \prod_k^3 f_2(n_k)$                                                            | $\sum_k^3 F_2(n_k)$                             |
+   | H   | $\frac{Z e^2}{\abs{\hat{r}}}$             | $\ket{n,l,m} = R_{nl}Y_{l,m}$                                                                         | $-\frac{\mu c^2 Z^2 e^4}{2\hbar}\frac{1}{n^2}$  |
 
 ** 1-D SHO (Simple Harmonic Oscillator)
    - $\hat{H} = \hbar \omega (\hat{a}_+ \hat{a}_- + \frac{1}{2}) \Rightarrow E_n = \hbar \omega (n + \frac{1}{2})$
@@ -117,11 +118,12 @@
    - Selection Rules: $l \in [0, n-1], m \in [-l, l]$
    - There is a $n^2$ degeneracy of $E_n$
 ** Scattering
-   | /                | <         | <  |
-   | Name             | $\hat{V}$ | pg |
-   |------------------+-----------+----|
-   | FSW              |           |    |
-   | $\delta$ well    |           |    |
-   | $\delta$ barrier |           |    |
+   | /                |  < |
+   | Name             | pg |
+   |------------------+----|
+   | FSW              | 90 |
+   | $\delta$ well    | 82 |
+   | $\delta$ barrier | 88 |
 *** Probability Density Current
-    $j \equiv \frac{-i\hbar}{2m}\left ( \Psi^*\pd{\Psi}{x} - \pd{\Psi^*}{x} \Psi \right)$
+    - $j \equiv \frac{-i\hbar}{2m}\left ( \Psi^*\pd{\Psi}{x} - \pd{\Psi^*}{x} \Psi \right)$
+    - $j$ is conserved before and after scattering
