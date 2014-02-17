@@ -1,0 +1,51 @@
+#+TITLE: Phys phys427 cheet sheet
+#+AUTHOR: Marcell Jose Vazquez-Chanlatte
+#+EMAIL: 
+#+DATE:
+#+DESCRIPTION:
+#+KEYWORDS:
+#+LANGUAGE:  en
+#+OPTIONS:   H:3 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP:
+
+#+LINK_HOME:
+#+XSLT:
+#+LaTeX_CLASS_OPTIONS: [landscape, twocolumn]
+#+LaTeX_HEADER: \usepackage{../header}
+#+LaTeX_HEADER: \geometry{left=.2in,right=.3in,top=.3in,bottom=.3in}
+
+* Misc
+  - Stirling's approximation: $ln(N!) \approx N (ln(N) - 1)$ 
+* Statistical Mechanics
+** Micro-canonical ensemble (constant E)
+** Canonical Ensemble (constant T)
+   - Boltzman Distribution: $\mathbb{P}(s) = \frac{1}{z} e^{E(s)/kT}$
+   - Partition Function: $z = \sum_{j} e^{E(s_j)/KT}$
+* Thermal Dynamics
+** Definitions
+   | $C \equiv \frac{Q}{\Delta T}$                |
+   | $c \equiv \frac{C}{m}$                       |
+   | $C_V = (\pd{U}{T})_V$                        |
+   | $C_P = (\pd{U}{T})_P + P(\pd{V}{T})_P$       |
+   | $T = (\pd{S}{U})^{-1}$  |
+   |                                              |
+** Laws of Thermodynamics
+   1. $\Delta U = Q - W_{\text{by}}$
+   2. $\d{}{t}S_{\text{total}} > 0$
+** Equipartition
+   - $U_{\text{thermal}} = N \cdot f \fdot \frac{1}{2} k T$
+** Ideal Gases
+  - $PV  = NkT$
+  - $W = - \int_{V_i}^{V_f} P(V) dV$ (quasi-static
+*** Adiabatic
+    - $\d{}{t}(V^{\gamma} P) = 0$
+*** Maxwell Speed Distribution
+    - $\mathcal{D}(v) = \left ( \frac{m}{2\pi k T}\right )^{3/2} \cdot 4 \pi v^2 \cdot e ^{-mv^2/2kT}$ 
+    - $\bar{v} = \sqrt{\frac{8kT}{\pi m}}$
+    - $\v_{\text{rms}} = \sqrt{\frac{3kT}{m}}}$
+    - $v_{\text{max}} = \sqrt{\frac{2kT}{m}}$
+** Einstein Jobs Solids

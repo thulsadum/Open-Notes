@@ -36,18 +36,19 @@
 
 
 * Physical Operators
-  | /                      | <                                                                   | <                                               | <                 |
-  | Meaning                | symbols                                                             | eigen state                                     | eigen value       |
-  |------------------------+---------------------------------------------------------------------+-------------------------------------------------+-------------------|
-  | position               | $\hat{x_j} = x_j$                                                   | $1$                                             | $x_j$             |
-  | momentum               | $\hat{p} = -i\hbar \pd{}{xf_j}$                                     | $\frac{1}{\sqrt{2\pi\hbar}}e^{i p_j x_j/\hbar}$    | $p_j$             |
-  | Angular Momentum in z  | $\hat{J}_z \equiv \hat{r}\times\hat{p}\equiv \hat{S}_z + \hat{L}_z$ | $Y_{j,m}$                                       | $\hbar m$         |
-  | (Angular Momentum)^2   | $\hat{J}^2 = \hat{J_x}^2 + \hat{J_y}^2 + \hat{J_z}^2$               | $Y_{j, m}$                                      | $\hbar^2(j(j+1))$ |
-  | Energy                 | $\bar{H} \equiv \hat{T}(\hat{p}) + \hat{V}(\hat{r})$                | see sec. 4                                      | $E$               |
-  | Rotation about $\v{k}$ | $\hat{R}(\phi \v{k}) = e^{-i\hat{J}_z \phi / \hbar}$                |                                                 |                   |
-  | Time Evolution         | $\hat{\tau}(t) \equiv e^{-i\hat{H} t/ \hbar}$                       |                                                 |                   |
+  | /                      | <                                                                     | <                                               | <                 |
+  | Meaning                | definition                                                            | eigen state                                     | eigen value       |
+  |------------------------+-----------------------------------------------------------------------+-------------------------------------------------+-------------------|
+  | position               | $\hat{x_j} \ket{x_j} = x_j \ket{x_j}$                                 | $1$                                             | $x_j$             |
+  | momentum               | $\hat{p_j} \ket{p_j} = p_j \ket{p_j}, \hat{p_j} = -i\hbar \pd{}{x_j}$ | $\frac{1}{\sqrt{2\pi\hbar}}e^{i p_j x_j/\hbar}$ | $p_j$             |
+  | Angular Momentum in z  | $\hat{J}_z \equiv \hat{r}\times\hat{p}\equiv \hat{S}_z + \hat{L}_z$   | $Y_{j,m}$                                       | $\hbar m$         |
+  | (Angular Momentum)^2   | $\hat{J}^2 = \hat{J_x}^2 + \hat{J_y}^2 + \hat{J_z}^2$                 | $Y_{j, m}$                                      | $\hbar^2(j(j+1))$ |
+  | Energy                 | $\bar{H} \equiv \hat{T}(\hat{p}) + \hat{V}(\hat{r})$                  | see sec. 4                                      | $E$               |
+  | Rotation about $\v{k}$ | $\hat{R}(\phi \v{k}) = e^{-i\hat{J}_z \phi / \hbar}$                  |                                                 |                   |
+  | Time Evolution         | $\hat{U}(t) = e^{-i\hat{H} t/ \hbar}$, $\pd{\hat{H}}{t}=0$            |                                                 |                   |
+  | Translation            | $\hat{T}(a) \ket{x} = \ket{x+a} = e^{-i\hat{p}_x a/\hbar$             |                                                 |                   |
 ** Important Commutators
-   | $[\hat{x_l}, \hat{p_m}] = i\hbar\delta_{lm}$ | $[\hat{t}, \hat{E}] = i\hbar$ | $[L_l, L_m] = i\hbar \abs{\left < L_n \right >} \epsilon_{lmn}$ |
+   | $[\hat{x}_i, \hat{x}_j] = 0$ | $[\hat{p}_x, \hat{p}_y] = 0$ | $[\hat{x_l}, \hat{p_m}] = i\hbar\delta_{lm}$ | $[\hat{t}, \hat{E}] = i\hbar$ | $[L_l, L_m] = i\hbar \abs{\left < L_n \right >} \epsilon_{lmn}$ |
 ** Changing Basis (between \alpha and \beta basis)
    In General: $\hat{R}\ket{\Psi}_\alpha = \ket{\Psi}_\beta, \hat{R}^\dagger \hat{Q}_\alpha \hat{R} = \hat{Q}_\beta, \mathbb{R}_{ij} = \braket{\alpha_i}{\beta_j}$
    | /                                                                                             | <                                                                                            |
@@ -63,34 +64,17 @@
   | $a_+ = a_-^\dagger$                         | $a_+ \ket{n} = \sqrt{n+1} \ket{n+1}$                                                                               |
   | $\hat{L}_{\pm} = \hat{L}_x \pm i\hat{L}_y}$ | $\hat{L}_{\pm} \ket{l, m} = \hbar \sqrt{l(l + 1) - m(m\pm 1)} \ket{l, m \pm 1}, \hat{L}_\pm \ket{l, \pm l} = 0$ |
 ** Angular Momentum and Spin
-#+BEGIN_LaTeX
-  \v{S}_j = \frac{\hbar}{2}\begin{pmatrix}
-    \delta_{j3}&\delta_{j1}-i\delta_{j2}\\
-    \delta_{j1}+i\delta_{j2}&-\delta_{j3}
-  \end{pmatrix}, \v{L}_j =
-  \frac{\hbar}{\sqrt{2}} \begin{pmatrix}
-    \sqrt{2}\delta_{j3}&\delta_{j1}-i\delta_{j2}&0\\
-    \delta_{j1}+i\delta_{j2}&0&\delta_{j1}-i\delta_{j2}\\
-    0&\delta_{j1}+i\delta_{j2}&-\sqrt{2}\delta_{j3}\\
-  \end{pmatrix}\\
-  \ket{+z} \stackrel{S_z}{\rightarrow}  \begin{pmatrix}
-    1\\
-    0
-  \end{pmatrix},
-  \ket{-z} \stackrel{S_z}{\rightarrow}  \begin{pmatrix}
-    0\\
-    1
-  \end{pmatrix},
-  \ket{\pm x} \stackrel{S_z}{\rightarrow}  \frac{1}{\sqrt{2}}\begin{pmatrix}
-    1\\
-    \pm 1
-  \end{pmatrix},
-  \ket{\pm y} \stackrel{S_z}{\rightarrow}  \frac{1}{\sqrt{2}}\begin{pmatrix}
-    1\\
-    \pm i
-  \end{pmatrix},\\
-  
-#+END_LaTeX
+    #+BEGIN_LaTeX
+      \v{S}_j = \frac{\hbar}{2}\begin{pmatrix}
+        \delta_{j3}&\delta_{j1}-i\delta_{j2}\\
+        \delta_{j1}+i\delta_{j2}&-\delta_{j3}
+      \end{pmatrix}, \v{L}_j =
+      \frac{\hbar}{\sqrt{2}} \begin{pmatrix}
+        \sqrt{2}\delta_{j3}&\delta_{j1}-i\delta_{j2}&0\\
+        \delta_{j1}+i\delta_{j2}&0&\delta_{j1}-i\delta_{j2}\\
+        0&\delta_{j1}+i\delta_{j2}&-\sqrt{2}\delta_{j3}\\
+      \end{pmatrix}  
+    #+END_LaTeX
 * Schrödinger Equation: $i \hbar \dot{\Psi} = \hat{H} \Psi$
   $\Psi(x, t) = f(x)\cdot g(t) \Rightarrow \dot{g}(t) = -\frac{iE}{\hbar} g(t) \wedge \hat{H} f(x) = E f(x)$
 * Hamiltonians (Energy Eigen states and values)
